@@ -6,10 +6,6 @@ Template Name: Homepage
 
 <?php get_header(); ?>
 			
-			<div id="content" class="clearfix row-fluid">
-			
-				<div id="main" class="span12 clearfix" role="main">
-
 					<?php
 
 					$use_carousel = of_get_option('showhidden_slideroptions');
@@ -65,8 +61,16 @@ Template Name: Homepage
 					    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 					    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 				    </div>
+					
+				</div> <!-- container for carousel -->
+
+				<div class="container-fluid">
 
 				    <?php } // ends the if use carousel statement ?>
+
+					<div id="content" class="clearfix row-fluid">
+			
+						<div id="main" class="span12 clearfix" role="main">
 
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					
