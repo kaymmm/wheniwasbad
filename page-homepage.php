@@ -95,13 +95,25 @@ Template Name: Homepage
 						
 						<section class="row-fluid post_content">
 						
-							<div class="span8">
+							<?php if (is_active_sidebar('sidebar2')) { ?>
 						
+							<div class="span8">
+								
 								<?php the_content(); ?>
 								
 							</div>
 							
 							<?php get_sidebar('sidebar2'); // sidebar 2 ?>
+						
+							<?php } else { ?>
+								
+							<div class="span12">
+								
+								<?php the_content(); ?>
+								
+							</div>
+
+							<?php } ?>
 													
 						</section> <!-- end article header -->
 						
