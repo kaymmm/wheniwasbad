@@ -55,7 +55,7 @@ function optionsframework_options() {
 	//print_r($theList);
 	
 	// fixed or scroll position
-	$fixed_scroll = array("fixed" => "Fixed","scroll" => "Scroll");
+	$fixed_scroll = array("fixed" => "Fixed (top)","fixed-bottom" => "Fixed (bottom)","scroll" => "Scroll");
 	
 	// Multicheck Defaults
 	$multicheck_defaults = array("one" => "1","five" => "1");

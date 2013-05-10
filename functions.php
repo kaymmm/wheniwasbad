@@ -653,22 +653,6 @@ function get_wpbs_theme_options(){
         }';
       }
       
-      $topbar_position = of_get_option('nav_position');
-      if ($topbar_position == 'scroll') {
-        $theme_options_styles .= '
-        .navbar{ 
-          position: static; 
-        }
-        body{
-          padding-top: 0;
-        }
-        #content {
-          padding-top: 27px;
-        }
-        ' 
-        ;
-      }
-      
       $topbar_bg_color = of_get_option('top_nav_bg_color');
       $use_gradient = of_get_option('showhidden_gradient');
       if ( $topbar_bg_color && !$use_gradient ) {
