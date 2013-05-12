@@ -614,7 +614,7 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 // Get theme options
 function get_wpbs_theme_options(){
   $theme_options_styles = '';
-    
+/*    
       $heading_typography = of_get_option( 'heading_typography' );
       if ( $heading_typography['face'] != 'Default' ) {
         $theme_options_styles .= '
@@ -634,7 +634,7 @@ function get_wpbs_theme_options(){
           color: ' . $main_body_typography['color'] . '; 
         }';
       }
-      
+*/      
       $link_color = of_get_option( 'link_color' );
       if ($link_color) {
         $theme_options_styles .= '

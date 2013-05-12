@@ -85,7 +85,7 @@ function optionsframework_options() {
 		
 	$options[] = array( "name" => "Typography",
 						"type" => "heading");
-			
+/*			
 	$options[] = array( "name" => "Headings",
 						"desc" => "Used in H1, H2, H3, H4, H5 & H6 tags.",
 						"id" => "heading_typography",
@@ -98,7 +98,7 @@ function optionsframework_options() {
 						"id" => "main_body_typography",
 						"std" => "",
 						"type" => "typography");
-						
+*/						
 	$options[] = array( "name" => "Link Color",
 						"desc" => "Default used if no color is selected.",
 						"id" => "link_color",
