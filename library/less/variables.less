@@ -53,7 +53,7 @@
 @baseLineHeight:        20px;
 @altFontFamily:         @sansFontFamily;
 
-@headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
+@headingsFontFamily:    @sansFontFamily; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    bold;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
@@ -83,6 +83,9 @@
 @btnBackground:                     @white;
 @btnBackgroundHighlight:            darken(@white, 10%);
 @btnBorder:                         #ccc;
+
+@btnFontFamily:                     @sansFontFamily;
+@btnFontSize:                       @baseFontSize;
 
 @btnPrimaryBackground:              #E67E22;
 @btnPrimaryBackgroundHighlight:     #D35400;//spin(@btnPrimaryBackground, 20%);
@@ -181,6 +184,7 @@
 @navbarBorder:                    darken(@navbarBackground, 12%);
 
 @navbarText:                      @white;
+@navbarFontFamily:                @sansFontFamily;
 @navbarLinkColor:                 @white;
 @navbarLinkColorHover:            @grayDark;
 @navbarLinkColorActive:           @grayDark;
@@ -188,6 +192,7 @@
 @navbarLinkBackgroundActive:      @red;//darken(@navbarBackground, 5%);
 
 @navbarBrandColor:                @navbarLinkColor;
+@navbarBrandFontFamily:           @sansFontFamily;
 
 // Inverted navbar
 @navbarInverseBackground:                #111111;
