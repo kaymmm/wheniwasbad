@@ -661,7 +661,6 @@ blockquote.pull-left{
 	}
 	
 	.container-fluid{
-		max-width: 970px;
 		margin: 0 auto;
 		padding-left: 20px;
 		padding-right: 20px;
@@ -685,8 +684,7 @@ blockquote.pull-left{
 	}
 	
 	.navbar-form, .navbar-search {
-		margin-top: 6px;
-		margin-bottom: 0;
+		margin: 29px 0;
 	}
 	
 	.navbar-search{
@@ -725,7 +723,8 @@ blockquote.pull-left{
 	
 	#s{
 		width: 210px;
-		margin-bottom: 6px;
+		padding: 0 20px;
+		line-height: 20px;
 	}
 	
 	.widget_search input{

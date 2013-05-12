@@ -80,7 +80,7 @@
 			
 				<div class="navbar <?php echo $navbar_class; ?>">
 					<div class="navbar-inner">
-						<div class="container-fluid nav-container">
+<!--						<div class="container-fluid nav-container"> -->
 							<nav role="navigation">
 								<a class="brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
 									<?php if(of_get_option('branding_logo','')!='') { ?>
@@ -106,7 +106,7 @@
 							</form>
 							<?php } ?>
 							
-						</div> <!-- end .nav-container -->
+						<!--</div>  end .nav-container -->
 					</div> <!-- end .navbar-inner -->
 				</div> <!-- end .navbar -->
 			
@@ -114,4 +114,4 @@
 		
 		</header> <!-- end header -->
 		
-		<div class="container-fluid">
+		<div class="container">
