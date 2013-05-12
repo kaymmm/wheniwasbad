@@ -54,13 +54,31 @@
 				
 	</head>
 	
-	<body <?php body_class(); ?>>
+	<?php
+	$nav_position = of_get_option('nav_position');
+	switch ($nav_position) {
+		case 'fixed':
+			$navbar_class = 'navbar-fixed-top';
+			$body_style = 'style="padding-top: 40px;"';
+			break;
+		case 'fixed-bottom':
+			$navbar_class = 'navbar-fixed-bottom';
+			$body_style = 'style="padding-top: 0;"';
+			break;
+		case 'scroll':
+		default: 
+			$navbar_class = 'navbar-static-top';
+			$body_style = 'style="padding-top: 0;"';
+	}
+	?>
+		
+	<body <?php body_class(); echo $body_style; ?>>
 				
 		<header role="banner">
 		
 			<div id="inner-header" class="clearfix">
-				
-				<div class="navbar navbar-fixed-top">
+			
+				<div class="navbar <?php echo $navbar_class; ?>">
 					<div class="navbar-inner">
 						<div class="container-fluid nav-container">
 							<nav role="navigation">

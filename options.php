@@ -55,7 +55,7 @@ function optionsframework_options() {
 	//print_r($theList);
 	
 	// fixed or scroll position
-	$fixed_scroll = array("fixed" => "Fixed","scroll" => "Scroll");
+	$fixed_scroll = array("fixed" => "Fixed (top)","fixed-bottom" => "Fixed (bottom)","scroll" => "Scroll");
 	
 	// Multicheck Defaults
 	$multicheck_defaults = array("one" => "1","five" => "1");
@@ -210,7 +210,22 @@ function optionsframework_options() {
 						"type" => "themecheck",
 						"id" => "themecheck"
 						);
-						
+
+	$options[] = array( "name" => "Footer",
+						"type" => "heading");
+
+	$options[] = array( "name" => "Footer Text",
+						"desc" => "Custom footer text (HTML OK)",
+						"id" => "footer_text",
+						"std" => "",
+						"type" => "editor");
+
+	$options[] = array( "name" => "Footer Menu",
+						"desc" => "Check to display a navigation menu in the footer area (configure using Wordpress 'Menus')",
+						"id" => "show_footer_menu",
+						"std" => "0",
+						"type" => "checkbox");
+
 	$options[] = array( "name" => "Other Settings",
 						"type" => "heading");
 
