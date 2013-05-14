@@ -1,15 +1,17 @@
-  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <div class="entry-content">
-      <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'bonestheme' ) ); ?>
-    </div><!-- .entry-content -->
+	<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid clearfix'); ?>>
+		<div class="span9">
+			<?php if ( get_the_title() != '' ): ?>
+			<header class="entry-header">
+				<span class="label-postformat-quote clearfix"><i class="icon-quote-right"></i></span>
+				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+			</header><!-- .entry-header -->
+			<?php endif; ?>
 
-    <footer class="entry-meta">
-      <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'bonestheme' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php echo get_the_date(); ?></a>
-      <?php if ( comments_open() ) : ?>
-      <div class="comments-link">
-        <?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'bonestheme' ) . '</span>', __( '1 Reply', 'bonestheme' ), __( '% Replies', 'bonestheme' ) ); ?>
-      </div><!-- .comments-link -->
-      <?php endif; // comments_open() ?>
-      <?php edit_post_link( __( 'Edit', 'bonestheme' ), '<span class="edit-link">', '</span>' ); ?>
-    </footer><!-- .entry-meta -->
-  </article><!-- #post -->
+			<section class="post_content clearfix">
+				<?php the_content( __( '<span class="btn">Continue reading <i class="icon-double-angle-right"></i></span>', 'bonestheme' ) ); ?>
+			</section><!-- .post_content -->
+		</div>
+		<div class="span3">
+			<?php get_template_part('postmeta','quote'); ?>	
+		</div>
+	</article><!-- #post -->

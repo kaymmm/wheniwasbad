@@ -112,51 +112,70 @@ input, textarea, select, .uneditable-input {
 
 /* post styling */
 
-#main p.meta{
-	font-style: italic;
-	color: #808080;
-}
-
-#main article{
-	margin-bottom: 18px;
-	border-bottom: 1px solid #eeeeee;
-	padding: 0 0 9px;
-}
-
-#main article footer{
-	border-top: none;
-	margin-top: 0;
+#main section.post_content {
 	padding-top: 0;
-	position: relative;
-	min-height: 20px;
-}
-
-#main article footer a.edit-post{
-	position: absolute;
-	right: 0;
-	top: 0;
-	display: none;
-}
-
-.post:hover a.edit-post{
-	display: inline;
 }
 
 /* Shared Post Format styling */
-article.format-quote footer.entry-meta,
-article.format-link footer.entry-meta,
-article.format-status footer.entry-meta {
-	font-size: 11px;
-	font-size: 0.785714286rem;
-	line-height: 2.181818182;
+
+article header.entry-header {
+	margin-bottom: 10px;
+}
+article header.entry-header h2 {
+	margin-top: 0;
 }
 
-/* =Aside post format
--------------------------------------------------------------- */
-#main article.format-aside {
-	padding: 0;
+article[class*="format-"] .entry-meta,
+article[class*="format-"] .entry-meta .label
+{
+	font-size: 12px;
+	font-size: 0.8571rem;
+	font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	line-height: 14px;
+	line-height: 1rem;
+	text-shadow: none;
 }
 
+article[class*="format-"] .entry-meta p {
+	line-height: 20px;
+	line-height: 1.42857142857143rem;
+}
+
+article[class*="format-"] .entry-meta a,
+article[class*="format-"] .entry-meta a:active,
+article[class*="format-"] .entry-meta a:visited,
+article[class*="format-"] .entry-meta a:hover {
+	color: #777;
+}
+
+article[class*="format-"] .entry-meta .label {
+	color: #fff;
+}
+
+[class*="label-postformat-"] {
+	padding: 0 10px;
+	padding: 0 0.714285714rem;
+	float: right;
+	font-size: 20px;
+	font-size: 1.4286rem;
+	line-height: 2.1818rem;
+	font-weight: bold;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #848484;
+	background-color: #ebebeb;
+}
+
+#main article {
+	margin-bottom: 40px;
+	margin-bottom: 2rem;
+	padding: 0 0 20px;
+	padding: 0 0 1rem;
+}
+
+/* Aside post format */
+/*
 article.format-aside h1 {
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
@@ -185,60 +204,13 @@ article.format-aside footer.aside {
 	padding: 1.714285714rem;
 	border-left: 22px solid;
 }
-
+*/
 /* Image posts */
-article.format-image footer h1 {
-	font-size: 13px;
-	font-size: 0.928571429rem;
-	line-height: 1.846153846;
-	font-weight: normal;
-}
-article.format-image footer h2 {
-	font-size: 11px;
-	font-size: 0.785714286rem;
-	line-height: 2.181818182;
-}
-article.format-image footer a h2 {
-	font-weight: normal;
-}
 
 /* Link posts */
-article.format-link header {
-	padding: 0 10px;
-	padding: 0 0.714285714rem;
-	float: right;
-	font-size: 11px;
-	font-size: 0.785714286rem;
-	line-height: 2.181818182;
-	font-weight: bold;
-	font-style: italic;
-	text-transform: uppercase;
-	color: #848484;
-	background-color: #ebebeb;
-	border-radius: 3px;
-}
-article.format-link .entry-content {
-	max-width: 80%;
-	float: left;
-}
-article.format-link .entry-content a {
-	font-size: 22px;
-	font-size: 1.571428571rem;
-	line-height: 1.090909091;
-	text-decoration: none;
-}
-
-article.format-link footer.entry-meta { 
-	clear: both;
-}
 
 /* Quote posts */
-article.format-quote .entry-content p {
-	margin: 0;
-	padding-bottom: 24px;
-	padding-bottom: 1.714285714rem;
-}
-article.format-quote .entry-content blockquote {
+article.format-quote .post_content blockquote {
 	display: block;
 	padding: 24px 24px 0;
 	padding: 1.714285714rem 1.714285714rem 0;
@@ -248,48 +220,19 @@ article.format-quote .entry-content blockquote {
 	font-style: normal;
 }
 
-article.format-quote .entry-content blockquote p:before {
+article.format-quote .post_content blockquote p:before {
 	content: "\201C  ";
 	font-size: 2rem;
 }
 
-article.format-quote .entry-content blockquote p:after {
+article.format-quote .post_content blockquote p:after {
 	content: " \201D ";
 	font-size: 2rem;
 }
 
 /* Status posts */
-.format-status .entry-header {
-	margin-bottom: 24px;
-	margin-bottom: 1.714285714rem;
-}
 .format-status .entry-header header {
 	display: inline-block;
-}
-.format-status .entry-header h1 {
-	font-size: 15px;
-	font-size: 1.071428571rem;
-	font-weight: normal;
-	line-height: 1.6;
-	margin: 0;
-}
-.format-status .entry-header h2 {
-	font-size: 12px;
-	font-size: 0.857142857rem;
-	font-weight: normal;
-	line-height: 2;
-	margin: 0;
-}
-.format-status .entry-header header a {
-	color: #757575;
-}
-.format-status .entry-header header a:hover {
-	color: #21759b;
-}
-.format-status .entry-header img {
-	float: left;
-	margin-right: 21px;
-	margin-right: 1.5rem;
 }
 
 p.tags{
@@ -478,11 +421,12 @@ a.comment-reply-link{
 }
 
 img.avatar{
-	border-top: 1px solid #ddd;
+	border: none;
+/*	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #dedede;
 	border-right: 1px solid #dedede;
 	border-left: 1px solid #ddd;
-	
+*/	
 }
 
 ol.commentlist li{
@@ -584,11 +528,6 @@ li.previous a:hover:before{
 	line-height: 160%;
 }
 
-/* for some reason the bs version currently available for download doesn't have this style */
-.label{
-	text-transform: uppercase;
-}
-
 /* override standard link hover for the tag cloud widget */
 #tag-cloud a:hover,
 .tags a:hover{
@@ -614,10 +553,10 @@ li.previous a:hover:before{
 /* calendar widget */
 
 #calendar_wrap{
-	border: 1px solid #ddd;
+/*	border: 1px solid #ddd;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
-	border-radius: 3px;
+	border-radius: 3px; */
 	padding: 5px;
 }
 

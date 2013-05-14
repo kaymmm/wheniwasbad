@@ -308,6 +308,8 @@ function remove_thumbnail_dimensions( $html ) {
     return $html;
 }
 
+/******** Homepage Template ********/
+
 // Add the Meta Box to the homepage template
 function add_homepage_meta_box() {  
 	global $post;
@@ -411,6 +413,8 @@ function save_homepage_meta( $post_id ) {
 }
 add_action( 'save_post', 'save_homepage_meta' );
 
+/******* Misc. Filters *********/
+
 // Add thumbnail class to thumbnail links
 function add_class_attachment_link( $html ) {
     $postid = get_the_ID();
@@ -430,6 +434,23 @@ function first_paragraph( $content ){
         return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead">', $content, 1);
 }
 add_filter( 'the_content', 'first_paragraph' );
+
+// Filter post title for tumblr-style "link" post format
+function sd_link_filter($link, $post) {
+     if (has_post_format('link', $post)) {
+		 if (get_post_meta($post->ID, 'LinkFormatURL', true)) {
+	          $link = get_post_meta($post->ID, 'LinkFormatURL', true);
+	     } else {
+		 // look for the first URL in the post content
+		 	if (preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $post->post_content, $match)) {
+				$link = $match[0][0];
+			}
+		 }
+	 }
+     return $link;
+}
+add_filter('post_link', 'sd_link_filter', 10, 2);
+
 
 // Menu output mods
 /* Bootstrap_Walker for Wordpress 
@@ -728,7 +749,7 @@ function get_wpbs_theme_options(){
           background-color: '. $hero_unit_bg_color . ';
         }';
       }
-      
+/*      
       $suppress_comments_message = of_get_option( 'suppress_comments_message' );
       if ( $suppress_comments_message ){
         $theme_options_styles .= '
@@ -736,7 +757,7 @@ function get_wpbs_theme_options(){
           border-bottom: none;
         }';
       }
-      
+ */     
       $additional_css = of_get_option( 'wpbs_css' );
       if( $additional_css ){
         $theme_options_styles .= $additional_css;
