@@ -50,6 +50,10 @@ body{
 	padding-top: 0;
 }
 
+#inner-footer {
+	font-size: 12px;
+}
+
 /* Admin Top Navigation fixes */
 
 body.admin-bar .navbar-fixed-top{ 
@@ -331,7 +335,7 @@ video {
 }
 
 .hero-unit h1 {
-	font-size: 3em;
+	margin: 0 0 20px;
 }
 
 /* comments */
