@@ -1,9 +1,8 @@
 <?php get_header(); ?>
 			
-			<?php
-				$blog_hero = of_get_option('blog_hero');
-				if ($blog_hero){
-			?>
+		<?php
+		$blog_hero = of_get_option('blog_hero');
+		if ( $blog_hero && is_front_page() ) : ?>
 			<div class="clearfix row-fluid">
 				<div class="hero-unit">
 				
@@ -13,17 +12,19 @@
 				
 				</div>
 			</div>
-			<?php
-				}
-			?>
+		<?php endif; ?>
 			
 			<div id="content" class="clearfix row-fluid">
-			
-				<div id="main" class="span8 clearfix" role="main">
 
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-						<?php get_template_part( 'content', get_post_format() ); ?>					
-					<?php endwhile; ?>	
+				<div id="main" class="span12 clearfix" role="main">
+
+					<?php while ( have_posts() ) : the_post(); ?>
+				
+						<?php get_template_part( 'content', get_post_format() ); ?>
+
+						<?php comments_template( '', true ); ?>
+
+					<?php endwhile; // end of the loop. ?>
 					
 					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
 						
@@ -37,25 +38,8 @@
 							</ul>
 						</nav>
 					<?php } ?>		
-					
-					<?php else : ?>
-					
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("Not Found", "bonestheme"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, but the requested resource was not found on this site.", "bonestheme"); ?></p>
-					    </section>
-					    <footer>
-					    </footer>
-					</article>
-					
-					<?php endif; ?>
 			
 				</div> <!-- end #main -->
-    
-				<?php get_sidebar(); // sidebar 1 ?>
     
 			</div> <!-- end #content -->
 

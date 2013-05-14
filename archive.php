@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 			
 			<div id="content" class="clearfix row-fluid">
-			
-				<div id="main" class="span8 clearfix" role="main">
+				<?php get_sidebar(); // sidebar 1 ?>			
+				<div id="main" class="span9 clearfix" role="main">
 				
 					<div class="page-header">
 					<?php if (is_category()) { ?>
@@ -32,33 +32,13 @@
 					<?php } ?>
 					</div>
 
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					
-					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
-						
-						<header>
-							
-							<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-							
-							<p class="meta"><?php _e("Posted", "bonestheme"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_date(); ?></time> <?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "bonestheme"); ?> <?php the_category(', '); ?>.</p>
-						
-						</header> <!-- end article header -->
-					
-						<section class="post_content">
-						
-							<?php the_post_thumbnail( 'wpbs-featured' ); ?>
-						
-							<?php the_excerpt(); ?>
-					
-						</section> <!-- end article section -->
-						
-						<footer>
-							
-						</footer> <!-- end article footer -->
-					
-					</article> <!-- end article -->
-					
-					<?php endwhile; ?>	
+					<?php while ( have_posts() ) : the_post(); ?>
+				
+						<?php get_template_part( 'content', get_post_format() ); ?>
+
+						<?php comments_template( '', true ); ?>
+
+					<?php endwhile; // end of the loop. ?>
 					
 					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
 						
@@ -72,26 +52,10 @@
 							</ul>
 						</nav>
 					<?php } ?>
-								
-					
-					<?php else : ?>
-					
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("No Posts Yet", "bonestheme"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, What you were looking for is not here.", "bonestheme"); ?></p>
-					    </section>
-					    <footer>
-					    </footer>
-					</article>
-					
-					<?php endif; ?>
 			
 				</div> <!-- end #main -->
     
-				<?php get_sidebar(); // sidebar 1 ?>
+
     
 			</div> <!-- end #content -->
 

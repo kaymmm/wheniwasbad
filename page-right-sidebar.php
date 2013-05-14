@@ -1,8 +1,12 @@
+<?php
+/*
+Template Name: Right Sidebar Page
+*/
+?>
+
 <?php get_header(); ?>
 
 			<div id="content" class="clearfix row-fluid">
-
-				<?php get_sidebar(); // sidebar 1 ?>
 			
 				<div id="main" class="span9 clearfix" role="main">
 
@@ -15,6 +19,8 @@
 					<?php endwhile; // end of the loop. ?>
 								
 				</div> <!-- end #main -->
+				
+				<?php get_sidebar(); // sidebar 1 ?>
     
 			</div> <!-- end #content -->
 
