@@ -10,7 +10,7 @@
 
 							<div class="hero-unit">
 							
-								<h1><?php _e("Epic 404 - Article Not Found","bonestheme"); ?></h1>
+								<h1><?php _e("Oops!","bonestheme"); ?></h1>
 								<p><?php _e("This is embarassing. We can't find what you were looking for.","bonestheme"); ?></p>
 															
 							</div>
