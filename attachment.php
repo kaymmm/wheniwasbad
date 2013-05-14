@@ -34,20 +34,12 @@
 					
 					<?php endwhile; ?>			
 					
-					<?php else : ?>
+				<?php else : ?>
+				
+					<?php not_found('attachment'); ?>
+				
+				<?php endif; ?>
 					
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("Not Found","bonestheme"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, but the requested resource was not found on this site.","bonestheme"); ?></p>
-					    </section>
-					    <footer>
-					    </footer>
-					</article>
-					
-					<?php endif; ?>
 			
 				</div> <!-- end #main -->
     

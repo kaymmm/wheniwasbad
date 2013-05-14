@@ -597,6 +597,10 @@ blockquote.pull-left{
 	}
 }
 
+#post-not-found section.post_content {
+	text-align: center;
+}
+
 @media only screen and (min-width: 980px) {
 	body{
 		padding-top: 60px;

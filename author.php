@@ -3,7 +3,7 @@
 			<div id="content" class="clearfix row-fluid">
 			
 				<div id="main" class="span8 clearfix" role="main">
-				
+				<?php if (have_posts()) : ?>
 					<div class="page-header"><h1 class="archive_title h2">
 						<span><?php _e("Posts By:", "bonestheme"); ?></span> 
 						<?php 
@@ -20,7 +20,7 @@
 						?>
 					</h1></div>
 					
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+					<?php while (have_posts()) : the_post(); ?>
 					
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 						
@@ -62,20 +62,11 @@
 					<?php } ?>
 								
 					
-					<?php else : ?>
-					
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("No Posts Yet", "bonestheme"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, What you were looking for is not here.", "bonestheme"); ?></p>
-					    </section>
-					    <footer>
-					    </footer>
-					</article>
-					
-					<?php endif; ?>
+				<?php else : ?>
+				
+					<?php not_found('author'); ?>
+				
+				<?php endif; ?>
 			
 				</div> <!-- end #main -->
     

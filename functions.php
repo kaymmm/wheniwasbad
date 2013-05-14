@@ -18,6 +18,8 @@ require_once('library/options-panel.php');
 // Shortcodes
 require_once('library/shortcodes.php');
 
+include_once('notfound.php');				// custom function for displaying page not found info
+
 // Admin Functions (commented out by default)
 // require_once('library/admin.php');         // custom admin functions
 

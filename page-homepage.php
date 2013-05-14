@@ -125,11 +125,6 @@ Template Name: Homepage
 					
 					</article> <!-- end article -->
 					
-					<?php 
-						// No comments on homepage
-						//comments_template();
-					?>
-					
 					<?php endwhile; ?>	
 					
 					<?php else : ?>
@@ -141,8 +136,6 @@ Template Name: Homepage
 					    <section class="post_content">
 					    	<p><?php _e("Sorry, but the requested resource was not found on this site.", "bonestheme"); ?></p>
 					    </section>
-					    <footer>
-					    </footer>
 					</article>
 					
 					<?php endif; ?>
