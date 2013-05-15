@@ -1,50 +1,76 @@
-<?php get_header(); ?>
-			
-			<div id="content" class="clearfix row-fluid">
-			
-				<div id="main" class="span8 clearfix" role="main">
+<?php
+/**
+ * The WordPress template hierarchy first checks for any
+ * MIME-types and then looks for the attachment.php file.
+ *
+ * @link codex.wordpress.org/Template_Hierarchy#Attachment_display 
+ */ 
 
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					
-					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-						
-						<header>
-							
-							<div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
-							
-							<p class="meta"><?php _e("Posted", "bonestheme"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_date(); ?></time> <?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "bonestheme"); ?> <?php the_category(', '); ?>.</p>
-						
-						</header> <!-- end article header -->
+get_header(); ?>
+			
+	<div id="content" class="clearfix row-fluid">
+	
+		<div id="main" class="span12 clearfix" role="main">
+
+			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			
+			<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+				<header> 
+				
+					<div class="page-header">
+						<h1 class="single-title" itemprop="headline">
+							<?php if ($post->post_parent) : ?>
+								<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment"><?php echo get_the_title($post->post_parent); ?></a> &raquo; 
+							<?php endif; ?>
+							<?php the_title(); ?>
+						</h1>
+					</div>
+
+				</header> <!-- end article header -->
+				
+				<div class="row-fluid">
+										
+					<div class="span9">
 					
 						<section class="post_content clearfix" itemprop="articleBody">
+
+							<div class="well">
+								<?php if (has_excerpt()) : ?>
+									<?php the_excerpt(); ?>
+								<?php endif; ?>
+
+								<p>Download <a href="<?php echo wp_get_attachment_url($post->ID); ?>"><?php the_title(); ?></a></p>
+
+							</div>
 							
 							<?php the_content(); ?>
-							
+
 						</section> <!-- end article section -->
-						
-						<footer>
+						<?php comments_template(); ?>
+					</div>
+
+					<div class="span3">
+
+						<?php get_template_part('postmeta','attachment'); ?>
+
+					</div>
+
+				</div>
+									
+			</article> <!-- end article -->
 			
-							<?php the_tags('<p class="tags"><span class="tags-title">' . __("Tags","bonestheme") . ':</span> ', ' ', '</p>'); ?>
-							
-						</footer> <!-- end article footer -->
-					
-					</article> <!-- end article -->
-					
-					<?php comments_template(); ?>
-					
-					<?php endwhile; ?>			
-					
-				<?php else : ?>
-				
-					<?php not_found('attachment'); ?>
-				
-				<?php endif; ?>
-					
+			<?php endwhile; ?>			
 			
-				</div> <!-- end #main -->
-    
-				<?php get_sidebar(); // sidebar 1 ?>
-    
-			</div> <!-- end #content -->
+		<?php else : ?>
+		
+			<?php not_found('attachment'); ?>
+		
+		<?php endif; ?>
+			
+	
+		</div> <!-- end #main -->
+
+	</div> <!-- end #content -->
 
 <?php get_footer(); ?>

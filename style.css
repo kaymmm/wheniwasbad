@@ -128,8 +128,8 @@ article header.entry-header h2 {
 	margin-top: 0;
 }
 
-article[class*="format-"] .entry-meta,
-article[class*="format-"] .entry-meta .label
+.entry-meta,
+.entry-meta .label
 {
 	font-size: 12px;
 	font-size: 0.8571rem;
@@ -140,20 +140,24 @@ article[class*="format-"] .entry-meta .label
 	text-shadow: none;
 }
 
-article[class*="format-"] .entry-meta p {
+.entry-meta {
+	margin: 10px 0; /*match bootstrap */
+}
+
+.entry-meta .label {
+	color: #fff;
+}
+
+.entry-meta p {
 	line-height: 20px;
 	line-height: 1.42857142857143rem;
 }
 
-article[class*="format-"] .entry-meta a,
-article[class*="format-"] .entry-meta a:active,
-article[class*="format-"] .entry-meta a:visited,
-article[class*="format-"] .entry-meta a:hover {
+.entry-meta a,
+.entry-meta a:active,
+.entry-meta a:visited,
+.entry-meta a:hover {
 	color: #777;
-}
-
-article[class*="format-"] .entry-meta .label {
-	color: #fff;
 }
 
 [class*="label-postformat-"] {
@@ -211,6 +215,10 @@ article.format-aside footer.aside {
 /* Image posts */
 
 /* Link posts */
+article.format-link header .icon-external-link {
+	font-size: 15px;
+	font-size: 1.071428571rem;
+}
 
 /* Quote posts */
 article.format-quote .post_content blockquote {
@@ -447,7 +455,8 @@ ol.pinglist{
 }
 
 #comment{
-	width: 270px;
+/*	width: 270px;*/
+	width: 90%;
 }
 
 ol.commentlist #respond{

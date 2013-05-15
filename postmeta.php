@@ -1,9 +1,10 @@
 	<aside class="entry-meta muted">
-		<p><i class="icon-calendar"></i> <time datetime="<?php the_time(get_option('date_format')); ?>" pubdate><?php the_time(get_option('date_format')); ?></time></p>
+		<p><i class="icon-calendar"></i> <time datetime="<?php the_time(get_option('date_format')); ?>" pubdate><?php the_time(get_option('date_format')); ?></time>
+		&nbsp;&bull;&nbsp; <i class="icon-bookmark"></i> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark">Permalink</a></p>
 		<?php if ( comments_open() ) : ?>
 		<p><i class="icon-comment"></i> <?php comments_popup_link( __("Leave a comment","bonestheme"), __( "One Comment", "bonestheme"), __( "% Comments", "bonestheme" ) ); ?></p>
 		<?php endif; // comments_open() ?>
-		<?php if ( ! is_page() ) : ?>
+		<?php if ( ! is_page() && ! is_attachment() ) : ?>
 		<p><i class="icon-folder-close"></i> <span class="muted"> <?php the_category(", "); ?></span></p>
 		<p><i class="icon-tags"></i>
 		<?php
