@@ -1,21 +1,38 @@
-<!doctype html>  
+<!doctype html>
 
-<!--[if IEMobile 7 ]> <html <?php language_attributes(); ?>class="no-js iem7"> <![endif]-->
-<!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="no-js ie8"> <![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
-	
+<!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
+
 	<head>
 		<meta charset="utf-8">
+
+		<!-- Google Chrome Frame for IE -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		
-		<title>
-			<?php if ( !is_front_page() ) { echo wp_title( ' ', true, 'left' ); echo ' | '; }
-			echo bloginfo( 'name' ); echo ' - '; bloginfo( 'description', 'display' );  ?> 
-		</title>
-				
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title><?php wp_title(''); ?></title>
+		<!-- mobile meta (hooray!) -->
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi"/>
+
+		<!-- icons & favicons -->
+		<!-- For iPhone 4 -->
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/h/apple-touch-icon.png">
+		<!-- For iPad 1-->
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/m/apple-touch-icon.png">
+		<!-- For iPhone 3G, iPod Touch and Android -->
+		<link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon-precomposed.png">
+		<!-- For Nokia -->
+		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
+		<!-- For everything else -->
+		<?php $favicon_url = (of_get_option('favicon_url')!='') ? of_get_option('favicon_url') : get_template_directory_uri() . '/favicon.ico'; ?>
+		<link rel="shortcut icon" href="<?php echo $favicon_url; ?>">
+		
+		<!-- or, set /favicon.ico for IE10 win -->
+		<meta name="msapplication-TileColor" content="#f01d4f">
+		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
 		
 		<!-- Google/Typekit Webfont Loader Scripts (need to load before everything else) -->
 		<script type="text/javascript">
@@ -71,19 +88,6 @@ font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 }
 		</style>
 		
-		
-		<!-- icons & favicons -->
-		<!-- For iPhone 4 -->
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/h/apple-touch-icon.png">
-		<!-- For iPad 1-->
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/m/apple-touch-icon.png">
-		<!-- For iPhone 3G, iPod Touch and Android -->
-		<link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon-precomposed.png">
-		<!-- For Nokia -->
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
-		<!-- For everything else -->
-		<?php $favicon_url = (of_get_option('favicon_url')!='') ? of_get_option('favicon_url') : get_template_directory_uri() . '/favicon.ico'; ?>
-		<link rel="shortcut icon" href="<?php echo $favicon_url; ?>">
 				
 		<!-- media-queries.js (fallback) -->
 		<!--[if lt IE 9]>
@@ -114,7 +118,7 @@ font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 	switch ($nav_position) {
 		case 'fixed':
 			$navbar_class = 'navbar-fixed-top';
-			$body_style = 'style="padding-top: 40px;"';
+			$body_style = 'style="padding-top: 40px;"'; /* change this if the navbar height changes! */
 			break;
 		case 'fixed-bottom':
 			$navbar_class = 'navbar-fixed-bottom';
