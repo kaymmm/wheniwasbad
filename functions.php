@@ -622,7 +622,7 @@ if( !function_exists( "theme_js" ) ) {
       '1.2' );
   
     wp_register_script(  'modernizr', 
-      get_template_directory_uri() . '/library/js/lib/modernizr.custom.min.js', 
+      get_template_directory_uri() . '/library/js/libs/modernizr.custom.min.js', 
       array('jquery'), 
       '1.2' );
       
