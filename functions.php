@@ -12,6 +12,9 @@ sidebars, comments, ect.
 require_once('library/bones.php');            // core functions (don't remove)
 require_once('library/plugins.php');          // plugins & extra functions (optional)
 
+/* library/translation/translation.php	- adding support for other languages */
+// require_once('library/translation/translation.php'); // this comes turned off by default
+
 // Options panel
 require_once('library/options-panel.php');
 
@@ -211,14 +214,15 @@ function comment_count( $count ) {
 /************* SEARCH FORM LAYOUT *****************/
 
 // Search Form
-function bones_wpsearch( $form ) {
-  $form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
-  <label class="screen-reader-text" for="s">' . __('Search for:', 'bonestheme') . '</label>
-  <input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="Search the Site..." />
-  <input type="submit" id="searchsubmit" value="'. esc_attr__('Search','bonestheme') .'" />
-  </form>';
-  return $form;
+function bones_wpsearch($form) {
+	$form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
+	<label class="screen-reader-text" for="s">' . __('Search for:', 'bonestheme') . '</label>
+	<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="'.esc_attr__('Search the Site...','bonestheme').'" />
+	<input type="submit" id="searchsubmit" value="'. esc_attr__('Search') .'" />
+	</form>';
+	return $form;
 } // don't remove this bracket!
+
 
 /****************** password protected post form *****/
 
