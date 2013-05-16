@@ -20,7 +20,7 @@
 		<!-- Google/Typekit Webfont Loader Scripts (need to load before everything else) -->
 		<script type="text/javascript">
 			WebFontConfig = {
-				google: { families: [ 'Raleway:400,700,900', 'Lora:400,700,400italic,700italic', 'Inconsolata:400italic' ] }
+				google: { families: [ 'Raleway:300,400,700', 'Enriqueta:400,700', 'Inconsolata:400'] }
 			};
 			(function() {
 				var wf = document.createElement('script');
@@ -35,6 +35,7 @@
 /***
 * Google/Typekit Webfont Loader styles
 ***/
+		
 .wf-loading h1,
 .wf-loading h2,
 .wf-loading h3,
@@ -61,18 +62,12 @@ font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .wf-loading body {
 font-family: serif;
-font-weight: 400;
-font-size: 16px
 }
 .wf-inactive body {
 font-family: serif;
-font-weight: 400;
-font-size: 16px
 }
 .wf-active body {
-font-family: "Lora", Georgia, "Times New Roman", Times, serif;
-font-weight: 400;
-font-size: 16px
+font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 }
 		</style>
 		
@@ -87,7 +82,7 @@ font-size: 16px
 		<!-- For Nokia -->
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
 		<!-- For everything else -->
-		<?php $favicon_url = (of_get_option('favicon_url','')!='') ? of_get_option('favicon_url') : get_template_directory_uri() . '/favicon.ico'; ?>
+		<?php $favicon_url = (of_get_option('favicon_url')!='') ? of_get_option('favicon_url') : get_template_directory_uri() . '/favicon.ico'; ?>
 		<link rel="shortcut icon" href="<?php echo $favicon_url; ?>">
 				
 		<!-- media-queries.js (fallback) -->

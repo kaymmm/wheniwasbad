@@ -1,10 +1,10 @@
 /*
-Theme Name: wp-bootstrap
-Theme URI: http://320press.com/wpbs
-Description: A simple responsive theme based on the Bootstrap framework. Includes multiple page templates, two different sidebars and a theme options panel.
-Version: 2.1
-Author: 320press
-Author URI: http://320press.com
+Theme Name: km-bootstrap
+Theme URI: http://keithmiyake.info/kmbootstrap
+Description: A simple responsive theme based on the Bootstrap framework and forked from the wp-bootstrap theme by 320press (http://320press.com/wpbs). Includes multiple page templates, two different sidebars and a theme options panel.
+Version: 0.1
+Author: Keith Miyake
+Author URI: http://keithmiyake.info
 Tags: black, white, one-column, two-columns, flexible-width, custom-background, custom-colors, custom-menu, full-width-template, theme-options
 License: GNU General Public License v2.0 & Apache License 2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/licenses/LICENSE-2.0
@@ -160,16 +160,12 @@ article header.entry-header h2 {
 	color: #777;
 }
 
-[class*="label-postformat-"] {
-	padding: 0 10px;
-	padding: 0 0.714285714rem;
-	float: right;
+.label-postformat {
+	padding: 7px 14px;
+/*	float: right; */
 	font-size: 20px;
 	font-size: 1.4286rem;
 	line-height: 2.1818rem;
-	font-weight: bold;
-	font-style: italic;
-	text-transform: uppercase;
 	color: #848484;
 	background-color: #ebebeb;
 }
@@ -182,37 +178,13 @@ article header.entry-header h2 {
 }
 
 /* Aside post format */
-/*
-article.format-aside h1 {
-	margin-bottom: 24px;
-	margin-bottom: 1.714285714rem;
+
+article.format-aside {
 }
-article.format-aside h1 a {
-	text-decoration: none;
-}
-article.format-aside h1 a:hover {
-}
-article.format-aside .aside {
-	padding: 24px 24px 0;
-	padding: 1.714285714rem;
-	border-left: 22px solid;
-}
-article.format-aside p {
-	font-size: 13px;
-	font-size: 0.928571429rem;
-	line-height: 1.846153846;
-}
-article.format-aside blockquote:last-child,
-article.format-aside p:last-child {
-	margin-bottom: 0;
-}
-article.format-aside footer.aside {
-	padding: 24px 24px 0;
-	padding: 1.714285714rem;
-	border-left: 22px solid;
-}
-*/
+
 /* Image posts */
+article.format-image {
+}
 
 /* Link posts */
 article.format-link header .icon-external-link {
@@ -242,8 +214,7 @@ article.format-quote .post_content blockquote p:after {
 }
 
 /* Status posts */
-.format-status .entry-header header {
-	display: inline-block;
+.format-status {
 }
 
 p.tags{
@@ -253,11 +224,6 @@ p.tags{
 div[id*='attachment_']{
 	max-width: 100%;
 	height: 100%;
-}
-
-#credit320{
-	background: url('images/320press_mini.png') no-repeat left top transparent;
-	padding-left: 20px;
 }
 
 #main .hero-unit img{

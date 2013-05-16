@@ -45,16 +45,16 @@
 // Typography
 // -------------------------
 @sansFontFamily:        "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       "Lora", Georgia, "Times New Roman", Times, serif;
+@serifFontFamily:       "Enriqueta", Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        "Inconsolata", Menlo, Consolas, "Courier New", monospace;
 
-@baseFontSize:          14px;
+@baseFontSize:          16px;
 @baseFontFamily:        @serifFontFamily;
-@baseLineHeight:        20px;
+@baseLineHeight:        24px;
 @altFontFamily:         @sansFontFamily;
 
 @headingsFontFamily:    @sansFontFamily; // empty to use BS default, @baseFontFamily
-@headingsFontWeight:    400;    // instead of browser default, bold
+@headingsFontWeight:    300;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
 
@@ -183,16 +183,16 @@
 @navbarBackgroundHighlight:       darken(@navbarBackground, 5%);//#ffffff;
 @navbarBorder:                    darken(@navbarBackground, 12%);
 
-@navbarText:                      @white;
+@navbarText:                      @grayLight;
 @navbarFontFamily:                @sansFontFamily;
-@navbarLinkColor:                 @white;
-@navbarLinkColorHover:            @grayDark;
-@navbarLinkColorActive:           @grayDark;
+@navbarLinkColor:                 @grayDark;
+@navbarLinkColorHover:            @white;
+@navbarLinkColorActive:           @white;
 @navbarLinkBackgroundHover:       transparent;
 @navbarLinkBackgroundActive:      @red;//darken(@navbarBackground, 5%);
 
 @navbarBrandColor:                @navbarLinkColor;
-@navbarBrandFontFamily:           @sansFontFamily;
+@navbarBrandFontFamily:           @serifFontFamily;
 
 // Inverted navbar
 @navbarInverseBackground:                #111111;

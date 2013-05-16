@@ -21,8 +21,6 @@
 			
 				<?php if (of_get_option('footer_text')=="") : ?>
 
-					<p class="pull-right"><a href="http://320press.com" id="credit320" title="By the dudes of 320press">320press</a></p>
-
 					<p class="attribution">&copy; <?php bloginfo('name'); ?></p>
 
 				<?php else:
