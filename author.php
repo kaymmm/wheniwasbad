@@ -48,9 +48,9 @@
 					
 					<?php endwhile; ?>	
 					
-					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
+					<?php if (function_exists('bones_page_navi')) { // if expirimental feature is active ?>
 						
-						<?php page_navi(); // use the page navi function ?>
+						<?php bones_page_navi(); // use the page navi function ?>
 
 					<?php } else { // if it is disabled, display regular wp prev & next links ?>
 						<nav class="wp-prev-next">
