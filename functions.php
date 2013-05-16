@@ -20,13 +20,40 @@ require_once('library/shortcodes.php');
 
 include_once('notfound.php');				// custom function for displaying page not found info
 
-// Admin Functions (commented out by default)
-// require_once('library/admin.php');         // custom admin functions
+/************* CUSTOM LOGIN PAGE *****************/
+
+// calling your own login css so you can style it
+
+//Updated to proper 'enqueue' method
+//http://codex.wordpress.org/Plugin_API/Action_Reference/login_enqueue_scripts
+function bones_login_css() {
+	wp_enqueue_style( 'bones_login_css', get_template_directory_uri() . '/library/css/login.css', false );
+}
+
+// changing the logo link from wordpress.org to your site
+function bones_login_url() {  return home_url(); }
+
+// changing the alt text on the logo to show your site name
+function bones_login_title() { return get_option('blogname'); }
+
+// calling it only on the login page
+add_action( 'login_enqueue_scripts', 'bones_login_css', 10 );
+add_filter('login_headerurl', 'bones_login_url');
+add_filter('login_headertitle', 'bones_login_title');
+
+
+/************* CUSTOMIZE ADMIN *******************/
+
+/*
+I don't really recommend editing the admin too much
+as things may get funky if WordPress updates. Here
+are a few funtions which you can choose to use if
+you like.
+*/
 
 // Custom Backend Footer
-add_filter('admin_footer_text', 'bones_custom_admin_footer');
 function bones_custom_admin_footer() {
-	echo '<span id="footer-thankyou">Developed by <a href="http://320press.com" target="_blank">320press</a></span>. Built using <a href="http://themble.com/bones" target="_blank">Bones</a>.';
+	_e('<span id="footer-thankyou">Developed by <a href="http://yoursite.com" target="_blank">Your Site Name</a></span>. Built using <a href="http://themble.com/bones" target="_blank">Bones</a>.', 'bonestheme');
 }
 
 // adding it to the admin area
