@@ -59,10 +59,6 @@ function bones_custom_admin_footer() {
 // adding it to the admin area
 add_filter('admin_footer_text', 'bones_custom_admin_footer');
 
-// Set content width
-if ( ! isset( $content_width ) ) $content_width = 580;
-
-
 /**
  * Creates a nicely formatted and more specific title element text
  * for output in head of document, based on current view.
