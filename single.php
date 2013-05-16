@@ -13,7 +13,7 @@
 					<?php endwhile; // end of the loop. ?>
 					<?php else : ?>
 				
-						<?php not_found('author'); ?>
+						<?php not_found('single'); ?>
 				
 					<?php endif; ?>
 			

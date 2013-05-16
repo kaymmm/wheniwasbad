@@ -1,6 +1,5 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid clearfix'); ?>>
 		<div class="span9">
-			<span class="label-postformat-quote clearfix"><i class="icon-quote-right"></i></span>
 			<?php if ( get_the_title() != '' ): ?>
 			<header class="entry-header">
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>

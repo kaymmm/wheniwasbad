@@ -1,6 +1,5 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid clearfix'); ?>>
 		<div class="span9">
-			<span class="label-postformat-gallery clearfix"><i class="icon-camera-retro"></i></span>
 			<header class="entry-header">
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 			</header>
@@ -9,6 +8,6 @@
 			</section><!-- .post_content -->
 		</div>
 		<div class="span3">
-			<?php get_template_part('postmeta','image'); ?>
+			<?php get_template_part('postmeta','gallery'); ?>
 		</div>
 	</article><!-- #post -->

@@ -1,6 +1,5 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid clearfix'); ?>>
 		<div class="span9">
-			<span class="label-postformat-link clearfix"><i class="icon-link"></i></span>
 			<header class="entry-header">
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="nofollow"><?php the_title(); ?> <i class="icon-external-link"></i></a></h2>
 
