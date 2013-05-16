@@ -10,7 +10,6 @@ sidebars, comments, ect.
 
 // Get Bones Core Up & Running!
 require_once('library/bones.php');            // core functions (don't remove)
-require_once('library/plugins.php');          // plugins & extra functions (optional)
 
 /* library/translation/translation.php	- adding support for other languages */
 // require_once('library/translation/translation.php'); // this comes turned off by default
