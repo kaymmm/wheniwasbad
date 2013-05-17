@@ -6,11 +6,11 @@ Twitter's bootstrap in Wordpress theme form, forked from 320press wp-bootstrap a
 Included Libraries
 __________________
 
-Twitter Bootstrap 2.3.1 (http://twitter.github.com/bootstrap)
-320press wp-bootstrap v1.2 (http://320press.com/wpbs)
-Eddie Machado Bones v1.09, plus a handful of cherry picks up to 1.4 (that hopefully don't break things) (https://github.com/eddiemachado/bones)
-littlesparkvt Flatstrap (10 May 2013) (https://github.com/littlesparkvt/flatstrap)
-Font Awesome 3.1.1 (https://github.com/FortAwesome/Font-Awesome/)
+- Twitter Bootstrap 2.3.1 (http://twitter.github.com/bootstrap)
+- 320press wp-bootstrap v1.2 (http://320press.com/wpbs)
+- Eddie Machado Bones v1.09, plus a handful of cherry picks up to 1.4 (that hopefully don't break things) (https://github.com/eddiemachado/bones)
+- littlesparkvt Flatstrap (10 May 2013) (https://github.com/littlesparkvt/flatstrap)
+- Font Awesome 3.1.1 (https://github.com/FortAwesome/Font-Awesome/)
 
 FEATURES
 ________
