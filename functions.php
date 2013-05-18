@@ -20,7 +20,8 @@ require_once('library/options-panel.php');
 // Shortcodes
 require_once('library/shortcodes.php');
 
-include_once('notfound.php');				// custom function for displaying page not found info
+// custom function for displaying page not found info
+require_once('notfound.php');
 
 /************* CUSTOM LOGIN PAGE *****************/
 
@@ -213,7 +214,7 @@ function comment_count( $count ) {
 /************* SEARCH FORM LAYOUT *****************/
 
 // Search Form
-function bones_wpsearch($form) {
+/*function bones_wpsearch($form) {
 	$form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
 	<label class="screen-reader-text" for="s">' . __('Search for:', 'bonestheme') . '</label>
 	<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="'.esc_attr__('Search the Site...','bonestheme').'" />
@@ -221,7 +222,7 @@ function bones_wpsearch($form) {
 	</form>';
 	return $form;
 } // don't remove this bracket!
-
+*/
 
 /****************** password protected post form *****/
 
@@ -587,10 +588,12 @@ if( !function_exists("theme_styles") ) {
         // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
         wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '2.3.1', 'all' );
         wp_register_style( 'bootstrap-responsive', get_template_directory_uri() . '/library/css/responsive.css', array(), '2.3.1', 'all' );
+        wp_register_style( 'bootstrap-docs', get_template_directory_uri() . '/library/css/docs.css', array(), '2.3.1', 'all' );
         wp_register_style( 'wp-bootstrap', get_stylesheet_uri(), array(), '1.0', 'all' );
         
         wp_enqueue_style( 'bootstrap' );
         wp_enqueue_style( 'bootstrap-responsive' );
+        wp_enqueue_style( 'bootstrap-docs' );
         wp_enqueue_style( 'wp-bootstrap');
     }
 }
@@ -601,15 +604,13 @@ if( !function_exists( "theme_js" ) ) {
   function theme_js(){
   
     wp_register_script( 'bootstrap', get_template_directory_uri() . '/library/js/bootstrap.min.js', array('jquery'), '2.3.1' );
-  
     wp_register_script( 'wpbs-bones-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2' );
-  
-    wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', false );
-      
+    wp_register_script( 'bones-modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', false );
+	
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('wpbs-bones-scripts');
     wp_enqueue_script('bones-modernizr');
-    
+
   }
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );

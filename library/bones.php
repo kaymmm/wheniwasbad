@@ -32,8 +32,6 @@ function bones_ahoy() {
     // clean up gallery output in wp
     add_filter('gallery_style', 'bones_gallery_style');
 
-    // enqueue base scripts and styles
-    add_action('wp_enqueue_scripts', 'bones_scripts_and_styles', 999);
     // ie conditional wrapper
 
     // launching this stuff after theme setup
@@ -42,7 +40,7 @@ function bones_ahoy() {
     // adding sidebars to Wordpress (these are created in functions.php)
     add_action( 'widgets_init', 'bones_register_sidebars' );
     // adding the bones search form (created in functions.php)
-    add_filter( 'get_search_form', 'bones_wpsearch' );
+//    add_filter( 'get_search_form', 'bones_wpsearch' );
 
     // cleaning up random code around images
     add_filter('the_content', 'bones_filter_ptags_on_images');

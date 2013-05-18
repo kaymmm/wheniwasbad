@@ -128,6 +128,14 @@ function optionsframework_options() {
 						"class" => "mini", //mini, tiny, small
 						"options" => $fixed_scroll);
 						
+	$options[] = array( "name" => "Alignment",
+						"desc" => "Pull the nav menu to the left or right side of the page.",
+						"id" => "nav_alignment",
+						"std" => "right",
+						"type" => "select",
+						"class" => "mini", //mini, tiny, small
+						"options" => array('left'=>'Align Left', 'right'=>'Align Right'));
+
 	$options[] = array( "name" => "Top nav background color",
 						"desc" => "Default used if no color is selected.",
 						"id" => "top_nav_bg_color",
