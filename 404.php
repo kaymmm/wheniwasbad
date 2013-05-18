@@ -1,42 +1,41 @@
 <?php get_header(); ?>
 			
-			<div id="content" class="clearfix row-fluid">
+	<div id="content" class="clearfix container">
+
+		<header>
+
+			<div class="hero-unit">
+		
+				<h1><?php _e("404 - Oops!","bonestheme"); ?></h1>
 			
-				<div id="main" class="span12 clearfix" role="main">
+				<p><?php _e("This is embarassing. We can't find what you were looking for.","bonestheme"); ?></p>
+										
+			</div>
+								
+		</header> <!-- end article header -->
+	
+		<div id="main" class="row-fluid clearfix" role="main">
 
-					<article id="post-not-found" class="clearfix">
-						
-						<header>
-
-							<div class="hero-unit">
-							
-								<h1><?php _e("Oops!","bonestheme"); ?></h1>
-								<p><?php _e("This is embarassing. We can't find what you were looking for.","bonestheme"); ?></p>
-															
-							</div>
-													
-						</header> <!-- end article header -->
-					
-						<section class="post_content">
-							
-							<p><?php _e("Whatever you were looking for was not found, but maybe try looking again or search using the form below.","bonestheme"); ?></p>
-
-							<div class="row-fluid">
-								<div class="span12">
-									<?php get_search_form(); ?>
-								</div>
-							</div>
-					
-						</section> <!-- end article section -->
-						
-						<footer>
-							
-						</footer> <!-- end article footer -->
-					
-					</article> <!-- end article -->
+			<?php get_sidebar(); // sidebar 1 ?>
 			
-				</div> <!-- end #main -->
-    
-			</div> <!-- end #content -->
+			<div class="span9">
+
+				<article id="post-not-found" class="clearfix">
+							
+					<section class="post_content">
+					
+						<p><?php _e("Whatever you were looking for was not found, but maybe try looking again or search using the form below.","bonestheme"); ?></p>
+
+						<?php get_search_form(); ?>
+			
+					</section> <!-- end article section -->
+			
+				</article> <!-- end article -->
+
+			</div>
+	
+		</div> <!-- end #main -->
+
+	</div> <!-- end #content -->
 
 <?php get_footer(); ?>

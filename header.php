@@ -177,5 +177,3 @@ font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 			</div> <!-- end #inner-header -->
 		
 		</header> <!-- end header -->
-		
-		<div class="container">

@@ -8,24 +8,27 @@
 
 get_header(); ?>
 			
-	<div id="content" class="clearfix row-fluid">
+	<div id="content" class="clearfix container">
 	
-		<div id="main" class="span12 clearfix" role="main">
+		<div id="main" class="clearfix" role="main">
 
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			
 			<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
-				<header> 
-				
-					<div class="page-header">
-						<h1 class="single-title" itemprop="headline">
-							<?php if ($post->post_parent) : ?>
-								<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment"><?php echo get_the_title($post->post_parent); ?></a> &raquo; 
-							<?php endif; ?>
-							<?php the_title(); ?>
-						</h1>
-					</div>
+				<header class="page-header"> 
+
+					<h1 class="single-title" itemprop="headline">
+
+						<?php if ($post->post_parent) : ?>
+
+							<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment"><?php echo get_the_title($post->post_parent); ?></a> &raquo; 
+
+						<?php endif; ?>
+
+						<?php the_title(); ?>
+
+					</h1>
 
 				</header> <!-- end article header -->
 				
@@ -36,18 +39,23 @@ get_header(); ?>
 						<section class="post_content clearfix" itemprop="articleBody">
 
 							<div class="well">
+
 								<?php if (has_excerpt()) : ?>
+									
 									<?php the_excerpt(); ?>
+									
 								<?php endif; ?>
 
-								<p>Download <a href="<?php echo wp_get_attachment_url($post->ID); ?>"><?php the_title(); ?></a></p>
+								<p><i class="icon-download-alt"></i> Download <a href="<?php echo wp_get_attachment_url($post->ID); ?>"><?php the_title(); ?></a></p>
 
 							</div>
 							
 							<?php the_content(); ?>
 
 						</section> <!-- end article section -->
+
 						<?php comments_template(); ?>
+
 					</div>
 
 					<div class="span3">
