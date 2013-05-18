@@ -459,7 +459,7 @@ li.previous a:hover:before{
 }
 
 .widget_search input{
-	width: 121px;
+	width: 64px;
 }
 
 /* calendar widget */
@@ -550,10 +550,6 @@ blockquote.pull-left{
 		margin-top: 0 !important;
 	}
 	
-	.widget_search input{
-		width: 230px;
-	}
-	
 	.blog .hero-unit{
 		margin-top: 10px;
 	}
@@ -583,7 +579,7 @@ blockquote.pull-left{
 	}
 	
 	.widget_search input{
-		width: 209px;
+		width: 112px;
 	}
 	
 	.comment .vcard .comment-text{
