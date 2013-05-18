@@ -163,7 +163,7 @@ font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 								<?php endif; ?>
 									
 								<?php if ($nav_align=='right') : ?>
-									<div class="nav-collapse pull-left">
+									<div class="nav-collapse pull-right">
 										<?php bones_main_nav(); // Adjust using Menus in Wordpress Admin ?>
 									</div>
 								<?php endif; ?>
