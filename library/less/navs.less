@@ -10,7 +10,6 @@
   margin-left: 0;
   margin-bottom: @baseLineHeight;
   list-style: none;
-  font-family: @navbarFontFamily;
 }
 
 // Make links block level
@@ -39,11 +38,10 @@
   display: block;
   padding: 3px 15px;
   font-size: 11px;
-  font-weight: normal;
+  font-weight: bold;
   line-height: @baseLineHeight;
   color: @grayLight;
-//  text-shadow: 0 1px 0 rgba(255,255,255,.5);
-  text-shadow: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
   text-transform: uppercase;
 }
 // Space them out when they follow another list item (link)
@@ -65,8 +63,7 @@
 .nav-list .nav-header {
   margin-left:  -15px;
   margin-right: -15px;
-//  text-shadow: 0 1px 0 rgba(255,255,255,.5);
-  text-shadow: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 .nav-list > li > a {
   padding: 3px 15px;
@@ -75,8 +72,7 @@
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
   color: @white;
-//  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
-  text-shadow: none;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
   background-color: @linkColor;
 }
 .nav-list [class^="icon-"],
@@ -127,6 +123,7 @@
   padding-bottom: 8px;
   line-height: @baseLineHeight;
   border: 1px solid transparent;
+  .border-radius(4px 4px 0 0);
   &:hover,
   &:focus {
     border-color: @grayLighter @grayLighter #ddd;
@@ -153,6 +150,7 @@
   padding-bottom: 8px;
   margin-top: 2px;
   margin-bottom: 2px;
+  .border-radius(5px);
 }
 
 // Active state
@@ -182,6 +180,13 @@
 }
 .nav-tabs.nav-stacked > li > a {
   border: 1px solid #ddd;
+  .border-radius(0);
+}
+.nav-tabs.nav-stacked > li:first-child > a {
+  .border-top-radius(4px);
+}
+.nav-tabs.nav-stacked > li:last-child > a {
+  .border-bottom-radius(4px);
 }
 .nav-tabs.nav-stacked > li > a:hover,
 .nav-tabs.nav-stacked > li > a:focus {
@@ -199,6 +204,15 @@
 
 
 
+// DROPDOWNS
+// ---------
+
+.nav-tabs .dropdown-menu {
+  .border-radius(0 0 6px 6px); // remove the top rounded corners here since there is a hard edge above the menu
+}
+.nav-pills .dropdown-menu {
+  .border-radius(6px); // make rounded corners match the pills
+}
 
 // Default dropdown links
 // -------------------------
@@ -307,6 +321,7 @@
   margin-bottom: 0;
 }
 .tabs-below > .nav-tabs > li > a {
+  .border-radius(0 0 4px 4px);
   &:hover,
   &:focus {
     border-bottom-color: transparent;
@@ -342,6 +357,7 @@
 }
 .tabs-left > .nav-tabs > li > a {
   margin-right: -1px;
+  .border-radius(4px 0 0 4px);
 }
 .tabs-left > .nav-tabs > li > a:hover,
 .tabs-left > .nav-tabs > li > a:focus {
@@ -362,6 +378,7 @@
 }
 .tabs-right > .nav-tabs > li > a {
   margin-left: -1px;
+  .border-radius(0 4px 4px 0);
 }
 .tabs-right > .nav-tabs > li > a:hover,
 .tabs-right > .nav-tabs > li > a:focus {

@@ -3,28 +3,29 @@
 		$post_format = get_post_format();
 		switch ($post_format) {
 			case 'aside': ?>
-				<p><i class="icon-pushpin label-postformat"></i></p>
+				<p class="label label-postformat label-warning"><i class="icon-pushpin label-postformat"></i></p>
 				<?php break;
 			case 'gallery':  ?>
-				<p><i class="icon-camera-retro label-postformat"></i></p>
+				<p class="label label-postformat label-orange"><i class="icon-camera-retro label-postformat"></i></p>
 				<?php break;
 			case 'image': ?>
-				<p><i class="icon-picture label-postformat"></i></p>
+				<p class="label label-postformat label-info"><i class="icon-picture label-postformat"></i></p>
 				<?php break;
 			case 'link': ?>
-				<p><i class="icon-link label-postformat"></i></p>
+				<p class="label label-postformat label-inverse"><i class="icon-link label-postformat"></i></p>
 				<?php break;
 			case 'quote': ?>
-				<p><i class="icon-quote-right label-postformat"></i></p>
+				<p class="label label-postformat label-success"><i class="icon-quote-right label-postformat"></i></p>
 				<?php break;
 			case 'status': ?>
-				<p><i class="icon-info-sign label-postformat"></i></p>
+				<p class="label label-postformat label-purple"><i class="icon-info-sign label-postformat"></i></p>
 				<?php break;
 			case 'attachment': ?>
-				<p><i class="icon-paper-clip label-postformat"></i></p>
+				<p class="label label-postformat label-inverse"><i class="icon-paper-clip label-postformat"></i></p>
 				<?php break;
-			case 'post': ?>
-				<p><i class="icon-pencil label-postformat"></i></p>
+			case 'post':
+			default: ?>
+				<p class="label label-postformat"><i class="icon-pencil"></i></p>
 		<?php }
 			
 		?>

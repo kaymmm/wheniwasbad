@@ -15,6 +15,8 @@
   margin-left: 0;
   margin-bottom: 0;
   // Visuals
+  .border-radius(@baseBorderRadius);
+  .box-shadow(0 1px 2px rgba(0,0,0,.05));
 }
 .pagination ul > li {
   display: inline; // Remove list-style and block-level defaults
@@ -51,6 +53,11 @@
 .pagination ul > li:first-child > a,
 .pagination ul > li:first-child > span {
   border-left-width: 1px;
+  .border-left-radius(@baseBorderRadius);
+}
+.pagination ul > li:last-child > a,
+.pagination ul > li:last-child > span {
+  .border-right-radius(@baseBorderRadius);
 }
 
 
@@ -74,6 +81,27 @@
   ul > li > span {
     padding: @paddingLarge;
     font-size: @fontSizeLarge;
+  }
+  ul > li:first-child > a,
+  ul > li:first-child > span {
+    .border-left-radius(@borderRadiusLarge);
+  }
+  ul > li:last-child > a,
+  ul > li:last-child > span {
+    .border-right-radius(@borderRadiusLarge);
+  }
+}
+
+// Small and mini
+.pagination-mini,
+.pagination-small {
+  ul > li:first-child > a,
+  ul > li:first-child > span {
+    .border-left-radius(@borderRadiusSmall);
+  }
+  ul > li:last-child > a,
+  ul > li:last-child > span {
+    .border-right-radius(@borderRadiusSmall);
   }
 }
 

@@ -1,0 +1,322 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+// Global values
+// --------------------------------------------------
+
+// Additional Colors (from designmodo's flat-ui)
+@turquoise: #1ABC9C; //turquoise
+@greensea: #16a085; //dark turquoise
+@emerland: #2ecc71; //light green
+@nephritis: #27ae60; //medium green
+@peterriver: #3498db; //light blue
+@belizehole: #2980b9; //medium blue
+@amethyst: #9b59b6; //light purple
+@wisteria: #8e44ad; //medium purple
+@wetasphalt: #34495e; //slate blue
+@midnightblue: #2c3e50; //dark slate blue
+@sunflower: #f1c40f; //bright yellow
+@orange: #f39c12; //yellow-orange
+@carrot: #e67e22; //light orange
+@pumpkin: #d35400; //dark orange
+@alizarin: #e74c3c; //light red
+@pomegranate: #c0392b; //deep red
+@clouds: #ecf0f1; //almost white
+@silver: #bdc3c7; //silver
+@concrete: #95a5a6; //medium gray
+@asbestos: #7f8c8d; //dark-medium gray
+
+
+// Grays
+// -------------------------
+@black:                 @midnightblue;
+@grayDarker:            @wetasphalt;
+@grayDark:              @asbestos;
+@gray:                  @concrete;
+@grayLight:             @silver;
+@grayLighter:           @clouds;
+@white:                 #fff;
+
+
+// Accent colors
+// -------------------------
+@blue:                  @peterriver;
+@blueDark:              @belizehole;
+@green:                 @emerland;
+@red:                   @pomegranate;
+@yellow:                @sunflower;
+//@orange:                @carrot;
+@pink:                  @alizarin;
+@purple:                @amethyst;
+
+
+// Scaffolding
+// -------------------------
+@bodyBackground:        @white;
+@textColor:             @black;
+
+
+// Links
+// -------------------------
+@linkColor:             @greensea;
+@linkColorHover:        @turquoise;
+
+
+// Typography
+// -------------------------
+@sansFontFamily:        "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:       "Enriqueta", Georgia, "Times New Roman", Times, serif;
+@monoFontFamily:        "Inconsolata", Menlo, Consolas, "Courier New", monospace;
+
+@baseFontSize:          16px;
+@baseFontFamily:        @serifFontFamily;
+@baseLineHeight:        24px;
+@altFontFamily:         @sansFontFamily;
+
+@headingsFontFamily:    @sansFontFamily; // empty to use BS default, @baseFontFamily
+@headingsFontWeight:    300;    // instead of browser default, bold
+@headingsColor:         inherit; // empty to use BS default, @textColor
+
+
+// Component sizing
+// -------------------------
+// Based on 14px font-size and 20px line-height
+
+@fontSizeLarge:         @baseFontSize * 1.25; // ~18px
+@fontSizeSmall:         @baseFontSize * 0.85; // ~12px
+@fontSizeMini:          @baseFontSize * 0.75; // ~11px
+
+@paddingLarge:          11px 19px; // 44px
+@paddingSmall:          2px 10px;  // 26px
+@paddingMini:           0 6px;   // 22px
+
+@baseBorderRadius:      4px;
+@borderRadiusLarge:     6px;
+@borderRadiusSmall:     3px;
+
+
+// Tables
+// -------------------------
+@tableBackground:                   transparent; // overall background-color
+@tableBackgroundAccent:             #f9f9f9; // for striping
+@tableBackgroundHover:              #f5f5f5; // for hover
+@tableBorder:                       #ddd; // table and cell border
+
+// Buttons
+// -------------------------
+@btnBackground:                     @wetasphalt;
+@btnBackgroundHighlight:            @midnightblue;
+@btnBorder:                         @btnBackground;
+
+@btnFontFamily:                     @sansFontFamily;
+@btnFontSize:                       @baseFontSize;
+
+@btnPrimaryBackground:              @wetasphalt;
+@btnPrimaryBackgroundHighlight:     @midnightblue;//spin(@btnPrimaryBackground, 20%);
+
+@btnInfoBackground:                 @peterriver;
+@btnInfoBackgroundHighlight:        @belizehole;
+
+@btnSuccessBackground:              @emerland;
+@btnSuccessBackgroundHighlight:     @nephritis;
+
+@btnWarningBackground:              @carrot;
+@btnWarningBackgroundHighlight:     @pumpkin;
+
+@btnDangerBackground:               @alizarin;
+@btnDangerBackgroundHighlight:      @pomegranate;
+
+@btnInverseBackground:              @midnightblue;
+@btnInverseBackgroundHighlight:     @wetasphalt;
+
+
+// Forms
+// -------------------------
+@inputBackground:               @white;
+@inputBorder:                   @silver;
+@inputDisabledBackground:       @silver;
+@formActionsBackground:         @clouds;
+@inputHeight:                   @baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+
+
+// Dropdowns
+// -------------------------
+@dropdownBackground:            @silver;
+@dropdownBorder:                rgba(0,0,0,.2);
+@dropdownDividerTop:            @silver;
+@dropdownDividerBottom:         @white;
+
+@dropdownLinkColor:             @midnightblue;
+@dropdownLinkColorHover:        @wetasphalt;
+@dropdownLinkColorActive:       @white;
+
+@dropdownLinkBackgroundActive:  @turquoise;
+@dropdownLinkBackgroundHover:   @greensea;
+
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+@zindexDropdown:          1000;
+@zindexPopover:           1010;
+@zindexTooltip:           1030;
+@zindexFixedNavbar:       1030;
+@zindexModalBackdrop:     1040;
+@zindexModal:             1050;
+
+
+// Input placeholder text color
+// -------------------------
+@placeholderText:         @concrete;
+
+
+// Hr border color
+// -------------------------
+@hrBorder:                @midnightblue;
+
+
+// Wells
+// -------------------------
+@wellBackground:                  @clouds;
+
+
+// Navbar
+// -------------------------
+@navbarCollapseWidth:             979px;
+@navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
+
+@navbarHeight:                    80px;
+@navbarBackground:                @alizarin;
+@navbarBackgroundHighlight:       @alizarin;
+@navbarBorder:                    @navbarBackgroundHighlight;
+
+@navbarText:                      @white;
+@navbarFontFamily:                @sansFontFamily;
+@navbarLinkColor:                 @white;
+@navbarLinkColorHover:            @white;
+@navbarLinkColorActive:           @white;
+@navbarLinkBackgroundHover:       @pomegranate;
+@navbarLinkBackgroundActive:      @pomegranate;
+
+@navbarBrandColor:                @white;
+@navbarBrandFontFamily:           @serifFontFamily;
+
+// Inverted navbar
+@navbarInverseBackground:                @white;
+@navbarInverseBackgroundHighlight:       @white;
+@navbarInverseBorder:                    transparent;
+
+@navbarInverseText:                      @wisteria;
+@navbarInverseLinkColor:                 @wisteria;
+@navbarInverseLinkColorHover:            @amethyst;
+@navbarInverseLinkColorActive:           @navbarInverseLinkColorHover;
+@navbarInverseLinkBackgroundHover:       @silver;
+@navbarInverseLinkBackgroundActive:      @silver;
+
+@navbarInverseSearchBackground:          @amethyst;
+@navbarInverseSearchBackgroundFocus:     @wisteria;
+@navbarInverseSearchBorder:              @navbarInverseBackground;
+@navbarInverseSearchPlaceholderColor:    @clouds;
+
+@navbarInverseBrandColor:                @wisteria;
+
+
+// Pagination
+// -------------------------
+@paginationBackground:                @clouds;
+@paginationBorder:                    transparent;
+@paginationHoverLinkColor:            @clouds;
+@paginationHoverBackground:           @peterriver;
+@paginationActiveBackground:          @belizehole;
+@paginationActiveLinkColor:           @silver;
+@paginationLinkColor:                 @peterriver;
+@paginationDisabledLinkColor:         @silver;
+@paginationDisabledBackground:        @clouds;
+
+
+// Hero unit
+// -------------------------
+@heroUnitBackground:              @clouds;
+@heroUnitHeadingColor:            inherit;
+@heroUnitLeadColor:               inherit;
+
+
+// Form states and alerts
+// -------------------------
+@warningText:             @white;
+@warningBackground:       @sunflower;
+@warningBorder:           @sunflower;
+
+@errorText:               @white;
+@errorBackground:         @alizarin;
+@errorBorder:             @alizarin;
+
+@successText:             @white;
+@successBackground:       @emerland;
+@successBorder:           @emerland;
+
+@infoText:                @white;
+@infoBackground:          @peterriver;
+@infoBorder:              @peterriver;
+
+
+// Tooltips and popovers
+// -------------------------
+@tooltipColor:            @white;
+@tooltipBackground:       @midnightblue;
+@tooltipArrowWidth:       5px;
+@tooltipArrowColor:       @tooltipBackground;
+
+@popoverBackground:       @clouds;
+@popoverArrowWidth:       10px;
+@popoverArrowColor:       @popoverBackground;
+@popoverTitleBackground:  @emerland;
+
+// Special enhancement for popovers
+@popoverArrowOuterWidth:  @popoverArrowWidth + 1;
+@popoverArrowOuterColor:  @popoverArrowColor;
+
+
+
+// GRID
+// --------------------------------------------------
+
+
+// Default 940px grid
+// -------------------------
+@gridColumns:             12;
+@gridColumnWidth:         60px;
+@gridGutterWidth:         20px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// 1200px min
+@gridColumnWidth1200:     70px;
+@gridGutterWidth1200:     30px;
+@gridRowWidth1200:        (@gridColumns * @gridColumnWidth1200) + (@gridGutterWidth1200 * (@gridColumns - 1));
+
+// 768px-979px
+@gridColumnWidth768:      42px;
+@gridGutterWidth768:      20px;
+@gridRowWidth768:         (@gridColumns * @gridColumnWidth768) + (@gridGutterWidth768 * (@gridColumns - 1));
+
+
+// Fluid grid
+// -------------------------
+@fluidGridColumnWidth:    percentage(@gridColumnWidth/@gridRowWidth);
+@fluidGridGutterWidth:    percentage(@gridGutterWidth/@gridRowWidth);
+
+// 1200px min
+@fluidGridColumnWidth1200:     percentage(@gridColumnWidth1200/@gridRowWidth1200);
+@fluidGridGutterWidth1200:     percentage(@gridGutterWidth1200/@gridRowWidth1200);
+
+// 768px-979px
+@fluidGridColumnWidth768:      percentage(@gridColumnWidth768/@gridRowWidth768);
+@fluidGridGutterWidth768:      percentage(@gridGutterWidth768/@gridRowWidth768);

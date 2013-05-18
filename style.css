@@ -28,21 +28,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/lice
 }
 
 /* wp-specific classes */
-.wp-caption{
-	
-}
+.wp-caption{}
 
-.wp-caption-text{
-	
-}
+.wp-caption-text{}
 
-.sticky{
-	
-}
+.sticky{}
 
-.gallery-caption{
-	
-}
+.gallery-caption{}
 
 /* layout */
 
@@ -58,11 +50,6 @@ body{
 
 body.admin-bar .navbar-fixed-top{ 
 	top: 28px; 
-}
-
-.navbar .brand{
-	color: #000;
-	text-shadow: none;
 }
 
 .nav-container{
@@ -87,7 +74,7 @@ input, textarea, select, .uneditable-input {
 }
 
 #s{
-	width: 100px;
+	width: 80px;
 }
 
 #content{
@@ -122,57 +109,14 @@ input, textarea, select, .uneditable-input {
 /* Shared Post Format styling */
 
 article header.entry-header {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 article header.entry-header h2 {
 	margin-top: 0;
 }
 
-.entry-meta,
-.entry-meta .label
-{
-	font-size: 12px;
-	font-size: 0.8571rem;
-	font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-weight: normal;
-	line-height: 14px;
-	line-height: 1rem;
-	text-shadow: none;
-}
-
-.entry-meta {
-	margin: 10px 0; /*match bootstrap */
-}
-
-.entry-meta .label {
-	color: #fff;
-}
-
-.entry-meta p {
-	line-height: 20px;
-	line-height: 1.42857142857143rem;
-}
-
-.entry-meta a,
-.entry-meta a:active,
-.entry-meta a:visited,
-.entry-meta a:hover {
-	color: #777;
-}
-
-.label-postformat {
-	padding: 7px 14px;
-/*	float: right; */
-	font-size: 20px;
-	font-size: 1.4286rem;
-	line-height: 2.1818rem;
-	color: #848484;
-	background-color: #ebebeb;
-}
-
 #main article {
-	margin-bottom: 40px;
-	margin-bottom: 2rem;
+	margin-bottom: 60px;
 	padding: 0 0 20px;
 	padding: 0 0 1rem;
 }
@@ -194,15 +138,8 @@ article.format-link header .icon-external-link {
 
 /* Quote posts */
 article.format-quote .post_content blockquote {
-	display: block;
-	padding: 24px 24px 0;
-	padding: 1.714285714rem 1.714285714rem 0;
-	font-size: 15px;
-	font-size: 1.071428571rem;
-	line-height: 1.6;
-	font-style: normal;
 }
-
+/*
 article.format-quote .post_content blockquote p:before {
 	content: "\201C  ";
 	font-size: 2rem;
@@ -211,7 +148,7 @@ article.format-quote .post_content blockquote p:before {
 article.format-quote .post_content blockquote p:after {
 	content: " \201D ";
 	font-size: 2rem;
-}
+}*/
 
 /* Status posts */
 .format-status {
@@ -313,8 +250,6 @@ video {
 }
 
 /* comments */
-
-
 
 #comments{
 	line-height: 24px;
@@ -531,10 +466,10 @@ li.previous a:hover:before{
 /* calendar widget */
 
 #calendar_wrap{
-/*	border: 1px solid #ddd;
+	border: 1px solid #ddd;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
-	border-radius: 3px; */
+	border-radius: 3px;
 	padding: 5px;
 }
 
