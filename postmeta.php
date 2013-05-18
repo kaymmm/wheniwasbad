@@ -1,4 +1,6 @@
-	<aside class="entry-meta muted">
+<?php $extra_classes = (is_page_template('page-right-sidebar.php') ? ' text-right' : ''); ?>
+
+	<aside class="entry-meta muted<?php echo $extra_classes; ?>">
 		<?php
 		$post_format = get_post_format();
 		switch ($post_format) {
@@ -24,8 +26,12 @@
 				<p class="label label-postformat label-inverse"><i class="icon-paper-clip label-postformat"></i></p>
 				<?php break;
 			case 'post':
-			default: ?>
-				<p class="label label-postformat"><i class="icon-pencil"></i></p>
+			default: 
+				if (is_attachment()) : ?>
+					<p class="label label-postformat label-inverse"><i class="icon-paper-clip label-postformat"></i></p>
+				<?php elseif (!is_page()): //other edge cases or default post ?>
+					<p class="label label-postformat"><i class="icon-pencil"></i></p>
+				<?php endif; ?>
 		<?php }
 			
 		?>
