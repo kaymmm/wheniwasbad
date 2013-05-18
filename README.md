@@ -1,5 +1,5 @@
-WORDPRESS BOOTSTRAP/Flatstrap Edition
-=====================================
+WORDPRESS BOOTSTRAP/Flatstrap Edition v1.0
+==========================================
 
 Twitter's bootstrap in Wordpress theme form, forked from 320press wp-bootstrap and re-skinned using littlesparkvt's flatstrap. It is built around Eddie Machado's Bones template. 
 
@@ -15,7 +15,7 @@ __________________
 FEATURES
 ________
 
-We’ve built the WordPress Bootstrap theme so that it could be used as-is or as a starting point for theme developers. It’s built on top of the brilliant Bones theme framework by Eddie Machado and based on v2.1.1 of Twitter’s Bootstrap.
+We’ve built the WordPress Bootstrap theme so that it could be used as-is or as a starting point for theme developers. It’s built on top of the brilliant Bones theme framework by Eddie Machado and based on v2.3.1 of Twitter’s Bootstrap.
 
 Here’s what we’ve got so far. Star this project on Github to keep up with its progress.
 
@@ -30,8 +30,8 @@ ______________
 We’ve packaged four different page templates into this theme.
 
     - Homepage template (seen on the homepage of this site)
-    - Standard page with right sidebar (this page)
-    - Page with left sidebar
+    - Standard page with left sidebar (this page)
+    - Page with right sidebar
     - Full width page
 
 Theme Options Panel
