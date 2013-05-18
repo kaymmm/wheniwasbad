@@ -706,7 +706,15 @@ function get_wpbs_theme_options(){
           color: '. $topbar_link_hover_color . ';
         }';
       }
-      
+
+      $topbar_link_hover_bg = of_get_option( 'top_nav_link_background_color' );
+      if ( $topbar_link_hover_bg ) {
+        $theme_options_styles .= '
+        .navbar .nav li a:hover { 
+          background-color: '. $topbar_link_hover_bg . ';
+        }';
+      }      
+
       $topbar_dropdown_hover_bg_color = of_get_option( 'top_nav_dropdown_hover_bg' );
       if ( $topbar_dropdown_hover_bg_color ) {
         $theme_options_styles .= '

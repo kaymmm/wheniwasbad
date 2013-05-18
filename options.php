@@ -166,7 +166,13 @@ function optionsframework_options() {
 						"id" => "top_nav_link_hover_color",
 						"std" => "",
 						"type" => "color");
-						
+
+	$options[] = array( "name" => "Top nav item hover background",
+						"desc" => "Link hover background color.",
+						"id" => "top_nav_link_background_color",
+						"std" => "",
+						"type" => "color");
+																	
 	$options[] = array( "name" => "Top nav dropdown item color",
 						"desc" => "Dropdown item color.",
 						"id" => "top_nav_dropdown_item",
