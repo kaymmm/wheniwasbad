@@ -261,6 +261,12 @@ function optionsframework_options() {
 						"id" => "hero_unit_bg_color",
 						"std" => "",
 						"type" => "color");
+
+	$options[] = array( "name" => "Use excerpts on blog/archive/search pages",
+						"desc" => "Show excerpts on all pages containing multiple posts; full posts only appear on single post pages",
+						"id" => "use_excerpts",
+						"std" => "1",
+						"type" => "checkbox");						
 						
 	$options[] = array( "name" => "'Comments are closed' message on pages",
 						"desc" => "Suppress 'Comments are closed' message",
