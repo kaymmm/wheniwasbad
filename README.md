@@ -1,19 +1,21 @@
-WORDPRESS BOOTSTRAP/Flatstrap Edition v1.0
-==========================================
+WhenIWasBad: Wordpress Bootstrap - Flatstrap Edition
+====================================================
+Twitter's Bootstrap in Wordpress theme form, forked from 320press wp-bootstrap and re-skinned using littlesparkvt's flatstrap. It is built around Eddie Machado's Bones template. 
 
-Twitter's bootstrap in Wordpress theme form, forked from 320press wp-bootstrap and re-skinned using littlesparkvt's flatstrap. It is built around Eddie Machado's Bones template. 
+It's named after a lyric from Ghostface's _Whip You With A Strap_ ("...take me across her lap, she used to whip me with a strap when I was bad") since I hate the concept of bootstrapping and needed to create distance from the horrible name Twitter gave their framework.
 
-Included Libraries
-__________________
+Credits
+=======
+* Twitter Bootstrap 2.3.1 (http://twitter.github.com/bootstrap)
+* 320press wp-bootstrap v1.2 (http://320press.com/wpbs)
+* Eddie Machado Bones v1.09, plus a handful of cherry picks up to 1.4 (that hopefully don't break things) (https://github.com/eddiemachado/bones)
+* littlesparkvt Flatstrap (10 May 2013) (https://github.com/littlesparkvt/flatstrap)
+* Font Awesome 3.1.1 (https://github.com/FortAwesome/Font-Awesome/)
 
-- Twitter Bootstrap 2.3.1 (http://twitter.github.com/bootstrap)
-- 320press wp-bootstrap v1.2 (http://320press.com/wpbs)
-- Eddie Machado Bones v1.09, plus a handful of cherry picks up to 1.4 (that hopefully don't break things) (https://github.com/eddiemachado/bones)
-- littlesparkvt Flatstrap (10 May 2013) (https://github.com/littlesparkvt/flatstrap)
-- Font Awesome 3.1.1 (https://github.com/FortAwesome/Font-Awesome/)
+---
 
 FEATURES
-________
+========
 
 We’ve built the WordPress Bootstrap theme so that it could be used as-is or as a starting point for theme developers. It’s built on top of the brilliant Bones theme framework by Eddie Machado and based on v2.3.1 of Twitter’s Bootstrap.
 
@@ -29,10 +31,10 @@ ______________
 
 We’ve packaged four different page templates into this theme.
 
-    - Homepage template (seen on the homepage of this site)
-    - Standard page with left sidebar (this page)
-    - Page with right sidebar
-    - Full width page
+    * Homepage template (seen on the homepage of this site)
+    * Standard page with left sidebar (this page)
+    * Page with right sidebar
+    * Full width page
 
 Theme Options Panel
 ___________________
@@ -48,3 +50,10 @@ Sidebars
 ________
 
 We’ve built in two different sidebars. One for the homepage and one for the other pages. Add widgets to them.
+
+---
+
+Changelog
+=========
+v1.0
+* initial release

@@ -1,11 +1,11 @@
 /*
-Theme Name: km-bootstrap
-Theme URI: http://keithmiyake.info/kmbootstrap
+Theme Name: WhenIWasBad
+Theme URI: http://keithmiyake.info/wheniwasbad/
 Description: A simple responsive theme based on the Bootstrap framework and forked from the wp-bootstrap theme by 320press (http://320press.com/wpbs). Includes multiple page templates, two different sidebars and a theme options panel.
 Version: 1.0
 Author: Keith Miyake
 Author URI: http://keithmiyake.info
-Tags: black, white, one-column, two-columns, flexible-width, custom-background, custom-colors, custom-menu, full-width-template, theme-options
+Tags: orange, white, one-column, two-columns, flexible-width, custom-background, custom-colors, custom-menu, full-width-template, post-formats, theme-options
 License: GNU General Public License v2.0 & Apache License 2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/licenses/LICENSE-2.0
 */
@@ -459,7 +459,7 @@ li.previous a:hover:before{
 }
 
 .widget_search input{
-	width: 121px;
+	width: 64px;
 }
 
 /* calendar widget */
@@ -550,10 +550,6 @@ blockquote.pull-left{
 		margin-top: 0 !important;
 	}
 	
-	.widget_search input{
-		width: 230px;
-	}
-	
 	.blog .hero-unit{
 		margin-top: 10px;
 	}
@@ -583,7 +579,7 @@ blockquote.pull-left{
 	}
 	
 	.widget_search input{
-		width: 209px;
+		width: 112px;
 	}
 	
 	.comment .vcard .comment-text{
