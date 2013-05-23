@@ -405,32 +405,32 @@
 }
 
 // Gradient Bar Colors for buttons and alerts
-//.gradientBar(@primaryColor, @secondaryColor, @textColor: #fff, @textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
-.gradientBar(@primaryColor, @secondaryColor, @textColor: #fff, @textShadow:none) {	
+.gradientBar(@primaryColor, @secondaryColor, @textColor: #fff, @textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
   color: @textColor;
-  text-shadow: @textShadow;
+  text-shadow: none;
   #gradient > .vertical(@primaryColor, @secondaryColor);
-  border-color: @secondaryColor @secondaryColor darken(@secondaryColor, 15%);
-  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+  border-color: @primaryColor @primaryColor @secondaryColor;
+  padding-bottom: 2px;
+  border-width: 1px 1px @borderRadiusSmall;
 }
 
 // Gradients
 #gradient {
   .horizontal(@startColor: #555, @endColor: #333) {
-    background-color: @endColor;
+    background-color: @startColor;
   }
   .vertical(@startColor: #555, @endColor: #333) {
-    background-color: mix(@startColor, @endColor, 60%);
+    background-color: @startColor;
   }
   .directional(@startColor: #555, @endColor: #333, @deg: 45deg) {
-    background-color: @endColor;
+    background-color: @startColor;
   }
   .horizontal-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
-    background-color: mix(@midColor, @endColor, 80%);
+    background-color: @startColor;
   }
 
   .vertical-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
-    background-color: mix(@midColor, @endColor, 80%);
+    background-color: @startColor;
   }
   .radial(@innerColor: #555, @outerColor: #333) {
     background-color: @outerColor;
@@ -468,9 +468,7 @@
 
 // Button backgrounds
 // ------------------
-//.buttonBackground(@startColor, @endColor, @textColor: #fff, @textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
-.buttonBackground(@startColor, @endColor, @textColor: #fff, @textShadow:none) {
-  // gradientBar will set the background to a pleasing blend of these, to support IE<=9
+.buttonBackground(@startColor, @endColor, @textColor: #fff, @textShadow: none) {
   .gradientBar(@startColor, @endColor, @textColor, @textShadow);
   *background-color: @endColor; /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   .reset-filter();
