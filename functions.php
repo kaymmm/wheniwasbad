@@ -608,9 +608,9 @@ if (!is_admin()){
 }
 
 // enqueue javascript
-if( !function_exists( "theme_js" ) ) {  
+if( !function_exists( "bootstrap_js" ) ) {  
   function theme_js(){
-  
+	  /*
 	wp_register_script( 'bootstrap-transition', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-transition.js', array('jquery'), '2.3.2', true );
     wp_register_script( 'bootstrap-affix', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-affix.js', array('jquery'), '2.3.2', true );
 	wp_register_script( 'bootstrap-alert', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-alert.js', array('jquery'), '2.3.2', true );
@@ -624,9 +624,7 @@ if( !function_exists( "theme_js" ) ) {
 	wp_register_script( 'bootstrap-scrollspy', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-scrollspy.js', array('jquery'), '2.3.2', true );
 	wp_register_script( 'bootstrap-tab', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-tab.js', array('jquery'), '2.3.2', true );
 	wp_register_script( 'bootstrap-typeahead', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-typeahead.js', array('jquery'), '2.3.2', true );
-    wp_register_script( 'wpbs-bones-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
-    wp_register_script( 'bones-modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
-	
+
 	wp_enqueue_script('bootstrap-transition');
     wp_enqueue_script('bootstrap-affix');
 	wp_enqueue_script('bootstrap-alert');
@@ -639,7 +637,21 @@ if( !function_exists( "theme_js" ) ) {
 	wp_enqueue_script('bootstrap-scrollspy');
 	wp_enqueue_script('bootstrap-tab');
 //	wp_enqueue_script('bootstrap-typeahead'); //disabled since it's not used
-    wp_enqueue_script('wpbs-bones-scripts');
+	  */
+	  //use CDN for loading Bootstrap
+	wp_register_script('bootstrap', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js', array('jquery'), '2.3.1', true);
+	wp_enqueue_script('bootstrap');
+  }
+}
+if (!is_admin()) {
+	add_action( 'wp_enqueue_scripts', 'bootstrap_js' );	
+}
+
+if( !function_exists( "theme_js" ) ) {  
+  function theme_js(){
+    wp_register_script( 'wpbs-bones-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
+    wp_register_script( 'bones-modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
+	wp_enqueue_script('wpbs-bones-scripts');
     wp_enqueue_script('bones-modernizr');
 
   }
