@@ -4479,9 +4479,7 @@ button.close {
   color: #7f8c8d;
   text-shadow: none;
   background-color: #bdc3c7;
-  border-color: #bdc3c7 #bdc3c7 #95a5a6;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #bdc3c7;
   *background-color: #95a5a6;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -4609,9 +4607,7 @@ input[type="button"].btn-block {
   color: #ffffff;
   text-shadow: none;
   background-color: #34495e;
-  border-color: #34495e #34495e #2c3e50;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #34495e;
   *background-color: #2c3e50;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -4635,9 +4631,7 @@ input[type="button"].btn-block {
   color: #ffffff;
   text-shadow: none;
   background-color: #e67e22;
-  border-color: #e67e22 #e67e22 #d35400;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #e67e22;
   *background-color: #d35400;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -4661,9 +4655,7 @@ input[type="button"].btn-block {
   color: #ffffff;
   text-shadow: none;
   background-color: #e74c3c;
-  border-color: #e74c3c #e74c3c #c0392b;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #e74c3c;
   *background-color: #c0392b;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -4687,9 +4679,7 @@ input[type="button"].btn-block {
   color: #ffffff;
   text-shadow: none;
   background-color: #2ecc71;
-  border-color: #2ecc71 #2ecc71 #27ae60;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #2ecc71;
   *background-color: #27ae60;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -4713,9 +4703,7 @@ input[type="button"].btn-block {
   color: #ffffff;
   text-shadow: none;
   background-color: #3498db;
-  border-color: #3498db #3498db #2980b9;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #3498db;
   *background-color: #2980b9;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -4739,9 +4727,7 @@ input[type="button"].btn-block {
   color: #ffffff;
   text-shadow: none;
   background-color: #2c3e50;
-  border-color: #2c3e50 #2c3e50 #34495e;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #2c3e50;
   *background-color: #34495e;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -5674,9 +5660,7 @@ input[type="submit"].btn.btn-mini {
   color: #ffffff;
   text-shadow: none;
   background-color: #e43725;
-  border-color: #e43725 #e43725 #e43725;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #e43725;
   *background-color: #e43725;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -5895,9 +5879,7 @@ input[type="submit"].btn.btn-mini {
   color: #ffffff;
   text-shadow: none;
   background-color: #f2f2f2;
-  border-color: #f2f2f2 #f2f2f2 #f2f2f2;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #f2f2f2;
   *background-color: #f2f2f2;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
@@ -6908,9 +6890,7 @@ a.badge:focus {
 .btn {
   color: #ffffff;
   background-color: #bdc3c7;
-  border-color: #bdc3c7 #bdc3c7 #95a5a6;
-  padding-bottom: 2px;
-  border-width: 1px 1px 3px;
+  border-color: #bdc3c7;
   *background-color: #95a5a6;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
