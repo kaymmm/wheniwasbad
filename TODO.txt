@@ -8,3 +8,7 @@ support for jetpack tiled galleries...?
 clean up the wp_link_pages calls on all of the pages
 * make sure it's included where appropriate
 * restyle so that it looks like the pager produced by the page_navi function
+single.php: Show navigation links to next and previous post using previous_post_link() and next_post_link().
+move comment formatting to custom-styles.less
+* use less to configure background colors
+* use variables to control font colors
