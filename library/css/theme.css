@@ -5028,6 +5028,22 @@ blockquote.pull-right {
 #main article.sticky .entry-meta a:hover {
   color: #95a5a6;
 }
+/* highlight comments by the post author */
+.bypostauthor {
+  border: 3px solid #8e44ad;
+  border-left: none;
+  border-right: none;
+}
+.bypostauthor blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+ol.commentlist li {
+  background-color: #ecf0f1;
+}
+ol.commentlist ul.children li {
+  background-color: rgba(51, 51, 51, 0.2);
+}
 /* from docs.css */
 section > .page-header,
 section > .lead {

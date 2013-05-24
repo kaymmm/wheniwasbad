@@ -326,6 +326,28 @@ blockquote {
 	}
 }
 
+/* highlight comments by the post author */
+.bypostauthor {
+	//background-color: @wellBackground;
+    border: 3px solid @wisteria;
+	border-left: none;
+	border-right: none;
+    //.border-radius(@baseBorderRadius);
+    //.box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+    blockquote {
+      border-color: #ddd;
+      border-color: rgba(0,0,0,.15);
+    }
+}
+
+ol.commentlist li{
+	background-color: @clouds;
+}
+ol.commentlist ul.children li{
+	background-color: fade(#333,20%);;	
+}
+
+
 /* from docs.css */
 section > .page-header, section > .lead {
 color: @wetasphalt;

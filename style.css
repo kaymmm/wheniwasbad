@@ -274,7 +274,13 @@ video {
 ol.commentlist,
 ol.commentlist ul.children{
 	list-style-type: none;
-	margin-left: 0;
+	margin: 10px 10px 10px 0;
+	padding-bottom: 10px;
+}
+
+#main ol.commentlist article {
+	padding: 0 0 10px;
+	margin: 10px 0 20px;
 }
 
 .comment .vcard > div{
@@ -299,24 +305,8 @@ ol.commentlist a.comment-edit-link{
 
 ol.commentlist span.edit-comment{
 	position: absolute;
-	right: 0;
-	top: 8px;
-}
-
-ol.commentlist li.bypostauthor{
-	background-color: #dddddd;
-}
-
-ol.commentlist ul.children li{
-	background-color: #cccccc;
-}
-
-ol.commentlist ul.children li ul.children li{
-	background-color: #bbbbbb;
-}
-
-ol.commentlist ul.children li ul.children li ul.children li{
-	background-color: #aaaaaa;
+	right: 10px;
+	top: 10px;
 }
 
 ol.commentlist article{
@@ -325,7 +315,7 @@ ol.commentlist article{
 
 a.comment-reply-link{
 	position: absolute;
-	right: 0;
+	right: 10px;
 	bottom: 0;
 }
 
@@ -349,11 +339,6 @@ a.comment-reply-link{
 
 img.avatar{
 	border: none;
-}
-
-ol.commentlist li{
-	padding-right: 10px;
-	background-color: #F0F0F0;
 }
 
 #pings{
