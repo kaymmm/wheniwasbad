@@ -9,7 +9,7 @@
 			$total_results = $wp_query->found_posts;
 			?>
 
-		    <h3 class="search_title h2">
+		    <h3 class="search_title h3">
 		    	<?php echo __('Search Found ','bonestheme') . $total_results . __(' Matches for "','bonestheme') . '<em>' . get_search_query() . __('"','bonestheme'); ?>
 		    </h3>
 			
