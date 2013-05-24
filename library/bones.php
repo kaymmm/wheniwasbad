@@ -30,9 +30,8 @@ function bones_ahoy() {
     // clean up comment styles in the head
     add_action('wp_head', 'bones_remove_recent_comments_style', 1);
     // clean up gallery output in wp
-//    add_filter('gallery_style', 'bones_gallery_style');
-add_filter('use_default_gallery_style', '__return_null');
-add_theme_support('bootstrap-gallery'); //TODO: add theme support to turn off custom galleries
+	add_filter('use_default_gallery_style', '__return_null');
+	add_theme_support('bootstrap-gallery'); //TODO: add theme support to turn off custom galleries
 
 
     // ie conditional wrapper
@@ -110,23 +109,6 @@ function bones_remove_recent_comments_style() {
     remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
   }
 }
-
-// remove injected CSS from gallery
-
-function bones_gallery_style($css) {
-  return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
-}
-
-	
-
-// Fixing the Read More in the Excerpts
-// This removes the annoying […] to a Read More link
-function bones_excerpt_more($more) {
-	global $post;
-	// edit here if you like
-	return '...  <a href="'. get_permalink($post->ID) . '" class="more-link" title="Read '.get_the_title($post->ID).'">Read more &raquo;</a>';
-}
-add_filter('excerpt_more', 'bones_excerpt_more');
 
 // remove the p from around imgs (http://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/)
 function bones_filter_ptags_on_images($content){
