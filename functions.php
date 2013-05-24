@@ -1,7 +1,7 @@
 <?php
 /*
-Author: Eddie Machado
-URL: htp://themble.com/bones/
+Author: Keith Miyake
+URL: htp://keithmiyake.info/wheniwasbad/
 
 This is where you can drop your custom functions or
 just edit things like thumbnail sizes, header images, 
@@ -227,19 +227,6 @@ function comment_count( $count ) {
 	}
 }
 
-/************* SEARCH FORM LAYOUT *****************/
-
-// Search Form
-/*function bones_wpsearch($form) {
-	$form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
-	<label class="screen-reader-text" for="s">' . __('Search for:', 'bonestheme') . '</label>
-	<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="'.esc_attr__('Search the Site...','bonestheme').'" />
-	<input type="submit" id="searchsubmit" value="'. esc_attr__('Search') .'" />
-	</form>';
-	return $form;
-} // don't remove this bracket!
-*/
-
 /****************** password protected post form *****/
 
 add_filter( 'the_password_form', 'custom_password_form' );
@@ -294,19 +281,6 @@ function wp_tag_cloud_filter( $return, $args )
 // Enable shortcodes in widgets
 add_filter( 'widget_text', 'do_shortcode' );
 
-// Disable jump in 'read more' link
-/*function remove_more_jump_link( $link ) {
-	$offset = strpos($link, '#more-');
-	if ( $offset ) {
-		$end = strpos( $link, '"',$offset );
-	}
-	if ( $end ) {
-		$link = substr_replace( $link, '', $offset, $end-$offset );
-	}
-	return $link;
-}
-add_filter( 'the_content_more_link', 'remove_more_jump_link' );
-*/
 
 // Remove height/width attributes on images so they can be responsive
 add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 );
