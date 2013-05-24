@@ -159,9 +159,19 @@ function bones_register_sidebars() {
 
 /************* Excerpts *********************/
 function new_excerpt_more( $more ) {
-	return ' [&hellip;]<br /><a class="read-more btn pull-right" href="'. get_permalink( get_the_ID() ) . '">Read More</a>';
+	return ' [&hellip;]</p><p><a class="read-more btn pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more &raquo</a>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
+
+
+/************* Custom Get_Avatar *********************/
+function bs_get_avatar($id_or_email,$size='96',$default='',$alt=false,$class='') {
+	$ret = get_avatar($id_or_email,$size,$default,$alt);
+	if (! empty($class)) {
+		return str_replace("class='avatar", "class='avatar ".$class." ", $ret) ;
+	}
+	return $ret;
+}
 
 /************* COMMENT LAYOUT *********************/
 		
@@ -285,7 +295,7 @@ function wp_tag_cloud_filter( $return, $args )
 add_filter( 'widget_text', 'do_shortcode' );
 
 // Disable jump in 'read more' link
-function remove_more_jump_link( $link ) {
+/*function remove_more_jump_link( $link ) {
 	$offset = strpos($link, '#more-');
 	if ( $offset ) {
 		$end = strpos( $link, '"',$offset );
@@ -296,6 +306,7 @@ function remove_more_jump_link( $link ) {
 	return $link;
 }
 add_filter( 'the_content_more_link', 'remove_more_jump_link' );
+*/
 
 // Remove height/width attributes on images so they can be responsive
 add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 );
@@ -613,7 +624,7 @@ if (!is_admin()){
 
 // enqueue javascript
 if( !function_exists( "bootstrap_js" ) ) {  
-  function theme_js(){
+  function bootstrap_js(){
 	  /*
 	wp_register_script( 'bootstrap-transition', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-transition.js', array('jquery'), '2.3.2', true );
     wp_register_script( 'bootstrap-affix', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-affix.js', array('jquery'), '2.3.2', true );
@@ -655,6 +666,9 @@ if( !function_exists( "theme_js" ) ) {
   function theme_js(){
     wp_register_script( 'wpbs-bones-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
     wp_register_script( 'bones-modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
+	// only enqueue the following script when needed, but register it so that it's available.
+	wp_register_script( 'bs-tooltips',get_template_directory_uri() . '/library/js/bs-tooltips.js',array('jquery','bootstrap'),'1.1', true );
+	
 	wp_enqueue_script('wpbs-bones-scripts');
     wp_enqueue_script('bones-modernizr');
 
@@ -663,6 +677,13 @@ if( !function_exists( "theme_js" ) ) {
 if (!is_admin()) {
 	add_action( 'wp_enqueue_scripts', 'theme_js' );	
 }
+
+/********* Tooltip JS *********/
+function attach_tooltips() {
+	
+	
+}
+//add_action('wp_enqueue_scripts','attach_tooltips');
 
 // Get theme options
 function get_wpbs_theme_options(){

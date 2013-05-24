@@ -46,7 +46,7 @@
 					<?php comments_template( '', true ); ?>
 
 				<?php endwhile; // end of the loop. ?>
-					
+				<?php wp_link_pages( $args ); ?>
 				<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
 					
 					<?php page_navi(); // use the page navi function ?>

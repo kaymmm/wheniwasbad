@@ -20,10 +20,11 @@
 					<?php if (! is_singular() && of_get_option('use_excerpts')) : ?>
 						<?php the_excerpt(); ?>
 					<?php else: ?>
-						<?php the_content( __("<span class='btn btn-primary'>Read more &raquo;</span>","bonestheme") ); ?>
+						<?php the_content( __("<span class='btn btn-primary pull-right'>Read more &raquo;</span>","bonestheme") ); ?>
 					<?php endif; ?>
  					</section> <!-- post-content -->
 				<?php if (is_singular()) : ?>
+					<?php wp_link_pages( $args ); ?>
 					<?php comments_template( '', true ); ?>
 				<?php endif; ?>
 				</div>

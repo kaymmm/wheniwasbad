@@ -1,47 +1,70 @@
-<?php $extra_classes = (is_page_template('page-right-sidebar.php') ? ' text-right' : ''); ?>
+<?php 
+$extra_classes = (is_page_template('page-right-sidebar.php') ? ' text-right' : '');
+$post_format = get_post_format();
+if (is_sticky()) {
+	$icon='icon-pushpin';
+	$label_class='label-important';
+} else {
+switch ($post_format) {
+	case 'aside': 
+		$icon='icon-pushpin';
+		$label_class='label-warning';
+		break;
+	case 'gallery':
+		$label_class='label-orange';
+		$icon='icon-camera';
+		break;
+	case 'image': 
+		$label_class='label-info';
+		$icon='icon-picture';
+		break;
+	case 'link':
+		$label_class='label-inverse';
+		$icon='icon-link';
+		break;
+	case 'quote': 
+		$label_class='label-success';
+		$icon='icon-quote-right';
+		break;
+	case 'status': 
+		$label_class='label-purple';
+		$icon='icon-info-sign';
+		break;
+	case 'attachment':
+		$label_class='label-inverse';
+		$icon='icon-paper-clip';
+		break;
+	case 'post':
+	default:
+		$label_class='label-inverse';
+		if (is_attachment()) {	
+			$icon='icon-paper-clip';
+		} elseif (!is_page()) { //other edge cases or default post
+			$icon='icon-pencil';
+		}
+	} //switch 
+}
+
+	$author = get_the_author();
+	$author = ($author == '') ? get_the_author_meta('user_nicename') : $author;
+	?>
 
 	<aside class="entry-meta muted<?php echo $extra_classes; ?>">
-		<?php
-		$post_format = get_post_format();
-		switch ($post_format) {
-			case 'aside': ?>
-				<p class="label label-postformat label-warning"><i class="icon-pushpin label-postformat"></i></p>
-				<?php break;
-			case 'gallery':  ?>
-				<p class="label label-postformat label-orange"><i class="icon-camera-retro label-postformat"></i></p>
-				<?php break;
-			case 'image': ?>
-				<p class="label label-postformat label-info"><i class="icon-picture label-postformat"></i></p>
-				<?php break;
-			case 'link': ?>
-				<p class="label label-postformat label-inverse"><i class="icon-link label-postformat"></i></p>
-				<?php break;
-			case 'quote': ?>
-				<p class="label label-postformat label-success"><i class="icon-quote-right label-postformat"></i></p>
-				<?php break;
-			case 'status': ?>
-				<p class="label label-postformat label-purple"><i class="icon-info-sign label-postformat"></i></p>
-				<?php break;
-			case 'attachment': ?>
-				<p class="label label-postformat label-inverse"><i class="icon-paper-clip label-postformat"></i></p>
-				<?php break;
-			case 'post':
-			default: 
-				if (is_attachment()) : ?>
-					<p class="label label-postformat label-inverse"><i class="icon-paper-clip label-postformat"></i></p>
-				<?php elseif (!is_page()): //other edge cases or default post ?>
-					<p class="label label-postformat"><i class="icon-pencil"></i></p>
-				<?php endif; ?>
-		<?php }
-			
-		?>
+	<?php if (is_singular()): ?>
+		<span class="avatar-head pull-right"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
+			<?php echo bs_get_avatar(get_the_author_meta('ID'),'80','',$author,$class='img-circle'); ?>
+		</a></span>
+	<?php endif; ?>
+		<p><span class="label <?php echo $label_class; ?>"><i class="<?php echo $icon; ?>"></i></span> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo $author; ?></a></em></p>
+	<?php if ( ! is_page() ) : ?>
 		<p><i class="icon-calendar-empty"></i> <time datetime="<?php the_time(get_option('date_format')); ?>" pubdate><?php the_time(get_option('date_format')); ?></time></p>
+	<?php endif; ?>
 		<p><i class="icon-bookmark"></i> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark">Permalink</a>
 		<?php edit_post_link( __( 'Edit', 'bonestheme' ), ' &nbsp;&bull;&nbsp; ', '' ); ?></p>
-		<?php if ( comments_open() && get_comments_number() ) : ?>
+	<?php if ( comments_open() && get_comments_number() ) : ?>
 		<p><i class="icon-comment"></i> <?php comments_popup_link( __("Leave a comment","bonestheme"), __( "One Comment", "bonestheme"), __( "% Comments", "bonestheme" ) ); ?></p>
-		<?php endif; // comments_open() ?>
-		<?php if ( ! is_page() && ! is_attachment() ) : ?>
+	<?php endif; // comments_open() ?>
+	<?php if ( ! is_page() && ! is_attachment() ) : ?>
 		<p><i class="icon-folder-close"></i> <span class="muted"> <?php the_category(", "); ?></span></p>
 		<p><i class="icon-tags"></i>
 		<?php
@@ -55,5 +78,5 @@
 			_e("Not Tagged","bonestheme");
 		endif; ?>
 		</p>
-		<?php endif; ?>
+	<?php endif; ?>
 	</aside>

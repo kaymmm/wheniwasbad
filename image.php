@@ -37,7 +37,7 @@ get_header(); ?>
 			
 							<!-- To display current image in the photo gallery -->
 							<div class="attachment-img well">
-							      <a href="<?php echo wp_get_attachment_url($post->ID); ?>">
+							      <a href="<?php echo wp_get_attachment_url($post->ID); ?>" class="thumbnail" >
 			      							      
 							      <?php 
 							      	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );

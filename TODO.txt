@@ -1,0 +1,10 @@
+TODO:
+=====
+
+Add author+avatar to postmeta, but probably only on singular pages
+give special formatting to comments using ".bypostauthor" class
+look into enabling html tags/formatting for comments
+support for jetpack tiled galleries...?
+clean up the wp_link_pages calls on all of the pages
+* make sure it's included where appropriate
+* restyle so that it looks like the pager produced by the page_navi function

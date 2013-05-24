@@ -115,20 +115,20 @@ font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 	switch ($nav_position) {
 		case 'fixed':
 			$navbar_class = 'navbar-fixed-top';
-			$body_style = 'style="padding-top: 40px;"'; /* change this if the navbar height changes! */
+			$body_style = 'navbar-fixed-offset';
 			break;
 		case 'fixed-bottom':
 			$navbar_class = 'navbar-fixed-bottom';
-			$body_style = 'style="padding-top: 0;"';
+			$body_style = 'navbar-no-offset';
 			break;
 		case 'scroll':
 		default: 
 			$navbar_class = 'navbar-static-top';
-			$body_style = 'style="padding-top: 0;"';
+			$body_style = 'navbar-no-offset';
 	}
 	?>
 		
-	<body <?php body_class(); echo $body_style; ?>>
+	<body <?php body_class($body_style); ?>>
 				
 		<header role="banner">
 		

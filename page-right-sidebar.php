@@ -33,7 +33,7 @@ Template Name: Right Sidebar
 				</div> <!-- row-fluid -->
 
 			<?php endwhile; // end of the loop. ?>
-
+			<?php wp_link_pages( $args ); ?>
 			<?php else : ?>
 		
 				<?php not_found(); ?>

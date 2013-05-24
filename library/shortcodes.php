@@ -28,8 +28,111 @@ function gallery_shortcode_tbs($attr) {
 	}
 
 	return $output;
+}*/
+// taken from https://github.com/retlehs/roots
+function roots_gallery($attr) {
+ $post = get_post();
+
+  static $instance = 0;
+  $instance++;
+
+  if (!empty($attr['ids'])) {
+    if (empty($attr['orderby'])) {
+      $attr['orderby'] = 'post__in';
+    }
+    $attr['include'] = $attr['ids'];
+  }
+
+  $output = apply_filters('post_gallery', '', $attr);
+
+  if ($output != '') {
+    return $output;
+  }
+
+  if (isset($attr['orderby'])) {
+    $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
+    if (!$attr['orderby']) {
+      unset($attr['orderby']);
+    }
+  }
+
+  extract(shortcode_atts(array(
+    'order'      => 'ASC',
+    'orderby'    => 'menu_order ID',
+    'id'         => $post->ID,
+    'itemtag'    => '',
+    'icontag'    => '',
+    'captiontag' => '',
+    'columns'    => 3,
+    'size'       => 'thumbnail',
+    'include'    => '',
+    'exclude'    => ''
+  ), $attr));
+
+  $id = intval($id);
+
+  if ($order === 'RAND') {
+    $orderby = 'none';
+  }
+
+  if (!empty($include)) {
+    $_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+
+    $attachments = array();
+    foreach ($_attachments as $key => $val) {
+      $attachments[$val->ID] = $_attachments[$key];
+    }
+  } elseif (!empty($exclude)) {
+    $attachments = get_children(array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+  } else {
+    $attachments = get_children(array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+  }
+
+  if (empty($attachments)) {
+    return '';
+  }
+
+  if (is_feed()) {
+    $output = "\n";
+    foreach ($attachments as $att_id => $attachment) {
+      $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+    }
+    return $output;
+  }
+
+  $output = '<ul class="thumbnails gallery">';
+
+  $col_span = floor(12/$columns);
+  $col_gutter = 10/$columns;
+  $col_width = 100/$columns-$col_gutter;
+  $i=0;
+  foreach ($attachments as $id => $attachment) {
+    if ($i==$columns) { $output.='</ul><ul class="thumbnails gallery">'; $i=0; }
+//	$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+	$img = wp_get_attachment_image($id, 'large',false,array('alt'=>$attachment->post_title));
+	$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_url($id) : get_attachment_link($id);
+//    $output .= '<li class="span'.$col_span.'">';
+$output .= '<li class="pull-left" style="width: '.$col_width.'%; margin-left: '.$col_gutter.'%;">';
+	$output .= '<a href="' . $link . '" class="thumbnail"  rel="tooltip" data-original-title="'.$attachment->post_excerpt.'">'.$img.'</a>';
+	
+    if (trim($attachment->post_excerpt)) {
+      $output .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</p>';
+    }
+    $output .= '</li>';
+	$i++;
+  }
+
+  $output .= '</ul>';
+
+  wp_enqueue_script('bs-tooltips'); //only include the js one time
+
+  return $output;
 }
-*/
+//if (current_theme_supports('bootstrap-gallery')) {
+  remove_shortcode('gallery','gallery_shortcode');
+  add_shortcode('gallery', 'roots_gallery');
+  //}
+
 
 
 // Buttons

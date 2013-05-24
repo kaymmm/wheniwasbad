@@ -118,7 +118,7 @@ Template Name: Homepage
 				</article> <!-- end article -->
 					
 			<?php endwhile; ?>	
-					
+			<?php wp_link_pages( $args ); ?>
 			<?php else : ?>
 					
 				<article id="post-not-found">

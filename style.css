@@ -38,9 +38,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/lice
 
 /* layout */
 
-body{
+body.navbar-fixed-offset {
+	padding-top: 80px;
+}
+
+body.navbar-no-offset {
 	padding-top: 0;
 }
+
 
 #page-footer {
 	border-top: none ;
@@ -112,6 +117,11 @@ input, textarea, select, .uneditable-input {
 }
 
 /* Shared Post Format styling */
+
+body {
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
 
 article header.entry-header {
 	margin-bottom: 20px;
@@ -424,6 +434,29 @@ li.previous a:hover:before{
 	box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
 
+.gallery-item a,
+.gallery-caption {
+	width: 90%;
+}
+.gallery-item a {
+	display: block;
+}
+.gallery-caption a {
+	display: inline;
+}
+.gallery-columns-1 .gallery-item a {
+	max-width: 100%;
+	width: auto;
+}
+.gallery .gallery-icon img {
+	height: auto;
+	max-width: 90%;
+	padding: 5%;
+}
+.gallery-columns-1 .gallery-icon img {
+	padding: 3%;
+}
+
 
 /* widget styles */
 
@@ -511,9 +544,6 @@ blockquote.pull-left{
 }
 
 @media only screen and (min-width: 980px) {
-	body{
-		padding-top: 60px;
-	}
 	
 	.container-fluid{
 		margin: 0 auto;

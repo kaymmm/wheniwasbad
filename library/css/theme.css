@@ -5028,10 +5028,6 @@ blockquote.pull-right {
 #main article.sticky .entry-meta a:hover {
   color: #95a5a6;
 }
-#main article.sticky .entry-meta .label {
-  color: #ffffff;
-  background-color: #95a5a6;
-}
 /* from docs.css */
 section > .page-header,
 section > .lead {

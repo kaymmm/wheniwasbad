@@ -11,7 +11,7 @@
 					<?php //comments_template( '', true ); //moved to content.php?>
 
 			<?php endwhile; // end of the loop. ?>
-
+			<?php wp_link_pages( $args ); ?>
 			<?php else : ?>
 		
 				<?php not_found(); ?>

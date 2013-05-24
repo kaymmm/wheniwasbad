@@ -3,7 +3,6 @@
 			<?php if ( get_the_title() != '') : ?>
 			<header class="entry-header">
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-				<span class="label-postformat-status clearfix"><i class="icon-info-sign"></i></span>
 			</header>
 			<?php endif; ?>
 			<section class="post_content clearfix">
