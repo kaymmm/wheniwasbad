@@ -476,10 +476,6 @@ li.previous a:hover:before{
 	padding-left: 0;
 }
 
-.widget_search input{
-	width: 64px;
-}
-
 /* calendar widget */
 
 #calendar_wrap{
@@ -591,10 +587,6 @@ blockquote.pull-left{
 		width: 210px;
 		padding: 0 20px;
 		line-height: 20px;
-	}
-	
-	.widget_search input{
-		width: 112px;
 	}
 	
 	.comment .vcard .comment-text{

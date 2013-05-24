@@ -652,12 +652,22 @@ if (!is_admin()) {
 	add_action( 'wp_enqueue_scripts', 'theme_js' );	
 }
 
-/********* Tooltip JS *********/
-function attach_tooltips() {
-	
-	
-}
-//add_action('wp_enqueue_scripts','attach_tooltips');
+/************* SEARCH FORM LAYOUT *****************/
+
+// Search Form
+function bones_wpsearch($form) {
+	$form = '<form action="' . home_url( '/' ) . '" method="get" class="form-search">
+    <fieldset>
+		<div class="clearfix">
+			<div class="input-append">
+				<input type="text" name="s" id="search" class="search-query input-medium" placeholder="' . __("Search","bonestheme") . '" value="' . get_search_query() . '" /><button type="submit" class="btn btn-primary" title="' . __("Search","bonestheme") . '" ><i class="icon-search"></i></button>
+			</div>
+        </div>
+    </fieldset>
+</form>';
+	return $form;
+} // don't remove this bracket!
+
 
 // Get theme options
 function get_wpbs_theme_options(){
