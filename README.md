@@ -1,5 +1,5 @@
-WhenIWasBad: Wordpress Bootstrap - Flatstrap Edition
-====================================================
+WhenIWasBad: Wordpress Bootstrap X Flatstrap
+============================================
 Twitter's Bootstrap in Wordpress theme form, forked from 320press wp-bootstrap and re-skinned using littlesparkvt's flatstrap. It is built around Eddie Machado's Bones template. 
 
 It's named after a lyric from Ghostface's _Whip You With A Strap_ ("...take me across her lap, she used to whip me with a strap when I was bad") since I hate the concept of bootstrapping and needed to create distance from the horrible name Twitter gave their framework.
@@ -55,5 +55,12 @@ We’ve built in two different sidebars. One for the homepage and one for the ot
 
 Changelog
 =========
+v1.1
+* Lots of bugfixes for Wordpress unit tests
+* Overhauled gallery shortcodes so they actually work as expected
+* Reformatted sticky posts to differentiate them from non-stickies
+* Added author to post metadata areas
+* Added wp_link_pages at the bottom of all of the pages to work with <--nextpage--> shortcodes
+* Cleaned up some of the code and organized the included libraries (esp. Bootstrap) to make for smoother updates
 v1.0
 * initial release
