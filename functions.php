@@ -577,6 +577,7 @@ function add_active_class($classes, $item) {
 if( !function_exists("theme_styles") ) {  
     function theme_styles() { 
         // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
+		if (!is_admin()){
         wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/theme.css', array(), '2.3.2', 'all' );
         wp_register_style( 'bootstrap-responsive', get_template_directory_uri() . '/library/css/responsive.css', array(), '2.3.2', 'all' );
         wp_register_style( 'bootstrap-docs', get_template_directory_uri() . '/library/css/docs.css', array(), '2.3.2', 'all' );
@@ -590,16 +591,16 @@ if( !function_exists("theme_styles") ) {
 		wp_enqueue_style( 'font-awesome' );
 		wp_enqueue_style( 'font-awesome-ie7' );
         wp_enqueue_style( 'theme-base');
+		}
     }
 }
-if (!is_admin()){
-	add_action( 'wp_enqueue_scripts', 'theme_styles' );	
-}
+add_action( 'wp_enqueue_scripts', 'theme_styles' );	
 
 // enqueue javascript
-if( !function_exists( "bootstrap_js" ) ) {  
-  function bootstrap_js(){
-	  /*
+if( !function_exists( "theme_js" ) ) {  
+  function theme_js(){
+	  if (!is_admin()) {
+		  /*
 	wp_register_script( 'bootstrap-transition', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-transition.js', array('jquery'), '2.3.2', true );
     wp_register_script( 'bootstrap-affix', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-affix.js', array('jquery'), '2.3.2', true );
 	wp_register_script( 'bootstrap-alert', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-alert.js', array('jquery'), '2.3.2', true );
@@ -624,20 +625,13 @@ if( !function_exists( "bootstrap_js" ) ) {
 	wp_enqueue_script('bootstrap-tooltip');
 	wp_enqueue_script('bootstrap-popover');
 	wp_enqueue_script('bootstrap-scrollspy');
-	wp_enqueue_script('bootstrap-tab');
+	wp_enqueue_script('bootstrap-tab'); */
 //	wp_enqueue_script('bootstrap-typeahead'); //disabled since it's not used
-	  */
+
 	  //use CDN for loading Bootstrap
 	wp_register_script('bootstrap', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js', array('jquery'), '2.3.1', true);
 	wp_enqueue_script('bootstrap');
-  }
-}
-if (!is_admin()) {
-	add_action( 'wp_enqueue_scripts', 'bootstrap_js' );	
-}
 
-if( !function_exists( "theme_js" ) ) {  
-  function theme_js(){
     wp_register_script( 'wpbs-bones-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
     wp_register_script( 'bones-modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
 	// only enqueue the following script when needed, but register it so that it's available.
@@ -645,12 +639,10 @@ if( !function_exists( "theme_js" ) ) {
 	
 	wp_enqueue_script('wpbs-bones-scripts');
     wp_enqueue_script('bones-modernizr');
-
+	}
   }
 }
-if (!is_admin()) {
-	add_action( 'wp_enqueue_scripts', 'theme_js' );	
-}
+add_action( 'wp_enqueue_scripts', 'theme_js' );	
 
 /************* SEARCH FORM LAYOUT *****************/
 

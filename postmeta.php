@@ -1,5 +1,13 @@
 <?php 
-$extra_classes = (is_page_template('page-right-sidebar.php') ? ' text-right' : '');
+$avatar_class = ' pull-right';
+$extra_classes = '';
+$icon = 'icon-star';
+$label_class = 'label-as';
+if (is_page_template('page-right-sidebar.php')) {
+	$extra_classes = ' text-right';
+	$avatar_class = ' pull-left';
+}
+
 $post_format = get_post_format();
 if (is_sticky()) {
 	$icon='icon-pushpin';
@@ -36,8 +44,8 @@ switch ($post_format) {
 		break;
 	case 'post':
 	default:
-		$label_class='label-inverse';
 		if (is_attachment()) {	
+			$label_class='label-inverse';
 			$icon='icon-paper-clip';
 		} elseif (!is_page()) { //other edge cases or default post
 			$icon='icon-pencil';
@@ -51,7 +59,7 @@ switch ($post_format) {
 
 	<aside class="entry-meta muted<?php echo $extra_classes; ?>">
 	<?php if (is_singular()): ?>
-		<span class="avatar-head pull-right"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
+		<span class="avatar-head<?php echo $avatar_class; ?>"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
 			<?php echo bs_get_avatar(get_the_author_meta('ID'),'80','',$author,$class='img-circle'); ?>
 		</a></span>
 	<?php endif; ?>

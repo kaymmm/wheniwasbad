@@ -4758,6 +4758,12 @@ select:focus:invalid:focus {
 .badge-inverse[href] {
   background-color: #804399;
 }
+.label-as,
+.badge-as {
+  background-color: #000;
+  color: #c0392b;
+  padding: 0 6px;
+}
 /* custom modals */
 .modal {
   -webkit-box-shadow: none;
