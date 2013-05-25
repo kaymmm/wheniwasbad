@@ -4637,33 +4637,12 @@ a.badge:focus {
 }
 /* custom buttons */
 .btn {
-  color: #ffffff;
-  background-color: #bdc3c7;
-  border-color: #bdc3c7;
-  *background-color: #95a5a6;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   text-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-}
-.btn:hover,
-.btn:focus,
-.btn:active,
-.btn.active,
-.btn.disabled,
-.btn[disabled] {
-  color: #ffffff;
-  background-color: #95a5a6;
-  *background-color: #87999a;
-}
-.btn:active,
-.btn.active {
-  background-color: #798d8f \9;
 }
 .btn.active,
 .btn:active {
