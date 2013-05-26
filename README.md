@@ -55,6 +55,11 @@ We’ve built in two different sidebars. One for the homepage and one for the ot
 
 Changelog
 =========
+v1.2
+* Added support for Jetpack's infinite scroll
+* Added support for Theme Updater plugin (https://github.com/UCF/Theme-Updater) for github-based theme updates
+* Fixed button styling
+* Restyled default post-meta icons
 v1.1
 * Lots of bugfixes for Wordpress unit tests
 * Overhauled gallery shortcodes so they actually work as expected
