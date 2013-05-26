@@ -66,30 +66,30 @@ Template Name: Homepage
 
 	<?php endif; // ends the if use carousel statement ?>
 
-	<div id="content" class="clearfix">
+	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			
+		<header>
 
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<?php 
+				$post_thumbnail_id = get_post_thumbnail_id();
+				$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
+			?>
+			
+			<div class="hero-unit" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
+
+				<h1><?php the_title(); ?></h1>
 				
-			<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
+				<?php echo get_post_meta($post->ID, 'custom_tagline' , true);?>
+			
+			</div>
+
+		</header>
+		
+		<div id="content" class="clearfix">
 				
-				<header>
+			<div id="main" class="container clearfix" role="main">
 
-					<?php 
-						$post_thumbnail_id = get_post_thumbnail_id();
-						$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
-					?>
-					
-					<div class="hero-unit" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
-
-						<h1><?php the_title(); ?></h1>
-						
-						<?php echo get_post_meta($post->ID, 'custom_tagline' , true);?>
-					
-					</div>
-
-				</header>
-				
-				<div id="main" class="clearfix" role="main">
+				<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 						
 					<section class="row-fluid post_content">
 					
@@ -116,11 +116,12 @@ Template Name: Homepage
 						<?php } ?>
 												
 					</section> <!-- end article header -->
+
+					<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'bonestheme' ), 'after' => '</div>' ) ); ?>
 					
 				</article> <!-- end article -->
 					
 			<?php endwhile; ?>	
-			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'bonestheme' ), 'after' => '</div>' ) ); ?>
 			<?php else : ?>
 					
 				<article id="post-not-found">
