@@ -571,10 +571,6 @@ blockquote.pull-left{
 		margin-top: 0 !important;
 	}
 	
-	.blog .hero-unit{
-		margin-top: 10px;
-	}
-	
 	.page-template-page-homepage-php .hero-unit,
 	.blog .hero-unit{
 		padding: 60px;

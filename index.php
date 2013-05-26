@@ -1,45 +1,38 @@
 <?php get_header(); ?>
+	
+	<?php 
+	$blog_hero = of_get_option('blog_hero'); 
+	$hero_content = of_get_option('blog_hero_content');
+	$blog_widgets = of_get_option('blog_sidebar');
+	?>
 
-	<div id="content" class="clearfix container">
-			
-	<?php if (is_front_page()) : ?>
+	<?php if ( $blog_hero && $hero_content ) : ?>
 	
-		<?php $blog_hero = of_get_option('blog_hero'); ?>
+	<div class="hero-unit">
+		
+		<?php echo $hero_content; ?>
 	
-		<?php if ( $blog_hero ) : ?>
-	
-			<div class="clearfix row-fluid">
-	
-				<div class="hero-unit">
-			
-					<h1><?php bloginfo('title'); ?></h1>
-				
-					<p><?php bloginfo('description'); ?></p>
-			
-				</div>
-	
-			</div>
-	
-		<?php endif; ?>
-
-	<?php else: ?>
-
-		<header class="page-header">
-			
-			<h1 class="single-title" itemprop="headline"><?php single_post_title(); ?></h1>
-			
-		</header>
+	</div>
 
 	<?php endif; ?>
-		
+	
+	<div id="content" class="container clearfix">
 			
 		<div id="wrapper" class="row-fluid clearfix">
 				
-			<div class="span3">	
-				<?php get_sidebar(); // sidebar 1 ?>
+		<?php if (is_active_sidebar('sidebar1') && $blog_widgets) { ?>
+		
+			<div class="span3">
+				<?php get_sidebar('sidebar1'); // sidebar 2 ?>
 			</div>
 			
 			<div id="main" role="main" class="span9">
+							
+		<?php } else { ?>
+				
+			<div id="main" role="main" class="span12">
+
+		<?php } ?>
 
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		
@@ -66,7 +59,7 @@
 
 			</div> <!-- end #main -->
 		
-		</div>
+		</div> <!-- wrapper -->
 		
 		<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
 			

@@ -302,10 +302,10 @@ function add_homepage_meta_box() {
 	$post_id = $post->ID;
 	$template_file = get_post_meta($post_id,'_wp_page_template',TRUE);
 
-	if ( $template_file == 'page-homepage.php' ){
+	if ( $template_file == 'page-homepage.php' || $template_file == 'page-hero-unit.php' ){
 	    add_meta_box(  
 	        'homepage_meta_box', // $id  
-	        'Optional Homepage Tagline', // $title  
+	        'Hero Unit Contents', // $title  
 	        'show_homepage_meta_box', // $callback  
 	        'page', // $page  
 	        'normal', // $context  
@@ -319,8 +319,8 @@ add_action( 'add_meta_boxes', 'add_homepage_meta_box' );
 $prefix = 'custom_';  
 $custom_meta_fields = array(  
     array(  
-        'label'=> 'Homepage tagline area',  
-        'desc'  => 'Displayed underneath page title. Only used on homepage template. HTML can be used.',  
+        'label'=> 'Hero Unit Contents',  
+        'desc'  => 'Displayed in place of a page title. Only used on homepage and hero-unit templates. HTML can be used.',  
         'id'    => $prefix.'tagline',  
         'type'  => 'textarea' 
     )  

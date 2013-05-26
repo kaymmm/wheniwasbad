@@ -240,6 +240,27 @@ function optionsframework_options() {
 						"std" => "0",
 						"type" => "checkbox");
 
+	$options[] = array( "name" => "Blog Settings",
+						"type" => "heading");						
+	
+	$options[] = array( "name" => "Blog page widgets sidebar",
+						"desc" => "Display sidebar widgets on the blog page?",
+						"id" => "blog_sidebar",
+						"std" => "1",
+						"type" => "checkbox");
+
+	$options[] = array( "name" => "Blog page 'hero' unit",
+						"desc" => "Display blog page hero unit",
+						"id" => "blog_hero",
+						"std" => "1",
+						"type" => "checkbox");
+
+	$options[] = array( "name" => "Blog page 'hero' unit content",
+						"desc" => "Content to display in the blog page hero unit (HTML OK)",
+						"id" => "blog_hero_content",
+						"std" => "",
+						"type" => "editor");	
+
 	$options[] = array( "name" => "Other Settings",
 						"type" => "heading");
 
@@ -272,13 +293,7 @@ function optionsframework_options() {
 						"desc" => "Suppress 'Comments are closed' message",
 						"id" => "suppress_comments_message",
 						"std" => "1",
-						"type" => "checkbox");
-						
-	$options[] = array( "name" => "Blog page 'hero' unit",
-						"desc" => "Display blog page hero unit",
-						"id" => "blog_hero",
-						"std" => "1",
-						"type" => "checkbox");
+						"type" => "checkbox");			
 
 	$options[] = array( "name" => "Custom favicon",
 						"desc" => "URL for a valid .ico favicon",

@@ -66,30 +66,30 @@ Template Name: Homepage
 
 	<?php endif; // ends the if use carousel statement ?>
 
-	<div id="content" class="container clearfix">
+	<div id="content" class="clearfix">
 
-		<div id="main" class="clearfix" role="main">
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				
+			<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
+				
+				<header>
 
-			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+					<?php 
+						$post_thumbnail_id = get_post_thumbnail_id();
+						$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
+					?>
 					
-				<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
+					<div class="hero-unit" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
+
+						<h1><?php the_title(); ?></h1>
+						
+						<?php echo get_post_meta($post->ID, 'custom_tagline' , true);?>
 					
-					<header>
+					</div>
 
-						<?php 
-							$post_thumbnail_id = get_post_thumbnail_id();
-							$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
-						?>
-						
-						<div class="hero-unit" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
-
-							<h1><?php the_title(); ?></h1>
-							
-							<?php echo get_post_meta($post->ID, 'custom_tagline' , true);?>
-						
-						</div>
-
-					</header>
+				</header>
+				
+				<div id="main" class="clearfix" role="main">
 						
 					<section class="row-fluid post_content">
 					
