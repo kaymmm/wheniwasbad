@@ -60,6 +60,9 @@ v1.2
 * Added support for Theme Updater plugin (https://github.com/UCF/Theme-Updater) for github-based theme updates
 * Fixed button styling
 * Restyled default post-meta icons
+* Restyled hero units to be full-width
+* Added hero unit page template (full-width + hero unit)
+* Added separate blog-page options
 v1.1
 * Lots of bugfixes for Wordpress unit tests
 * Overhauled gallery shortcodes so they actually work as expected

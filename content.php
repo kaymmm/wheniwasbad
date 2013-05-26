@@ -31,7 +31,7 @@
 							if ( of_get_option('use_excerpts')) :
 								the_excerpt();
 							else:
-								the_content( __("<span class='btn btn-primary pull-right'>Read more &raquo;</span>","bonestheme") );
+								the_content( __("<span class='btn btn-primary pull-right'>Read more <i class='icon-chevron-sign-right'></i></span>","bonestheme") );
 							endif;
 						else:
 							the_content();

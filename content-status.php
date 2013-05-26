@@ -6,7 +6,7 @@
 			</header>
 			<?php endif; ?>
 			<section class="post_content clearfix">
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'bonestheme' ) ); ?>
+				<?php the_content( __( 'Continue reading <span class="meta-nav"><i class="icon-chevron-sign-right"></i></span>', 'bonestheme' ) ); ?>
 			</section><!-- .post_content -->
 		</div>
 		<div class="span3">

@@ -257,13 +257,13 @@ function page_navi($before = '', $after = '') {
 		
 	echo $before.'<div class="pagination pagination-right"><ul class="clearfix">'."";
 	if ($paged > 1) {
-		$first_page_text = "&laquo";
+		$first_page_text = '<i class="icon-double-angle-left"></i>';
 		echo '<li class="prev"><a href="'.get_pagenum_link().'" title="First">'.$first_page_text.'</a></li>';
 	}
 		
-	$prevposts = get_previous_posts_link('&larr; Previous');
+	$prevposts = get_previous_posts_link('<i class="icon-angle-left"></i> Previous');
 	if($prevposts) { echo '<li>' . $prevposts  . '</li>'; }
-	else { echo '<li class="disabled"><a href="#">&larr; Previous</a></li>'; }
+	else { echo '<li class="disabled"><a href="#"><i class="icon-angle-left"></i> Previous</a></li>'; }
 	
 	for($i = $start_page; $i  <= $end_page; $i++) {
 		if($i == $paged) {
@@ -273,10 +273,10 @@ function page_navi($before = '', $after = '') {
 		}
 	}
 	echo '<li class="">';
-	next_posts_link('Next &rarr;');
+	next_posts_link('Next <i class="icon-angle-right"></i>');
 	echo '</li>';
 	if ($end_page < $max_page) {
-		$last_page_text = "&raquo;";
+		$last_page_text = '<i class="icon-double-angle-right"></i>';
 		echo '<li class="next"><a href="'.get_pagenum_link($max_page).'" title="Last">'.$last_page_text.'</a></li>';
 	}
 	echo '</ul></div>'.$after."";

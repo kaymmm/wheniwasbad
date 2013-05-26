@@ -159,7 +159,7 @@ function bones_register_sidebars() {
 
 /************* Excerpts *********************/
 function new_excerpt_more( $more ) {
-	return ' [&hellip;]</p><p><a class="read-more btn pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more &raquo</a>';
+	return ' [&hellip;]</p><p><a class="read-more btn pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more <i class="icon-chevron-sign-right"></i></a>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 
