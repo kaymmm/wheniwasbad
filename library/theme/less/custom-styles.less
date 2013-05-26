@@ -246,17 +246,33 @@ blockquote {
   }
   small {
     color: @asbestos;
+	text-align: right;
+  }
+  /* make cite mirror small */
+  cite {
+    display: block;
+    line-height: @baseLineHeight;
+    color: @asbestos;
+	text-align: right;
+    &:before {
+      content: '\2014 \00A0';
+    }
+	
   }
   &.pull-right {
     border-right: 7px solid @amethyst;
   }
 }
+
+cite   { font-size: 85%; }
+
 .lead {
   margin-bottom: @baseLineHeight;
   font-size: @baseFontSize * 1.2;
   font-weight: 200;
   line-height: @baseLineHeight * 1.2;
 }
+
 
 /* custom wells */
 .well {

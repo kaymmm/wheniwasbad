@@ -4934,15 +4934,30 @@ blockquote {
   border-left: 7px solid #9b59b6;
   background-color: #bdc3c7;
   padding: 14px 14px 14px 24px;
+  /* make cite mirror small */
+
 }
 blockquote p {
   color: #ffffff;
 }
 blockquote small {
   color: #7f8c8d;
+  text-align: right;
+}
+blockquote cite {
+  display: block;
+  line-height: 24px;
+  color: #7f8c8d;
+  text-align: right;
+}
+blockquote cite:before {
+  content: '\2014 \00A0';
 }
 blockquote.pull-right {
   border-right: 7px solid #9b59b6;
+}
+cite {
+  font-size: 85%;
 }
 .lead {
   margin-bottom: 24px;
