@@ -46,11 +46,13 @@
 			
 		</header> <!-- page header -->
 			
-		<div id="main" class="row-fluid clearfix" role="main">
-							
-			<?php get_sidebar(); // sidebar 1 ?>
+		<div id="wrapper" class="row-fluid clearfix">
 				
-			<div class="span9">
+					<div class="span3">	
+			<?php get_sidebar(); // sidebar 1 ?>
+		</div>
+			
+			<div id="main" role="main" class="span9">
 
 				<?php while (have_posts()) : the_post(); ?>
 	
@@ -65,7 +67,7 @@
 					<?php page_navi(); // use the page navi function ?>
 
 				<?php else : // if it is disabled, display regular wp prev & next links ?>
-					<nav class="wp-prev-next">
+					<nav class="wp-prev-next pagenavi">
 						<ul class="clearfix">
 							<li class="prev-link"><?php next_posts_link(_e('&laquo; Older Entries', "bonestheme")) ?></li>
 							<li class="next-link"><?php previous_posts_link(_e('Newer Entries &raquo;', "bonestheme")) ?></li>

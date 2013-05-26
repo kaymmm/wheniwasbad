@@ -8,10 +8,10 @@
 		
 				<?php get_template_part( 'content' ); ?>
 
-					<?php //comments_template( '', true ); //moved to content.php?>
-
 			<?php endwhile; // end of the loop. ?>
-			<?php wp_link_pages( $args ); ?>
+			
+			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'bonestheme' ), 'after' => '</div>' ) ); ?>
+			
 			<?php else : ?>
 		
 				<?php not_found(); ?>

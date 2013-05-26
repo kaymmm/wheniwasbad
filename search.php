@@ -17,7 +17,9 @@
 			
 		<div id="main" class="row-fluid clearfix" role="main">
 							
+		<div class="span3">	
 			<?php get_sidebar(); // sidebar 1 ?>
+		</div>
 				
 			<div class="span9">
 				
@@ -28,13 +30,13 @@
 					<?php comments_template( '', true ); ?>
 
 				<?php endwhile; // end of the loop. ?>
-				<?php wp_link_pages( $args ); ?>
+				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'bonestheme' ), 'after' => '</div>' ) ); ?>
 				<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
 			
 					<?php page_navi(); // use the page navi function ?>
 
 				<?php else : // if it is disabled, display regular wp prev & next links ?>
-					<nav class="wp-prev-next">
+					<nav class="wp-prev-next pagenavi">
 						<ul class="clearfix">
 							<li class="prev-link"><?php next_posts_link(_e('&laquo; Older Entries', "bonestheme")) ?></li>
 							<li class="next-link"><?php previous_posts_link(_e('Newer Entries &raquo;', "bonestheme")) ?></li>

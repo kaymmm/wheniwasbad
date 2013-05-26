@@ -14,11 +14,13 @@
 								
 		</header> <!-- end article header -->
 	
-		<div id="main" class="row-fluid clearfix" role="main">
-
+		<div id="wrapper" class="row-fluid clearfix">
+				
+					<div class="span3">	
 			<?php get_sidebar(); // sidebar 1 ?>
+		</div>
 			
-			<div class="span9">
+			<div id="main" role="main" class="span9">
 
 				<article id="post-not-found" class="clearfix">
 							

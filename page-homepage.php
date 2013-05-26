@@ -95,7 +95,9 @@ Template Name: Homepage
 					
 					<?php if (is_active_sidebar('sidebar2')) { ?>
 					
-						<?php get_sidebar('sidebar2'); // sidebar 2 ?>
+						<div class="span3">
+							<?php get_sidebar('sidebar2'); // sidebar 2 ?>
+						</div>
 						
 						<div class="span9">
 							
@@ -118,7 +120,7 @@ Template Name: Homepage
 				</article> <!-- end article -->
 					
 			<?php endwhile; ?>	
-			<?php wp_link_pages( $args ); ?>
+			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'bonestheme' ), 'after' => '</div>' ) ); ?>
 			<?php else : ?>
 					
 				<article id="post-not-found">
@@ -133,8 +135,6 @@ Template Name: Homepage
 			<?php endif; ?>
 			
 		</div> <!-- end #main -->
-    
-		<?php //get_sidebar(); // sidebar 1 ?>
     
 	</div> <!-- end #content -->
 

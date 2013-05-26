@@ -46,8 +46,6 @@ function bones_ahoy() {
 
     // cleaning up random code around images
     add_filter('the_content', 'bones_filter_ptags_on_images');
-    // cleaning up excerpt
-    add_filter('excerpt_more', 'bones_excerpt_more');
 
 } /* end bones ahoy */
 
@@ -144,7 +142,13 @@ function bones_theme_support() {
 			'main_nav' => 'The Main Menu',   // main nav in header
 			'footer_links' => 'Footer Links' // secondary nav in footer
 		)
-	);	
+	);
+	add_theme_support( 'infinite-scroll', array(
+		'container'			=> 'main',
+		'footer_widgets'	=> array( 'sidebar-3', 'sidebar-4', 'sidebar-5' ),
+        'footer'			=> 'content',
+		'wrapper'			=> false
+	) );
 }
 
 	// launching this stuff after theme setup

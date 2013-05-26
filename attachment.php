@@ -9,11 +9,11 @@
 get_header(); ?>
 			
 	<div id="content" class="clearfix container">
-	
-		<div id="main" class="clearfix" role="main">
 
-			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			
+		<div id="main" role="main">
+
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+	
 			<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
 				<header class="page-header"> 
@@ -31,51 +31,41 @@ get_header(); ?>
 					</h1>
 
 				</header> <!-- end article header -->
-				
-				<div class="row-fluid">
-										
-					<div class="span9">
-					
-						<section class="post_content clearfix" itemprop="articleBody">
+			
+				<section class="post_content clearfix" itemprop="articleBody">
+					<div class="row-fluid">
+
+						<div class="span9">
 
 							<div class="well">
-
-								<?php if (has_excerpt()) : ?>
-									
-									<?php the_excerpt(); ?>
-									
-								<?php endif; ?>
-
+								<?php the_excerpt(); ?>
 								<p><i class="icon-download-alt"></i> Download <a href="<?php echo wp_get_attachment_url($post->ID); ?>"><?php the_title(); ?></a></p>
-
 							</div>
-							
 							<?php the_content(); ?>
 
-						</section> <!-- end article section -->
+						</div>
+						
+						<div class="span3">
 
-						<?php comments_template(); ?>
+							<?php get_template_part('postmeta','attachment'); ?>
 
+						</div>
+						
 					</div>
 
-					<div class="span3">
+				</section> <!-- end article section -->
 
-						<?php get_template_part('postmeta','attachment'); ?>
-
-					</div>
-
-				</div>
-									
+				<?php comments_template(); ?>
+								
 			</article> <!-- end article -->
 			
-			<?php endwhile; ?>			
+		<?php endwhile; ?>			
 			
 		<?php else : ?>
 		
 			<?php not_found('attachment'); ?>
 		
-		<?php endif; ?>
-			
+		<?php endif; ?>	
 	
 		</div> <!-- end #main -->
 
