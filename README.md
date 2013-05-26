@@ -63,6 +63,7 @@ v1.2
 * Restyled hero units to be full-width
 * Added hero unit page template (full-width + hero unit)
 * Added separate blog-page options
+* Fixed broken &rquao on "read more" buttons and replace arrows with font-awesome arrow icons
 v1.1
 * Lots of bugfixes for Wordpress unit tests
 * Overhauled gallery shortcodes so they actually work as expected
