@@ -579,7 +579,6 @@ if( !function_exists("theme_styles") ) {
         // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
 		if (!is_admin()){
         wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/theme.css', array(), '2.3.2', 'all' );
-        wp_register_style( 'bootstrap-responsive', get_template_directory_uri() . '/library/css/responsive.css', array(), '2.3.2', 'all' );
         wp_register_style( 'bootstrap-docs', get_template_directory_uri() . '/library/css/docs.css', array(), '2.3.2', 'all' );
 		wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css', array(), '3.1.1', 'all' );
 		wp_register_style( 'font-awesome-ie7', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome-ie7.min.css', array(), '3.1.1', 'all' );			

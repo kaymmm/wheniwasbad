@@ -28,15 +28,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/lice
     zoom:1;
 }
 
-/* wp-specific classes */
-.wp-caption{}
-
-.wp-caption-text{}
-
-.sticky{}
-
-.gallery-caption{}
-
 /* layout */
 
 body.navbar-fixed-offset {
@@ -59,7 +50,7 @@ body.navbar-no-offset {
 
 /* Admin Top Navigation fixes */
 
-body.admin-bar .navbar-fixed-top{ 
+body.admin-bar .navbar-fixed-top { 
 	top: 28px; 
 }
 
@@ -161,27 +152,6 @@ article.format-link header .icon-external-link {
 	font-size: 1.071428571rem;
 }
 
-/* Quote posts */
-article.format-quote .post_content blockquote {
-}
-/*
-article.format-quote .post_content blockquote p:before {
-	content: "\201C  ";
-	font-size: 2rem;
-}
-
-article.format-quote .post_content blockquote p:after {
-	content: " \201D ";
-	font-size: 2rem;
-}*/
-
-/* Status posts */
-.format-status {
-}
-
-p.tags{
-	line-height: 20px;
-}
 
 div[id*='attachment_']{
 	max-width: 100%;
@@ -368,157 +338,6 @@ ol.commentlist #respond{
 	padding: 5px 10px;
 }
 
-/* specific post-type styles */
-
-/* image attachment */
-
-.attachment #main .post_content img{
-	max-width: 100%;
-}
-
-.ie8 #main .media-grid img{
-	max-height: none !important;
-	max-width: none !important;
-}
-
-.attachment-img{
-	margin-bottom: 18px;
-}
-
-.metadata p.alert-message{
-	margin-right: 0;
-	margin-bottom: 18px;
-}
-
-#gallery-nav{
-	list-style-type: none;
-	margin-left: 0;
-}
-
-li.next a, li.previous a{
-	position: relative;
-}
-
-li.next a:hover:before{
-	content: "\2190";
-	position: absolute;
-	display: block;
-	top: 42%;
-	left: 0;
-	background-color: #BFBFBF;
-	color: #444;
-	width: 20px;
-	height: 20px;
-	padding-left: 5px;
-	text-decoration: none;
-	box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
-}
-
-li.previous a:hover:before{
-	content: "\2192";
-	position: absolute;
-	display: block;
-	top: 42%;
-	right: 0;
-	background-color: #BFBFBF;
-	color: #444;
-	width: 20px;
-	height: 20px;
-	padding-left: 5px;
-	text-decoration: none;
-	box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
-}
-
-.gallery-item a,
-.gallery-caption {
-	width: 90%;
-}
-.gallery-item a {
-	display: block;
-}
-.gallery-caption a {
-	display: inline;
-}
-.gallery-columns-1 .gallery-item a {
-	max-width: 100%;
-	width: auto;
-}
-.gallery .gallery-icon img {
-	height: auto;
-	max-width: 90%;
-	padding: 5%;
-}
-.gallery-columns-1 .gallery-icon img {
-	padding: 3%;
-}
-
-
-/* widget styles */
-
-.widget{
-	margin-bottom: 18px;
-}
-
-.widgettitle{
-	margin-bottom: 9px;
-}
-
-#tag-cloud{
-	margin-bottom: 18px;
-	line-height: 160%;
-}
-
-/* override standard link hover for the tag cloud widget */
-#tag-cloud a:hover,
-.tags a:hover{
-	color: #ffffff;
-	text-decoration: none;
-}
-
-#tag-cloud a{
-	white-space: pre;
-	text-transform: uppercase;
-}
-
-/* change default form padding for search */
-
-.widget_search form{
-	padding-left: 0;
-}
-
-/* calendar widget */
-
-#calendar_wrap{
-	border: 1px solid #ddd;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	padding: 5px;
-}
-
-#wp-calendar{
-	width: 100%;
-	
-}
-
-#wp-calendar caption{
-	font-weight: bold;
-	padding: 8px;
-}
-
-#wp-calendar tr{
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
-}
-
-#wp-calendar tr:last-child{
-	border-bottom: none;
-}
-
-#wp-calendar td{
-	text-align: center;
-	padding: 8px 0;
-}
 
 blockquote.pull-left{
 	padding-right: 15px;
@@ -527,76 +346,5 @@ blockquote.pull-left{
 @media only screen and (min-width: 768px) {
 	.carousel-caption p{
 		display: block;
-	}
-}
-
-#post-not-found section.post_content {
-	text-align: center;
-}
-
-@media only screen and (min-width: 980px) {
-	
-	.container-fluid{
-		margin: 0 auto;
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-	
-	#inner-footer{
-		padding: 0;
-	}
-	
-	#content{
-		padding-left: 0;
-		padding-right: 0;
-	}
-	
-	.topbar-inner{
-		padding: 0;
-	}
-	
-	.topbar form.pull-right {
-		float: right;
-	}
-	
-	.navbar-form, .navbar-search {
-		margin: 29px 0;
-	}
-	
-	.navbar-search{
-		padding-left: 0;
-	}
-	
-	.sidebar{
-		margin-top: 0 !important;
-	}
-	
-	.page-template-page-homepage-php .hero-unit,
-	.blog .hero-unit{
-		padding: 60px;
-	}
-	
-	.hero-unit h1 {
-		font-size: 60px;
-	}
-	
-	/* hide edit comment button and show on hover on desktop version */
-	.edit-comment{
-		display: none;
-	}
-	
-	.vcard:hover .edit-comment{
-		display: inline-block;
-	}
-	
-	#s{
-		width: 210px;
-		padding: 0 20px;
-		line-height: 20px;
-	}
-	
-	.comment .vcard .comment-text{
-		padding-left: 0;
-		padding-right: 0;
 	}
 }

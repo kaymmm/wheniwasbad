@@ -217,6 +217,7 @@ select:focus:invalid {
   .nav-collapse .nav > li > a,
   .nav-collapse .dropdown-menu a {
     font-weight: normal;
+	padding: 7px 15px;
   }
   .nav-collapse .navbar-form,
   .nav-collapse .navbar-search {
@@ -285,7 +286,7 @@ cite   { font-size: 85%; }
 }
 
 /* custom classes */
-.entry-meta {
+.entry-meta, #tag-cloud {
 	margin: (@baseLineHeight / 3) 0;
 	
 	p.label-postformat {
@@ -337,7 +338,7 @@ cite   { font-size: 85%; }
 	.entry-meta a:active,
 	.entry-meta a:visited,
 	.entry-meta a:hover {
-		color: @concrete;
+		color: @asbestos;
 	}
 }
 
@@ -360,6 +361,56 @@ ol.commentlist li{
 }
 ol.commentlist ul.children li{
 	background-color: fade(#333,20%);;	
+}
+
+/* gallery shortcode */
+.gallery-item a,
+.gallery-caption {
+	width: 90%;
+}
+.gallery-item a {
+	display: block;
+}
+.gallery-caption a {
+	display: inline;
+}
+.gallery-columns-1 .gallery-item a {
+	max-width: 100%;
+	width: auto;
+}
+.gallery .gallery-icon img {
+	height: auto;
+	max-width: 90%;
+	padding: 5%;
+}
+.gallery-columns-1 .gallery-icon img {
+	padding: 3%;
+}
+#gallery-nav{
+	list-style-type: none;
+	margin-left: 0;
+}
+
+/* calendar widget */
+#wp-calendar {
+  caption {
+	font-weight: bold;
+	padding: @paddingSmall;
+  }
+  // Cells
+  th,
+  td {
+    padding: @paddingSmall;
+    text-align: center;
+    vertical-align: center;
+  }
+  tfoot td {
+	  border-left: none;
+  }
+  tfoot td:first-child {
+      border-left: 1px solid @tableBorder;
+  }
+  
 }
 
 
