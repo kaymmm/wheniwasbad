@@ -8,9 +8,9 @@
 
 get_header(); ?>
 			
-	<div id="content" class="clearfix row-fluid">
+	<div id="content" class="container clearfix">
 	
-		<div id="main" class="span12 clearfix" role="main">
+		<div id="main" class="clearfix" role="main">
 
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			
@@ -21,7 +21,7 @@ get_header(); ?>
 					<div class="page-header">
 						<h1 class="single-title" itemprop="headline">
 							<?php if ($post->post_parent) : ?>
-								<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment"><?php echo get_the_title($post->post_parent); ?></a> <i class="icon-caret-right"></i>; 
+								<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment"><?php echo get_the_title($post->post_parent); ?></a> <i class="icon-caret-right"></i>
 							<?php endif; ?>
 							<?php the_title(); ?>
 						</h1>
@@ -55,8 +55,8 @@ get_header(); ?>
 							
 							<!-- To display thumbnail of previous and next image in the photo gallery -->
 							<ul id="gallery-nav" class="clearfix">
-								<li class="next pull-left"><?php next_image_link() ?></li>
-								<li class="previous pull-right"><?php previous_image_link() ?></li>
+								<li class="previous pull-left"><?php previous_image_link() ?></li>
+								<li class="next pull-right"><?php next_image_link() ?></li>
 							</ul>
 			
 						</section> <!-- end article section -->
