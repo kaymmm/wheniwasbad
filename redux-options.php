@@ -69,7 +69,7 @@ function setup_framework_options() {
 
     // Setting dev mode to true allows you to view the class settings/info in the panel.
     // Default: true
-    //$args['dev_mode'] = true;
+    $args['dev_mode'] = false;
 
 	// Set the icon for the dev mode tab.
 	// If $args['icon_type'] = 'image', this should be the path to the icon.
@@ -197,7 +197,7 @@ function setup_framework_options() {
     //$args['help_sidebar'] = __('<p>This is the sidebar content, HTML is allowed.</p>', Redux_TEXT_DOMAIN);
 
     $sections = array();
-
+	/*
     $sections[] = array(
 		// Redux uses the Font Awesome iconfont to supply its default icons.
 		// If $args['icon_type'] = 'iconfont', this should be the icon name minus 'icon-'.
@@ -222,7 +222,7 @@ function setup_framework_options() {
 				<br/><span style="font-weight: bold; text-decoration: underline;">Anything Else?</span><p>Yep! Because it&apos;s iconfont and not image based, you can apply pretty much any CSS to an icon!</p>'
 			)
 		)
-    );
+    );*/
 
     $sections[] = array(
 		'icon' => 'font',
