@@ -14,8 +14,8 @@ require_once('library/bones.php');            // core functions (don't remove)
 /* library/translation/translation.php	- adding support for other languages */
 // require_once('library/translation/translation.php'); // this comes turned off by default
 
-// Options panel
-require_once('library/options-panel.php');
+// Redux Options
+require_once('redux-options.php');
 
 // Shortcodes
 require_once('library/shortcodes.php');
