@@ -635,7 +635,10 @@ function get_wpbs_theme_options(){
 		.navbar .nav > li > a:hover,
 		.navbar .nav .active > a,
 		.navbar .nav .active > a:hover,
-		.navbar .nav .active > a:focus {
+		.navbar .nav .active > a:focus,
+		.navbar .nav li.dropdown.open > .dropdown-toggle,
+		.navbar .nav li.dropdown.active > .dropdown-toggle,
+		.navbar .nav li.dropdown.open.active > .dropdown-toggle {
           background-color: '. $topbar_link_hover_bg . ';
         }';
       }      
