@@ -7,8 +7,8 @@ Template Name: Homepage
 <?php get_header(); ?>
 			
 	<?php
-
-	$use_carousel = of_get_option('showhidden_slideroptions');
+	$options = get_option('wheniwasbad');
+	$use_carousel = $options['showhidden_slideroptions'];
 	if ($use_carousel) :
 
 	?>
@@ -21,7 +21,7 @@ Template Name: Homepage
 	    	<?php
 			global $post;
 			$tmp_post = $post;
-			$show_posts = of_get_option('slider_options');
+			$show_posts = $options['slider_options'];
 			$args = array( 'numberposts' => $show_posts ); // set this to how many posts you want in the carousel
 			$myposts = get_posts( $args );
 			$post_num = 0;

@@ -1,10 +1,10 @@
+<?php $options = get_option('wheniwasbad'); ?>
 <!doctype html>
 
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
-
 	<head>
 		<meta charset="utf-8">
 
@@ -27,7 +27,7 @@
 		<!-- For Nokia -->
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
 		<!-- For everything else -->
-		<?php $favicon_url = (of_get_option('favicon_url')!='') ? of_get_option('favicon_url') : get_template_directory_uri() . '/favicon.ico'; ?>
+		<?php $favicon_url = ($options['favicon_url']!='') ? $options['favicon_url'] : get_template_directory_uri() . '/favicon.ico'; ?>
 		<link rel="shortcut icon" href="<?php echo $favicon_url; ?>">
 		
 		<!-- or, set /favicon.ico for IE10 win -->
@@ -111,7 +111,7 @@ font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 	</head>
 	
 	<?php
-	$nav_position = of_get_option('nav_position');
+	$nav_position = $options['nav_position'];
 	switch ($nav_position) {
 		case 'fixed':
 			$navbar_class = 'navbar-fixed-top';
@@ -139,24 +139,24 @@ font-family: "Enriqueta", Georgia, "Times New Roman", Times, serif;
 <!--						<div class="container-fluid nav-container"> -->
 							<nav role="navigation">
 								<a class="brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
-									<?php if(of_get_option('branding_logo','')!='') { ?>
-										<img src="<?php echo of_get_option('branding_logo'); ?>" alt="<?php echo get_bloginfo('description'); ?>">
+									<?php if($options['branding_logo']!='') { ?>
+										<img src="<?php echo $options['branding_logo']; ?>" alt="<?php echo get_bloginfo('description'); ?>">
 										<?php }
-										if(of_get_option('site_name','1')) bloginfo('name'); ?></a>
+										if($options['site_name']) bloginfo('name'); ?></a>
 								
 								<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 							        <span class="icon-bar"></span>
 							        <span class="icon-bar"></span>
 							        <span class="icon-bar"></span>
 								</a>
-								<?php $nav_align = of_get_option('nav_alignment','right'); ?>
+								<?php $nav_align = $options['nav_alignment']; ?>
 								<?php if ($nav_align=='left') : ?>
 									<div class="nav-collapse pull-left">
 										<?php bones_main_nav(); // Adjust using Menus in Wordpress Admin ?>
 									</div>
 								<?php endif; ?>
 
-								<?php if(of_get_option('search_bar')) : ?>
+								<?php if($options['search_bar']) : ?>
 								<form class="navbar-search pull-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
 									<input name="s" id="s" type="text" class="search-query" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" >
 								</form>

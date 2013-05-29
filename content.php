@@ -1,3 +1,4 @@
+<?php $options = get_option('wheniwasbad'); ?>
 <?php if (is_singular()) : ?>
  	<header class="page-header">
  		<h1><?php the_title(); ?></h1>
@@ -28,7 +29,7 @@
 							if ( has_post_thumbnail() ):
 								_e('<a href="' . get_permalink() . '" ' . the_title_attribute(array('before' => 'title="', 'after' => '"', 'echo' => false)) . '>' . get_the_post_thumbnail( "wpbs-featured" ) . '</a>');
 							endif;
-							if ( of_get_option('use_excerpts')) :
+							if ( $options['use_excerpts'] ) :
 								the_excerpt();
 							else:
 								the_content( __("<span class='btn btn-primary pull-right'>Read more <i class='icon-chevron-sign-right'></i></span>","bonestheme") );

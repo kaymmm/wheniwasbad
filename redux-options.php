@@ -13,8 +13,8 @@ define('Redux_TEXT_DOMAIN', 'redux-opts');
  *
  */
 if(!class_exists('Redux_Options')) {
-	define('Redux_OPTIONS_URL', get_stylesheet_directory_uri() . '/admin/redux-framework/options/');
-	require_once dirname( __FILE__ ) . '/admin/redux-framework/options/defaults.php';
+	define('Redux_OPTIONS_URL', get_stylesheet_directory_uri() . '/admin/redux-options/options/');
+	require_once dirname( __FILE__ ) . '/admin/redux-options/options/defaults.php';
 }
 
 

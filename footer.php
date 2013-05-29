@@ -12,19 +12,20 @@
 	            <?php endif; ?>
 	          </div>
 
-			<?php if (of_get_option('show_footer_menu')) : ?>				
+			<?php $options = get_option('wheniwasbad'); ?>
+			<?php if ($options['show_footer_menu'] ) : ?>				
 				<nav class="clearfix">
 					<?php bones_footer_links(); // Adjust using Menus in Wordpress Admin ?>
 				</nav>
 			<?php endif; ?>
 		
-				<?php if (of_get_option('footer_text')=="") : ?>
+				<?php if ($options['footer_text']=="") : ?>
 
 					<p class="attribution">&copy; <?php bloginfo('name'); ?></p>
 
 				<?php else:
 				
-					echo of_get_option('footer_text');
+					echo $options['footer_text'];
 			
 				endif; ?>
 						

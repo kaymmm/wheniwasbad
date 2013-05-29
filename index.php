@@ -1,9 +1,10 @@
 <?php get_header(); ?>
+<?php $options = get_option('wheniwasbad'); ?>
 	
 	<?php 
-	$blog_hero = of_get_option('blog_hero'); 
-	$hero_content = of_get_option('blog_hero_content');
-	$blog_widgets = of_get_option('blog_sidebar');
+	$blog_hero = $options['blog_hero']; 
+	$hero_content = $options['blog_hero_content'];
+	$blog_widgets = $options['blog_sidebar'];
 	?>
 
 	<?php if ( $blog_hero && $hero_content ) : ?>
