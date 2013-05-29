@@ -591,7 +591,7 @@ function get_wpbs_theme_options(){
         .navbar-inner, .navbar .fill { 
           background-color: '. $topbar_bg_color . ';
           background-image: none;
-        }' . $topbar_bg_color;
+        }';
       }
       
       if ( $use_gradient ) {
@@ -631,7 +631,11 @@ function get_wpbs_theme_options(){
       $topbar_link_hover_bg = of_get_option( 'top_nav_link_background_color' );
       if ( $topbar_link_hover_bg ) {
         $theme_options_styles .= '
-        .navbar .nav li a:hover { 
+        .navbar .nav > li > a:focus,
+		.navbar .nav > li > a:hover,
+		.navbar .nav .active > a,
+		.navbar .nav .active > a:hover,
+		.navbar .nav .active > a:focus {
           background-color: '. $topbar_link_hover_bg . ';
         }';
       }      
