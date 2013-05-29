@@ -177,9 +177,12 @@ function bones_footer_links() {
     wp_nav_menu(
     	array(
     		'menu' => 'footer_links', /* menu name */
+			'menu_class' => 'nav nav-pills dropup',
     		'theme_location' => 'footer_links', /* where in the theme it's assigned */
-    		'container_class' => 'footer-links clearfix', /* container class */
-    		'fallback_cb' => 'bones_footer_links_fallback' /* menu fallback */
+    		'container_class' => 'pull-right', /* container class */
+    		'fallback_cb' => 'bones_footer_links_fallback', /* menu fallback */
+			'depth' => '3',
+			'walker' => new Bootstrap_Walker()
     	)
 	);
 }
