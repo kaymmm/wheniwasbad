@@ -1,9 +1,9 @@
 <?php
 	$options = $options_array;
-
+	$site = get_current_blog_id();
 	echo '/*
 * CSS Generated from theme options
-*
+* Multisite Blog ID: ' . $site . '
 * Last Modified ' . $options['mod_time'] . '
 */';
 

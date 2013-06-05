@@ -1,5 +1,7 @@
-WhenIWasBad: WordPress Bootstrap X Flatstrap
-============================================
+WhenIWasBad 
+===========
+WordPress Bootstrap X Flatstrap
+-------------------------------
 Twitter's Bootstrap in WordPress theme form, forked from 320press wp-bootstrap and re-skinned using littlesparkvt's flatstrap. It is built around Eddie Machado's Bones template. 
 
 It's named after a lyric from Ghostface's _Whip You With A Strap_ ("...take me across her lap, she used to whip me with a strap when I was bad") since I hate the concept of bootstrapping and needed to create distance from the horrible name Twitter gave their framework.

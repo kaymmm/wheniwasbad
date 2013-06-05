@@ -179,6 +179,21 @@ function setup_framework_options() {
     // Disable the panel sections showing as submenu items.
     // Default: true
     //$args['allow_sub_menu'] = false;
+	
+	// Set the path to use for generated static css file
+	// Default: Redux_OPTIONS_URL . '/css/generated.css'
+	$static_css = 'generated';
+	$args['static_css'] = Redux_OPTIONS_URL . '/css/';
+	if (function_exists('is_multisite') && is_multisite()) {
+		// if it's a multisite installation, add the blog name to the css file
+		$blog_id = get_current_blog_id();
+		$static_css .=  '-' . $blog_id . '.css';
+	}
+	$args['static_css'] .= $static_css;
+	
+	// Set the path to the php to use to generate static css file
+	// Default: Redux_OPTIONS_URL . '/generated_css.php'
+	$args['static_php'] = Redux_OPTIONS_URL . '/generated_css.php';
         
     // Set ANY custom page help tabs, displayed using the new help tab API. Tabs are shown in order of definition.
     $args['help_tabs'][] = array(

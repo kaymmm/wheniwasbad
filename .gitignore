@@ -1,3 +1,6 @@
 admin/themes/
 
 .DS_Store
+library/css/redux-options-2.css
+
+library/css/redux-options.css
