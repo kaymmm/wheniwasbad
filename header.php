@@ -1,4 +1,3 @@
-<?php $options = get_option('wheniwasbad'); ?>
 <!doctype html>
 
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -27,6 +26,7 @@
 		<!-- For Nokia -->
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
 		<!-- For everything else -->
+		<?php $options = get_option('wheniwasbad'); ?>
 		<?php $favicon_url = ($options['favicon_url']!='') ? $options['favicon_url'] : get_template_directory_uri() . '/favicon.ico'; ?>
 		<link rel="shortcut icon" href="<?php echo $favicon_url; ?>">
 		
