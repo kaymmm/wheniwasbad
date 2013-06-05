@@ -92,10 +92,9 @@ add_action('wp_dashboard_setup', 'bones_custom_dashboard_widgets');
 /************* CUSTOM LOGIN PAGE *****************/
 
 // calling your own login css so you can style it 
-function bones_login_css() { ?>
-	/* i couldn't get wp_enqueue_style to work :( */
-	<link rel="stylesheet" href="<?php echo get_bloginfo( 'stylesheet_directory' ) . '/library/css/login.css'; ?>">;
-<?php } 
+function bones_login_css() {
+	wp_enqueue_style('login-css',get_bloginfo( 'stylesheet_directory' ) . '/library/css/login.css', false);
+} 
 
 // changing the logo link from wordpress.org to your site 
 function bones_login_url() { echo home_url(); }

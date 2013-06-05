@@ -504,6 +504,19 @@ if( !function_exists( "theme_js" ) ) {
   }
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );	
+// IE js hacks
+add_action( 'wp_head', function() {
+	echo '<!--[if lt IE 9]>
+	<script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->';
+} );
+add_action( 'wp_footer', function() {
+	echo '<!--[if lt IE 7 ]>
+	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+	<script>window.attachEvent(\'onload\',function(){CFInstall.check({mode:\'overlay\'})})</script>
+<![endif]-->';
+} );
 
 /************* SEARCH FORM LAYOUT *****************/
 
