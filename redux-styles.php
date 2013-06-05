@@ -161,7 +161,7 @@
 		  $s = preg_replace("/\n{2,}/", "\n\n", $s);
 		  echo $s;
       }
-
+/* bootswatch themes were turned off for now in preparation for Bootstrap v3
       $bootstrap_theme = $options['wpbs_theme'];
       $use_theme = $options['showhidden_themes'];
 
@@ -171,4 +171,5 @@
           echo '@include("' . get_template_directory_uri() . '/admin/themes/' . $bootstrap_theme . '.css")';
         }
       }
+*/
 ?>
