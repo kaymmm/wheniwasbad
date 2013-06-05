@@ -60,6 +60,10 @@ v1.3
 * Removed support for Bootswatch themes for now
 * Modified redux-framework to write style options to a static css file so that it can be enqueued by WordPress
 * Minor fixes to satisfy WordPress theme requirements/guidelines
+* Moved IE hack scripts to functions.php to use wp_enqueue_ functions instead of hardcoding them in header/footer pages
+* Use wp_enqueue_style for login.css
+v1.2.1
+* Bugfixes galore! Working toward WordPress theme requirements
 v1.2
 * Added support for Jetpack's infinite scroll
 * Added support for Theme Updater plugin (https://github.com/UCF/Theme-Updater) for github-based theme updates
