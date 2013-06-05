@@ -443,7 +443,15 @@ if( !function_exists("theme_styles") ) {
         wp_register_style( 'theme-base', get_stylesheet_uri(), array(), '1.0', 'all' );
 		$options = get_option('wheniwasbad');
 		$options_date = (!empty($options['mod_date']) ? $options['mod_date'] : '0');
-		wp_register_style( 'options-css', get_stylesheet_directory_uri() . '/library/css/redux-options.css', array(), $options_date, 'all' );
+		$static_css = 'redux-options';
+		$args['static_css'] = get_template_directory_uri() . '/library/css/'; //TODO: check to see if this works with child themes or if it should use stylesheet_directory_uri
+		if (function_exists('is_multisite') && is_multisite()) {
+			// if it's a multisite installation, add the blog name to the css file
+			$blog_id = get_current_blog_id();
+			$static_css .=  '-' . $blog_id;
+		}
+		$static_css .=  '.css';
+		wp_register_style( 'options-css', $static_css, array(), $options_date, 'all' );
         
         wp_enqueue_style( 'bootstrap' );
         wp_enqueue_style( 'bootstrap-responsive' );

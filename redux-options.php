@@ -204,8 +204,9 @@ function setup_framework_options() {
 	if (function_exists('is_multisite') && is_multisite()) {
 		// if it's a multisite installation, add the blog name to the css file
 		$blog_id = get_current_blog_id();
-		$static_css .=  '-' . $blog_id . '.css';
+		$static_css .=  '-' . $blog_id;
 	}
+	$static_css .= '.css';
 	$args['static_css'] .= $static_css;
 	
 	// Set the path to the php to use to generate static css file
