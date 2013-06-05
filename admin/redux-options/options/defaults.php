@@ -1,6 +1,5 @@
 <?php
 if(!class_exists('Redux_Options') ){
-
     // Windows-proof constants: replace backward by forward slashes - thanks to: https://github.com/peterbouwmeester
     $fslashed_dir = trailingslashit(str_replace('\\','/', dirname(__FILE__)));
     $fslashed_abs = trailingslashit(str_replace('\\','/', ABSPATH));
@@ -58,6 +57,9 @@ if(!class_exists('Redux_Options') ){
             $defaults['footer_credit'] = sprintf(__('<span id="footer-thankyou">Options panel created using <a href="%s" target="_blank">Redux Framework</a> v%s</span>', Redux_TEXT_DOMAIN), $this->framework_url, $this->framework_version);
             $defaults['help_tabs'] = array();
             $defaults['help_sidebar'] = __('', Redux_TEXT_DOMAIN);
+			$defaults['mod_time'] = time();
+			$defaults['static_css'] = Redux_OPTIONS_URL . '/css/generated.css';
+			$defaults['static_php'] = Redux_OPTIONS_URL . '/generated_css.php';
 
 			// The defaults are set so it will preserve the old behavior.
 			$defaults['std_show'] = false; // If true, it shows the std value
@@ -135,6 +137,26 @@ if(!class_exists('Redux_Options') ){
                 update_option($this->args['opt_name'], $this->options);
             }
         }
+		
+        /**
+         * ->generate_css(); This is used to generate a static css file from the options using redux-options.php
+         *
+         * @since Redux_Options 2.0.0
+         * @param array $options_array the options to use in the static_css.php file
+        */
+		
+		function generate_css($options_array) {
+			$options_array['mod_time'] = time();
+			$static_php = $this->args['static_php'];
+			$static_css = $this->args['static_css'];
+			ob_start(); // Capture all output (output buffering)
+
+			require($static_php); // Generate CSS
+
+			$css = ob_get_clean(); // Get generated CSS (output buffering)
+			file_put_contents($static_css, $css, LOCK_EX); // Save it
+		}
+		
     
         /**
          * ->show(); This is used to echo and option value from the options array
@@ -191,72 +213,13 @@ if(!class_exists('Redux_Options') ){
          * @since Redux_Options 1.0.0
         */
         function _options_page() {
-            if($this->args['page_type'] == 'submenu') {
-                $this->page = add_submenu_page(
-                    $this->args['page_parent'],
+                $this->page = add_theme_page(
                     $this->args['page_title'], 
                     $this->args['menu_title'], 
                     $this->args['page_cap'], 
                     $this->args['page_slug'], 
                     array(&$this, '_options_page_html')
                 );
-            } else {
-                $this->page = add_menu_page(
-                    $this->args['page_title'], 
-                    $this->args['menu_title'], 
-                    $this->args['page_cap'], 
-                    $this->args['page_slug'], 
-                    array(&$this, '_options_page_html'),
-                    $this->args['menu_icon'],
-                    $this->args['page_position']
-                );
-                        
-                if(true === $this->args['allow_sub_menu']) {
-
-                    // This is needed to prevent the top level menu item from showing in the submenu
-                    add_submenu_page($this->args['page_slug'], $this->args['page_title'], '', $this->args['page_cap'], $this->args['page_slug'], create_function('$a', "return null;"));
-
-                    foreach($this->sections as $k => $section) {
-                        add_submenu_page(
-                            $this->args['page_slug'],
-                            $section['title'], 
-                            $section['title'], 
-                            $this->args['page_cap'], 
-                            $this->args['page_slug'].'&tab=' . $k, create_function('$a', "return null;")
-                        );
-                    }
-            
-                    if(true === $this->args['show_import_export']) {
-                        add_submenu_page(
-                            $this->args['page_slug'],
-                            __('Import / Export', Redux_TEXT_DOMAIN), 
-                            __('Import / Export', Redux_TEXT_DOMAIN), 
-                            $this->args['page_cap'], 
-                            $this->args['page_slug'] . '&tab=import_export_default', create_function('$a', "return null;")
-                        );
-                    }
-
-                    foreach($this->extra_tabs as $k => $tab) {
-                        add_submenu_page(
-                            $this->args['page_slug'],
-                            $tab['title'], 
-                            $tab['title'], 
-                            $this->args['page_cap'], 
-                            $this->args['page_slug'].'&tab=' . $k, create_function('$a', "return null;")
-                        );
-                    }
-
-                    if(true === $this->args['dev_mode']) {
-                        add_submenu_page(
-                            $this->args['page_slug'],
-                            __('Dev Mode Info', Redux_TEXT_DOMAIN), 
-                            __('Dev Mode Info', Redux_TEXT_DOMAIN), 
-                            $this->args['page_cap'], 
-                            $this->args['page_slug'] . '&tab=dev_mode_default', create_function('$a', "return null;")
-                        );
-                    }
-                }
-            }
 
             add_action('admin_print_styles-' . $this->page, array(&$this, '_enqueue'));
             add_action('load-' . $this->page, array(&$this, '_load_page'));
@@ -494,12 +457,14 @@ if(!class_exists('Redux_Options') ){
                 $imported_options = unserialize(trim($import,'###'));
                 if(is_array($imported_options) && isset($imported_options['redux-opts-backup']) && $imported_options['redux-opts-backup'] == '1'){
                     $imported_options['imported'] = 1;
+					$this->generate_css($imported_options);
                     return $imported_options;
                 }
             }
         
             if(!empty($plugin_options['defaults'])) {
                 $plugin_options = $this->_default_values();
+				$this->generate_css($plugin_options);
                 return $plugin_options;
             }
 
@@ -515,12 +480,13 @@ if(!class_exists('Redux_Options') ){
             }
 
             do_action('redux-opts-options-validate-' . $this->args['opt_name'], $plugin_options, $this->options);
-
+			
             unset($plugin_options['defaults']);
             unset($plugin_options['import']);
             unset($plugin_options['import_code']);
             unset($plugin_options['import_link']);
 
+			$this->generate_css($plugin_options);
             return $plugin_options;    
         }
 

@@ -155,7 +155,8 @@ function setup_framework_options() {
 
     // Set the menu type. Set to "menu" for a top level menu, or "submenu" to add below an existing item.
     // Default: menu
-    //$args['page_type'] = 'submenu';
+	// NOTE: got rid of the menu option since it is discouraged by WordPress
+    //$args['page_type'] = 'submenu'; 
 
     // Set the parent menu.
     // Default: themes.php
@@ -195,6 +196,14 @@ function setup_framework_options() {
 
     // Set the help sidebar for the options page.                                        
     //$args['help_sidebar'] = __('<p>This is the sidebar content, HTML is allowed.</p>', Redux_TEXT_DOMAIN);
+	
+	// Set the path to use for generated static css file
+	// Default: Redux_OPTIONS_URL . '/css/generated.css'
+	$args['static_css'] = dirname( __FILE__ ) . '/library/css/redux-options.css';
+	
+	// Set the path to the php to use to generate static css file
+	// Default: Redux_OPTIONS_URL . '/generated_css.php'
+	$args['static_php'] = dirname( __FILE__ ) . '/redux-styles.php';
 
     $sections = array();
 	/*
@@ -328,7 +337,13 @@ function setup_framework_options() {
 			array( 'title' => __('Search bar', Redux_TEXT_DOMAIN),
 					'desc' => __('Show search bar in top nav', Redux_TEXT_DOMAIN),
 					'id' => 'search_bar',
-					'std' => '',
+					'std' => '0',
+					'type' => 'checkbox'
+			),
+			array( 'title' => __('Site Name', Redux_TEXT_DOMAIN),
+					'desc' => __('Display site name in top nav', Redux_TEXT_DOMAIN),
+					'id' => 'site_name',
+					'std' => '1',
 					'type' => 'checkbox'
 			),
 			array( 'title' => __('Branding Logo', Redux_TEXT_DOMAIN),
@@ -382,7 +397,7 @@ function setup_framework_options() {
 						'type' => 'editor'
 			),
 			array( 'title' => __('Footer Menu', Redux_TEXT_DOMAIN),
-						'desc' => __('Check to display a navigation menu in the footer area (configure using Wordpress "Menus")', Redux_TEXT_DOMAIN),
+						'desc' => __('Check to display a navigation menu in the footer area (configure using WordPress "Menus")', Redux_TEXT_DOMAIN),
 						'id' => 'show_footer_menu',
 						'std' => '0',
 						'type' => 'checkbox'
@@ -430,7 +445,7 @@ function setup_framework_options() {
         'desc' => __('<p class="description">Miscellaneous settings</p>', Redux_TEXT_DOMAIN),
         'fields' => array(
 			array( 'title' => __('Slider carousel on homepage', Redux_TEXT_DOMAIN),
-						'desc' => __('Display the bootstrap slider carousel on homepage page template. This uses the wordpress featured images.', Redux_TEXT_DOMAIN),
+						'desc' => __('Display the bootstrap slider carousel on homepage page template. This uses the WordPress featured images.', Redux_TEXT_DOMAIN),
 						'id' => 'showhidden_slideroptions',
 						'std' => '0',
 						'type' => 'checkbox_hide_below'

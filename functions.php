@@ -47,24 +47,6 @@ add_action( 'login_enqueue_scripts', 'bones_login_css', 10 );
 add_filter('login_headerurl', 'bones_login_url');
 add_filter('login_headertitle', 'bones_login_title');
 
-
-/************* CUSTOMIZE ADMIN *******************/
-
-/*
-I don't really recommend editing the admin too much
-as things may get funky if WordPress updates. Here
-are a few funtions which you can choose to use if
-you like.
-*/
-
-// Custom Backend Footer
-function bones_custom_admin_footer() {
-	_e('<span id="footer-thankyou">Developed by <a href="http://yoursite.com" target="_blank">Your Site Name</a></span>. Built using <a href="http://themble.com/bones" target="_blank">Bones</a>.', 'bonestheme');
-}
-
-// adding it to the admin area
-add_filter('admin_footer_text', 'bones_custom_admin_footer');
-
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
@@ -205,7 +187,7 @@ function bones_comments($comment, $args, $depth) {
                 </div>
 			</div>
 		</article>
-    <!-- </li> is added by wordpress automatically -->
+    <!-- </li> is added by WordPress automatically -->
 <?php
 } // don't remove this bracket!
 
@@ -459,6 +441,9 @@ if( !function_exists("theme_styles") ) {
 		wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css', array(), '3.1.1', 'all' );
 		wp_register_style( 'font-awesome-ie7', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome-ie7.min.css', array(), '3.1.1', 'all' );			
         wp_register_style( 'theme-base', get_stylesheet_uri(), array(), '1.0', 'all' );
+		$options = get_option('wheniwasbad');
+		$options_date = (!empty($options['mod_date']) ? $options['mod_date'] : '0');
+		wp_register_style( 'options-css', get_stylesheet_directory_uri() . '/library/css/redux-options.css', array(), $options_date, 'all' );
         
         wp_enqueue_style( 'bootstrap' );
         wp_enqueue_style( 'bootstrap-responsive' );
@@ -466,6 +451,7 @@ if( !function_exists("theme_styles") ) {
 		wp_enqueue_style( 'font-awesome' );
 		wp_enqueue_style( 'font-awesome-ie7' );
         wp_enqueue_style( 'theme-base');
+		wp_enqueue_style( 'options-css' );
 		}
     }
 }
@@ -534,170 +520,4 @@ function bones_wpsearch($form) {
 </form>';
 	return $form;
 } // don't remove this bracket!
-
-
-// Get theme options
-function get_wpbs_theme_options(){
-	$options = get_option('wheniwasbad');
-  $theme_options_styles = '';
-/*    
-      $heading_typography = $options['heading_typography'];
-      if ( $heading_typography['face'] != 'Default' ) {
-        $theme_options_styles .= '
-        h1, h2, h3, h4, h5, h6{ 
-          font-family: ' . $heading_typography['face'] . '; 
-          font-weight: ' . $heading_typography['style'] . '; 
-          color: ' . $heading_typography['color'] . '; 
-        }';
-      }
-      
-      $main_body_typography = $options['main_body_typography'];
-      if ( $main_body_typography['face'] != 'Default' ) {
-        $theme_options_styles .= '
-        body{ 
-          font-family: ' . $main_body_typography['face'] . '; 
-          font-weight: ' . $main_body_typography['style'] . '; 
-          color: ' . $main_body_typography['color'] . '; 
-        }';
-      }
-*/      
-      $link_color = $options['link_color'];
-      if ($link_color) {
-        $theme_options_styles .= '
-        a{ 
-          color: ' . $link_color . '; 
-        }';
-      }
-      
-      $link_hover_color = $options['link_hover_color'];
-      if ($link_hover_color) {
-        $theme_options_styles .= '
-        a:hover{ 
-          color: ' . $link_hover_color . '; 
-        }';
-      }
-      
-      $link_active_color = $options['link_active_color'];
-      if ($link_active_color) {
-        $theme_options_styles .= '
-        a:active{ 
-          color: ' . $link_active_color . '; 
-        }';
-      }
-      
-      $topbar_bg_color = $options['top_nav_bg_color'];
-      $use_gradient = $options['showhidden_gradient'];
-      if ( $topbar_bg_color && !$use_gradient ) {
-        $theme_options_styles .= '
-        .navbar-inner, .navbar .fill { 
-          background-color: '. $topbar_bg_color . ';
-          background-image: none;
-        }';
-      }
-      
-      if ( $use_gradient ) {
-        $topbar_bottom_gradient_color = $options['top_nav_bottom_gradient_color'];
-      
-        $theme_options_styles .= '
-        .navbar-inner, .navbar .fill {
-          background-image: -khtml-gradient(linear, left top, left bottom, from(' . $topbar_bg_color . '), to('. $topbar_bottom_gradient_color . '));
-          background-image: -moz-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-          background-image: -ms-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, ' . $topbar_bg_color . '), color-stop(100%, '. $topbar_bottom_gradient_color . '));
-          background-image: -webkit-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . '2);
-          background-image: -o-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-          background-image: linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=\'' . $topbar_bg_color . '\', endColorstr=\''. $topbar_bottom_gradient_color . '2\', GradientType=0);
-        }';
-      }
-      else{
-      } 
-      
-      $topbar_link_color = $options['top_nav_link_color'];
-      if ( $topbar_link_color ) {
-        $theme_options_styles .= '
-        .navbar .nav li a { 
-          color: '. $topbar_link_color . ';
-        }';
-      }
-      
-      $topbar_link_hover_color = $options['top_nav_link_hover_color'];
-      if ( $topbar_link_hover_color ) {
-        $theme_options_styles .= '
-        .navbar .nav li a:hover { 
-          color: '. $topbar_link_hover_color . ';
-        }';
-      }
-
-      $topbar_link_hover_bg = $options['top_nav_link_background_color'];
-      if ( $topbar_link_hover_bg ) {
-        $theme_options_styles .= '
-        .navbar .nav > li > a:focus,
-		.navbar .nav > li > a:hover,
-		.navbar .nav .active > a,
-		.navbar .nav .active > a:hover,
-		.navbar .nav .active > a:focus,
-		.navbar .nav li.dropdown.open > .dropdown-toggle,
-		.navbar .nav li.dropdown.active > .dropdown-toggle,
-		.navbar .nav li.dropdown.open.active > .dropdown-toggle {
-          background-color: '. $topbar_link_hover_bg . ';
-        }';
-      }      
-
-      $topbar_dropdown_hover_bg_color = $options['top_nav_dropdown_hover_bg'];
-      if ( $topbar_dropdown_hover_bg_color ) {
-        $theme_options_styles .= '
-          .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
-            background-color: ' . $topbar_dropdown_hover_bg_color . ';
-          }
-        ';
-      }
-      
-      $topbar_dropdown_item_color = $options['top_nav_dropdown_item'];
-      if ( $topbar_dropdown_item_color ){
-        $theme_options_styles .= '
-          .dropdown-menu a{
-            color: ' . $topbar_dropdown_item_color . ' !important;
-          }
-        ';
-      }
-      
-      $hero_unit_bg_color = $options['hero_unit_bg_color'];
-      if ( $hero_unit_bg_color ) {
-        $theme_options_styles .= '
-        .hero-unit { 
-          background-color: '. $hero_unit_bg_color . ';
-        }';
-      }
-/*      
-      $suppress_comments_message = $options['suppress_comments_message'];
-      if ( $suppress_comments_message ){
-        $theme_options_styles .= '
-        #main article {
-          border-bottom: none;
-        }';
-      }
- */     
-      $additional_css = $options['wpbs_css'];
-      if( $additional_css ){
-        $theme_options_styles .= $additional_css;
-      }
-          
-      if( $theme_options_styles ){
-        echo '<style>' 
-        . $theme_options_styles . '
-        </style>';
-      }
-    
-      $bootstrap_theme = $options['wpbs_theme'];
-      $use_theme = $options['showhidden_themes'];
-      
-      if( $bootstrap_theme && $use_theme ){
-        if( $bootstrap_theme == 'default' ){}
-        else {
-          echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/admin/themes/' . $bootstrap_theme . '.css">';
-        }
-      }
-} // end get_wpbs_theme_options function
-
 ?>
