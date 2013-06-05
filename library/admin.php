@@ -92,19 +92,19 @@ add_action('wp_dashboard_setup', 'bones_custom_dashboard_widgets');
 /************* CUSTOM LOGIN PAGE *****************/
 
 // calling your own login css so you can style it 
-function bones_login_css() {
+function bones_login_css() { ?>
 	/* i couldn't get wp_enqueue_style to work :( */
-	echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/library/css/login.css">';
-}
+	<link rel="stylesheet" href="<?php echo get_bloginfo( 'stylesheet_directory' ) . '/library/css/login.css'; ?>">;
+<?php } 
 
 // changing the logo link from wordpress.org to your site 
-function bones_login_url() { echo bloginfo('url'); }
+function bones_login_url() { echo home_url(); }
 
 // changing the alt text on the logo to show your site name 
 function bones_login_title() { echo get_option('blogname'); }
 
 // calling it only on the login page
-add_action('login_head', 'bones_login_css');
+add_action( 'login_enqueue_scripts', 'bones_login_css' );
 add_filter('login_headerurl', 'bones_login_url');
 add_filter('login_headertitle', 'bones_login_title');
 
@@ -113,7 +113,7 @@ add_filter('login_headertitle', 'bones_login_title');
 
 /*
 I don't really reccomend editing the admin too much
-as things may get funky if Wordpress updates. Here
+as things may get funky if WordPress updates. Here
 are a few funtions which you can choose to use if 
 you like.
 */

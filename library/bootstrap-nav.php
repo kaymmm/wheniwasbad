@@ -1,11 +1,11 @@
 <?php
-/* Bootstrap_Walker for Wordpress 
+/* Bootstrap_Walker for WordPress 
      * Author: George Huger, Illuminati Karate, Inc 
      * More Info: http://illuminatikarate.com/blog/bootstrap-walker-for-wordpress 
      * 
-     * Formats a Wordpress menu to be used as a Bootstrap dropdown menu (http://getbootstrap.com). 
+     * Formats a WordPress menu to be used as a Bootstrap dropdown menu (http://getbootstrap.com). 
      * 
-     * Specifically, it makes these changes to the normal Wordpress menu output to support Bootstrap: 
+     * Specifically, it makes these changes to the normal WordPress menu output to support Bootstrap: 
      * 
      *        - adds a 'dropdown' class to level-0 <li>'s which contain a dropdown 
      *         - adds a 'dropdown-submenu' class to level-1 <li>'s which contain a dropdown 
@@ -70,7 +70,7 @@
                 } 
             } 
  
-            /* This is the stock Wordpress code that builds the <li> with all of its attributes */ 
+            /* This is the stock WordPress code that builds the <li> with all of its attributes */ 
             $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ); 
             $class_names = ' class="' . esc_attr( $class_names ) . '"'; 
             $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';             

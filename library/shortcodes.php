@@ -153,7 +153,7 @@ function alerts( $atts, $content = null ) {
 	
 	$output = '<div class="fade in alert alert-'. $type . '">';
 	if($close == 'true') {
-		$output .= '<a class="close" data-dismiss="alert">×</a>';
+		$output .= '<a class="close" data-dismiss="alert">&times;</a>';
 	}
 	$output .= $text . '</div>';
 	
@@ -172,7 +172,7 @@ function block_messages( $atts, $content = null ) {
 	
 	$output = '<div class="fade in alert alert-block alert-'. $type . '">';
 	if($close == 'true') {
-		$output .= '<a class="close" data-dismiss="alert">×</a>';
+		$output .= '<a class="close" data-dismiss="alert">&times;</a>';
 	}
 	$output .= '<p>' . $text . '</p></div>';
 	

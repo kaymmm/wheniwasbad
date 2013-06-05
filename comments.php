@@ -135,7 +135,7 @@ The comments page for Bones
 	
 	<div class="clearfix">
 		<div class="input">
-			<textarea name="comment" id="comment" placeholder="<?php _e("Your Comment Here…","bonestheme"); ?>" tabindex="4"></textarea>
+			<textarea name="comment" id="comment" placeholder="<?php _e("Your Comment Here&hellip;","bonestheme"); ?>" tabindex="4"></textarea>
 		</div>
 	</div>
 	

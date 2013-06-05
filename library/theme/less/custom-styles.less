@@ -370,6 +370,15 @@ body.navbar-no-offset {
 	line-height: @baseLineHeight * 0.8;
 }
 
+.size-auto, 
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail {
+	max-width: 100%;
+	height: auto;
+}
+
 /* Link posts */
 article.format-link .icon-external-link {
 	font-size: @baseFontSize;
@@ -401,6 +410,42 @@ img { max-width: 100%;}
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 100%;
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
 }
 
 
@@ -513,8 +558,6 @@ TODO: clean up and double check that these styles are necessary */
 .clearfix {
     zoom:1;
 }
-
-
 
 
 /* Admin Top Navigation fixes */

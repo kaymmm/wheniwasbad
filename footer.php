@@ -15,7 +15,7 @@
 			<?php $options = get_option('wheniwasbad'); ?>
 			<?php if ($options['show_footer_menu'] ) : ?>				
 				<nav class="clearfix">
-					<?php bones_footer_links(); // Adjust using Menus in Wordpress Admin ?>
+					<?php bones_footer_links(); ?>
 				</nav>
 			<?php endif; ?>
 		
@@ -38,8 +38,6 @@
 			<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 		<![endif]-->
 	
-		<?php wp_footer(); // js scripts are inserted using this function ?>
-
-	</body>
+	<?php wp_footer(); ?></body>
 
 </html>
