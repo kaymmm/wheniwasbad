@@ -6,11 +6,13 @@ It's named after a lyric from Ghostface's _Whip You With A Strap_ ("...take me a
 
 Credits
 =======
+
 * Twitter Bootstrap 2.3.1 (http://twitter.github.com/bootstrap)
 * 320press wp-bootstrap v1.2 (http://320press.com/wpbs)
 * Eddie Machado Bones v1.09, plus a handful of cherry picks up to 1.4 (that hopefully don't break things) (https://github.com/eddiemachado/bones)
 * littlesparkvt Flatstrap (10 May 2013) (https://github.com/littlesparkvt/flatstrap)
 * Font Awesome 3.1.1 (https://github.com/FortAwesome/Font-Awesome/)
+
 
 ---
 
@@ -31,10 +33,10 @@ ______________
 
 We’ve packaged four different page templates into this theme.
 
-    * Homepage template (seen on the homepage of this site)
-    * Standard page with left sidebar (this page)
-    * Page with right sidebar
-    * Full width page
+* Homepage template (seen on the homepage of this site)
+* Standard page with left sidebar (this page)
+* Page with right sidebar
+* Full width page
 
 Theme Options Panel
 ___________________
@@ -56,15 +58,22 @@ We’ve built in two different sidebars. One for the homepage and one for the ot
 Changelog
 =========
 v1.3
+
 * Switched options to redux-framework so that options can be imported/exported
 * Removed support for Bootswatch themes for now
 * Modified redux-framework to write style options to a static css file so that it can be enqueued by WordPress
 * Minor fixes to satisfy WordPress theme requirements/guidelines
 * Moved IE hack scripts to functions.php to use wp_enqueue_ functions instead of hardcoding them in header/footer pages
 * Use wp_enqueue_style for login.css
+
+
 v1.2.1
+
 * Bugfixes galore! Working toward WordPress theme requirements
+
+
 v1.2
+
 * Added support for Jetpack's infinite scroll
 * Added support for Theme Updater plugin (https://github.com/UCF/Theme-Updater) for github-based theme updates
 * Fixed button styling
@@ -73,12 +82,19 @@ v1.2
 * Added hero unit page template (full-width + hero unit)
 * Added separate blog-page options
 * Fixed broken &rquao on "read more" buttons and replace arrows with font-awesome arrow icons
+
+
 v1.1
+
 * Lots of bugfixes for WordPress unit tests
 * Overhauled gallery shortcodes so they actually work as expected
 * Reformatted sticky posts to differentiate them from non-stickies
 * Added author to post metadata areas
 * Added wp_link_pages at the bottom of all of the pages to work with <--nextpage--> shortcodes
 * Cleaned up some of the code and organized the included libraries (esp. Bootstrap) to make for smoother updates
+
+
 v1.0
+
 * initial release
+
