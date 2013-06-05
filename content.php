@@ -18,9 +18,13 @@
 	 				</div>
 				<?php endif; ?>
  				<div class="span9">
-				<?php if ( ! is_singular()) : ?>
+				<?php if ( ! is_singular() && get_the_title() != '' ) : ?>
 					<header class="entry-header">
-						<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+						<h3><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?>
+							<?php if (get_post_format() == 'link') : ?>
+								<i class="icon-external-link"></i>
+							<?php endif; ?>
+						</a></h3>
 					</header>
 				<?php endif; ?>
  					<section class="post_content clearfix">

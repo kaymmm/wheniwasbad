@@ -59,6 +59,11 @@ We’ve built in two different sidebars. One for the homepage and one for the ot
 
 Changelog
 =========
+v1.3.1
+
+* Fixed static css so that it works on multisite installations
+* BUG: creates a new static css file for each multisite blog in the primary theme directory
+
 v1.3
 
 * Switched options to redux-framework so that options can be imported/exported
