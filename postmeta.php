@@ -42,6 +42,14 @@ switch ($post_format) {
 		$label_class='label-inverse';
 		$icon='icon-paper-clip';
 		break;
+	case 'video':
+		$label_class='label-important';
+		$icon='icon-facetime-video';
+		break;
+	case 'audio':
+		$label_class='label-warning';
+		$icon='icon-microphone';
+		break;		
 	case 'post':
 	default:
 		if (is_attachment()) {	
