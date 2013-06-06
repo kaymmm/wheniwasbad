@@ -15,6 +15,8 @@ Template Name: Full Width Page
 				<header class="page-header">
 					
 					<h1><?php single_post_title(); ?></h1>
+					
+					<?php get_template_part('postmeta-horizontal'); ?>
 				
 				</header> <!-- end page header -->
 
