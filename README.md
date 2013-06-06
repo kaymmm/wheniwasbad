@@ -59,6 +59,13 @@ We’ve built in two different sidebars. One for the homepage and one for the ot
 
 Changelog
 =========
+v1.3.2
+
+* Fix: revert static css file creation because it wasn't working well on multisite since it generates a new css file for every blog in the main theme folder. no good.
+* Added icons for audio and video post formats
+* Added page metadata to full-width page template
+
+
 v1.3.1
 
 * Fixed static css so that it works on multisite installations
