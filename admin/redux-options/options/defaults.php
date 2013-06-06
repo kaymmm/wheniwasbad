@@ -57,9 +57,6 @@ if(!class_exists('Redux_Options') ){
             $defaults['footer_credit'] = sprintf(__('<span id="footer-thankyou">Options panel created using <a href="%s" target="_blank">Redux Framework</a> v%s</span>', Redux_TEXT_DOMAIN), $this->framework_url, $this->framework_version);
             $defaults['help_tabs'] = array();
             $defaults['help_sidebar'] = __('', Redux_TEXT_DOMAIN);
-			$defaults['mod_time'] = time();
-			$defaults['static_css'] = Redux_OPTIONS_URL . '/css/generated.css';
-			$defaults['static_php'] = Redux_OPTIONS_URL . '/generated_css.php';
 
 			// The defaults are set so it will preserve the old behavior.
 			$defaults['std_show'] = false; // If true, it shows the std value
@@ -137,26 +134,6 @@ if(!class_exists('Redux_Options') ){
                 update_option($this->args['opt_name'], $this->options);
             }
         }
-		
-        /**
-         * ->generate_css(); This is used to generate a static css file from the options using redux-options.php
-         *
-         * @since Redux_Options 2.0.0
-         * @param array $options_array the options to use in the static_css.php file
-        */
-		
-		function generate_css($options_array) {
-			$options_array['mod_time'] = time();
-			$static_php = $this->args['static_php'];
-			$static_css = $this->args['static_css'];
-			ob_start(); // Capture all output (output buffering)
-
-			require($static_php); // Generate CSS
-
-			$css = ob_get_clean(); // Get generated CSS (output buffering)
-			file_put_contents($static_css, $css, LOCK_EX); // Save it
-		}
-		
     
         /**
          * ->show(); This is used to echo and option value from the options array
@@ -457,14 +434,12 @@ if(!class_exists('Redux_Options') ){
                 $imported_options = unserialize(trim($import,'###'));
                 if(is_array($imported_options) && isset($imported_options['redux-opts-backup']) && $imported_options['redux-opts-backup'] == '1'){
                     $imported_options['imported'] = 1;
-					$this->generate_css($imported_options);
                     return $imported_options;
                 }
             }
         
             if(!empty($plugin_options['defaults'])) {
                 $plugin_options = $this->_default_values();
-				$this->generate_css($plugin_options);
                 return $plugin_options;
             }
 
@@ -486,7 +461,6 @@ if(!class_exists('Redux_Options') ){
             unset($plugin_options['import_code']);
             unset($plugin_options['import_link']);
 
-			$this->generate_css($plugin_options);
             return $plugin_options;    
         }
 

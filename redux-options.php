@@ -197,22 +197,6 @@ function setup_framework_options() {
     // Set the help sidebar for the options page.                                        
     //$args['help_sidebar'] = __('<p>This is the sidebar content, HTML is allowed.</p>', Redux_TEXT_DOMAIN);
 	
-	// Set the path to use for generated static css file
-	// Default: Redux_OPTIONS_URL . '/css/generated.css'
-	$static_css = 'redux-options';
-	$args['static_css'] = dirname( __FILE__ ) . '/library/css/';
-	if (function_exists('is_multisite') && is_multisite()) {
-		// if it's a multisite installation, add the blog name to the css file
-		$blog_id = get_current_blog_id();
-		$static_css .=  '-' . $blog_id;
-	}
-	$static_css .= '.css';
-	$args['static_css'] .= $static_css;
-	
-	// Set the path to the php to use to generate static css file
-	// Default: Redux_OPTIONS_URL . '/generated_css.php'
-	$args['static_php'] = dirname( __FILE__ ) . '/redux-styles.php';
-
     $sections = array();
 	/*
     $sections[] = array(

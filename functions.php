@@ -441,17 +441,6 @@ if( !function_exists("theme_styles") ) {
 		wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css', array(), '3.1.1', 'all' );
 		wp_register_style( 'font-awesome-ie7', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome-ie7.min.css', array(), '3.1.1', 'all' );			
         wp_register_style( 'theme-base', get_stylesheet_uri(), array(), '1.0', 'all' );
-		$options = get_option('wheniwasbad');
-		$options_date = (!empty($options['mod_date']) ? $options['mod_date'] : '0');
-		$static_css = 'redux-options';
-		$static_css_path = get_template_directory_uri() . '/library/css/'; //TODO: check to see if this works with child themes or if it should use stylesheet_directory_uri
-		if (function_exists('is_multisite') && is_multisite()) {
-			// if it's a multisite installation, add the blog name to the css file
-			$blog_id = get_current_blog_id();
-			$static_css .=  '-' . $blog_id;
-		}
-		$static_css = $static_css_path . $static_css . '.css';
-		wp_register_style( 'options-css', $static_css, array(), $options_date, 'all' );
         
         wp_enqueue_style( 'bootstrap' );
         wp_enqueue_style( 'bootstrap-responsive' );
@@ -459,11 +448,13 @@ if( !function_exists("theme_styles") ) {
 		wp_enqueue_style( 'font-awesome' );
 		wp_enqueue_style( 'font-awesome-ie7' );
         wp_enqueue_style( 'theme-base');
-		wp_enqueue_style( 'options-css' );
 		}
     }
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );	
+add_action( 'wp_head', function() {
+	include('redux-styles.php');
+});
 
 // enqueue javascript
 if( !function_exists( "theme_js" ) ) {  

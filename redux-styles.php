@@ -1,12 +1,7 @@
+<style type="text/css">
+/* CSS Generated from theme options */
 <?php
-	$options = $options_array;
-	$site = get_current_blog_id();
-	echo '/*
-* CSS Generated from theme options
-* Multisite Blog ID: ' . $site . '
-* Last Modified ' . $options['mod_time'] . '
-*/';
-
+	$options = get_option('wheniwasbad');
 
 	$theme_options_styles = '';
 /*
@@ -173,3 +168,4 @@
       }
 */
 ?>
+</style>
