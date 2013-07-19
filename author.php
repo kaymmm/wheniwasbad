@@ -32,9 +32,10 @@
 				
 			<div class="span3">	
 			
-			<?php get_sidebar(); // sidebar 1 ?>
+				<? // replace this with the user's profile?! ?>
+				<?php get_sidebar(); // sidebar 1 ?>
 			
-		</div>
+			</div>
 			
 			<div id="main" role="main" class="span9">
 				
@@ -76,6 +77,7 @@
 						$args = array('user_id' => $curauth->ID, 'status' => 'approve');
 						$comments = get_comments($args);
 						foreach($comments as $comment) : ?>
+					 	<div class="row-fluid">
 							<div class="span9">
 								<header class="entry-header">
 									<h3><a href="<?php echo get_permalink($comment->comment_post_ID); ?>" title="On: '<?php echo get_the_title($comment->comment_post_ID); ?>'" rel="bookmark">On "<?php echo get_the_title($comment->comment_post_ID); ?>"</a></h3>
@@ -86,11 +88,14 @@
 							</div>
 							<div class="span3">
 								<aside class="entry-meta muted<?php echo $extra_classes; ?>">
-									<p><i class="icon-calendar-empty"></i> <time datetime="<?php date(DATE_W3C,strtotime($comment->comment_date)); ?>" ><?php date(get_option('date_format'),strtotime($comment->comment_date)); ?></time></p>
+									<?php $original_post = get_post($comment->comment_post_ID); ?>
+									<p><i class="icon-pencil"></i> Original post by <a href="<?php echo get_author_posts_url($original_post->post_author); ?>" title="Author page for <?php echo get_the_author_meta('display_name', $original_post->post_author); ?>"><?php echo get_the_author_meta('display_name', $original_post->post_author); ?></a></p>
+									<p><i class="icon-calendar-empty"></i> <time datetime="<?php echo get_comment_date(DATE_W3C,$comment->comment_ID); ?>" ><?php echo get_comment_date(get_option('date_format'),$comment->comment_ID); ?></time></p>
 									<p><i class="icon-bookmark"></i> <a href="<?php echo get_permalink($comment->comment_post_ID); ?>" title="On: '<?php echo get_the_title($comment->comment_post_ID); ?>'" rel="bookmark">Permalink</a>
 									<?php edit_comment_link( __( 'Edit', 'bonestheme' ), ' &nbsp;&bull;&nbsp; ', '' ); ?></p>
 								</aside>
 			 				</div>
+						</div>
 						<?php endforeach; ?>
 					</div>
 				<!--
@@ -115,8 +120,9 @@
 	</div> <!-- end #content -->
 
 <script>
-  $(function () {
-    $('#myTab a:last').tab('show');
-  })
+jQuery('#myTab a').click(function (e) {
+  e.preventDefault();
+  jQuery(this).tab('show');
+})
 </script>
 <?php get_footer(); ?>
