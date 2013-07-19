@@ -1,5 +1,5 @@
-WhenIWasBad 
-===========
+WhenIWasBad v1.3.3
+==================
 WordPress Bootstrap X Flatstrap
 -------------------------------
 Twitter's Bootstrap in WordPress theme form, forked from 320press wp-bootstrap and re-skinned using littlesparkvt's flatstrap. It is built around Eddie Machado's Bones template. 
@@ -59,6 +59,14 @@ We’ve built in two different sidebars. One for the homepage and one for the ot
 
 Changelog
 =========
+
+v1.3.3
+
+* Feature: added custom author profile page to display both posts and comments using tabs
+* Feature: (only framework, not yet implemented) Author profile page displays their profile information and contact information in tabs
+* Fix: datetime tag in postmeta boxes uses correct W3C datetime format
+* Fix: clean up page headers
+
 v1.3.2
 
 * Fix: revert static css file creation because it wasn't working well on multisite since it generates a new css file for every blog in the main theme folder. no good.
