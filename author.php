@@ -114,4 +114,9 @@
 
 	</div> <!-- end #content -->
 
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
 <?php get_footer(); ?>
