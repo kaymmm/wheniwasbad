@@ -10,7 +10,7 @@
 			?>
 
 		    <h3 class="search_title h3">
-		    	<?php echo __('Search Found ','bonestheme') . $total_results . __(' Matches for "','bonestheme') . '<em>' . get_search_query() . __('"','bonestheme'); ?>
+		    	<?php echo __('Search Found ','bonestheme') . $total_results . __(' Matches for "','bonestheme') . '<em>' . get_search_query() . __('"','bonestheme') . "</em>"; ?>
 		    </h3>
 			
 		</header> <!-- page header -->
