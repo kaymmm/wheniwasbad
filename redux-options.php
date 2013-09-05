@@ -278,12 +278,19 @@ function setup_framework_options() {
 				"options" => array('left'=>'Align Left', 'right'=>'Align Right')
 			),
 			array( 
+				'title' => __('Use inverted colors on nav bar', Redux_TEXT_DOMAIN),
+					'desc' => __('Uses dark (default) background and light text', Redux_TEXT_DOMAIN),
+					'id' => 'navbar_style_inverted',
+					'std' => '0',
+					'type' => 'checkbox'
+			),
+			array( 
 				'title' => __('Top nav background color', Redux_TEXT_DOMAIN),
-					'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
-					'id' => 'top_nav_bg_color',
-					'std' => '',
-					'type' => 'color'
-			),		
+				'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
+				'id' => 'top_nav_bg_color',
+				'std' => '',
+				'type' => 'color'
+			),	
 			array( 'title' => __('Check to use a gradient for top nav background', Redux_TEXT_DOMAIN),
 					'desc' => __('Use gradient', Redux_TEXT_DOMAIN),
 					'id' => 'showhidden_gradient',
@@ -408,15 +415,15 @@ function setup_framework_options() {
 						'std' => '1',
 						'type' => 'checkbox'
 			),			
-			array( 'title' => __('Blog page "hero" unit', Redux_TEXT_DOMAIN),
-						'desc' => __('Display blog page hero unit', Redux_TEXT_DOMAIN),
-						'id' => 'blog_hero',
+			array( 'title' => __('Blog page "jumbotron"', Redux_TEXT_DOMAIN),
+						'desc' => __('Display blog page jumbotron', Redux_TEXT_DOMAIN),
+						'id' => 'blog_jumbotron',
 						'std' => '1',
 						'type' => 'checkbox'
 			),			
-			array( 'title' => __('Blog page "hero" unit content', Redux_TEXT_DOMAIN),
-						'desc' => __('Content to display in the blog page hero unit (HTML OK)', Redux_TEXT_DOMAIN),
-						'id' => 'blog_hero_content',
+			array( 'title' => __('Blog page "jumbotron" content', Redux_TEXT_DOMAIN),
+						'desc' => __('Content to display in the blog page jumbotron (HTML OK)', Redux_TEXT_DOMAIN),
+						'id' => 'blog_jumbotron_content',
 						'std' => '',
 						'type' => 'editor'
 			),
@@ -448,9 +455,9 @@ function setup_framework_options() {
 						'std' => '5',
 						'type' => 'text'
 			),						
-			array( 'title' => __('Homepage page template hero-unit background color', Redux_TEXT_DOMAIN),
+			array( 'title' => __('Homepage page template jumbotron background color', Redux_TEXT_DOMAIN),
 						'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
-						'id' => 'hero_unit_bg_color',
+						'id' => 'jumbotron_bg_color',
 						'std' => '',
 						'type' => 'color'
 			),

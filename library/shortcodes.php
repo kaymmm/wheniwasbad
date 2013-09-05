@@ -89,7 +89,7 @@ function roots_gallery($attr) {
 	$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_url($id) : get_attachment_link($id);
 //    $output .= '<li class="span'.$col_span.'">';
 $output .= '<li class="pull-left" style="width: '.$col_width.'%; margin-left: '.$col_gutter.'%;">';
-	$output .= '<a href="' . $link . '" class="thumbnail"  rel="tooltip" data-original-title="'.$attachment->post_excerpt.'">'.$img.'</a>';
+	$output .= '<a href="' . $link . '" class="img-thumbnail"  rel="tooltip" data-original-title="'.$attachment->post_excerpt.'">'.$img.'</a>';
 	
     if (trim($attachment->post_excerpt)) {
       $output .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</p>';
@@ -104,10 +104,10 @@ $output .= '<li class="pull-left" style="width: '.$col_width.'%; margin-left: '.
 
   return $output;
 }
-//if (current_theme_supports('bootstrap-gallery')) {
+if (current_theme_supports('bootstrap-gallery')) {
   remove_shortcode('gallery','gallery_shortcode');
   add_shortcode('gallery', 'roots_gallery');
-  //}
+}
 
 
 

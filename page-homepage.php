@@ -75,7 +75,7 @@ Template Name: Homepage
 				$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
 			?>
 			
-			<div class="hero-unit" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
+			<div class="jumbotron" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
 
 				<h1><?php the_title(); ?></h1>
 				
@@ -91,15 +91,15 @@ Template Name: Homepage
 
 				<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 						
-					<section class="row-fluid post_content">
+					<section class="row post_content">
 					
 					<?php if (is_active_sidebar('sidebar2')) { ?>
 					
-						<div class="span3">
+						<div class="col-md-3">
 							<?php get_sidebar('sidebar2'); // sidebar 2 ?>
 						</div>
 						
-						<div class="span9">
+						<div class="col-md-9">
 							
 							<?php the_content(); ?>
 							
@@ -107,7 +107,7 @@ Template Name: Homepage
 					
 					<?php } else { ?>
 							
-						<div class="span12">
+						<div class="col-md-12">
 							
 							<?php the_content(); ?>
 							
@@ -117,7 +117,7 @@ Template Name: Homepage
 												
 					</section> <!-- end article header -->
 
-					<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'bonestheme' ), 'after' => '</div>' ) ); ?>
+					<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
 					
 				</article> <!-- end article -->
 					
@@ -126,10 +126,10 @@ Template Name: Homepage
 					
 				<article id="post-not-found">
 				    <header>
-				    	<h1><?php _e("Not Found", "bonestheme"); ?></h1>
+				    	<h1><?php _e("Not Found", "wheniwasbad"); ?></h1>
 					</header>
 					<section class="post_content">
-						<p><?php _e("Sorry, but the requested resource was not found on this site.", "bonestheme"); ?></p>
+						<p><?php _e("Sorry, but the requested resource was not found on this site.", "wheniwasbad"); ?></p>
 					</section>
 				</article>
 					

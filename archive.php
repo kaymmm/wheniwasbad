@@ -8,15 +8,15 @@
 
 		<?php if (is_category()) : ?>
 			<h1 class="archive_title h1">
-				<span><?php _e("Posts Categorized:", "bonestheme"); ?></span> <?php single_cat_title(); ?>
+				<span><?php _e("Posts Categorized:", "wheniwasbad"); ?></span> <?php single_cat_title(); ?>
 			</h1>
 		<?php elseif (is_tag()) : ?> 
 			<h1 class="archive_title h1">
-				<span><?php _e("Posts Tagged:", "bonestheme"); ?></span> <?php single_tag_title(); ?>
+				<span><?php _e("Posts Tagged:", "wheniwasbad"); ?></span> <?php single_tag_title(); ?>
 			</h1>
 		<?php elseif (is_author()) : ?>
 			<h1 class="archive_title h1">
-				<span><?php _e("Posts By:", "bonestheme"); ?></span> 
+				<span><?php _e("Posts By:", "wheniwasbad"); ?></span> 
 					<?php 
 						// If google profile field is filled out on author profile, link the author's page to their google+ profile page
 						$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
@@ -32,27 +32,27 @@
 			</h1>
 		<?php elseif (is_day()) : ?>
 			<h1 class="archive_title h1">
-				<span><?php _e("Daily Archives", "bonestheme"); ?>:</span> <?php the_time('l, F j, Y'); ?>
+				<span><?php _e("Daily Archives", "wheniwasbad"); ?>:</span> <?php the_time('l, F j, Y'); ?>
 			</h1>
 		<?php elseif (is_month()) : ?>
 		    <h1 class="archive_title h1">
-		    	<span><?php _e("Monthly Archives", "bonestheme"); ?>:</span> <?php the_time('F Y'); ?>
+		    	<span><?php _e("Monthly Archives", "wheniwasbad"); ?>:</span> <?php the_time('F Y'); ?>
 		    </h1>
 		<?php elseif (is_year()) : ?>
 		    <h1 class="archive_title h1">
-		    	<span><?php _e("Yearly Archives", "bonestheme"); ?>:</span> <?php the_time('Y'); ?>
+		    	<span><?php _e("Yearly Archives", "wheniwasbad"); ?>:</span> <?php the_time('Y'); ?>
 		    </h1>
 		<?php endif; ?>
 			
 		</header> <!-- page header -->
 			
-		<div id="wrapper" class="row-fluid clearfix">
+		<div id="wrapper" class="row clearfix">
 				
-					<div class="span3">	
+					<div class="col-md-3">	
 			<?php get_sidebar(); // sidebar 1 ?>
 		</div>
 			
-			<div id="main" role="main" class="span9">
+			<div id="main" role="main" class="col-md-9">
 
 				<?php while (have_posts()) : the_post(); ?>
 	
@@ -69,13 +69,13 @@
 				<?php else : // if it is disabled, display regular wp prev & next links ?>
 					<nav class="wp-prev-next pagenavi">
 						<ul class="clearfix">
-							<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "bonestheme")) ?></li>
-							<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "bonestheme")) ?></li>
+							<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
+							<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
 						</ul>
 					</nav>
 				<?php endif; ?>
 
-			</div><!-- span9 articles -->
+			</div><!-- col-md-9 articles -->
 
 		</div><!-- #main -->
 		

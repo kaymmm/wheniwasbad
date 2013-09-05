@@ -1,6 +1,6 @@
 <?php
 /*
-The comments page for Bones
+comments page
 */
 
 // Do not delete these lines
@@ -8,7 +8,7 @@ The comments page for Bones
     die ('Please do not load this page directly. Thanks!');
 
   if ( post_password_required() ) { ?>
-  	<div class="alert alert-info"><?php _e("This post is password protected. Enter the password to view comments.","bonestheme"); ?></div>
+  	<div class="alert alert-info"><?php _e("This post is password protected. Enter the password to view comments.","wheniwasbad"); ?></div>
   <?php
     return;
   }
@@ -18,17 +18,17 @@ The comments page for Bones
 
 <?php if ( have_comments() ) : ?>
 	<?php if ( ! empty($comments_by_type['comment']) ) : ?>
-	<h3 id="comments"><?php comments_number('<span>' . __("No","bonestheme") . '</span> ' . __("Responses","bonestheme") . '', '<span>' . __("One","bonestheme") . '</span> ' . __("Response","bonestheme") . '', '<span>%</span> ' . __("Responses","bonestheme") );?> <?php _e("to","bonestheme"); ?> &#8220;<?php the_title(); ?>&#8221;</h3>
+	<h3 id="comments"><?php comments_number('<span>' . __("No","wheniwasbad") . '</span> ' . __("Responses","wheniwasbad") . '', '<span>' . __("One","wheniwasbad") . '</span> ' . __("Response","wheniwasbad") . '', '<span>%</span> ' . __("Responses","wheniwasbad") );?> <?php _e("to","wheniwasbad"); ?> &#8220;<?php the_title(); ?>&#8221;</h3>
 
 	<nav id="comment-nav">
 		<ul class="clearfix">
-	  		<li><?php previous_comments_link( __("Older comments","bonestheme") ) ?></li>
-	  		<li><?php next_comments_link( __("Newer comments","bonestheme") ) ?></li>
+	  		<li><?php previous_comments_link( __("Older comments","wheniwasbad") ) ?></li>
+	  		<li><?php next_comments_link( __("Newer comments","wheniwasbad") ) ?></li>
 	 	</ul>
 	</nav>
 	
 	<ol class="commentlist">
-		<?php wp_list_comments('type=comment&callback=bones_comments'); ?>
+		<?php wp_list_comments('type=comment&callback=comments_layout'); ?>
 	</ol>
 	
 	<?php endif; ?>
@@ -43,8 +43,8 @@ The comments page for Bones
 	
 	<nav id="comment-nav">
 		<ul class="clearfix">
-	  		<li><?php previous_comments_link( __("Older comments","bonestheme") ) ?></li>
-	  		<li><?php next_comments_link( __("Newer comments","bonestheme") ) ?></li>
+	  		<li><?php previous_comments_link( __("Older comments","wheniwasbad") ) ?></li>
+	  		<li><?php next_comments_link( __("Newer comments","wheniwasbad") ) ?></li>
 		</ul>
 	</nav>
   
@@ -66,7 +66,7 @@ The comments page for Bones
 		<?php else : ?>
 		
 			<!-- If comments are closed. -->
-			<p class="alert alert-info"><?php _e("Comments are closed","bonestheme"); ?>.</p>
+			<p class="alert alert-info"><?php _e("Comments are closed","wheniwasbad"); ?>.</p>
 			
 		<?php endif; ?>
 
@@ -79,15 +79,15 @@ The comments page for Bones
 
 <section id="respond" class="respond-form">
 
-	<h3 id="comment-form-title"><?php comment_form_title( __("Leave a Reply","bonestheme"), __("Leave a Reply to","bonestheme") . ' %s' ); ?></h3>
+	<h3 id="comment-form-title"><?php comment_form_title( __("Leave a Reply","wheniwasbad"), __("Leave a Reply to","wheniwasbad") . ' %s' ); ?></h3>
 
 	<div id="cancel-comment-reply">
-		<p class="small"><?php cancel_comment_reply_link( __("Cancel","bonestheme") ); ?></p>
+		<p class="small"><?php cancel_comment_reply_link( __("Cancel","wheniwasbad") ); ?></p>
 	</div>
 
 	<?php if ( get_option('comment_registration') && !is_user_logged_in() ) : ?>
   	<div class="help">
-  		<p><?php _e("You must be","bonestheme"); ?> <a href="<?php echo wp_login_url( get_permalink() ); ?>"><?php _e("logged in","bonestheme"); ?></a> <?php _e("to post a comment","bonestheme"); ?>.</p>
+  		<p><?php _e("You must be","wheniwasbad"); ?> <a href="<?php echo wp_login_url( get_permalink() ); ?>"><?php _e("logged in","wheniwasbad"); ?></a> <?php _e("to post a comment","wheniwasbad"); ?>.</p>
   	</div>
 	<?php else : ?>
 
@@ -95,7 +95,7 @@ The comments page for Bones
 
 	<?php if ( is_user_logged_in() ) : ?>
 
-	<p class="comments-logged-in-as"><?php _e("Logged in as","bonestheme"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","bonestheme"); ?>"><?php _e("Log out","bonestheme"); ?> <i class="icon-signout"></i></a></p>
+	<p class="comments-logged-in-as"><?php _e("Logged in as","wheniwasbad"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","wheniwasbad"); ?>"><?php _e("Log out","wheniwasbad"); ?> <i class="icon-signout"></i></a></p>
 
 	<?php else : ?>
 	
@@ -103,28 +103,28 @@ The comments page for Bones
 		
 		<li>
 			<div class="control-group">
-			  <label for="author"><?php _e("Name","bonestheme"); ?> <?php if ($req) echo "(required)"; ?></label>
-			  <div class="input-prepend">
-			  	<span class="add-on"><i class="icon-user"></i></span><input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Your Name","bonestheme"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
+			  <label for="author"><?php _e("Name","wheniwasbad"); ?> <?php if ($req) echo "(required)"; ?></label>
+			  <div class="input-group">
+			  	<span class="input-group-addon"><i class="icon-user"></i></span><input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Your Name","wheniwasbad"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
 			  </div>
 		  	</div>
 		</li>
 		
 		<li>
 			<div class="control-group">
-			  <label for="email"><?php _e("Mail","bonestheme"); ?> <?php if ($req) echo "(required)"; ?></label>
-			  <div class="input-prepend">
-			  	<span class="add-on"><i class="icon-envelope"></i></span><input type="email" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("Your Email","bonestheme"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
-			  	<span class="help-inline">(<?php _e("will not be published","bonestheme"); ?>)</span>
+			  <label for="email"><?php _e("Mail","wheniwasbad"); ?> <?php if ($req) echo "(required)"; ?></label>
+			  <div class="input-group">
+			  	<span class="input-group-addon"><i class="icon-envelope"></i></span><input type="email" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("Your Email","wheniwasbad"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
+			  	<span class="help-inline">(<?php _e("will not be published","wheniwasbad"); ?>)</span>
 			  </div>
 		  	</div>
 		</li>
 		
 		<li>
 			<div class="control-group">
-			  <label for="url"><?php _e("Website","bonestheme"); ?></label>
-			  <div class="input-prepend">
-			  <span class="add-on"><i class="icon-home"></i></span><input type="url" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website","bonestheme"); ?>" tabindex="3" />
+			  <label for="url"><?php _e("Website","wheniwasbad"); ?></label>
+			  <div class="input-group">
+			  <span class="input-group-addon"><i class="icon-home"></i></span><input type="url" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website","wheniwasbad"); ?>" tabindex="3" />
 			  </div>
 		  	</div>
 		</li>
@@ -135,12 +135,12 @@ The comments page for Bones
 	
 	<div class="clearfix">
 		<div class="input">
-			<textarea name="comment" id="comment" placeholder="<?php _e("Your Comment Here&hellip;","bonestheme"); ?>" tabindex="4"></textarea>
+			<textarea name="comment" id="comment" placeholder="<?php _e("Your Comment Here&hellip;","wheniwasbad"); ?>" tabindex="4"></textarea>
 		</div>
 	</div>
 	
-	<div class="form-actions">
-	  <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment","bonestheme"); ?>" />
+	<div class="form-control">
+	  <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment","wheniwasbad"); ?>" />
 	  <?php comment_id_fields(); ?>
 	</div>
 	

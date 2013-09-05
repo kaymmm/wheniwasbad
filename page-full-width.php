@@ -26,7 +26,7 @@ Template Name: Full Width Page
 
 						<?php the_content(); ?>
 						
-						<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'bonestheme' ), 'after' => '</div>' ) ); ?>
+						<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
 					
 					</section> <!-- end article section -->
 											

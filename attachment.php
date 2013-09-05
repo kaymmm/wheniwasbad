@@ -33,9 +33,9 @@ get_header(); ?>
 				</header> <!-- end article header -->
 			
 				<section class="post_content clearfix" itemprop="articleBody">
-					<div class="row-fluid">
+					<div class="row">
 
-						<div class="span9">
+						<div class="col-md-9">
 
 							<div class="well">
 								<?php the_excerpt(); ?>
@@ -45,7 +45,7 @@ get_header(); ?>
 
 						</div>
 						
-						<div class="span3">
+						<div class="col-md-3">
 
 							<?php get_template_part('postmeta','attachment'); ?>
 
