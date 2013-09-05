@@ -1,4 +1,4 @@
-# Redux Options Framework v2.0.0 #
+# Redux Options Framework v3.0.0 [![Build Status](https://secure.travis-ci.org/ghost1227/Redux-Framework.png?branch=master)](http://travis-ci.org/ghost1227/Redux-Framework)
 
 Wordpress options framework which uses the [WordPress Settings API](http://codex.wordpress.org/Settings_API "WordPress Settings API"), Custom Error/Validation Handling, Custom Field/Validation Types, and import/export functionality.
 
@@ -26,7 +26,7 @@ I develop Redux (and my other projects) because I enjoy them, and almost exclusi
 
 ## Stay In The Loop! ##
 
-[![Follow us on Twitter](http://www.reduxframework.com/twitter.png "Follow us on Twitter")](https://www.twitter.com/ReduxFramework)
+[![Follow us on Twitter](http://iod.unh.edu/Images/Twitter_follow_us.png "Follow us on Twitter")](https://www.twitter.com/ReduxFramework)
 
 ## Getting Redux ##
 
@@ -41,7 +41,7 @@ Once you have downloaded the framework, upload the .zip file to the root of your
 
 ```bash
 $ cd my-project
-$ unzip Redux-Framework-master.zip -d admin
+$ unzip Redux-Framework-master.zip -d Redux-Framework
 ```
 
 ### Cloning the repository using git ###
@@ -49,13 +49,13 @@ $ unzip Redux-Framework-master.zip -d admin
 *Stable release*
 ```bash
 $ cd my-project
-$ git clone git://github.com/ghost1227/Redux-Framework/ -b stable admin
+$ git clone git://github.com/ghost1227/Redux-Framework/ -b stable
 ```
 
 *Dev release*
 ```bash
 $ cd my-project
-$ git clone git://github.com/ghost1227/Redux-Framework/ admin
+$ git clone git://github.com/ghost1227/Redux-Framework/
 ```
 
 ### Cloning the repository as a git submodule ###
@@ -63,24 +63,26 @@ $ git clone git://github.com/ghost1227/Redux-Framework/ admin
 *Stable release*
 ```bash
 $ cd my-project
-$ git submodule add git://github.com/ghost1227/Redux-Framework/ -b stable admin
+$ git submodule add git://github.com/ghost1227/Redux-Framework/ -b stable
 ```
 
 *Dev release*
 ```bash
 $ cd my-project
-$ git submodule add git://github.com/ghost1227/Redux-Framework/ admin
+$ git submodule add git://github.com/ghost1227/Redux-Framework/
 ```
 
 ## Setting up Redux ##
 
+Copy the included options.php file outside of the Redux folder (recommended).
+
 Include Redux in your theme ```functions.php``` or plugin as follows:
 
 ```php
-require_once('admin/options.php');
+require_once('path/to/copied/options.php');
 ```
 
-Edit ```admin/options.php``` as needed. You may want to create a backup of your ```admin/options.php``` file as it will be overwritten during future updates.
+Edit ```options.php``` as needed.
 
 ## FAQs ##
 
@@ -89,10 +91,6 @@ Edit ```admin/options.php``` as needed. You may want to create a backup of your 
  * Second, read [this](http://kovshenin.com/2013/get_template_part/).
 2. Why shouldn't we edit ```defaults.php```?
  * Because ```defaults.php``` is for *defaults*. Anything that is defined in ```defaults.php``` can be overridden in ```options.php```.
-
-## Who's using Redux? ##
-
-* [WPTube 2](http://wptube.jrwebstudio.com/)
 
 ## Are you using Redux? ##
 

@@ -1,5 +1,6 @@
 <?php
 if(!class_exists('Redux_Options') ){
+
     // Windows-proof constants: replace backward by forward slashes - thanks to: https://github.com/peterbouwmeester
     $fslashed_dir = trailingslashit(str_replace('\\','/', dirname(__FILE__)));
     $fslashed_abs = trailingslashit(str_replace('\\','/', ABSPATH));
@@ -190,13 +191,72 @@ if(!class_exists('Redux_Options') ){
          * @since Redux_Options 1.0.0
         */
         function _options_page() {
-                $this->page = add_theme_page(
+            if($this->args['page_type'] == 'submenu') {
+                $this->page = add_submenu_page(
+                    $this->args['page_parent'],
                     $this->args['page_title'], 
                     $this->args['menu_title'], 
                     $this->args['page_cap'], 
                     $this->args['page_slug'], 
                     array(&$this, '_options_page_html')
                 );
+            } else {
+                $this->page = add_menu_page(
+                    $this->args['page_title'], 
+                    $this->args['menu_title'], 
+                    $this->args['page_cap'], 
+                    $this->args['page_slug'], 
+                    array(&$this, '_options_page_html'),
+                    $this->args['menu_icon'],
+                    $this->args['page_position']
+                );
+                        
+                if(true === $this->args['allow_sub_menu']) {
+
+                    // This is needed to prevent the top level menu item from showing in the submenu
+                    add_submenu_page($this->args['page_slug'], $this->args['page_title'], '', $this->args['page_cap'], $this->args['page_slug'], create_function('$a', "return null;"));
+
+                    foreach($this->sections as $k => $section) {
+                        add_submenu_page(
+                            $this->args['page_slug'],
+                            $section['title'], 
+                            $section['title'], 
+                            $this->args['page_cap'], 
+                            $this->args['page_slug'].'&tab=' . $k, create_function('$a', "return null;")
+                        );
+                    }
+            
+                    if(true === $this->args['show_import_export']) {
+                        add_submenu_page(
+                            $this->args['page_slug'],
+                            __('Import / Export', Redux_TEXT_DOMAIN), 
+                            __('Import / Export', Redux_TEXT_DOMAIN), 
+                            $this->args['page_cap'], 
+                            $this->args['page_slug'] . '&tab=import_export_default', create_function('$a', "return null;")
+                        );
+                    }
+
+                    foreach($this->extra_tabs as $k => $tab) {
+                        add_submenu_page(
+                            $this->args['page_slug'],
+                            $tab['title'], 
+                            $tab['title'], 
+                            $this->args['page_cap'], 
+                            $this->args['page_slug'].'&tab=' . $k, create_function('$a', "return null;")
+                        );
+                    }
+
+                    if(true === $this->args['dev_mode']) {
+                        add_submenu_page(
+                            $this->args['page_slug'],
+                            __('Dev Mode Info', Redux_TEXT_DOMAIN), 
+                            __('Dev Mode Info', Redux_TEXT_DOMAIN), 
+                            $this->args['page_cap'], 
+                            $this->args['page_slug'] . '&tab=dev_mode_default', create_function('$a', "return null;")
+                        );
+                    }
+                }
+            }
 
             add_action('admin_print_styles-' . $this->page, array(&$this, '_enqueue'));
             add_action('load-' . $this->page, array(&$this, '_load_page'));
@@ -455,7 +515,7 @@ if(!class_exists('Redux_Options') ){
             }
 
             do_action('redux-opts-options-validate-' . $this->args['opt_name'], $plugin_options, $this->options);
-			
+
             unset($plugin_options['defaults']);
             unset($plugin_options['import']);
             unset($plugin_options['import_code']);
@@ -819,7 +879,7 @@ if(!class_exists('Redux_Options') ){
          * @since Redux_Options 1.0.0
         */    
         function _section_desc($section) {
-            $id = trim(rtrim($section['id'], '_section'), $this->args['opt_name']);
+            $id = substr($section['id'], strlen($this->args['opt_name']), -strlen('_section'));
 
             if(isset($this->sections[$id]['desc']) && !empty($this->sections[$id]['desc'])) {
                 echo '<div class="redux-opts-section-desc">' . $this->sections[$id]['desc'] . '</div>';
