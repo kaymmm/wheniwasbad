@@ -21,9 +21,11 @@
   font-size: 32px;
   font-weight: 400;
   font-family: @headings-font-family;
-  text-transform: lowercase;
   color: @navbar-default-brand-color;
   text-shadow: none;
+}
+body.admin-bar .navbar-fixed-top {
+	top: @adminbar-top-margin;
 }
 .navbar-fixed-bottom {
   bottom: 0;
@@ -46,6 +48,30 @@
     font-weight: normal;
 }
 
+/* custom scaffolding */
+.content-no-margin,
+.content {
+	margin-top: 0;
+}
+/*body.admin-bar .content {
+	margin-top: @adminbar-top-margin;
+}*/
+body.navbar-fixed-offset .content-no-margin {
+	margin-top: @navbar-height;
+}
+body.navbar-fixed-offset .content {
+	margin-top: (@navbar-height + @navbar-margin-bottom);
+}
+body.navbar-no-offset .content-no-margin {
+	margin-top: (-@navbar-margin-bottom);
+}
+/*body.admin-bar.navbar-fixed-offset .content {
+	margin-top: @navbar-height;// + @navbar-margin-bottom);@adminbar-top-margin);
+}*/
+
+#main {
+	margin-top: 30px;
+}
 
 
 /* custom pagination */
@@ -125,7 +151,7 @@
 } 
 
 
-/* custom type */
+/* custom type
 body {
 	-ms-word-wrap: break-word;
 	word-wrap: break-word;
@@ -144,7 +170,7 @@ blockquote {
     color: @asbestos;
 	text-align: right;
   }
-  /* make cite mirror small */
+  // make cite mirror small
   cite {
     display: block;
     line-height: @line-height-base;
@@ -168,9 +194,9 @@ cite   { font-size: 85%; }
   font-weight: 200;
   line-height: @line-height-base * 1.2;
 }
+*/
 
-
-/* custom classes */
+/* custom classes
 .entry-meta, #tag-cloud {
 	margin: (@line-height-base / 3) 0;
 	
@@ -226,8 +252,9 @@ cite   { font-size: 85%; }
 		color: @asbestos;
 	}
 }
+*/
 
-/* layout */
+/* layout
 body.admin-bar.navbar-fixed-offset {
 	padding-top: 80px;
 }
@@ -259,11 +286,13 @@ body.navbar-no-offset {
 	max-width: 100%;
 	height: auto;
 }
+*/
 
-/* Link posts */
+/* Link posts 
 article.format-link .icon-external-link {
 	font-size: @font-size-base;
 }
+*/
 
 /* Post Images */
 
@@ -421,35 +450,7 @@ color: @wetasphalt;
 }
 
 
-/* misc. things that still need to be cleaned up
-TODO: clean up and double check that these styles are necessary */
-/* micro clearfix: http://nicolasgallagher.com/micro-clearfix-hack/ */
-/* For modern browsers */
-.clearfix:before,
-.clearfix:after {
-    content:"";
-    display:table;
-}
-
-.clearfix:after {
-    clear:both;
-}
-
-/* For IE 6/7 (trigger hasLayout) */
-.clearfix {
-    zoom:1;
-}
-
-
-/* Admin Top Navigation fixes */
-
-body.admin-bar .navbar-fixed-top { 
-	top: 28px; 
-}
-
-
 /* Shared Post Format styling */
-
 
 .post header img{
 	margin-bottom: 18px;
