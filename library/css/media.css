@@ -1,7 +1,6 @@
 .media,
 .media-body {
   overflow: hidden;
-  *overflow: visible;
   zoom: 1;
 }
 .media,
@@ -24,6 +23,6 @@
   margin-left: 10px;
 }
 .media-list {
-  margin-left: 0;
+  padding-left: 0;
   list-style: none;
 }

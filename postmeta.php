@@ -76,9 +76,9 @@ switch ($post_format) {
 		<p><i class="icon-calendar-empty"></i> <time datetime="<?php the_time(DATE_W3C); ?>" ><?php the_time(get_option('date_format')); ?></time></p>
 	<?php endif; ?>
 		<p><i class="icon-bookmark"></i> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark">Permalink</a>
-		<?php edit_post_link( __( 'Edit', 'bonestheme' ), ' &nbsp;&bull;&nbsp; ', '' ); ?></p>
+		<?php edit_post_link( __( 'Edit', 'wheniwasbad' ), ' &nbsp;&bull;&nbsp; ', '' ); ?></p>
 	<?php if ( comments_open() && get_comments_number() ) : ?>
-		<p><i class="icon-comment"></i> <?php comments_popup_link( __("Leave a comment","bonestheme"), __( "One Comment", "bonestheme"), __( "% Comments", "bonestheme" ) ); ?></p>
+		<p><i class="icon-comment"></i> <?php comments_popup_link( __("Leave a comment","wheniwasbad"), __( "One Comment", "wheniwasbad"), __( "% Comments", "wheniwasbad" ) ); ?></p>
 	<?php endif; // comments_open() ?>
 	<?php if ( ! is_page() && ! is_attachment() ) : ?>
 		<p><i class="icon-folder-close"></i> <span class="muted"> <?php the_category(", "); ?></span></p>
@@ -91,7 +91,7 @@ switch ($post_format) {
 				<a href="<?php echo $tag_link; ?>" title="<?php echo $tag->name; ?> Tag" class="label"><?php echo $tag->name; ?></a>
 			<?php endforeach;
 		else :
-			_e("Not Tagged","bonestheme");
+			_e("Not Tagged","wheniwasbad");
 		endif; ?>
 		</p>
 	<?php endif; ?>

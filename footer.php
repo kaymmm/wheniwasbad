@@ -2,7 +2,7 @@
 	
 			<div id="inner-footer" class="container clearfix">
 
-	          <div id="widget-footer" class="row-fluid clearfix">
+	          <div id="widget-footer" class="row clearfix">
 
 	            <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer1') ) : ?>
 	            <?php endif; ?>
@@ -15,7 +15,7 @@
 			<?php $options = get_option('wheniwasbad'); ?>
 			<?php if ($options['show_footer_menu'] ) : ?>				
 				<nav class="clearfix">
-					<?php bones_footer_links(); ?>
+					<?php footer_links(); ?>
 				</nav>
 			<?php endif; ?>
 		

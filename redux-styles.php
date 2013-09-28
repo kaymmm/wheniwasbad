@@ -53,7 +53,7 @@
       $use_gradient = $options['showhidden_gradient'];
       if ( $topbar_bg_color && !$use_gradient ) {
         $theme_options_styles .= '
-		.navbar-inner, .navbar .fill {
+		.navbar .fill {
 			background-color: '. $topbar_bg_color . ';
 			background-image: none;
 		}';
@@ -63,7 +63,7 @@
         $topbar_bottom_gradient_color = $options['top_nav_bottom_gradient_color'];
 
         $theme_options_styles .= '
-		.navbar-inner, .navbar .fill {
+		.navbar .fill {
 			background-image: -khtml-gradient(linear, left top, left bottom, from(' . $topbar_bg_color . '), to('. $topbar_bottom_gradient_color . '));
 			background-image: -moz-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
 			background-image: -ms-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
@@ -126,11 +126,11 @@
         ';
       }
 
-      $hero_unit_bg_color = $options['hero_unit_bg_color'];
-      if ( $hero_unit_bg_color ) {
+      $jumbotron_bg_color = $options['jumbotron_bg_color'];
+      if ( $jumbotron_bg_color ) {
         $theme_options_styles .= '
-        .hero-unit {
-          background-color: '. $hero_unit_bg_color . ';
+        .jumbotron {
+          background-color: '. $jumbotron_bg_color . ';
         }';
       }
 /*

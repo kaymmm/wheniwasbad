@@ -1,6 +1,3 @@
-<?php
-header('X-UA-Compatible: IE=edge,chrome=1');
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -37,72 +34,73 @@ header('X-UA-Compatible: IE=edge,chrome=1');
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
 		<!-- WordPress head functions -->
-	<?php wp_head(); ?></head>
+		<?php wp_head(); ?>
+	</head>
 	
 	<?php
 	$nav_position = $options['nav_position'];
+	$navbar_style = $options['nav_style'];
+	
+	$navheader_class='navbar-default ';
+	
+	if ($navbar_style_inverted)
+		$navheader_class = 'navbar-inverted ';
+	
 	switch ($nav_position) {
 		case 'fixed':
-			$navbar_class = 'navbar-fixed-top';
+			$navheader_class .= 'navbar-fixed-top';
 			$body_style = 'navbar-fixed-offset';
 			break;
 		case 'fixed-bottom':
-			$navbar_class = 'navbar-fixed-bottom';
+			$navheader_class .= 'navbar-fixed-bottom';
 			$body_style = 'navbar-no-offset';
 			break;
 		case 'scroll':
 		default: 
-			$navbar_class = 'navbar-static-top';
+			$navheader_class .= 'navbar-static-top';
 			$body_style = 'navbar-no-offset';
 	}
 	?>
 		
 	<body <?php body_class($body_style); ?>>
 				
-		<header role="banner">
-		
-			<div id="inner-header" class="clearfix">
-			
-				<div class="navbar <?php echo $navbar_class; ?>">
-					<div class="navbar-inner">
-<!--						<div class="container-fluid nav-container"> -->
-							<nav role="navigation">
-								<a class="brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
-									<?php if($options['branding_logo']!='') { ?>
-										<img src="<?php echo $options['branding_logo']; ?>" alt="<?php echo get_bloginfo('description'); ?>">
-										<?php }
-										if($options['site_name']) bloginfo('name'); ?></a>
-								
-								<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-							        <span class="icon-bar"></span>
-							        <span class="icon-bar"></span>
-							        <span class="icon-bar"></span>
-								</a>
-								<?php $nav_align = $options['nav_alignment']; ?>
-								<?php if ($nav_align=='left') : ?>
-									<div class="nav-collapse pull-left">
-										<?php bones_main_nav(); ?>
-									</div>
-								<?php endif; ?>
-
-								<?php if($options['search_bar']) : ?>
-								<form class="navbar-search pull-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
-									<input name="s" id="s" type="text" class="search-query" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" >
-								</form>
-								<?php endif; ?>
-									
-								<?php if ($nav_align=='right') : ?>
-									<div class="nav-collapse pull-right">
-										<?php bones_main_nav(); ?>
-									</div>
-								<?php endif; ?>
-								
-							</nav>
-							
-						<!--</div>  end .nav-container -->
-					</div> <!-- end .navbar-inner -->
-				</div> <!-- end .navbar -->
-			
-			</div> <!-- end #inner-header -->
-		
+		<header class="navbar <?php echo $navheader_class; ?>" role="banner">
+			<div class="container">
+				
+				<div class="navbar-header">
+				    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+				      <span class="sr-only">Toggle navigation</span>
+				      <span class="icon-bar"></span>
+				      <span class="icon-bar"></span>
+				      <span class="icon-bar"></span>
+				    </button>
+					<a class="navbar-brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
+					<?php if($options['branding_logo']['url']) { ?>
+						<img src="<?php echo $options['branding_logo']['url']; ?>" alt="<?php echo get_bloginfo('description'); ?>">
+					<?php }
+						if($options['site_name']) bloginfo('name'); ?>
+					</a>
+				</div> <!-- navbar-header -->
+				
+				<?php $nav_align = $options['nav_alignment']; ?>
+				
+				<?php if ($nav_align=='left') : ?>
+				<nav class="collapse navbar-collapse pull-left navbar-main-collapse" role="navigation">
+					<?php main_nav(); ?>
+				</nav>
+				<?php endif; ?>
+				
+				<?php if($options['search_bar']) : ?>
+				<form class="navbar-search pull-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
+					<input name="s" id="s" type="text" class="search-query" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" >
+				</form>
+				<?php endif; ?>
+					
+				<?php if ($nav_align=='right') : ?>
+					<nav class="collapse navbar-collapse pull-right navbar-main-collapse" role="navigation">
+						<?php main_nav(); ?>
+					</nav>
+				<?php endif; ?>
+					
+			</div> <!-- end container -->		
 		</header> <!-- end header -->

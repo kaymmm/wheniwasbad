@@ -5,10 +5,10 @@ function not_found($content_type) { ?>
 	
 		<header>
 
-			<div class="hero-unit">
+			<div class="jumbotron">
 		
-				<h1><?php _e("Oops!","bonestheme"); ?></h1>
-				<p><?php _e("This is embarassing. We can't find what you were looking for.","bonestheme"); ?></p>
+				<h1><?php _e("Oops!","wheniwasbad"); ?></h1>
+				<p><?php _e("This is embarassing. We can't find what you were looking for.","wheniwasbad"); ?></p>
 										
 			</div>
 								
@@ -19,19 +19,19 @@ function not_found($content_type) { ?>
 			<?php
 			switch($content_type) {
 				case 'day':
-					_e("We could not locate any posts published on ","bonestheme");
+					_e("We could not locate any posts published on ","wheniwasbad");
 					_e(the_time('l, F j, Y').".");
 					break;
 				case 'month':
-					_e("We could not locate any posts published in ","bonestheme");
+					_e("We could not locate any posts published in ","wheniwasbad");
 					_e(the_time('F, Y').".");
 					break;
 				case 'year':
-					_e("We could not locate any posts published in ","bonestheme");
+					_e("We could not locate any posts published in ","wheniwasbad");
 					_e(the_time('Y').".");
 					break;
 				case 'author':
-					_e("We could not locate any posts written by ","bonestheme");
+					_e("We could not locate any posts written by ","wheniwasbad");
 					$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
 					$google_profile = get_the_author_meta( 'google_profile', $curauth->ID );
 					if ( $google_profile ) {
@@ -41,22 +41,22 @@ function not_found($content_type) { ?>
 					}
 					break;
 				case 'category':
-					_e("We could not locate any posts filed under '","bonestheme");
+					_e("We could not locate any posts filed under '","wheniwasbad");
 					_e(single_cat_title()."'.");
 					break;
 				case 'tag':
-					_e("We could not locate any posts tagged with '","bonestheme");
+					_e("We could not locate any posts tagged with '","wheniwasbad");
 					_e(single_tag_title()."'.");
 					break;
 				default:
-					_e("Sorry, whatever you were looking for was not found.","bonestheme");
+					_e("Sorry, whatever you were looking for was not found.","wheniwasbad");
 			}
 			?>
 		
-			<p><?php _e("Try searching the site using the form below.","bonestheme"); ?></p>
+			<p><?php _e("Try searching the site using the form below.","wheniwasbad"); ?></p>
 
-			<div class="row-fluid">
-				<div class="span12">
+			<div class="row">
+				<div class="col-md-12">
 					<?php get_search_form(); ?>
 				</div>
 			</div>

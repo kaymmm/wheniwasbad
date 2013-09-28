@@ -28,16 +28,16 @@
 			
 		</header> <!-- page header -->
 			
-		<div id="wrapper" class="row-fluid clearfix">
+		<div id="wrapper" class="row clearfix">
 				
-			<div class="span3">	
+			<div class="col-md-3">	
 			
 				<? // replace this with the user's profile?! ?>
 				<?php get_sidebar(); // sidebar 1 ?>
 			
 			</div>
 			
-			<div id="main" role="main" class="span9">
+			<div id="main" role="main" class="col-md-9">
 				
 				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#posts">Posts</a></li>
@@ -65,8 +65,8 @@
 						<?php else : // if it is disabled, display regular wp prev & next links ?>
 							<nav class="wp-prev-next pagenavi">
 								<ul class="clearfix">
-									<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "bonestheme")) ?></li>
-									<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "bonestheme")) ?></li>
+									<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
+									<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
 								</ul>
 							</nav>
 						<?php endif; ?>
@@ -77,8 +77,8 @@
 						$args = array('user_id' => $curauth->ID, 'status' => 'approve');
 						$comments = get_comments($args);
 						foreach($comments as $comment) : ?>
-					 	<div class="row-fluid">
-							<div class="span9">
+					 	<div class="row">
+							<div class="col-md-9">
 								<header class="entry-header">
 									<h3><a href="<?php echo get_permalink($comment->comment_post_ID); ?>" title="On: '<?php echo get_the_title($comment->comment_post_ID); ?>'" rel="bookmark">On "<?php echo get_the_title($comment->comment_post_ID); ?>"</a></h3>
 								</header>
@@ -86,13 +86,13 @@
 									<?php echo($comment->comment_content); ?>
 								</section>
 							</div>
-							<div class="span3">
+							<div class="col-md-3">
 								<aside class="entry-meta muted<?php echo $extra_classes; ?>">
 									<?php $original_post = get_post($comment->comment_post_ID); ?>
 									<p><i class="icon-pencil"></i> Original post by <a href="<?php echo get_author_posts_url($original_post->post_author); ?>" title="Author page for <?php echo get_the_author_meta('display_name', $original_post->post_author); ?>"><?php echo get_the_author_meta('display_name', $original_post->post_author); ?></a></p>
 									<p><i class="icon-calendar-empty"></i> <time datetime="<?php echo get_comment_date(DATE_W3C,$comment->comment_ID); ?>" ><?php echo get_comment_date(get_option('date_format'),$comment->comment_ID); ?></time></p>
 									<p><i class="icon-bookmark"></i> <a href="<?php echo get_permalink($comment->comment_post_ID); ?>" title="On: '<?php echo get_the_title($comment->comment_post_ID); ?>'" rel="bookmark">Permalink</a>
-									<?php edit_comment_link( __( 'Edit', 'bonestheme' ), ' &nbsp;&bull;&nbsp; ', '' ); ?></p>
+									<?php edit_comment_link( __( 'Edit', 'wheniwasbad' ), ' &nbsp;&bull;&nbsp; ', '' ); ?></p>
 								</aside>
 			 				</div>
 						</div>
@@ -107,7 +107,7 @@
 						
 					</div>
 				-->
-			</div><!-- span9 articles -->
+			</div><!-- col-md-9 articles -->
 
 		</div><!-- #main -->
 		
