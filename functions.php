@@ -408,153 +408,6 @@ function cmb_add_metaboxes( array $meta_boxes ) {
 }
 add_filter( 'cmb_meta_boxes', 'cmb_add_metaboxes' );
 
-/******** Homepage Template ********/
-/*
-// Add the Meta Box to the homepage template
-function add_jumbotron_meta_box() {  
-	global $post;
-
-	$prefix = 'custom_';  
-	$custom_meta_fields = array(  
-	    array(  
-	        'label'=> 'Jumbotron Contents',  
-	        'desc'  => 'Displayed in place of a page title. Only used on homepage and jumbotron templates. HTML can be used.',  
-	        'id'    => 'jumbotron_contents',  
-	        'type'  => 'textarea' 
-	    )  
-	);
-
-	$post_id = $post->ID;
-	$template_file = get_post_meta($post_id,'_wp_page_template',TRUE);
-
-	if ( $template_file == 'page-homepage.php' || $template_file == 'page-jumbotron.php' ){
-	    add_meta_box(  
-	        'jumbotron_meta_box', // $id  
-	        'Jumbotron Contents', // $title  
-	        'wiwb_show_meta_box', // $callback  
-	        'page', // $page  
-	        'normal', // $context  
-	        'high', // $priority
-			$custom_meta_fields ); // $callback_args
-    }
-}
-add_action( 'add_meta_boxes', 'add_jumbotron_meta_box' );
-
-function add_sidebar_options_meta_box() {  
-	global $post;
-
-	$post_id = $post->ID;
-	$template_file = get_post_meta($post_id,'_wp_page_template',TRUE);
-	foreach($GLOBALS['wp_registered_sidebars'] as $key => $val) {
-		$sidebar_list[$key] = $val['name'];
-	}
-	$sidebar_options_meta_fields = array(  
-	    array(  
-	        'label'=> 'Sidebar Position',  
-	        'desc'  => 'Select the visibility and position of sidebars for this page.',  
-	        'id'    => 'sidebar_position',
-	        'type'  => 'select',
-			'options' => array('none'=>'No Sidebar','left'=>'Left Sidebar', 'right'=>'Right Sidebar')
-	    ),
-	    array(  
-	        'label'=> 'Widget Group',  
-	        'desc'  => 'Select a widget group to display in the sidebar on this page.',  
-	        'id'    => 'sidebar_widgets',
-	        'type'  => 'select',
-			'options' => $sidebar_list
-	    )
-	);
-	$haystack = array('page-homepage.php','page-jumbotron.php','page.php');
-	if ( in_array($template_file,$haystack ) ) {
-	    add_meta_box(
-	        'sidebar_options_meta_box', // $id  
-	        'Widget Sidebar', // $title  
-	        'wiwb_show_meta_box', // $callback
-	        'page', // $page  
-	        'normal', // $context  
-	        'default', // $priority
-			$sidebar_options_meta_fields); // $callback_args  
-    }
-}
-add_action( 'add_meta_boxes', 'add_sidebar_options_meta_box' );
-
-// The Meta Box Callback  
-function wiwb_show_meta_box($post, $metabox) {  
-  //global $post;
-  // Use nonce for verification
-  wp_nonce_field( basename( __FILE__ ), 'wpbs_nonce' );
-    
-  // Begin the field table and loop
-  echo '<table class="form-table">';
-
-  $custom_meta_fields = $metabox['args'];
-
-  foreach ( $custom_meta_fields as $field ) {
-      // get value of this field if it exists for this post  
-      $meta = get_post_meta($post->ID, $field['id'], true);  
-      // begin a table row with  
-      echo '<tr> 
-              <th><label for="'.$field['id'].'"><strong>'.$field['label'].'</strong></label><br /><span class="description">'.$field['desc'].'</span></th> 
-              <td>';  
-              switch($field['type']) {  
-                  // select  
-				  case 'select':
-				  $options = $field['options'];
-				  echo '<select name="'.$field['id'].'" id="'.$field['id'].'" />';
-				  foreach ($options as $key => $val) {
-					  $selected = ($meta == $key) ? ' selected' : '';
-					  echo '<option value="'.$key.'"'.$selected.'>'.$val.'</option>';
-				  }
-				  echo '</select>';
-				  break;
-				  // text
-                  case 'text':  
-                      echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />';  
-                  break;
-                  
-                  // textarea  
-                  case 'textarea':  
-                      echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="80" rows="4">'.$meta.'</textarea>';  
-                  break;  
-              } //end switch  
-      echo '</td></tr>';  
-  } // end foreach  
-  echo '</table>'; // end table  
-}  
-
-// Save the Post Meta Data  
-function wiwb_save_post_meta( $post_id ) {    
-  
-    // verify nonce  
-    if ( !isset( $_POST['wpbs_nonce'] ) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)) )  
-        return $post_id;
-
-    // check autosave
-    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
-        return $post_id;
-
-    // check permissions
-    if ( 'page' == $_POST['post_type'] ) {
-        if ( !current_user_can( 'edit_page', $post_id ) )
-            return $post_id;
-        } elseif ( !current_user_can( 'edit_post', $post_id ) ) {
-            return $post_id;
-    }
-  
-    // loop through fields and save the data  
-    foreach ( $custom_meta_fields as $field ) {
-        $old = get_post_meta( $post_id, $field['id'], true );
-        $new = $_POST[$field['id']];
-
-        if ($new && $new != $old) {
-            update_post_meta( $post_id, $field['id'], $new );
-        } elseif ( '' == $new && $old ) {
-            delete_post_meta( $post_id, $field['id'], $old );
-        }
-    } // end foreach
-}
-add_action( 'save_post', 'wiwb_save_post_meta' );
-*/
 
 /******* Misc. Filters *********/
 
@@ -565,18 +418,6 @@ function add_class_attachment_link( $html ) {
     return $html;
 }
 add_filter( 'wp_get_attachment_link', 'add_class_attachment_link', 10, 1 );
-
-// Add lead class to first paragraph
-function first_paragraph( $content ){
-    global $post;
-
-    // if we're on the homepage, don't add the lead class to the first paragraph of text
-    if( is_page_template( 'page-homepage.php' ) )
-        return $content;
-    else
-        return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead">', $content, 1);
-}
-add_filter( 'the_content', 'first_paragraph' );
 
 // Filter post title for tumblr-style "link" post format
 function sd_link_filter($link, $post) {
@@ -609,19 +450,15 @@ function add_active_class($classes, $item) {
 // enqueue styles
 if( !function_exists("theme_styles") ) {  
     function theme_styles() { 
-        // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
 		if (!is_admin()){
-        wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap-themed.css', array(), '2.3.2', 'all' );
-        wp_register_style( 'bootstrap-docs', get_template_directory_uri() . '/library/css/docs.css', array(), '2.3.2', 'all' );
-		wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css', array(), '3.1.1', 'all' );
-		wp_register_style( 'font-awesome-ie7', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome-ie7.min.css', array(), '3.1.1', 'all' );			
+        wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap-themed.css', array(), '3.0.0', 'all' );
+        wp_register_style( 'bootstrap-docs', get_template_directory_uri() . '/library/bootstrap/docs-assets/css/docs.css', array(), '3.0.0', 'all' );
+		wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css', array(), '3.2.1', 'all' );
         wp_register_style( 'theme-base', get_stylesheet_uri(), array(), '1.0', 'all' );
         
         wp_enqueue_style( 'bootstrap' );
-        wp_enqueue_style( 'bootstrap-responsive' );
         wp_enqueue_style( 'bootstrap-docs' );
 		wp_enqueue_style( 'font-awesome' );
-		wp_enqueue_style( 'font-awesome-ie7' );
         wp_enqueue_style( 'theme-base');
 		}
     }
@@ -635,45 +472,17 @@ add_action( 'wp_head', function() {
 if( !function_exists( "theme_js" ) ) {  
   function theme_js(){
 	  if (!is_admin()) {
-		  /*
-	wp_register_script( 'bootstrap-transition', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-transition.js', array('jquery'), '2.3.2', true );
-    wp_register_script( 'bootstrap-affix', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-affix.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-alert', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-alert.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-button', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-button.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-carousel', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-carousel.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-collapse', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-collapse.js', array('jquery','bootstrap-transition'), '2.3.2', true );
-	wp_register_script( 'bootstrap-dropdown', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-dropdown.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-modal', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-modal.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-tooltip', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-tooltip.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-popover', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-popover.js', array('jquery','bootstrap-transition','bootstrap-tooltip'), '2.3.2', true );
-	wp_register_script( 'bootstrap-scrollspy', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-scrollspy.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-tab', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-tab.js', array('jquery'), '2.3.2', true );
-	wp_register_script( 'bootstrap-typeahead', get_template_directory_uri() . '/library/bootstrap/js/bootstrap-typeahead.js', array('jquery'), '2.3.2', true );
-
-	wp_enqueue_script('bootstrap-transition');
-    wp_enqueue_script('bootstrap-affix');
-	wp_enqueue_script('bootstrap-alert');
-	wp_enqueue_script('bootstrap-button');
-	wp_enqueue_script('bootstrap-collapse');
-	wp_enqueue_script('bootstrap-dropdown');
-	wp_enqueue_script('bootstrap-modal');
-	wp_enqueue_script('bootstrap-tooltip');
-	wp_enqueue_script('bootstrap-popover');
-	wp_enqueue_script('bootstrap-scrollspy');
-	wp_enqueue_script('bootstrap-tab'); */
-//	wp_enqueue_script('bootstrap-typeahead'); //disabled since it's not used
-
 	  //use CDN for loading Bootstrap
-	wp_register_script('bootstrap', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js', array('jquery'), '2.3.1', true);
-	wp_enqueue_script('bootstrap');
+		wp_register_script('bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js', array('jquery'), '3.0.0', true);
+		wp_enqueue_script('bootstrap');
 
-    wp_register_script( 'wpbs-bones-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
-    wp_register_script( 'bones-modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
-	// only enqueue the following script when needed, but register it so that it's available.
-	wp_register_script( 'bs-tooltips',get_template_directory_uri() . '/library/js/bs-tooltips.js',array('jquery','bootstrap'),'1.1', true );
+	    wp_register_script( 'wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
+	    wp_register_script( 'modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
+		// only enqueue the following script when needed, but register it so that it's available.
+		wp_register_script( 'bs-tooltips',get_template_directory_uri() . '/library/js/bs-tooltips.js',array('jquery','bootstrap'),'1.1', true );
 	
-	wp_enqueue_script('wpbs-bones-scripts');
-    wp_enqueue_script('bones-modernizr');
+		wp_enqueue_script('wpbs-scripts');
+	    wp_enqueue_script('modernizr');
 	}
   }
 }

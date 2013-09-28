@@ -1,4 +1,22 @@
 <?php get_header(); ?>
+
+<?php 
+	if (empty($options)) $options = get_option('wheniwasbad');
+	$hide_widgets = $options['hide_widgets'];
+	$sidebar_position = $options['blog_sidebar_position'];
+	if ( is_active_sidebar($sidebar_widgets) && ! $hide_widgets ) {
+		if ( $sidebar_position == 'left' ) {
+			$main_class = "col-md-9 col-md-push-3";
+			$sidebar_class = "col-md-3 col-md-pull-9";
+		} elseif ( $sidebar_position == 'right' ) {
+			$main_class = "col-md-9";
+			$sidebar_class = "col-md-3";
+		}
+	} else {
+		$main_class = "col-md-12";
+		$sidebar_class = "";
+	}		
+?>
 			
 	<div id="content" class="container clearfix">
 

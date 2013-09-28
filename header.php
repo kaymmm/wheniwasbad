@@ -34,7 +34,8 @@
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
 		<!-- WordPress head functions -->
-	<?php wp_head(); ?></head>
+		<?php wp_head(); ?>
+	</head>
 	
 	<?php
 	$nav_position = $options['nav_position'];

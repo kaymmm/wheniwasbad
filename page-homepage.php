@@ -1,142 +1,151 @@
-<?php
+<?php 
 /*
 Template Name: Homepage
 */
 ?>
 
 <?php get_header(); ?>
+
+<div id="content" class="content-no-margin clearfix">
 			
-	<?php
-	$options = get_option('wheniwasbad');
+<?php
+	if (empty($options)) $options = get_option('wheniwasbad');
 	$use_carousel = $options['showhidden_slideroptions'];
-	if ($use_carousel) :
+	if ($use_carousel) : ?>
+		
+		<div id="myCarousel" class="carousel">
 
+		    <!-- Carousel items -->
+		    <div class="carousel-inner">
+
+		    	<?php
+				global $post;
+				$tmp_post = $post;
+				$show_posts = $options['slider_options'];
+				$args = array( 'numberposts' => $show_posts ); // set this to how many posts you want in the carousel
+				$myposts = get_posts( $args );
+				$post_num = 0;
+				foreach( $myposts as $post ) :	setup_postdata($post);
+					$post_num++;
+					$post_thumbnail_id = get_post_thumbnail_id();
+					$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-carousel' );
+				?>
+
+			    <div class="<?php if($post_num == 1){ echo 'active'; } ?> item">
+			    	<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail( 'wpbs-featured-carousel' ); ?></a>
+
+				   	<div class="carousel-caption">
+
+		                <h4><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h4>
+		                <p>
+		                	<?php
+		                		$excerpt_length = 100; // length of excerpt to show (in characters)
+		                		$the_excerpt = get_the_excerpt(); 
+		                		if($the_excerpt != ""){
+		                			$the_excerpt = substr( $the_excerpt, 0, $excerpt_length );
+		                			echo $the_excerpt . '... ';
+		                	?>
+		                	<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" class="btn btn-primary">Read more &rsaquo;</a>
+		                	<?php } ?>
+		                </p>
+
+	                </div>
+			    </div>
+
+			    <?php endforeach; ?>
+				<?php $post = $tmp_post; ?>
+
+			    </div>
+
+			    <!-- Carousel nav -->
+			    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		    </div>
+		
+		</div> <!-- container for carousel -->
+
+<?php endif; // end carousel ?>
+
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		
+	<?php 
+		$post_thumbnail_id = get_post_thumbnail_id();
+		$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
+		$jumbotron_contents = get_post_meta($post->ID, 'jumbotron_contents' , true);
+
+		$sidebar_position = get_post_meta($post->ID, 'sidebar_position' , true);
+		$sidebar_widgets = get_post_meta($post->ID, 'sidebar_widgets' , true);
+		$hide_widgets = $options['hide_widgets'];
+		if ( is_active_sidebar($sidebar_widgets) && ! $hide_widgets ) {
+			if ( $sidebar_position == 'left' ) {
+				$main_class = "col-md-9 col-md-push-3";
+				$sidebar_class = "col-md-3 col-md-pull-9";
+			} elseif ( $sidebar_position == 'right' ) {
+				$main_class = "col-md-9 col-md-pull-3";
+				$sidebar_class = "col-md-3 col-md-push-9";
+			}
+		} else {
+			$main_class = "col-md-12";
+			$sidebar_class = "";
+		}
+		
 	?>
+	
+	<?php if ($jumbotron_contents != ''): ?>
+	
+		<div class="jumbotron" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
+	
+			<?php echo $jumbotron_contents;?>
 
-	<div id="myCarousel" class="carousel">
+		</div>
 
-	    <!-- Carousel items -->
-	    <div class="carousel-inner">
-
-	    	<?php
-			global $post;
-			$tmp_post = $post;
-			$show_posts = $options['slider_options'];
-			$args = array( 'numberposts' => $show_posts ); // set this to how many posts you want in the carousel
-			$myposts = get_posts( $args );
-			$post_num = 0;
-			foreach( $myposts as $post ) :	setup_postdata($post);
-				$post_num++;
-				$post_thumbnail_id = get_post_thumbnail_id();
-				$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-carousel' );
-			?>
-
-		    <div class="<?php if($post_num == 1){ echo 'active'; } ?> item">
-		    	<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail( 'wpbs-featured-carousel' ); ?></a>
-
-			   	<div class="carousel-caption">
-
-	                <h4><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h4>
-	                <p>
-	                	<?php
-	                		$excerpt_length = 100; // length of excerpt to show (in characters)
-	                		$the_excerpt = get_the_excerpt(); 
-	                		if($the_excerpt != ""){
-	                			$the_excerpt = substr( $the_excerpt, 0, $excerpt_length );
-	                			echo $the_excerpt . '... ';
-	                	?>
-	                	<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" class="btn btn-primary">Read more &rsaquo;</a>
-	                	<?php } ?>
-	                </p>
-
-                </div>
-		    </div>
-
-		    <?php endforeach; ?>
-			<?php $post = $tmp_post; ?>
-
-		    </div>
-
-		    <!-- Carousel nav -->
-		    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-		    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-	    </div>
+	<?php else: ?>
+		<div class="container clearfix">
+			<header class="page-header">
+			
+				<h1><?php single_post_title(); ?></h1>
+			
+				<?php get_template_part('postmeta-horizontal'); ?>
 		
-	</div> <!-- container for carousel -->
+			</header> <!-- end page header -->
 
-	<?php endif; // ends the if use carousel statement ?>
+		</div>
 
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			
-		<header>
-
-			<?php 
-				$post_thumbnail_id = get_post_thumbnail_id();
-				$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
-			?>
-			
-			<div class="jumbotron" style="background-image: url('<?php echo $featured_src[0]; ?>'); background-repeat: no-repeat; background-position: 0 0;">
-
-				<h1><?php the_title(); ?></h1>
-				
-				<?php echo get_post_meta($post->ID, 'custom_tagline' , true);?>
-			
-			</div>
-
-		</header>
+	<?php endif;?>
+	
+	<div class="container clearfix">
 		
-		<div id="content" class="clearfix">
+		<div class="row clearfix">
+	
+			<section id="main" class="<?php echo $content_class; ?> clearfix" role="main">
+		
+				<?php get_template_part( 'content' ); ?>
 				
-			<div id="main" class="container clearfix" role="main">
-
-				<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
-						
-					<section class="row post_content">
-					
-					<?php if (is_active_sidebar('sidebar2')) { ?>
-					
-						<div class="col-md-3">
-							<?php get_sidebar('sidebar2'); // sidebar 2 ?>
-						</div>
-						
-						<div class="col-md-9">
-							
-							<?php the_content(); ?>
-							
-						</div>
-					
-					<?php } else { ?>
-							
-						<div class="col-md-12">
-							
-							<?php the_content(); ?>
-							
-						</div>
-
-						<?php } ?>
-												
-					</section> <!-- end article header -->
-
-					<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
-					
-				</article> <!-- end article -->
-					
-			<?php endwhile; ?>	
-			<?php else : ?>
-					
-				<article id="post-not-found">
-				    <header>
-				    	<h1><?php _e("Not Found", "wheniwasbad"); ?></h1>
-					</header>
-					<section class="post_content">
-						<p><?php _e("Sorry, but the requested resource was not found on this site.", "wheniwasbad"); ?></p>
-					</section>
-				</article>
-					
-			<?php endif; ?>
+				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
 			
-		</div> <!-- end #main -->
-    
-	</div> <!-- end #content -->
+			</section> <!-- end main -->
+			
+			<?php if ($sidebar_class != ''): ?>
+		
+				<section class="<?php echo $sidebar_class; ?> clearfix">
+		
+					<?php get_sidebar('sidebar2'); // sidebar 2 ?>
+		
+				</section>
+		
+			<?php endif; ?>					
+			
+		</div> <!-- row -->
+	</div> <!-- container -->
+				
+<?php endwhile; ?>
+
+<?php else : ?>
+		
+	<?php not_found(); ?>				
+	
+<?php endif; ?>
+			    
+</div> <!-- end #content -->
 
 <?php get_footer(); ?>
