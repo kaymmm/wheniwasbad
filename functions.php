@@ -10,6 +10,9 @@ Modified: 20130905
 // require_once('library/translation/translation.php'); // this comes turned off by default
 
 // Redux Options
+if(!class_exists('ReduxFramework')){
+    require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
+}
 require_once('redux-options.php');
 
 // Shortcodes

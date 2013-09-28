@@ -49,25 +49,29 @@ body.admin-bar .navbar-fixed-top {
 }
 
 /* custom scaffolding */
-.content-no-margin,
-.content {
+#content.content-no-margin {
 	margin-top: 0;
 }
-/*body.admin-bar .content {
+/*body.admin-bar #content {
 	margin-top: @adminbar-top-margin;
 }*/
-body.navbar-fixed-offset .content-no-margin {
-	margin-top: @navbar-height;
-}
-body.navbar-fixed-offset .content {
+/*
+body.navbar-fixed-offset #content {
 	margin-top: (@navbar-height + @navbar-margin-bottom);
 }
-body.navbar-no-offset .content-no-margin {
+body.navbar-fixed-offset #content.content-no-margin {
+	margin-top: @navbar-height;
+}
+body.navbar-no-offset #content.content-no-margin {
 	margin-top: (-@navbar-margin-bottom);
 }
-/*body.admin-bar.navbar-fixed-offset .content {
+body.admin-bar.navbar-fixed-offset #content {
 	margin-top: @navbar-height;// + @navbar-margin-bottom);@adminbar-top-margin);
-}*/
+}
+*/
+body.navbar-fixed-offset {
+	padding-top: @navbar-height;
+}
 
 #main {
 	margin-top: 30px;

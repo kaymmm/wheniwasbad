@@ -75,8 +75,8 @@
 				      <span class="icon-bar"></span>
 				    </button>
 					<a class="navbar-brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
-					<?php if($options['branding_logo']!='') { ?>
-						<img src="<?php echo $options['branding_logo']; ?>" alt="<?php echo get_bloginfo('description'); ?>">
+					<?php if($options['branding_logo']['url']) { ?>
+						<img src="<?php echo $options['branding_logo']['url']; ?>" alt="<?php echo get_bloginfo('description'); ?>">
 					<?php }
 						if($options['site_name']) bloginfo('name'); ?>
 					</a>
