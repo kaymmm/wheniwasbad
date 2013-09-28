@@ -15,8 +15,21 @@ require_once('redux-options.php');
 // Shortcodes
 require_once('library/shortcodes.php');
 
+// Custom Metaboxes and Fields (https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress)
+add_action( 'init', 'initialize_cmb_meta_boxes', 9999 );
+function initialize_cmb_meta_boxes() {
+	if ( !class_exists( 'cmb_Meta_Box' ) ) {
+		require_once( 'library/cmb/init.php' );
+	}
+}
+
 // custom function for displaying page not found info
-require_once('notfound.php');
+add_action( 'init', 'initialize_not_found', 9999 );
+function initialize_not_found() {
+	if ( !function_exists( 'not_found' ) ) {
+		require_once('notfound.php');
+	}
+}
 
 // Menu output mod for bootstrap
 require_once('library/wp-bootstrap-navwalker/wp_bootstrap_navwalker.php');
@@ -320,69 +333,188 @@ function remove_thumbnail_dimensions( $html ) {
     return $html;
 }
 
-/******** Homepage Template ********/
+/******** Custom Metaboxes ********/
+function cmb_add_metaboxes( array $meta_boxes ) {
+	$prefix = '_cmb_';
+	
+	$meta_boxes[] = array(
+		'id'         => 'jumbotron_meta_box',
+		'title'      => 'Jumbotron',
+		'pages'      => array( 'page', ), // Post type
+		'context'    => 'normal',
+		'priority'   => 'high',
+		'show_names' => true, // Show field names on the left
+		'show_on' => array( 'key' => 'page-template', 'value' => array('page-homepage.php','page-jumbotron.php') ),
+		'fields' => array(
+		    array(  
+		        'name'=> 'Jumbotron Contents',  
+		        'desc'  => 'Displayed in place of a page title. Only used on homepage and jumbotron templates. HTML can be used.',  
+		        'id'    => 'jumbotron_contents',  
+		        'type'  => 'wysiwyg',
+				'options' => array(
+					    'wpautop' => true, // use wpautop?
+					    'media_buttons' => true, // show insert/upload button(s)
+					    //'textarea_name' => $editor_id, // set the textarea name to something different, square brackets [] can be used here
+					    'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
+					    'tabindex' => '',
+					    'editor_css' => '', // intended for extra styles for both visual and HTML editors buttons, needs to include the <style> tags, can use "scoped".
+					    'editor_class' => '', // add extra class(es) to the editor textarea
+					    'teeny' => false, // output the minimal editor config used in Press This
+					    'dfw' => false, // replace the default fullscreen with DFW (needs specific css)
+					    'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
+					    'quicktags' => true // load Quicktags, can be used to pass settings directly to Quicktags using an array()	
+					), 
+		    )
+		)
+	);
+	
+	foreach($GLOBALS['wp_registered_sidebars'] as $key => $val) {
+		$sidebar_list[] = array(
+			'value' => $key,
+			'name' => $val['name']
+		);
+	}
+	$meta_boxes[] = array(
+		'id'         => 'sidebar_options_meta_box',
+		'title'      => 'Sidebar',
+		'pages'      => array( 'page', ), // Post type
+		'context'    => 'normal',
+		'priority'   => 'high',
+		'show_names' => true, // Show field names on the left
+		'show_on' => array( 'key' => 'page-template', 'value' => array('page-homepage.php','page-jumbotron.php','page.php') ),
+		'fields' => array(
+		    array(  
+		        'name'=> 'Sidebar Position',  
+		        'desc'  => 'Select the visibility and position of sidebars for this page.',  
+		        'id'    => 'sidebar_position',
+		        'type'  => 'select',
+				'options' => array(
+					array('value' => 'none', 'name' => 'No Sidebar'),
+					array('value' => 'left', 'name' => 'Left Sidebar'), 
+					array('value' => 'right', 'name' => 'Right Sidebar')
+				)
+		    ),
+			array(  
+		        'name'=> 'Widget Group',  
+		        'desc'  => 'Select a widget group to display in the sidebar on this page.',  
+		        'id'    => 'sidebar_widgets',  
+		        'type'  => 'select',
+				'options' => $sidebar_list
+		    )
+		)
+	);
+	
+	return $meta_boxes;
+}
+add_filter( 'cmb_meta_boxes', 'cmb_add_metaboxes' );
 
+/******** Homepage Template ********/
+/*
 // Add the Meta Box to the homepage template
-function add_homepage_meta_box() {  
+function add_jumbotron_meta_box() {  
 	global $post;
 
-	// Only add homepage meta box if template being used is the homepage template
-	// $post_id = isset($_GET['post']) ? $_GET['post'] : (isset($_POST['post_ID']) ? $_POST['post_ID'] : "");
+	$prefix = 'custom_';  
+	$custom_meta_fields = array(  
+	    array(  
+	        'label'=> 'Jumbotron Contents',  
+	        'desc'  => 'Displayed in place of a page title. Only used on homepage and jumbotron templates. HTML can be used.',  
+	        'id'    => 'jumbotron_contents',  
+	        'type'  => 'textarea' 
+	    )  
+	);
+
 	$post_id = $post->ID;
 	$template_file = get_post_meta($post_id,'_wp_page_template',TRUE);
 
 	if ( $template_file == 'page-homepage.php' || $template_file == 'page-jumbotron.php' ){
 	    add_meta_box(  
-	        'homepage_meta_box', // $id  
+	        'jumbotron_meta_box', // $id  
 	        'Jumbotron Contents', // $title  
-	        'show_homepage_meta_box', // $callback  
+	        'wiwb_show_meta_box', // $callback  
 	        'page', // $page  
 	        'normal', // $context  
-	        'high'); // $priority  
+	        'high', // $priority
+			$custom_meta_fields ); // $callback_args
     }
 }
+add_action( 'add_meta_boxes', 'add_jumbotron_meta_box' );
 
-add_action( 'add_meta_boxes', 'add_homepage_meta_box' );
+function add_sidebar_options_meta_box() {  
+	global $post;
 
-// Field Array  
-$prefix = 'custom_';  
-$custom_meta_fields = array(  
-    array(  
-        'label'=> 'Jumbo Contents',  
-        'desc'  => 'Displayed in place of a page title. Only used on homepage and jumbotron templates. HTML can be used.',  
-        'id'    => $prefix.'tagline',  
-        'type'  => 'textarea' 
-    )  
-);  
+	$post_id = $post->ID;
+	$template_file = get_post_meta($post_id,'_wp_page_template',TRUE);
+	foreach($GLOBALS['wp_registered_sidebars'] as $key => $val) {
+		$sidebar_list[$key] = $val['name'];
+	}
+	$sidebar_options_meta_fields = array(  
+	    array(  
+	        'label'=> 'Sidebar Position',  
+	        'desc'  => 'Select the visibility and position of sidebars for this page.',  
+	        'id'    => 'sidebar_position',
+	        'type'  => 'select',
+			'options' => array('none'=>'No Sidebar','left'=>'Left Sidebar', 'right'=>'Right Sidebar')
+	    ),
+	    array(  
+	        'label'=> 'Widget Group',  
+	        'desc'  => 'Select a widget group to display in the sidebar on this page.',  
+	        'id'    => 'sidebar_widgets',
+	        'type'  => 'select',
+			'options' => $sidebar_list
+	    )
+	);
+	$haystack = array('page-homepage.php','page-jumbotron.php','page.php');
+	if ( in_array($template_file,$haystack ) ) {
+	    add_meta_box(
+	        'sidebar_options_meta_box', // $id  
+	        'Widget Sidebar', // $title  
+	        'wiwb_show_meta_box', // $callback
+	        'page', // $page  
+	        'normal', // $context  
+	        'default', // $priority
+			$sidebar_options_meta_fields); // $callback_args  
+    }
+}
+add_action( 'add_meta_boxes', 'add_sidebar_options_meta_box' );
 
-// The Homepage Meta Box Callback  
-function show_homepage_meta_box() {  
-  global $custom_meta_fields, $post;
-
+// The Meta Box Callback  
+function wiwb_show_meta_box($post, $metabox) {  
+  //global $post;
   // Use nonce for verification
   wp_nonce_field( basename( __FILE__ ), 'wpbs_nonce' );
     
   // Begin the field table and loop
   echo '<table class="form-table">';
 
+  $custom_meta_fields = $metabox['args'];
+
   foreach ( $custom_meta_fields as $field ) {
       // get value of this field if it exists for this post  
       $meta = get_post_meta($post->ID, $field['id'], true);  
       // begin a table row with  
       echo '<tr> 
-              <th><label for="'.$field['id'].'">'.$field['label'].'</label></th> 
+              <th><label for="'.$field['id'].'"><strong>'.$field['label'].'</strong></label><br /><span class="description">'.$field['desc'].'</span></th> 
               <td>';  
               switch($field['type']) {  
-                  // text  
+                  // select  
+				  case 'select':
+				  $options = $field['options'];
+				  echo '<select name="'.$field['id'].'" id="'.$field['id'].'" />';
+				  foreach ($options as $key => $val) {
+					  $selected = ($meta == $key) ? ' selected' : '';
+					  echo '<option value="'.$key.'"'.$selected.'>'.$val.'</option>';
+				  }
+				  echo '</select>';
+				  break;
+				  // text
                   case 'text':  
-                      echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" /> 
-                          <br /><span class="description">'.$field['desc'].'</span>';  
+                      echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />';  
                   break;
                   
                   // textarea  
                   case 'textarea':  
-                      echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="80" rows="4">'.$meta.'</textarea> 
-                          <br /><span class="description">'.$field['desc'].'</span>';  
+                      echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="80" rows="4">'.$meta.'</textarea>';  
                   break;  
               } //end switch  
       echo '</td></tr>';  
@@ -390,10 +522,8 @@ function show_homepage_meta_box() {
   echo '</table>'; // end table  
 }  
 
-// Save the Data  
-function save_homepage_meta( $post_id ) {  
-
-    global $custom_meta_fields;  
+// Save the Post Meta Data  
+function wiwb_save_post_meta( $post_id ) {    
   
     // verify nonce  
     if ( !isset( $_POST['wpbs_nonce'] ) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)) )  
@@ -423,7 +553,8 @@ function save_homepage_meta( $post_id ) {
         }
     } // end foreach
 }
-add_action( 'save_post', 'save_homepage_meta' );
+add_action( 'save_post', 'wiwb_save_post_meta' );
+*/
 
 /******* Misc. Filters *********/
 
