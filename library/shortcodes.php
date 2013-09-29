@@ -6,109 +6,118 @@
 
 // Override the standard gallery shortcode
 // taken from https://github.com/retlehs/roots
-function roots_gallery($attr) {
- $post = get_post();
+function bootstrap_gallery($attr) {
 
-  static $instance = 0;
-  $instance++;
+	wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.9.0', 'all' );
+	wp_enqueue_style('blueimp-gallery-css');
+	wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/library/Gallery/js/blueimp-gallery.min.js', array(), '0.6.1', true);
+	wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/library/gallery_init.js', array('jquery'), false, true);
+	wp_enqueue_script('blueimp-gallery-js');
+	wp_enqueue_script('blueimp-gallery-init-js');
+	wp_enqueue_script('bs-tooltips'); // bootstrap hover tooltips 
 
-  if (!empty($attr['ids'])) {
-    if (empty($attr['orderby'])) {
-      $attr['orderby'] = 'post__in';
-    }
-    $attr['include'] = $attr['ids'];
-  }
+	$post = get_post();
 
-  $output = apply_filters('post_gallery', '', $attr);
+	static $instance = 0;
 
-  if ($output != '') {
-    return $output;
-  }
+	$instance++;
 
-  if (isset($attr['orderby'])) {
-    $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
-    if (!$attr['orderby']) {
-      unset($attr['orderby']);
-    }
-  }
+	if (!empty($attr['ids'])) {
+		if (empty($attr['orderby'])) {
+			$attr['orderby'] = 'post__in';
+		}
+		$attr['include'] = $attr['ids'];
+	}
 
-  extract(shortcode_atts(array(
-    'order'      => 'ASC',
-    'orderby'    => 'menu_order ID',
-    'id'         => $post->ID,
-    'itemtag'    => '',
-    'icontag'    => '',
-    'captiontag' => '',
-    'columns'    => 3,
-    'size'       => 'thumbnail',
-    'include'    => '',
-    'exclude'    => ''
-  ), $attr));
+	$output = apply_filters('post_gallery', '', $attr);
 
-  $id = intval($id);
+	if ($output != '') {
+		return $output;
+	}
 
-  if ($order === 'RAND') {
-    $orderby = 'none';
-  }
+	if (isset($attr['orderby'])) {
+		$attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
+		if (!$attr['orderby']) {
+			unset($attr['orderby']);
+		}
+	}
 
-  if (!empty($include)) {
-    $_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	extract(shortcode_atts(array(
+		'order'      => 'ASC',
+		'orderby'    => 'menu_order ID',
+		'id'         => $post->ID,
+		'itemtag'    => '',
+		'icontag'    => '',
+		'captiontag' => '',
+		'columns'    => 3,
+		'size'       => 'thumbnail',
+		'include'    => '',
+		'exclude'    => '',
+		'showcontrols'	 => 'true'
+	), $attr));
 
-    $attachments = array();
-    foreach ($_attachments as $key => $val) {
-      $attachments[$val->ID] = $_attachments[$key];
-    }
-  } elseif (!empty($exclude)) {
-    $attachments = get_children(array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-  } else {
-    $attachments = get_children(array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-  }
+	$id = intval($id);
 
-  if (empty($attachments)) {
-    return '';
-  }
+	if ($order === 'RAND') {
+		$orderby = 'none';
+	}
 
-  if (is_feed()) {
-    $output = "\n";
-    foreach ($attachments as $att_id => $attachment) {
-      $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
-    }
-    return $output;
-  }
+	if (!empty($include)) {
+		$_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+		$attachments = array();
+		foreach ($_attachments as $key => $val) {
+		  $attachments[$val->ID] = $_attachments[$key];
+		}
+	} elseif (!empty($exclude)) {
+		$attachments = get_children(array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	} else {
+		$attachments = get_children(array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	}
 
-  $output = '<ul class="thumbnails gallery">';
+	if (empty($attachments)) {
+		return '';
+	}
 
-  $col_span = floor(12/$columns);
-  $col_gutter = 10/$columns;
-  $col_width = 100/$columns-$col_gutter;
-  $i=0;
-  foreach ($attachments as $id => $attachment) {
-    if ($i==$columns) { $output.='</ul><ul class="thumbnails gallery">'; $i=0; }
-//	$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
-	$img = wp_get_attachment_image($id, 'large',false,array('alt'=>$attachment->post_title));
-	$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_url($id) : get_attachment_link($id);
-//    $output .= '<li class="span'.$col_span.'">';
-$output .= '<li class="pull-left" style="width: '.$col_width.'%; margin-left: '.$col_gutter.'%;">';
-	$output .= '<a href="' . $link . '" class="img-thumbnail"  rel="tooltip" data-original-title="'.$attachment->post_excerpt.'">'.$img.'</a>';
+	if (is_feed()) {
+		$output = "\n";
+		foreach ($attachments as $att_id => $attachment) {
+		  $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+		}
+		return $output;
+	}
+
+	$col_span = floor(12/$columns);
+	$col_gutter = 10/$columns;
+	$col_width = 100/$columns-$col_gutter;
+	$i=1;
+
+	$mosaic = '<div id="blueimp-gallery-links">';
+	foreach ($attachments as $id => $attachment) {
+		$img_lg = wp_get_attachment_image_src($id,'large',false);
+		$img_sm = wp_get_attachment_image_src($id,'thumbnail',false);
+		
+		$img = '<img src="' . $img_sm[0] . '" alt="' . $attachment->post_title . '" style="width: ' . $col_width . '%; margin: 0 2px 2px 0;" />';
+		$mosaic .= '<a href="' . $img_lg[0] . '"  rel="tooltip" data-original-title="' . $attachment->post_excerpt . '">'.$img.'</a>';
+		if (trim($attachment->post_excerpt)) {
+		  $mosaic .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</p>';
+		}
+		
+		//$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_url($id) : get_attachment_link($id);
+		
+	}
+
+	$mosaic .= "</div>";
 	
-    if (trim($attachment->post_excerpt)) {
-      $output .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</p>';
-    }
-    $output .= '</li>';
-	$i++;
-  }
+	if ($showcontrols) {
+		$mosaic .= '<script>jQuery( "#blueimp-gallery").addClass("blueimp-gallery-controls");</script>';
+	}
 
-  $output .= '</ul>';
-
-  wp_enqueue_script('bs-tooltips'); //only include the js one time
-
-  return $output;
+	return $mosaic;
 }
-if (current_theme_supports('bootstrap-gallery')) {
-  remove_shortcode('gallery','gallery_shortcode');
-  add_shortcode('gallery', 'roots_gallery');
-}
-
+//if (current_theme_supports('bootstrap-gallery')) {
+remove_shortcode('gallery','gallery_shortcode');
+add_shortcode('gallery', 'bootstrap_gallery');
+//}
 
 
 // Buttons
