@@ -91,13 +91,15 @@ function bootstrap_gallery($attr) {
 	$col_width = 100/$columns-$col_gutter;
 	$i=1;
 
-	$mosaic = '<div id="blueimp-gallery-links">';
+	$gallery_id = 'blueimp-gallery-links_'.rand();
+
+	$mosaic = '<div id="'.$gallery_id.'" class="clearfix">';
 	foreach ($attachments as $id => $attachment) {
 		$img_lg = wp_get_attachment_image_src($id,'large',false);
 		$img_sm = wp_get_attachment_image_src($id,'thumbnail',false);
 		
-		$img = '<img src="' . $img_sm[0] . '" alt="' . $attachment->post_title . '" style="width: ' . $col_width . '%; margin: 0 2px 2px 0;" />';
-		$mosaic .= '<a href="' . $img_lg[0] . '"  rel="tooltip" data-original-title="' . $attachment->post_excerpt . '">'.$img.'</a>';
+		$img = '<img src="' . $img_sm[0] . '" alt="' . $attachment->post_title . '"  />';
+		$mosaic .= '<a href="' . $img_lg[0] . '" class="thumbnail pull-left" rel="tooltip" data-original-title="' . $attachment->post_excerpt . '" style="width: ' . $col_width . '%; margin: 0 2px 2px 0;">'.$img.'</a>';
 		if (trim($attachment->post_excerpt)) {
 		  $mosaic .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</p>';
 		}
@@ -108,8 +110,10 @@ function bootstrap_gallery($attr) {
 
 	$mosaic .= "</div>";
 	
+	$mosaic .= '<script type="text/javascript">jQuery( document ).ready( function() { blueimpGalleryInit("'.$gallery_id.'"); });</script>';
+	
 	if ($showcontrols) {
-		$mosaic .= '<script>jQuery( "#blueimp-gallery").addClass("blueimp-gallery-controls");</script>';
+		$mosaic .= '<script>jQuery( document ).ready( function() {if ( ! jQuery( "#blueimp-gallery").hasClass( "blueimp-gallery-controls" ) ) jQuery( "#blueimp-gallery").addClass("blueimp-gallery-controls"); });</script>';
 	}
 
 	return $mosaic;

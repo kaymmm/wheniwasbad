@@ -12,11 +12,15 @@ if ( ! jQuery( "#blueimp-gallery" ).length ) {
 	jQuery( "body" ).append(html_block);
 }
 
-document.getElementById('blueimp-gallery-links').onclick = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
-};
+function blueimpGalleryInit(gallery_id) {
+	if ( jQuery("#"+gallery_id ).length ) {
+		document.getElementById( gallery_id ).onclick = function (event) {
+			event = event || window.event;
+		    var target = event.target || event.srcElement,
+		        link = target.src ? target.parentNode : target,
+		        options = {index: link, event: event},
+		        links = this.getElementsByTagName("a");
+		    blueimp.Gallery(links, options);
+		}
+	} 
+}
