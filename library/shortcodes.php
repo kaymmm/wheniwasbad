@@ -38,7 +38,7 @@ function bootstrap_gallery($attr) {
 		}
 	}
 
-	extract(shortcode_atts(array(
+	$attr = shortcode_atts(array(
 		'order'      => 'ASC',
 		'orderby'    => 'menu_order ID',
 		'id'         => $post->ID,
@@ -52,7 +52,8 @@ function bootstrap_gallery($attr) {
 		'showcontrols'	=> 'true',
 		'showtooltips'	 => 'true',
 		'showcaptions'	=> 'true'
-	), $attr));
+	), $attr);
+	extract($attr);
 
 	$id = intval($id);
 
@@ -89,32 +90,30 @@ function bootstrap_gallery($attr) {
 	$col_width = 100/$columns-$col_gutter;
 	$i=1;
 
-	$gallery_id = 'blueimp-gallery-links_'.rand();
+	$gallery_id = 'blueimp_gallery_'.rand();
+	$links_id = 'links-'.$gallery_id;
 
-	$mosaic = '<div id="'.$gallery_id.'" class="clearfix">';
+	$mosaic = '<div id="'.$links_id.'" class="clearfix">';
 	foreach ($attachments as $id => $attachment) {
 		$img_lg = wp_get_attachment_image_src($id,'large',false);
 		$img_sm = wp_get_attachment_image_src($id,'thumbnail',false);
 		
-		$img = '<img src="' . $img_sm[0] . '" alt="' . $attachment->post_title . '"  />';
-		if ($showtooltips) $tooltip = ' rel="tooltip" data-original-title="' . $attachment->post_excerpt . '" ';
-		if ($showcaptions) $caption = ' data-description="'.$attachment->post_excerpt.'" ';
-		$mosaic .= '<a href="' . $img_lg[0] . '" class="thumbnail pull-left" style="width: ' . $col_width . '%; margin: 0 2px 2px 0;" '.$tooltip.$caption.' data-gallery>'.$img.'</a>';
+		$img = "\n<img src=\"" . $img_sm[0] . "\" alt=\"" . $attachment->post_title . "\"  />";
+		if ($showtooltips || $showcaptions) 
+			$tooltip = ' rel="tooltip" data-original-title="' . $attachment->post_excerpt . '" ';
+		$mosaic .= '<a href="' . $img_lg[0] . '" class="thumbnail pull-left" style="width: ' . $col_width . '%; margin: 0 2px 2px 0;" ' . $tooltip . ' data-gallery="#' . $gallery_id . '">';
+		$mosaic .= $img."</a>\n";
 		if (trim($attachment->post_excerpt)) {
-		  $mosaic .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</p>';
+		  $mosaic .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . "</p>\n";
 		}
 		
 		//$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_url($id) : get_attachment_link($id);
-		
 	}
 
-	$mosaic .= "</div>";
+	$mosaic .= "</div>\n";
 	
-	$mosaic .= '<script type="text/javascript">jQuery( document ).ready( function() { blueimpGalleryInit("'.$gallery_id.'"); });</script>';
-	
-	if ($showcontrols) {
-		$mosaic .= '<script>jQuery( document ).ready( function() {if ( ! jQuery( "#blueimp-gallery").hasClass( "blueimp-gallery-controls" ) ) jQuery( "#blueimp-gallery").addClass("blueimp-gallery-controls"); });</script>';
-	}
+	$mosaic .= "<script type='text/javascript'>\njQuery( document ).ready( function() { \nblueimpGalleryInit(\"".$gallery_id."\",'".json_encode($attr)."'); });";
+	$mosaic .= "</script>\n";
 	
 	if ($showtooltips) {
 		wp_enqueue_script('bs-tooltips'); // bootstrap hover tooltips
@@ -122,10 +121,8 @@ function bootstrap_gallery($attr) {
 
 	return $mosaic;
 }
-//if (current_theme_supports('bootstrap-gallery')) {
 remove_shortcode('gallery','gallery_shortcode');
 add_shortcode('gallery', 'bootstrap_gallery');
-//}
 
 
 // Buttons
