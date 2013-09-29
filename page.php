@@ -9,11 +9,11 @@ Template Name: Default Page Template
 <?php if (have_posts()) : while ( have_posts() ) : the_post(); ?>
 
 	<?php 
-		if (empty($options)) $options = get_option('wheniwasbad');
+		global $wheniwasbad_options;
 		$sidebar_position = get_post_meta($post->ID, 'sidebar_position' , true);
-		$sidebar_widgets = get_post_meta($post->ID, 'sidebar_widgets' , true);
-		$hide_widgets = $options['hide_widgets'];
-		if ( is_active_sidebar($sidebar_widgets) && ! $hide_widgets ) {
+		$sidebar_widget_group = get_post_meta($post->ID, 'sidebar_widgets' , true);
+		$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
+		if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar ) {
 			if ( $sidebar_position == 'left' ) {
 				$main_class = "col-md-9 col-md-push-3";
 				$sidebar_class = "col-md-3 col-md-pull-9";
@@ -44,16 +44,18 @@ Template Name: Default Page Template
 				<?php get_template_part( 'content' ); ?>
 			
 				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
+				
+				<?php comments_template( '', true ); ?>
 		
 			</section> <!-- end #main -->
 	
 			<?php if ($sidebar_class != ''): ?>
 	
-				<div class="<?php echo $sidebar_class; ?> clearfix">
+				<section class="<?php echo $sidebar_class; ?> clearfix">
 	
-					<?php get_sidebar($sidebar_widgets); ?>
+					<?php get_sidebar($sidebar_widget_group); ?>
 	
-				</div>
+				</section>
 	
 			<?php endif; ?>		
 

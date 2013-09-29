@@ -31,7 +31,6 @@ if( !class_exists( 'ReduxFramework' ) ) {
     // Windows-proof constants: replace backward by forward slashes
     // Thanks to: https://github.com/peterbouwmeester
     /** @noinspection PhpUndefinedFunctionInspection */
-	
     $fslashed_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
     $fslashed_abs = trailingslashit( str_replace( '\\', '/', ABSPATH ) );
 
@@ -39,17 +38,19 @@ if( !class_exists( 'ReduxFramework' ) ) {
     if( !defined( 'REDUX_DIR') )
         define( 'REDUX_DIR', $fslashed_dir );
 
-	//hacky fix for symlinked directories:
-	if (ABSPATH=='/Applications/MAMP/htdocs/public_html/'){
-
+	//hacked fix for symlinks in abspath
+	
+	if ( ! strpos($fslashed_dir,$fslashed_abs) ) {
+		//TO-DO: fix symlinked plugins directory when it's included as a plugin.
+		$stylesheet_path = get_stylesheet_directory();
+		$stylesheet_path_rel = str_replace( ABSPATH, '', $stylesheet_path );
+		$fslashed_dir = str_replace( realpath( $stylesheet_path ), '', dirname( __FILE__ ) );
+		$fslashed_dir = trailingslashit( str_replace( '\\', '/', $stylesheet_path_rel . $fslashed_dir ) );
+	}
+	
     // Framework base URL
     if( !defined( 'REDUX_URL' ) )
-        define( 'REDUX_URL', site_url( str_replace( '/Volumes/parakeet/Users/kmiyake/Dropbox/Git/', '', 'wp-content/themes/'.$fslashed_dir ) ) );
-	error_log('url: '. REDUX_URL .' dir: '. $fslashed_dir . ' abs: '. $fslashed_abs);
-	}
-	if( !defined( 'REDUX_URL' ) )
-	    define( 'REDUX_URL', site_url( str_replace( $fslashed_abs, '', $fslashed_dir ) ) );
-
+        define( 'REDUX_URL', site_url( str_replace( $fslashed_abs, '', $fslashed_dir ) ) );
     /**
      * Main ReduxFramework class
      *

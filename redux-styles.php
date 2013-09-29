@@ -1,11 +1,11 @@
 <style type="text/css">
 /* CSS Generated from theme options */
 <?php
-	$options = get_option('wheniwasbad');
+	global $wheniwasbad_options;
 
 	$theme_options_styles = '';
 /*
-      $heading_typography = $options['heading_typography'];
+      $heading_typography = $wheniwasbad_options['heading_typography'];
       if ( $heading_typography['face'] != 'Default' ) {
         $theme_options_styles .= '
         h1, h2, h3, h4, h5, h6{
@@ -15,7 +15,7 @@
         }';
       }
 
-      $main_body_typography = $options['main_body_typography'];
+      $main_body_typography = $wheniwasbad_options['main_body_typography'];
       if ( $main_body_typography['face'] != 'Default' ) {
         $theme_options_styles .= '
         body{
@@ -25,7 +25,7 @@
         }';
       }
 */
-      $link_color = $options['link_color'];
+      $link_color = $wheniwasbad_options['link_color'];
       if ($link_color) {
         $theme_options_styles .= '
 		a{
@@ -33,7 +33,7 @@
 		}';
       }
 
-      $link_hover_color = $options['link_hover_color'];
+      $link_hover_color = $wheniwasbad_options['link_hover_color'];
       if ($link_hover_color) {
         $theme_options_styles .= '
 		a:hover{
@@ -41,7 +41,7 @@
 		}';
       }
 
-      $link_active_color = $options['link_active_color'];
+      $link_active_color = $wheniwasbad_options['link_active_color'];
       if ($link_active_color) {
         $theme_options_styles .= '
 		a:active{
@@ -49,8 +49,8 @@
 		}';
       }
 
-      $topbar_bg_color = $options['top_nav_bg_color'];
-      $use_gradient = $options['showhidden_gradient'];
+      $topbar_bg_color = $wheniwasbad_options['top_nav_bg_color'];
+      $use_gradient = $wheniwasbad_options['showhidden_gradient'];
       if ( $topbar_bg_color && !$use_gradient ) {
         $theme_options_styles .= '
 		.navbar .fill {
@@ -60,7 +60,7 @@
       }
 
       if ( $use_gradient ) {
-        $topbar_bottom_gradient_color = $options['top_nav_bottom_gradient_color'];
+        $topbar_bottom_gradient_color = $wheniwasbad_options['top_nav_bottom_gradient_color'];
 
         $theme_options_styles .= '
 		.navbar .fill {
@@ -75,7 +75,7 @@
 		}';
       }
 
-      $topbar_link_color = $options['top_nav_link_color'];
+      $topbar_link_color = $wheniwasbad_options['top_nav_link_color'];
       if ( $topbar_link_color ) {
         $theme_options_styles .= '
 		.navbar .nav li a {
@@ -83,7 +83,7 @@
 		}';
       }
 
-      $topbar_link_hover_color = $options['top_nav_link_hover_color'];
+      $topbar_link_hover_color = $wheniwasbad_options['top_nav_link_hover_color'];
       if ( $topbar_link_hover_color ) {
         $theme_options_styles .= '
 		.navbar .nav li a:hover {
@@ -91,7 +91,7 @@
 		}';
       }
 
-      $topbar_link_hover_bg = $options['top_nav_link_background_color'];
+      $topbar_link_hover_bg = $wheniwasbad_options['top_nav_link_background_color'];
       if ( $topbar_link_hover_bg ) {
         $theme_options_styles .= '
 		.navbar .nav > li > a:focus,
@@ -106,7 +106,7 @@
 		  }';
       }
 
-      $topbar_dropdown_hover_bg_color = $options['top_nav_dropdown_hover_bg'];
+      $topbar_dropdown_hover_bg_color = $wheniwasbad_options['top_nav_dropdown_hover_bg'];
       if ( $topbar_dropdown_hover_bg_color ) {
         $theme_options_styles .= '
 		.dropdown-menu li > a:hover,
@@ -117,7 +117,7 @@
         ';
       }
 
-      $topbar_dropdown_item_color = $options['top_nav_dropdown_item'];
+      $topbar_dropdown_item_color = $wheniwasbad_options['top_nav_dropdown_item'];
       if ( $topbar_dropdown_item_color ){
         $theme_options_styles .= '
           .dropdown-menu a{
@@ -126,7 +126,7 @@
         ';
       }
 
-      $jumbotron_bg_color = $options['jumbotron_bg_color'];
+      $jumbotron_bg_color = $wheniwasbad_options['jumbotron_bg_color'];
       if ( $jumbotron_bg_color ) {
         $theme_options_styles .= '
         .jumbotron {
@@ -134,7 +134,7 @@
         }';
       }
 /*
-      $suppress_comments_message = $options['suppress_comments_message'];
+      $suppress_comments_message = $wheniwasbad_options['suppress_comments_message'];
       if ( $suppress_comments_message ){
         $theme_options_styles .= '
         #main article {
@@ -142,7 +142,7 @@
         }';
       }
  */
-      $additional_css = $options['wpbs_css'];
+      $additional_css = $wheniwasbad_options['wpbs_css'];
       if( $additional_css ){
         $theme_options_styles .= '
 		'.$additional_css;
@@ -157,8 +157,8 @@
 		  echo $s;
       }
 /* bootswatch themes were turned off for now in preparation for Bootstrap v3
-      $bootstrap_theme = $options['wpbs_theme'];
-      $use_theme = $options['showhidden_themes'];
+      $bootstrap_theme = $wheniwasbad_options['wpbs_theme'];
+      $use_theme = $wheniwasbad_options['showhidden_themes'];
 
       if( $bootstrap_theme && $use_theme ){
         if( $bootstrap_theme == 'default' ){}

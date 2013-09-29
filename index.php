@@ -1,10 +1,25 @@
 <?php get_header(); ?>
-<?php $options = get_option('wheniwasbad'); ?>
+<?php 	
+	global $wheniwasbad_options;
+	$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
+	$show_blog_sidebar = $wheniwasbad_options['blog_sidebar'];
+	$sidebar_widget_group = $wheniwasbad_options['blog_sidebar_widgets'];
+	$sidebar_position = $wheniwasbad_options['blog_sidebar_position'];
+	if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar && $show_blog_sidebar ) {
+		if ( $sidebar_position == 'left' ) {
+			$main_class = "col-md-9 col-md-push-3";
+			$sidebar_class = "col-md-3 col-md-pull-9";
+		} elseif ( $sidebar_position == 'right' ) {
+			$main_class = "col-md-9";
+			$sidebar_class = "col-md-3";
+		}
+	} else {
+		$main_class = "col-md-12";
+		$sidebar_class = "";
+	}	
 	
-	<?php 
-	$blog_jumbotron = $options['blog_jumbotron']; 
-	$jumbotron_content = $options['blog_hero_content'];
-	$blog_widgets = $options['blog_sidebar'];
+	$blog_jumbotron = $wheniwasbad_options['blog_jumbotron']; 
+	$jumbotron_content = $wheniwasbad_options['blog_jumbotron_content'];
 	?>
 
 	<?php if ( $blog_jumbotron && $jumbotron_content ) : ?>
@@ -19,21 +34,9 @@
 	
 	<div id="content" class="container clearfix">
 			
-		<div id="wrapper" class="row clearfix">
+		<div class="row clearfix">
 				
-		<?php if (is_active_sidebar('sidebar1') && $blog_widgets) { ?>
-		
-			<div class="col-md-3">
-				<?php get_sidebar('sidebar1'); // sidebar 2 ?>
-			</div>
-			
-			<div id="main" role="main" class="col-md-9">
-							
-		<?php } else { ?>
-				
-			<div id="main" role="main" class="col-md-12">
-
-		<?php } ?>
+			<section id="main" role="main" class="<?php echo $main_class; ?>">
 
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		
@@ -47,34 +50,36 @@
 		
 				<?php else : ?>
 			
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("Not Found", "wheniwasbad"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, there were no posts found.", "wheniwasbad"); ?></p>
-					    </section>
-					</article>
-		
+					<? not_found(); ?>
+					
 				<?php endif; ?>
 
-			</div> <!-- end #main -->
-		
-		</div> <!-- wrapper -->
-		
-		<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
+				<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
 			
-			<?php page_navi(); // use the page navi function ?>
+					<?php page_navi(); // use the page navi function ?>
 			
-		<?php else : // if it is disabled, display regular wp prev & next links ?>
-			<nav class="wp-prev-next pagenavi">
-				<ul class="clearfix">
-					<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
-					<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
-				</ul>
-			</nav>
-		<?php endif; ?>
+				<?php else : // if it is disabled, display regular wp prev & next links ?>
+					<nav class="wp-prev-next pagenavi">
+						<ul class="clearfix">
+							<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
+							<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
+						</ul>
+					</nav>
+				<?php endif; ?>
+
+			</section> <!-- end #main -->
+			
+			<?php if ($sidebar_class != ''): ?>
+	
+				<section class="<?php echo $sidebar_class; ?> clearfix">
+	
+					<?php get_sidebar($sidebar_widget_group); ?>
+	
+				</section>
+	
+			<?php endif; ?>		
 		
+		</div> <!-- row -->		
     
 	</div> <!-- end #content -->
 

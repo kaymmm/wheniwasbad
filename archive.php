@@ -1,10 +1,11 @@
 <?php get_header(); ?>
 
 <?php 
-	if (empty($options)) $options = get_option('wheniwasbad');
-	$hide_widgets = $options['hide_widgets'];
-	$sidebar_position = $options['blog_sidebar_position'];
-	if ( is_active_sidebar($sidebar_widgets) && ! $hide_widgets ) {
+	global $wheniwasbad_options;
+	$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
+	$sidebar_widget_group = $wheniwasbad_options['blog_sidebar_widgets'];
+	$sidebar_position = $wheniwasbad_options['blog_sidebar_position'];
+	if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar ) {
 		if ( $sidebar_position == 'left' ) {
 			$main_class = "col-md-9 col-md-push-3";
 			$sidebar_class = "col-md-3 col-md-pull-9";
@@ -64,26 +65,24 @@
 			
 		</header> <!-- page header -->
 			
-		<div id="wrapper" class="row clearfix">
-				
-					<div class="col-md-3">	
-			<?php get_sidebar(); // sidebar 1 ?>
-		</div>
+		<div class="row clearfix">
 			
-			<div id="main" role="main" class="col-md-9">
+			<section id="main" role="main" class="<?php echo $main_class; ?>">
 
 				<?php while (have_posts()) : the_post(); ?>
 	
 					<?php get_template_part( 'content', get_post_format() ); ?>
 
+					<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
+
 					<?php comments_template( '', true ); ?>
 
 				<?php endwhile; // end of the loop. ?>
-				<?php wp_link_pages( $args ); ?>
+				
 				<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
 			
 					<?php page_navi(); // use the page navi function ?>
-
+			
 				<?php else : // if it is disabled, display regular wp prev & next links ?>
 					<nav class="wp-prev-next pagenavi">
 						<ul class="clearfix">
@@ -93,9 +92,19 @@
 					</nav>
 				<?php endif; ?>
 
-			</div><!-- col-md-9 articles -->
+			</section><!-- main -->
+			
+			<?php if ($sidebar_class != ''): ?>
+	
+				<section class="<?php echo $sidebar_class; ?> clearfix">
+	
+					<?php get_sidebar($sidebar_widget_group); ?>
+	
+				</section>
+	
+			<?php endif; ?>		
 
-		</div><!-- #main -->
+		</div><!-- row -->
 		
 	<?php else : ?>
 

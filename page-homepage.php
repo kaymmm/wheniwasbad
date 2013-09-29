@@ -9,8 +9,8 @@ Template Name: Homepage
 <div id="content" class="content-no-margin clearfix">
 			
 <?php
-	if (empty($options)) $options = get_option('wheniwasbad');
-	$use_carousel = $options['showhidden_slideroptions'];
+	global $wheniwasbad_options;
+	$use_carousel = $wheniwasbad_options['showhidden_slideroptions'];
 	if ($use_carousel) : ?>
 		
 		<div id="myCarousel" class="carousel">
@@ -21,7 +21,7 @@ Template Name: Homepage
 		    	<?php
 				global $post;
 				$tmp_post = $post;
-				$show_posts = $options['slider_options'];
+				$show_posts = $wheniwasbad_options['slider_options'];
 				$args = array( 'numberposts' => $show_posts ); // set this to how many posts you want in the carousel
 				$myposts = get_posts( $args );
 				$post_num = 0;
@@ -74,9 +74,9 @@ Template Name: Homepage
 		$jumbotron_contents = get_post_meta($post->ID, 'jumbotron_contents' , true);
 
 		$sidebar_position = get_post_meta($post->ID, 'sidebar_position' , true);
-		$sidebar_widgets = get_post_meta($post->ID, 'sidebar_widgets' , true);
-		$hide_widgets = $options['hide_widgets'];
-		if ( is_active_sidebar($sidebar_widgets) && ! $hide_widgets ) {
+		$sidebar_widget_group = get_post_meta($post->ID, 'sidebar_widgets' , true);
+		$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
+		if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar ) {
 			if ( $sidebar_position == 'left' ) {
 				$main_class = "col-md-9 col-md-push-3";
 				$sidebar_class = "col-md-3 col-md-pull-9";

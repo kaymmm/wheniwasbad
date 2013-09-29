@@ -12,20 +12,20 @@
 	            <?php endif; ?>
 	          </div>
 
-			<?php $options = get_option('wheniwasbad'); ?>
-			<?php if ($options['show_footer_menu'] ) : ?>				
+			<?php global $wheniwasbad_options; ?>
+			<?php if ($wheniwasbad_options['show_footer_menu'] ) : ?>				
 				<nav class="clearfix">
 					<?php footer_links(); ?>
 				</nav>
 			<?php endif; ?>
 		
-				<?php if ($options['footer_text']=="") : ?>
+				<?php if ($wheniwasbad_options['footer_text']=="") : ?>
 
 					<p class="attribution">&copy; <?php bloginfo('name'); ?></p>
 
 				<?php else:
 				
-					echo $options['footer_text'];
+					echo $wheniwasbad_options['footer_text'];
 			
 				endif; ?>
 						

@@ -12,11 +12,11 @@ Template Name: Full-width Jumbotron
 	$post_thumbnail_id = get_post_thumbnail_id();
 	$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
 	
-	if (empty($options)) $options = get_option('wheniwasbad');
+	global $wheniwasbad_options;
 	$sidebar_position = get_post_meta($post->ID, 'sidebar_position' , true);
-	$sidebar_widgets = get_post_meta($post->ID, 'sidebar_widgets' , true);
-	$hide_widgets = $options['hide_widgets'];
-	if ( is_active_sidebar($sidebar_widgets) && ! $hide_widgets ) {
+	$sidebar_widget_group = get_post_meta($post->ID, 'sidebar_widgets' , true);
+	$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
+	if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar ) {
 		if ( $sidebar_position == 'left' ) {
 			$main_class = "col-md-9 col-md-push-3";
 			$sidebar_class = "col-md-3 col-md-pull-9";
@@ -51,16 +51,17 @@ Template Name: Full-width Jumbotron
 				<?php the_content(); ?>
 				
 				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
+				
+				<?php comments_template( '', true ); ?>
 												
-			</section> <!-- end article -->
+			</section> <!-- main -->
 			
 			<?php if ($sidebar_class != ''): ?>
 		
 				<section class="<?php echo $sidebar_class; ?> clearfix" role="aside">
 		
-					<?php get_sidebar($sidebar_widgets); ?>
+					<?php get_sidebar($sidebar_widget_group); ?>
 					
-		
 				</section>
 		
 			<?php endif; ?>	

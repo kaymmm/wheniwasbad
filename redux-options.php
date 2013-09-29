@@ -136,7 +136,7 @@ function setup_framework_options(){
     $args['dev_mode_icon_class'] = 'icon-large';
 
     // Set a custom option name. Don't forget to replace spaces with underscores!
-    $args['opt_name'] = 'wheniwasbad';
+    $args['opt_name'] = 'wheniwasbad_options';
 
     // Setting system info to true allows you to view info useful for debugging.
     // Default: true
@@ -488,9 +488,13 @@ function setup_framework_options(){
 				)
 			)
 		);
+/*
+		//this should get the list of all available sidebars, but the sidebars are registered after this file is loaded. tried to delay loading this but then it breaks...
 		foreach($GLOBALS['wp_registered_sidebars'] as $key => $val) {
 			$sidebar_list[$key] = $val['name'];
 		}
+*/
+		$sidebar_list = array('sidebar1'=>'Sidebar 1', 'sidebar2'=>'Sidebar 2');
 	    $sections[] = array(
 			'icon' => 'keyboard',
 			'icon_class' => 'icon-large',

@@ -1,3 +1,10 @@
+<?php
+/*
+* header.php
+* adds header information to every page
+*/
+?>
+<?php global $wheniwasbad_options; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -6,14 +13,29 @@
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
 	<head>
 		<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>		
 		<title><?php bloginfo('name'); ?><?php is_front_page() ? bloginfo('description') : wp_title('|'); ?></title>
-		<!-- mobile meta (hooray!) -->
-		<meta name="HandheldFriendly" content="True">
-		<meta name="MobileOptimized" content="320">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		
+
 		<!-- icons & favicons -->
+
+		<!-- Opera Speed Dial Favicon -->
+		  <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/speeddial-160px.png" />
+			
+		<!-- Standard Favicon -->
+		  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+		<!-- For iPhone 4 Retina display: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/apple-touch-icon-114x114-precomposed.png">
+
+		<!-- For iPad: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/apple-touch-icon-72x72-precomposed.png">
+
+		<!-- For iPhone: -->
+		  <link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/apple-touch-icon-57x57-precomposed.png">
+
+
+
+
 		<!-- For iPhone 4 -->
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/h/apple-touch-icon.png">
 		<!-- For iPad 1-->
@@ -23,13 +45,12 @@
 		<!-- For Nokia -->
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
 		<!-- For everything else -->
-		<?php $options = get_option('wheniwasbad'); ?>
-		<?php $favicon_url = ($options['favicon_url']!='') ? $options['favicon_url'] : get_template_directory_uri() . '/favicon.ico'; ?>
+		
+		<?php $favicon_url = ($wheniwasbad_options['favicon_url']!='') ? $wheniwasbad_options['favicon_url'] : get_template_directory_uri() . '/favicon.ico'; ?>
 		<link rel="shortcut icon" href="<?php echo $favicon_url; ?>">
 		
 		<!-- or, set /favicon.ico for IE10 win -->
 		<meta name="msapplication-TileColor" content="#f01d4f">
-		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
 		
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
@@ -38,8 +59,8 @@
 	</head>
 	
 	<?php
-	$nav_position = $options['nav_position'];
-	$navbar_style = $options['nav_style'];
+	$nav_position = $wheniwasbad_options['nav_position'];
+	$navbar_style = $wheniwasbad_options['nav_style'];
 	
 	$navheader_class='navbar-default ';
 	
@@ -75,14 +96,14 @@
 				      <span class="icon-bar"></span>
 				    </button>
 					<a class="navbar-brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
-					<?php if($options['branding_logo']['url']) { ?>
-						<img src="<?php echo $options['branding_logo']['url']; ?>" alt="<?php echo get_bloginfo('description'); ?>">
+					<?php if($wheniwasbad_options['branding_logo']['url']) { ?>
+						<img src="<?php echo $wheniwasbad_options['branding_logo']['url']; ?>" alt="<?php echo get_bloginfo('description'); ?>">
 					<?php }
-						if($options['site_name']) bloginfo('name'); ?>
+						if($wheniwasbad_options['site_name']) bloginfo('name'); ?>
 					</a>
 				</div> <!-- navbar-header -->
 				
-				<?php $nav_align = $options['nav_alignment']; ?>
+				<?php $nav_align = $wheniwasbad_options['nav_alignment']; ?>
 				
 				<?php if ($nav_align=='left') : ?>
 				<nav class="collapse navbar-collapse pull-left navbar-main-collapse" role="navigation">
@@ -90,7 +111,7 @@
 				</nav>
 				<?php endif; ?>
 				
-				<?php if($options['search_bar']) : ?>
+				<?php if($wheniwasbad_options['search_bar']) : ?>
 				<form class="navbar-search pull-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
 					<input name="s" id="s" type="text" class="search-query" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" >
 				</form>

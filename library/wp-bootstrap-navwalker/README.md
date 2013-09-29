@@ -1,7 +1,7 @@
 wp-bootstrap-navwalker
 ======================
 
-**A custom WordPress nav walker class to fully implement the Twitter Bootstrap 3.0+ navigation style in a custom theme using the WordPress built in menu manager.**
+**A custom WordPress nav walker class to fully implement the Bootstrap 3.0+ navigation style in a custom theme using the WordPress built in menu manager.**
 
 ![Extras](http://edwardmcintyre.com/pub/github/navwalker-3-menu.jpg)
 
@@ -9,11 +9,13 @@ Bootstrap 2.x vs Bootstrap 3.0
 ------------
 There are many changes Bootstrap 2.x & Bootstrap 3.0 that affect both how the nav walker class is used and what the walker supports. For CSS changes I recommend reading the Migrating from 2.x to 3.0 in the official Bootstrap docs http://getbootstrap.com/getting-started/#migration
 
-The most noticeable functionality change im Bootstrap 3.0.0+ is that it only supports a signal dropdown level. This script in intended implement the Bootstrap 3.0 menu structure without adding additional features, additional dropdown levels will not be supported.
+The most noticeable functionality change in Bootstrap 3.0.0+ is that it only supports a single dropdown level. This script is intended to implement the Bootstrap 3.0 menu structure without adding additional features, so additional dropdown levels will not be supported.
+
+If you would like to use **Bootstrap 2.x** you can find the legacy version of the walker class here https://github.com/twittem/wp-bootstrap-navwalker/tree/For-Bootstrap-2.3.2
 
 NOTE
 ----
-This is a utility class that is intended to format your WordPress theme menu with the correct syntax and classes to utilize the Twitter Bootstrap dropdown navigation, and does not include the required Bootstrap JS files. You will have to include them manually. 
+This is a utility class that is intended to format your WordPress theme menu with the correct syntax and classes to utilize the Bootstrap dropdown navigation, and does not include the required Bootstrap JS files. You will have to include them manually. 
 
 Installation
 ------------
@@ -33,18 +35,19 @@ Update your `wp_nav_menu()` function in `header.php` to use the new walker by ad
 ```php
 <?php
 	wp_nav_menu( array(
-		'menu'       => 'primary',
-		'theme_location' => 'primary',
-		'depth'      => 2,
-		'container'  => false,
-		'menu_class' => 'nav navbar-nav',
-		'fallback_cb' => 'wp_page_menu',
-		'walker' => new wp_bootstrap_navwalker())
-	);		  
+		'menu'				=> 'primary',
+		'theme_location'	=> 'primary',
+		'depth'				=> 2,
+		'container'			=> 'div',
+		'container_class'	=> 'collapse navbar-collapse navbar-ex1-collapse',
+		'menu_class'		=> 'nav navbar-nav',
+		'fallback_cb'		=> 'wp_bootstrap_navwalker::fallback',
+		'walker'			=> new wp_bootstrap_navwalker())
+	);
 ?>
 ```
 
-Your menu will now be formatted with the correct syntax and classes to implement Twitter Bootstrap dropdown navigation. 
+Your menu will now be formatted with the correct syntax and classes to implement Bootstrap dropdown navigation. 
 
 You will also want to declare your new menu in your `functions.php` file.
 
@@ -57,7 +60,7 @@ register_nav_menus( array(
 Typically the menu is wrapped with additional markup, here is an example of a ` navbar-fixed-top` menu that collapse for responsive navigation.
 
 ```php
-<nav class="navbar navbar-default navbar-fixed-top navbar-turquoise" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="container">
 		<div class="navbar-header">
@@ -67,37 +70,36 @@ Typically the menu is wrapped with additional markup, here is an example of a ` 
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-	
+
 			<a class="navbar-brand" href="<?php bloginfo('url'); ?>">
 				<?php bloginfo('name'); ?>
 			</a>
 		</div>
-	
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<?php
-				wp_nav_menu( array(
-					'menu'       => 'primary',
-					'theme_location' => 'primary',
-					'depth'      => 2,
-					'container'  => false,
-					'menu_class' => 'nav navbar-nav',
-					'fallback_cb' => '',
-					'walker' => new wp_bootstrap_navwalker())
-				);		  
-			?>
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container -->
+
+		<?php
+			wp_nav_menu( array(
+				'menu'				=> 'primary',
+				'theme_location'	=> 'primary',
+				'depth'				=> 2,
+				'container'			=> 'div',
+				'container_class'	=> 'collapse navbar-collapse navbar-ex1-collapse',
+				'menu_class'		=> 'nav navbar-nav',
+				'fallback_cb'		=> 'wp_bootstrap_navwalker::fallback',
+				'walker'			=> new wp_bootstrap_navwalker())
+			);
+		?>
+	</div>
 </nav>
 ```
+
 To change your menu style add Bootstrap nav class names to the `menu_class` declaration.
 
 Review options in the Bootstrap docs for more information on nav classes
 http://getbootstrap.com/components/#nav
 
 Displaying the Menu 
-------------
-To display the menu you must associate your menu with your theme location. You can do this by selecting your them location in the *Theme Locations* list wile editing your menu in the WordPress admin.
+-------------------
+To display the menu you must associate your menu with your theme location. You can do this by selecting your theme location in the *Theme Locations* list wile editing a menu in the WordPress menu manager.
 
 Extras
 ------------
@@ -132,6 +134,12 @@ To set a disabled link simoly set the **Title Attribute** to `disabled` and the 
 
 Changelog
 ------------
+**2.0.4**
++ Updated fallback function to accept args array from wp_nav_menu
+
+**2.0.3**
++ Included a fallback function that adds a link to the WordPress menu manager if no menu has been assigned to the theme location.
+
 **2.0.2**
 + Small tweak to ensure carets are only displayed on top level dropdowns.
 
