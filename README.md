@@ -1,64 +1,77 @@
-WhenIWasBad v1.3.3
+WhenIWasBad v3.0
 ==================
-WordPress Bootstrap X Flatstrap
+WordPress Bootstrap Theme
 -------------------------------
-Twitter's Bootstrap in WordPress theme form, forked from 320press wp-bootstrap and re-skinned using littlesparkvt's flatstrap. It is built around Eddie Machado's Bones template. 
+Twitter's Bootstrap in WordPress theme form, originally forked from 320press wp-bootstrap, but long since evolved into an entirely different theme package. 
 
-It's named after a lyric from Ghostface's _Whip You With A Strap_ ("...take me across her lap, she used to whip me with a strap when I was bad") since I hate the concept of bootstrapping and needed to create distance from the horrible name Twitter gave their framework.
+It's named after a lyric from Ghostface's _Whip You With A Strap_ ("...[mom used to] take me across her lap, she used to whip me with a strap when I was bad") since I hate the concept of pulling oneself up by the bootstraps and needed to create distance from the horrible name Twitter gave their framework.
 
 Credits
 =======
 
-* Twitter Bootstrap 2.3.1 (http://twitter.github.com/bootstrap)
-* 320press wp-bootstrap v1.2 (http://320press.com/wpbs)
-* Eddie Machado Bones v1.09, plus a handful of cherry picks up to 1.4 (that hopefully don't break things) (https://github.com/eddiemachado/bones)
-* littlesparkvt Flatstrap (10 May 2013) (https://github.com/littlesparkvt/flatstrap)
-* Font Awesome 3.1.1 (https://github.com/FortAwesome/Font-Awesome/)
-
+* Bootstrap (https://github.com/twbs/bootstrap)
+* 320press wp-bootstrap (http://320press.com/wpbs)
+* Font Awesome (https://github.com/FortAwesome/Font-Awesome/)
+* wp-bootstrap-navwalker (https://github.com/twittem/wp-bootstrap-navwalker) 
+* Redux Framework (https://github.com/reduxframework/reduxframework)
+* Custom Metaboxes and Fields for Wordpress (https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress)
+* Blueimp Gallery (http://blueimp.github.io/Gallery/)
 
 ---
 
 FEATURES
 ========
 
-We’ve built the WordPress Bootstrap theme so that it could be used as-is or as a starting point for theme developers. It’s built on top of the brilliant Bones theme framework by Eddie Machado and based on v2.3.1 of Twitter’s Bootstrap.
+This WordPress Bootstrap theme is designed to stand alone or to be used as a base for child theming. It is designed to implement the core functionality of Bootstrap 3.0. It has customizable options via the Redux Framework.
 
-Here’s what we’ve got so far. Star this project on Github to keep up with its progress.
+Here are some of the things that are working so far:
 
 Responsive
 __________
 
-We stick as closely as possible to bootstrap so this thing is natually responsive. 
+By relying on the Bootstrap 3.0 framework, this theme should be fully responsive. It is built around a mobile-first logic with breakpoints that can be changed via LESS.
 
 Page Templates
 ______________
 
-We’ve packaged four different page templates into this theme.
+There are 3 built-in templates, but this belies the flexibility of sidebars that can be assigned on a per-page basis.
 
-* Homepage template (seen on the homepage of this site)
-* Standard page with left sidebar (this page)
-* Page with right sidebar
-* Full width page
+* Homepage template, with optional jumbotron area, carousel slider, and widget sidebar
+* Standard page, with one optional sidebar on the left or right
+* Jumbotron page, with a full-width jumbotron area in place of the page title and optional sidebars
 
-Theme Options Panel
+Theme Options
 ___________________
 
-Want to change some colors? Want the top nav to scroll with the content? Hide the search box in the top nav? Do it in the options panel.
+Lots of options for changing colors, typography, and page elements
 
 Shortcodes
 __________
 
-We’ve built in some shortcodes so you can easily add UI elements found in Twitter Bootstrap.
+A number of shortcodes are included so you can easily add UI elements found in Twitter Bootstrap.
+
+* Galleries: replace the default gallery shortcode with a lightbox-enabled, popover equipped, Bootstrap-esque gallery
 
 Sidebars
 ________
 
-We’ve built in two different sidebars. One for the homepage and one for the other pages. Add widgets to them.
+There are three included widget areas that can be assigned to individual pages or archive/blog pages.
 
 ---
 
 Changelog
 =========
+
+v3.0
+
+* Upgraded to Bootstrap 3.0. If you have existing content that relies on the Bootstrap 2.3 scaffolding, please check the Bootstrap documentation for information about migrating. THINGS WILL BREAK
+* Upgraded to the new Redux Framework 3.0. Options page might still be buggy as a result.
+* Overhauled the page template system to allow flexible sidebars on any page
+* Added custom metabox API to make it easier to add new page metaboxes in the future
+* Added new navwalker class for Bootstrap 3.0 menus. New system (and BS3.0) only supports a single child level even though this isn't technically WP compliant.
+* Added blueimp Gallery module for gallery shortcodes
+* Upgraded font-awesome
+* Bumped version number to 3 to indicate consistency with Bootstrap version numbering
 
 v1.3.3
 
