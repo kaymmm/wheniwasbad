@@ -10,10 +10,13 @@ Modified: 20130905
 // require_once('library/translation/translation.php'); // this comes turned off by default
 
 // Redux Options
-if(!class_exists('ReduxFramework')){
-    require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
-}
-require_once('redux-options.php');
+//add_action( 'init', 'initialize_redux_framework', 1000 );
+//function initialize_redux_framework() {
+	if ( ! class_exists( 'ReduxFramework' ) ){
+	    require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
+	}
+	require_once('redux-options.php');
+//}
 
 // Shortcodes
 require_once('library/shortcodes.php');
@@ -54,7 +57,7 @@ function theme_setup() {
 	set_post_thumbnail_size(125, 125, true);   // default thumb size
 	add_theme_support( 'custom-background' );  // wp custom background
 	add_theme_support('automatic-feed-links'); // rss thingy
-	add_theme_support('bootstrap-gallery'); //TODO: add theme support to turn off custom galleries
+//	add_theme_support('bootstrap-gallery'); //TODO: add theme support to turn off custom galleries
 	add_theme_support( 'post-formats',      // post formats
 		array( 
 			'aside',   // title less blurb
@@ -455,12 +458,15 @@ if( !function_exists("theme_styles") ) {
     function theme_styles() { 
 		if (!is_admin()){
         wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap-themed.css', array(), '3.0.0', 'all' );
-        wp_register_style( 'bootstrap-docs', get_template_directory_uri() . '/library/bootstrap/docs-assets/css/docs.css', array(), '3.0.0', 'all' );
+        //wp_register_style( 'bootstrap-docs', get_template_directory_uri() . '/library/bootstrap/docs-assets/css/docs.css', array(), '3.0.0', 'all' );
 		wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css', array(), '3.2.1', 'all' );
         wp_register_style( 'theme-base', get_stylesheet_uri(), array(), '1.0', 'all' );
+
+		// only enqueue the following styles when needed, but register them here to centralize updates.
+		wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.9.0', 'all' );
         
         wp_enqueue_style( 'bootstrap' );
-        wp_enqueue_style( 'bootstrap-docs' );
+        //wp_enqueue_style( 'bootstrap-docs' );
 		wp_enqueue_style( 'font-awesome' );
         wp_enqueue_style( 'theme-base');
 		}
@@ -481,8 +487,11 @@ if( !function_exists( "theme_js" ) ) {
 
 	    wp_register_script( 'wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
 	    wp_register_script( 'modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
-		// only enqueue the following script when needed, but register it so that it's available.
-		wp_register_script( 'bs-tooltips',get_template_directory_uri() . '/library/js/bs-tooltips.js',array('jquery','bootstrap'),'1.1', true );
+
+		// only enqueue the following scripts when needed, but register them here to centralize updates.
+		wp_register_script( 'bs-tooltips',get_template_directory_uri() . '/library/js/bs-tooltips.js',array('jquery','bootstrap'),'3.0', true );
+		wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/library/Gallery/js/jquery.blueimp-gallery.min.js', array(jquery), '1.2.0', true);
+		wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/library/js/gallery_init.js', array('jquery','blueimp-gallery-js'), false, true);
 	
 		wp_enqueue_script('wpbs-scripts');
 	    wp_enqueue_script('modernizr');

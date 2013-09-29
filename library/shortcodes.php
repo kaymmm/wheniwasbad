@@ -5,16 +5,12 @@
 // Gallery shortcode
 
 // Override the standard gallery shortcode
-// taken from https://github.com/retlehs/roots
+// originally from https://github.com/retlehs/roots
+// modified to support blueimp gallery http://blueimp.github.io/Gallery/
 function bootstrap_gallery($attr) {
-
-	wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.9.0', 'all' );
 	wp_enqueue_style('blueimp-gallery-css');
-	wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/library/Gallery/js/blueimp-gallery.min.js', array(), '0.6.1', true);
-	wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/library/gallery_init.js', array('jquery'), false, true);
 	wp_enqueue_script('blueimp-gallery-js');
 	wp_enqueue_script('blueimp-gallery-init-js');
-	wp_enqueue_script('bs-tooltips'); // bootstrap hover tooltips 
 
 	$post = get_post();
 
@@ -53,7 +49,9 @@ function bootstrap_gallery($attr) {
 		'size'       => 'thumbnail',
 		'include'    => '',
 		'exclude'    => '',
-		'showcontrols'	 => 'true'
+		'showcontrols'	=> 'true',
+		'showtooltips'	 => 'true',
+		'showcaptions'	=> 'true'
 	), $attr));
 
 	$id = intval($id);
@@ -99,7 +97,9 @@ function bootstrap_gallery($attr) {
 		$img_sm = wp_get_attachment_image_src($id,'thumbnail',false);
 		
 		$img = '<img src="' . $img_sm[0] . '" alt="' . $attachment->post_title . '"  />';
-		$mosaic .= '<a href="' . $img_lg[0] . '" class="thumbnail pull-left" rel="tooltip" data-original-title="' . $attachment->post_excerpt . '" style="width: ' . $col_width . '%; margin: 0 2px 2px 0;">'.$img.'</a>';
+		if ($showtooltips) $tooltip = ' rel="tooltip" data-original-title="' . $attachment->post_excerpt . '" ';
+		if ($showcaptions) $caption = ' data-description="'.$attachment->post_excerpt.'" ';
+		$mosaic .= '<a href="' . $img_lg[0] . '" class="thumbnail pull-left" style="width: ' . $col_width . '%; margin: 0 2px 2px 0;" '.$tooltip.$caption.' data-gallery>'.$img.'</a>';
 		if (trim($attachment->post_excerpt)) {
 		  $mosaic .= '<p class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</p>';
 		}
@@ -114,6 +114,10 @@ function bootstrap_gallery($attr) {
 	
 	if ($showcontrols) {
 		$mosaic .= '<script>jQuery( document ).ready( function() {if ( ! jQuery( "#blueimp-gallery").hasClass( "blueimp-gallery-controls" ) ) jQuery( "#blueimp-gallery").addClass("blueimp-gallery-controls"); });</script>';
+	}
+	
+	if ($showtooltips) {
+		wp_enqueue_script('bs-tooltips'); // bootstrap hover tooltips
 	}
 
 	return $mosaic;
