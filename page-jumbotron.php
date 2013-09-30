@@ -49,10 +49,6 @@ Template Name: Full-width Jumbotron
 			<section id="main" class="<?php echo $main_class; ?> clearfix" role="main">
 							
 				<?php the_content(); ?>
-				
-				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
-				
-				<?php comments_template( '', true ); ?>
 												
 			</section> <!-- main -->
 			

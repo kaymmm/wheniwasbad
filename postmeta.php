@@ -67,6 +67,13 @@ switch ($post_format) {
 
 	<aside class="entry-meta muted<?php echo $extra_classes; ?>">
 	<?php if (is_singular()): ?>
+		<?php if (has_post_thumbnail()) {
+		   $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large');
+		   echo '<a href="' . $large_image_url[0] . '" title="' . the_title_attribute('echo=0') . '" class="thumbnail">';
+		   echo get_the_post_thumbnail($post->ID, 'thumbnail',array('class' => 'img-thumbnail')); 
+		   echo '</a>';
+		 }?>
+		
 		<span class="avatar-head<?php echo $avatar_class; ?>"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
 			<?php echo bs_get_avatar(get_the_author_meta('ID'),'80','',$author,$class='img-circle'); ?>
 		</a></span>
@@ -88,7 +95,7 @@ switch ($post_format) {
 		if ( $posttags ) :
 			foreach ( $posttags as $tag ) :
 				$tag_link = get_tag_link( $tag->term_id ); ?>
-				<a href="<?php echo $tag_link; ?>" title="<?php echo $tag->name; ?> Tag" class="label"><?php echo $tag->name; ?></a>
+				<a href="<?php echo $tag_link; ?>" title="<?php echo $tag->name; ?> Tag" class="label label-default"><?php echo $tag->name; ?></a>
 			<?php endforeach;
 		else :
 			_e("Not Tagged","wheniwasbad");

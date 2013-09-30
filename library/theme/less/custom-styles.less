@@ -17,13 +17,14 @@
 
 
 /* custom navbars */
-.navbar .brand {
+/*.navbar .brand {
   font-size: 32px;
   font-weight: 400;
   font-family: @headings-font-family;
   color: @navbar-default-brand-color;
   text-shadow: none;
 }
+*/
 body.admin-bar .navbar-fixed-top {
 	top: @adminbar-top-margin;
 }
@@ -33,12 +34,14 @@ body.admin-bar .navbar-fixed-top {
 .navbar .nav {
   float: right;
 }
+/*
 .navbar .nav > li > a {
   text-decoration: none;
   text-shadow: none;
   font-size: 16px;
   padding: 32px 15px 32px;
 }
+*/
 
 /* custom navs */
 .nav {
@@ -75,6 +78,10 @@ body.navbar-fixed-offset {
 
 #main {
 	margin-top: 30px;
+}
+
+.navbar-static-top{
+	margin-bottom: 0;
 }
 
 
@@ -155,7 +162,7 @@ body.navbar-fixed-offset {
 } 
 
 
-/* custom type
+/* custom typography stuff */
 body {
 	-ms-word-wrap: break-word;
 	word-wrap: break-word;
@@ -198,9 +205,9 @@ cite   { font-size: 85%; }
   font-weight: 200;
   line-height: @line-height-base * 1.2;
 }
-*/
 
-/* custom classes
+
+/* custom classes */
 .entry-meta, #tag-cloud {
 	margin: (@line-height-base / 3) 0;
 	
@@ -210,12 +217,11 @@ cite   { font-size: 85%; }
 		line-height: @line-height-base;
 	}
 
-	p,
-	.label {
-		font-size:  @font-size-small;
+	p, .label {
+		font-size:  @font-size-tiny;
 		font-family: @font-family-sans-serif;
 		font-weight: @headings-font-weight;
-		line-height: @line-height-base*0.85;
+		line-height: @line-height-base*1.5;
 		margin-bottom: 5px;
 	}
 
@@ -256,7 +262,7 @@ cite   { font-size: 85%; }
 		color: @asbestos;
 	}
 }
-*/
+
 
 /* layout
 body.admin-bar.navbar-fixed-offset {
@@ -300,7 +306,10 @@ article.format-link .icon-external-link {
 
 /* Post Images */
 
-img { max-width: 100%;}
+img { 
+	max-width: 100%;
+	height: auto;
+}
 
 .alignnone {
 	float: none;
@@ -443,8 +452,19 @@ color: @wetasphalt;
 
 /* Shared Post Format styling */
 
-.post header img{
-	margin-bottom: 18px;
+.page-header {
+	padding-bottom: 0;
+}
+
+.entry-header
+{
+	h1,h2,h3,h4 {
+		margin-top: 0;
+	}
+}
+
+article.post.row {
+	margin-bottom: 24px;
 }
 
 .archive #main .post h3{
@@ -505,6 +525,11 @@ video {
 	margin: 0 0 20px;
 }
 
+/* sidebars */
+.sidebar {
+	margin-top: 70px;
+}
+
 /* comments */
 
 #comments{
@@ -520,8 +545,8 @@ ol.commentlist ul.children{
 }
 
 #main ol.commentlist article {
-	padding: 0 0 10px;
-	margin: 10px 0 20px;
+	padding: 0 15px 10px 15px;
+	margin: 10px 0 10px;
 }
 
 .comment .vcard > div{
@@ -555,9 +580,7 @@ ol.commentlist article{
 }
 
 a.comment-reply-link{
-	position: absolute;
-	right: 10px;
-	bottom: 0;
+	margin: 0;
 }
 
 #comment-nav ul{

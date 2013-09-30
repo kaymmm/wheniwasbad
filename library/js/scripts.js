@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
 	});
 	
 	$("ol.commentlist a.comment-reply-link").each(function() {
-		$(this).addClass('btn btn-success btn-mini');
+		$(this).addClass('btn btn-success btn-mini pull-right');
 		return true;
 	});
 	

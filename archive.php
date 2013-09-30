@@ -3,9 +3,10 @@
 <?php 
 	global $wheniwasbad_options;
 	$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
+	$show_blog_sidebar = $wheniwasbad_options['blog_sidebar'];
 	$sidebar_widget_group = $wheniwasbad_options['blog_sidebar_widgets'];
 	$sidebar_position = $wheniwasbad_options['blog_sidebar_position'];
-	if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar ) {
+	if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar && $show_blog_sidebar ) {
 		if ( $sidebar_position == 'left' ) {
 			$main_class = "col-md-9 col-md-push-3";
 			$sidebar_class = "col-md-3 col-md-pull-9";
@@ -72,10 +73,6 @@
 				<?php while (have_posts()) : the_post(); ?>
 	
 					<?php get_template_part( 'content', get_post_format() ); ?>
-
-					<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
-
-					<?php comments_template( '', true ); ?>
 
 				<?php endwhile; // end of the loop. ?>
 				

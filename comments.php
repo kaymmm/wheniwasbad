@@ -3,7 +3,6 @@
 comments page
 */
 
-// Do not delete these lines
   if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
     die ('Please do not load this page directly. Thanks!');
 
@@ -13,8 +12,6 @@ comments page
     return;
   }
 ?>
-
-<!-- You can start editing here. -->
 
 <?php if ( have_comments() ) : ?>
 	<?php if ( ! empty($comments_by_type['comment']) ) : ?>
@@ -91,58 +88,50 @@ comments page
   	</div>
 	<?php else : ?>
 
-	<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form-vertical" id="commentform">
+	<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" class="form-horizontal" method="post" id="commentform" role="form">
 
 	<?php if ( is_user_logged_in() ) : ?>
 
 	<p class="comments-logged-in-as"><?php _e("Logged in as","wheniwasbad"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","wheniwasbad"); ?>"><?php _e("Log out","wheniwasbad"); ?> <i class="icon-signout"></i></a></p>
 
 	<?php else : ?>
-	
-	<ul id="comment-form-elements" class="clearfix">
 		
-		<li>
-			<div class="control-group">
-			  <label for="author"><?php _e("Name","wheniwasbad"); ?> <?php if ($req) echo "(required)"; ?></label>
-			  <div class="input-group">
-			  	<span class="input-group-addon"><i class="icon-user"></i></span><input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Your Name","wheniwasbad"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
-			  </div>
-		  	</div>
-		</li>
-		
-		<li>
-			<div class="control-group">
-			  <label for="email"><?php _e("Mail","wheniwasbad"); ?> <?php if ($req) echo "(required)"; ?></label>
-			  <div class="input-group">
-			  	<span class="input-group-addon"><i class="icon-envelope"></i></span><input type="email" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("Your Email","wheniwasbad"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
-			  	<span class="help-inline">(<?php _e("will not be published","wheniwasbad"); ?>)</span>
-			  </div>
-		  	</div>
-		</li>
-		
-		<li>
-			<div class="control-group">
-			  <label for="url"><?php _e("Website","wheniwasbad"); ?></label>
-			  <div class="input-group">
-			  <span class="input-group-addon"><i class="icon-home"></i></span><input type="url" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website","wheniwasbad"); ?>" tabindex="3" />
-			  </div>
-		  	</div>
-		</li>
-		
-	</ul>
+		<div class="form-group">
+		  <label for="author" class="col-lg-3 control-label"><?php _e("Name","wheniwasbad"); ?> <?php if ($req) echo "(required)"; ?></label>
+		  <div class="input-group col-lg-6">
+		  	<span class="input-group-addon"><i class="icon-user"></i></span><input type="text" class="form-control" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" placeholder="<?php _e("Your Name","wheniwasbad"); ?>" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
+		  </div>
+	  	</div>
+
+		<div class="form-group">
+		  <label for="email" class="col-lg-3 control-label"><?php _e("Mail","wheniwasbad"); ?> <?php if ($req) echo "(required)"; ?></label>
+		  <div class="input-group col-lg-6">
+		  	<span class="input-group-addon"><i class="icon-envelope"></i></span><input type="email" class="form-control" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("Your Email","wheniwasbad"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
+		  </div>
+		  <span class="help-block">(<?php _e("will not be published","wheniwasbad"); ?>)</span>
+	  	</div>
+
+		<div class="form-group">
+		  <label for="url" class="col-lg-3 control-label"><?php _e("Website","wheniwasbad"); ?></label>
+		  <div class="input-group col-lg-6">
+		  <span class="input-group-addon"><i class="icon-home"></i></span><input type="url" class="form-control" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website","wheniwasbad"); ?>" tabindex="3" />
+		  </div>
+	  	</div>
 
 	<?php endif; ?>
 	
-	<div class="clearfix">
-		<div class="input">
-			<textarea name="comment" id="comment" placeholder="<?php _e("Your Comment Here&hellip;","wheniwasbad"); ?>" tabindex="4"></textarea>
+	<div class="form-group">
+		<div class="col-lg-9 col-lg-push-3">
+			<textarea class="form-control" rows="5" name="comment" id="comment" placeholder="<?php _e("Your Comment Here&hellip;","wheniwasbad"); ?>" tabindex="4"></textarea>
 		</div>
 	</div>
-	
-	<div class="form-control">
-	  <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment","wheniwasbad"); ?>" />
-	  <?php comment_id_fields(); ?>
+	<div class="form-group">
+		<div class="col-lg-9 col-lg-push-3">
+			<input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment","wheniwasbad"); ?>" />
+			<?php comment_id_fields(); ?>
+		</div>
 	</div>
+
 	
 	<?php 
 		//comment_form();

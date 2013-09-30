@@ -42,11 +42,7 @@ Template Name: Default Page Template
 			<section id="main" class="<?php echo $main_class; ?> clearfix" role="main">
 	
 				<?php get_template_part( 'content' ); ?>
-			
-				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
-				
-				<?php comments_template( '', true ); ?>
-		
+						
 			</section> <!-- end #main -->
 	
 			<?php if ($sidebar_class != ''): ?>

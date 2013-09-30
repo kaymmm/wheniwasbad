@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
 <?php 	
 	global $wheniwasbad_options;
 	$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
@@ -41,10 +42,6 @@
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		
 					<?php get_template_part( 'content', get_post_format() ); ?>
-
-					<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
-
-					<?php comments_template( '', true ); ?>
 
 				<?php endwhile; // end of the loop. ?>
 		

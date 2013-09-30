@@ -120,9 +120,7 @@ Template Name: Homepage
 			<section id="main" class="<?php echo $content_class; ?> clearfix" role="main">
 		
 				<?php get_template_part( 'content' ); ?>
-				
-				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
-			
+							
 			</section> <!-- end main -->
 			
 			<?php if ($sidebar_class != ''): ?>

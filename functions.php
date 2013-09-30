@@ -229,10 +229,10 @@ function comments_layout($comment, $args, $depth) {
 	<li <?php comment_class(); ?>>
 		<article id="comment-<?php comment_ID(); ?>" class="clearfix">
 			<div class="comment-author vcard row clearfix">
-				<div class="avatar col-md-3">
+				<div class="avatar col-md-2">
 					<?php echo get_avatar( $comment, $size='75' ); ?>
 				</div>
-				<div class="col-md-9 comment-text">
+				<div class="col-md-10 comment-text">
 					<?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
 					<?php edit_comment_link(__('Edit','wheniwasbad'),'<span class="edit-comment btn btn-sm btn-info"><i class="icon-white icon-pencil"></i>','</span>') ?>
                     
@@ -584,15 +584,15 @@ function page_navi() {
 	if ( $wp_query->max_num_pages <= 1 )
 		return;
 
-	echo '<nav class="pagination">';
+	echo '<nav class="pagination text-center">';
   
 	echo paginate_links( array(
 		'base'       => str_replace( $bignum, '%#%', esc_url( get_pagenum_link($bignum) ) ),
 		'format'     => '',
 		'current'     => max( 1, get_query_var('paged') ),
 		'total'     => $wp_query->max_num_pages,
-		'prev_text'   => '&larr;',
-		'next_text'   => '&rarr;',
+		'prev_text'   => '&larr; Previous',
+		'next_text'   => 'Next &rarr;',
 		'type'      => 'list',
 		'end_size'    => 3,
 		'mid_size'    => 3
