@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
 	});
 	
 	$('#cancel-comment-reply-link').each(function() {
-		$(this).addClass('btn btn-danger btn-mini');
+		$(this).addClass('btn btn-danger btn-mini pull-right');
 		return true;
 	});
 	

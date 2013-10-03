@@ -1,4 +1,24 @@
 <?php get_header(); ?>
+
+<?php 
+	global $wheniwasbad_options;
+	$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
+	$show_blog_sidebar = $wheniwasbad_options['blog_sidebar'];
+	$sidebar_widget_group = $wheniwasbad_options['blog_sidebar_widgets'];
+	$sidebar_position = $wheniwasbad_options['blog_sidebar_position'];
+	if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar && $show_blog_sidebar ) {
+		if ( $sidebar_position == 'left' ) {
+			$main_class = "col-md-9 col-md-push-3";
+			$sidebar_class = "col-md-3 col-md-pull-9";
+		} elseif ( $sidebar_position == 'right' ) {
+			$main_class = "col-md-9";
+			$sidebar_class = "col-md-3";
+		}
+	} else {
+		$main_class = "col-md-12";
+		$sidebar_class = "";
+	}		
+?>
 			
 	<div id="content" class="container clearfix">
 
@@ -15,39 +35,34 @@
 			
 		</header> <!-- page header -->
 			
-		<div id="main" class="row clearfix" role="main">
-							
-		<div class="col-md-3">	
-			<?php get_sidebar(); // sidebar 1 ?>
-		</div>
-				
-			<div class="col-md-9">
+		<div class="row clearfix">
+			
+			<section id="main" role="main" class="<?php echo $main_class; ?>">
 				
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 	
-					<?php get_template_part( 'content', get_post_format() ); ?>
+						<?php get_template_part( 'content', get_post_format() ); ?>
 
-					<?php comments_template( '', true ); ?>
+					<?php endwhile; // end of the loop. ?>
 
-				<?php endwhile; // end of the loop. ?>
-				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wheniwasbad' ), 'after' => '</div>' ) ); ?>
-				<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
+					<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
 			
-					<?php page_navi(); // use the page navi function ?>
+						<?php page_navi(); // use the page navi function ?>
 
-				<?php else : // if it is disabled, display regular wp prev & next links ?>
-					<nav class="wp-prev-next pagenavi">
-						<ul class="clearfix">
-							<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
-							<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
-						</ul>
-					</nav>
-				<?php endif; ?>
-			<?php else : ?>
+					<?php else : // if it is disabled, display regular wp prev & next links ?>
+						<nav class="wp-prev-next pagenavi">
+							<ul class="clearfix">
+								<li class="prev-link"><?php next_posts_link(_e('<i class="icon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
+								<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="icon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
+							</ul>
+						</nav>
+					<?php endif; ?>
+				
+				<?php else : ?>
 
-				<h3><?php _e('Sorry, there was nothing found matching those search terms.','wheniwasbad'); ?></h3>
+					<h3><?php _e('Sorry, there was nothing found matching those search terms.','wheniwasbad'); ?></h3>
 		
-			<?php endif; ?>
+				<?php endif; ?>
 				
 				<?php
 				$sf = get_search_form(false);
@@ -56,14 +71,28 @@
 //				$sf = str_replace( '<input type="text"','<div class="controls"><input type="text"',$sf);
 //				$sf = str_replace( '</button>','</div></button>',$sf);
 				?>
-				<div class="well row clearfix">
+				
+				<div class="panel row clearfix">
+				
 					<div class="col-md-6 text-right"><h3>Search the site again:</h3></div>
+				
 					<div class="col-md-6"><?php echo $sf; ?></div>
+				
 				</div>
 
-			</div><!-- col-md-9 articles -->
+			</section><!-- main -->
+			
+			<?php if ($sidebar_class != ''): ?>
+	
+				<section class="<?php echo $sidebar_class; ?> clearfix">
+	
+					<?php get_sidebar($sidebar_widget_group); ?>
+	
+				</section>
+	
+			<?php endif; ?>		
 
-		</div><!-- #main -->
+		</div><!-- row -->
 		
 	</div> <!-- end #content -->
 
