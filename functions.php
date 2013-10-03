@@ -517,12 +517,10 @@ add_action( 'wp_footer', function() {
 
 // Search Form
 function bs_wpsearch($form) {
-	$form = '<form action="' . home_url( '/' ) . '" method="get" class="form-control">
-    <fieldset>
-		<div class="clearfix input-group">
-			<input type="text" name="s" id="search" class="search-query input-medium" placeholder="' . __("Search","wheniwasbad") . '" value="' . get_search_query() . '" /><button type="submit" class="btn btn-primary" title="' . __("Search","wheniwasbad") . '" ><i class="icon-search"></i></button>
+	$form = '<form action="' . home_url( '/' ) . '" method="get" class="form-inline">
+		<div class="clearfix input-group input-group-sm">
+			<input type="text" name="s" id="search" class="form-control" placeholder="' . __("Search","wheniwasbad") . '" value="' . get_search_query() . '" /><span class="input-group-btn"><button type="submit" class="btn btn-primary" title="' . __("Search","wheniwasbad") . '" ><i class="icon-search"></i></button></span>
         </div>
-    </fieldset>
 </form>';
 	return $form;
 }
