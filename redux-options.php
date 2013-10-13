@@ -224,31 +224,19 @@ function setup_framework_options(){
     // Default: manage_options
     //$args['page_cap'] = 'manage_options';
 
-    // Set the menu type. Set to "menu" for a top level menu, or "submenu" to add below an existing item.
-    // Default: menu
-    //$args['page_type'] = 'submenu';
-
-    // Set the parent menu.
-    // Default: themes.php
-    // A list of available parent menus is available at http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
-    //$args['page_parent'] = 'options_general.php';
-
     // Set a custom page location. This allows you to place your menu where you want in the menu order.
     // Must be unique or it will override other items!
     // Default: null
     //$args['page_position'] = null;
 
-    // Set a custom page icon class (used to override the page icon next to heading)
-    //$args['page_icon'] = 'icon-themes';
-
 	// Set the icon type. Set to "iconfont" for Font Awesome, or "image" for traditional.
 	// Redux no longer ships with standard icons!
 	// Default: iconfont
-	//$args['icon_type'] = 'image';
+	$args['icon_type'] = 'iconfont';
 
     // Disable the panel sections showing as submenu items.
     // Default: true
-    //$args['allow_sub_menu'] = false;
+    $args['allow_sub_menu'] = true;
         
     // Set ANY custom page help tabs, displayed using the new help tab API. Tabs are shown in order of definition.
 	/*
@@ -316,6 +304,34 @@ function setup_framework_options(){
         'title' => __('Typography', Redux_TEXT_DOMAIN),
         'desc' => __('<p class="description">Typography and font options</p>', Redux_TEXT_DOMAIN),
         'fields' => array(
+        	array(
+				'id'=>'heading_font',
+				'type' => 'typography', 
+				'title' => __('Heading Font', Redux_TEXT_DOMAIN),
+				'compiler'=>true,
+				'units'=>'px',				
+				'subtitle'=> __('The font settings used for headings. Font size is the base, different heading levels scale up from there.', Redux_TEXT_DOMAIN),
+				'default'=> array(
+					'color'=>"#333", 
+					'style'=>'700', 
+					'family'=>'Raleway', 
+					'size'=>16, 
+					'height'=>'22'),
+			),
+        	array(
+				'id'=>'body_font',
+				'type' => 'typography', 
+				'title' => __('Body Font', Redux_TEXT_DOMAIN),
+				'compiler'=>true,
+				'units'=>'px',				
+				'subtitle'=> __('The font used in most of the body text.', Redux_TEXT_DOMAIN),
+				'default'=> array(
+					'color'=>"#333", 
+					'style'=>'400', 
+					'family'=>'Enriqueta', 
+					'size'=>16, 
+					'height'=>'22'),
+			),
             array(
                 'id' => 'link_color',
                 'type' => 'color',
