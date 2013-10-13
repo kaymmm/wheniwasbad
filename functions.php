@@ -6,17 +6,22 @@ Version: 2.0
 Modified: 20130905
 */
 
-/* library/translation/translation.php	- adding support for other languages */
-// require_once('library/translation/translation.php'); // this comes turned off by default
+/************* DEBUGGING TOOLS ****************/
+// const WPBS_DEBUGGING turns on or off the theme's development/debugging tools
+define("WPBS_DEBUGMODE",true);
+
+if (WPBS_DEBUGMODE) {
+	include_once('library/debugging.php');
+}
 
 // Redux Options
-add_action( 'init', 'initialize_redux_framework', 1000 );
-function initialize_redux_framework() {
+//add_action( 'init', 'initialize_redux_framework', 1000 );
+//function initialize_redux_framework() {
 	if ( ! class_exists( 'ReduxFramework' ) ){
 	    require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
 	}
 	require_once('redux-options.php');
-}
+//}
 
 // Shortcodes
 require_once('library/shortcodes.php');
@@ -457,15 +462,13 @@ function add_active_class($classes, $item) {
 if( !function_exists("theme_styles") ) {  
     function theme_styles() { 
 		if (!is_admin()){
-        wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap-themed.css', array(), '3.0.0', 'all' );
-		wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css', array(), '3.2.1', 'all' );
+        //wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/library/theme/css/bootstrap-themed.css', array(), '3.0.0', 'all' );
 
 		// only enqueue the following styles when needed, but register them here to centralize updates.
 		wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.9.0', 'all' );
 		wp_register_style('tocify-css',get_template_directory_uri() . '/library/jquery.tocify.js/src/stylesheets/jquery.tocify.css', array(), '1.9.0', 'screen');
         
-        wp_enqueue_style( 'bootstrap' );
-		wp_enqueue_style( 'font-awesome' );
+        //wp_enqueue_style( 'bootstrap-css' );
         wp_enqueue_style( 'theme-base');
 		}
     }
@@ -480,8 +483,8 @@ if( !function_exists( "theme_js" ) ) {
   function theme_js(){
 	  if (!is_admin()) {
 	  //use CDN for loading Bootstrap
-		wp_register_script('bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js', array('jquery'), '3.0.0', true);
-		wp_enqueue_script('bootstrap');
+		wp_register_script('bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js', array('jquery'), '3.0.0', true);
+		wp_enqueue_script('bootstrap-js');
 
 	    wp_register_script( 'wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'1.2', true );
 	    wp_register_script( 'modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
