@@ -379,38 +379,33 @@ function setup_framework_options(){
 				"options" => array('left'=>'Align Left', 'right'=>'Align Right')
 			),
 			array( 
-				'title' => __('Use inverted colors on nav bar', Redux_TEXT_DOMAIN),
-					'desc' => __('Uses dark (default) background and light text', Redux_TEXT_DOMAIN),
+				'title' => __('Use inverted colors on homepage nav bar?', Redux_TEXT_DOMAIN),
+					'desc' => __('Swap the font and background color on the navbar for the homepage template.', Redux_TEXT_DOMAIN),
 					'id' => 'navbar_style_inverted',
-					'default' => '0',
-					'type' => 'checkbox'
+					'default' => 'on',
+					'type' => 'switch'
+			),
+			array( 'title' => __('Check to use a gradient for top nav background', Redux_TEXT_DOMAIN),
+					'desc' => __('Use gradient', Redux_TEXT_DOMAIN),
+					'id' => 'showhidden_gradient',
+					'default' => 'off',
+					'type' => 'switch'
+			),
+			array( 'title' => __('Background gradient', Redux_TEXT_DOMAIN),
+					'desc' => __('Top nav gradient colors.', Redux_TEXT_DOMAIN),
+					'id' => 'top_nav_gradient_color',
+					'fold' => array('showhidden_gradient' => true),
+					'default' => '',
+					'type' => 'color_gradient'
 			),
 			array( 
 				'title' => __('Top nav background color', Redux_TEXT_DOMAIN),
 				'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
 				'id' => 'top_nav_bg_color',
+				'fold' => array('showhidden_gradient' => false),
 				'default' => '',
 				'type' => 'color'
 			),	
-			array( 'title' => __('Check to use a gradient for top nav background', Redux_TEXT_DOMAIN),
-					'desc' => __('Use gradient', Redux_TEXT_DOMAIN),
-					'id' => 'showhidden_gradient',
-					'default' => 0,
-					'type' => 'switch'
-			),
-			array( 'title' => __('Bottom gradient color', Redux_TEXT_DOMAIN),
-					'desc' => __('Top nav background color used as top gradient color.', Redux_TEXT_DOMAIN),
-					'id' => 'top_nav_bottom_gradient_color',
-					'fold' => array('showhidden_gradient'),
-					'default' => '',
-					'type' => 'color'
-			),		
-			array( 'title' => __('Top nav item color', Redux_TEXT_DOMAIN),
-					'desc' => __('Link color.', Redux_TEXT_DOMAIN),
-					'id' => 'top_nav_link_color',
-					'default' => '',
-					'type' => 'color'
-			),
 			array( 'title' => __('Top nav item hover color', Redux_TEXT_DOMAIN),
 					'desc' => __('Link hover color.', Redux_TEXT_DOMAIN),
 					'id' => 'top_nav_link_hover_color',

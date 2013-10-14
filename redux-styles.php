@@ -60,18 +60,18 @@
       }
 
       if ( $use_gradient ) {
-        $topbar_bottom_gradient_color = $wheniwasbad_options['top_nav_bottom_gradient_color'];
+        $topbar_gradient_color = $wheniwasbad_options['top_nav_gradient_color'];
 
         $theme_options_styles .= '
 		.navbar .fill {
-			background-image: -khtml-gradient(linear, left top, left bottom, from(' . $topbar_bg_color . '), to('. $topbar_bottom_gradient_color . '));
-			background-image: -moz-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-			background-image: -ms-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, ' . $topbar_bg_color . '), color-stop(100%, '. $topbar_bottom_gradient_color . '));
-			background-image: -webkit-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . '2);
-			background-image: -o-linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-			background-image: linear-gradient(top, ' . $topbar_bg_color . ', '. $topbar_bottom_gradient_color . ');
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=\'' . $topbar_bg_color . '\', endColorstr=\''. $topbar_bottom_gradient_color . '2\', GradientType=0);
+			background-image: -khtml-gradient(linear, left top, left bottom, from(' . $topbar_gradient_color['from'] . '), to('. $topbar_gradient_color['to'] . '));
+			background-image: -moz-linear-gradient(top, ' . $topbar_gradient_color['from'] . ', '. $topbar_gradient_color['to'] . ');
+			background-image: -ms-linear-gradient(top, ' . $topbar_gradient_color['from'] . ', '. $topbar_gradient_color['to'] . ');
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, ' . $topbar_gradient_color['from'] . '), color-stop(100%, '. $topbar_gradient_color['to'] . '));
+			background-image: -webkit-linear-gradient(top, ' . $topbar_gradient_color['from'] . ', '. $topbar_gradient_color['to'] . '2);
+			background-image: -o-linear-gradient(top, ' . $topbar_gradient_color['from'] . ', '. $topbar_gradient_color['to'] . ');
+			background-image: linear-gradient(top, ' . $topbar_gradient_color['from'] . ', '. $topbar_gradient_color['to'] . ');
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=\'' . $topbar_gradient_color['from'] . '\', endColorstr=\''. $topbar_gradient_color['to'] . '2\', GradientType=0);
 		}';
       }
 

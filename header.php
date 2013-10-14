@@ -61,6 +61,7 @@
 	<?php
 	$nav_position = $wheniwasbad_options['nav_position'];
 	$navbar_style = $wheniwasbad_options['nav_style'];
+	$navbar_style_inverted = $wheniwasbad_options['navbar_style_inverted'];
 	
 	$navheader_class='navbar-default ';
 	
