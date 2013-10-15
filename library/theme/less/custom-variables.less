@@ -46,7 +46,7 @@
 @green:                 @emerland;
 @red:                   @pomegranate;
 @yellow:                @sunflower;
-//@orange:                @carrot;
+@orange:                @carrot;
 @pink:                  @alizarin;
 @purple:                @amethyst;
 
@@ -54,11 +54,11 @@
 // Brand colors
 // -------------------------
 
-@brand-primary:         @turquoise;//#428bca;
-@brand-success:         @emerland;//#5cb85c;
-@brand-warning:         @alizarin;//#f0ad4e;
-@brand-danger:          @pomegranate;//#d9534f;
-@brand-info:            @peterriver;//#5bc0de;
+@brand-primary:         @purple;//#428bca;
+@brand-success:         @green;//#5cb85c;
+@brand-warning:         @orange;//#f0ad4e;
+@brand-danger:          @red;//#d9534f;
+@brand-info:            @yellow;//#5bc0de;
 
 
 // Scaffolding
@@ -99,7 +99,7 @@
 
 // Links
 // -------------------------
-@link-color:            @brand-primary;
+@link-color:            @pink;
 @link-hover-color:      darken(@link-color, 15%);
 
 
@@ -263,27 +263,28 @@
 // -------------------------
 
 // Basics of a navbar
-@navbar-height:                    40px;
+@navbar-height:                    50px;
 @navbar-margin-bottom:             @line-height-computed;
-@navbar-default-color:             @white;
-@navbar-default-bg:                @alizarin;
-@navbar-default-border:            darken(@navbar-default-bg, 15%);
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 
+@navbar-default-color:             @white;;
+@navbar-default-bg:                @alizarin;
+@navbar-default-border:            darken(@navbar-default-bg, 15%);
+
 // Navbar links
-@navbar-default-link-color:                @clouds; //#777;
-@navbar-default-link-hover-color:          @wetasphalt;
+@navbar-default-link-color:                @white;
+@navbar-default-link-hover-color:          @gary-dark;
 @navbar-default-link-hover-bg:             transparent;
-@navbar-default-link-active-color:         @white;
+@navbar-default-link-active-color:         @gray;
 @navbar-default-link-active-bg:            darken(@navbar-default-bg, 15%);
-@navbar-default-link-disabled-color:       #ccc;
+@navbar-default-link-disabled-color:       @gray-light;
 @navbar-default-link-disabled-bg:          transparent;
 
 // Navbar brand label
 @navbar-default-brand-color:               @navbar-default-link-color;
-@navbar-default-brand-hover-color:         darken(@navbar-default-link-color, 10%);
+@navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
 @navbar-default-brand-hover-bg:            transparent;
 
 // Navbar toggle
@@ -312,13 +313,6 @@
 @navbar-inverse-brand-color:                @navbar-inverse-link-color;
 @navbar-inverse-brand-hover-color:          #fff;
 @navbar-inverse-brand-hover-bg:             transparent;
-
-// Inverted navbar search
-// Normal navbar needs no special styles or vars
-@navbar-inverse-search-bg:                  lighten(@navbar-inverse-bg, 25%);
-@navbar-inverse-search-bg-focus:            #fff;
-@navbar-inverse-search-border:              @navbar-inverse-bg;
-@navbar-inverse-search-placeholder-color:   #ccc;
 
 // Inverted navbar toggle
 @navbar-inverse-toggle-hover-bg:            #333;
@@ -351,8 +345,10 @@
 @nav-tabs-justified-active-link-border-color:     @body-bg;
 
 // Pills
+@nav-pills-border-radius:                   @border-radius-base;
 @nav-pills-active-link-hover-bg:            @component-active-bg;
-@nav-pills-active-link-hover-color:         #fff;
+@nav-pills-active-link-hover-color:         @component-active-color;
+
 
 
 // Pagination
