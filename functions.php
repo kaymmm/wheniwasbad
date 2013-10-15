@@ -6,7 +6,7 @@ Version: 2.0
 Modified: 20130905
 */
 
-/************* DEBUGGING TOOLS ****************/
+/************* INCLUDES ****************/
 // const WPBS_DEBUGGING turns on or off the theme's development/debugging tools
 define("WPBS_DEBUGMODE",true);
 
@@ -15,31 +15,26 @@ if (WPBS_DEBUGMODE) {
 }
 
 // Redux Options
-//add_action( 'init', 'initialize_redux_framework', 1000 );
-//function initialize_redux_framework() {
-	if ( ! class_exists( 'ReduxFramework' ) ){
-	    require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
-	}
-	require_once('redux-options.php');
-//}
+if ( ! class_exists( 'ReduxFramework' ) ){
+	define('REDUX_URL',get_template_directory_uri().'/library/ReduxFramework/ReduxCore/');
+    require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
+}
+require_once('redux-options.php');
+
+// Custom Metaboxes and Fields (https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress)
+if ( !class_exists( 'cmb_Meta_Box' ) ) {
+	define('CMB_URL',get_template_directory_uri().'/library/Custom-Meta-Boxes/');
+	require_once( 'library/Custom-Meta-Boxes/custom-meta-boxes.php' );
+	require_once( 'library/metaboxes.php' );
+}
 
 // Shortcodes
 require_once('library/shortcodes.php');
 
-// Custom Metaboxes and Fields (https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress)
-add_action( 'init', 'initialize_cmb_meta_boxes', 9999 );
-function initialize_cmb_meta_boxes() {
-	if ( !class_exists( 'cmb_Meta_Box' ) ) {
-		require_once( 'library/cmb/init.php' );
-	}
-}
 
 // custom function for displaying page not found info
-add_action( 'init', 'initialize_not_found', 9999 );
-function initialize_not_found() {
-	if ( !function_exists( 'not_found' ) ) {
-		require_once('notfound.php');
-	}
+if ( !function_exists( 'not_found' ) ) {
+	require_once('notfound.php');
 }
 
 // Menu output mod for bootstrap
@@ -343,192 +338,6 @@ function remove_thumbnail_dimensions( $html ) {
     $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
     return $html;
 }
-
-/******** Custom Metaboxes ********/
-function cmb_add_metaboxes( array $meta_boxes ) {
-	$prefix = '_cmb_';
-	
-	$meta_boxes[] = array(
-		'id'         => 'jumbotron_meta_box',
-		'title'      => 'Jumbotron',
-		'pages'      => array( 'page', ), // Post type
-		'context'    => 'normal',
-		'priority'   => 'high',
-		'show_names' => true, // Show field names on the left
-		'show_on' => array( 'key' => 'page-template', 'value' => array('page-homepage.php','page-jumbotron.php') ),
-		'fields' => array(
-		    array(  
-		        'name'=> 'Jumbotron Contents',  
-		        'desc'  => 'Displayed in place of a page title. Only used on homepage and jumbotron templates. HTML can be used.',  
-		        'id'    => 'jumbotron_contents',  
-		        'type'  => 'wysiwyg',
-				'options' => array(
-					    'wpautop' => true, // use wpautop?
-					    'media_buttons' => true, // show insert/upload button(s)
-					    //'textarea_name' => $editor_id, // set the textarea name to something different, square brackets [] can be used here
-					    'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
-					    'tabindex' => '',
-					    'editor_css' => '', // intended for extra styles for both visual and HTML editors buttons, needs to include the <style> tags, can use "scoped".
-					    'editor_class' => '', // add extra class(es) to the editor textarea
-					    'teeny' => false, // output the minimal editor config used in Press This
-					    'dfw' => false, // replace the default fullscreen with DFW (needs specific css)
-					    'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
-					    'quicktags' => true // load Quicktags, can be used to pass settings directly to Quicktags using an array()	
-					), 
-		    )
-		)
-	);
-	
-	foreach($GLOBALS['wp_registered_sidebars'] as $key => $val) {
-		$sidebar_list[] = array(
-			'value' => $key,
-			'name' => $val['name']
-		);
-	}
-	$meta_boxes[] = array(
-		'id'         => 'sidebar_options_meta_box',
-		'title'      => 'Sidebar',
-		'pages'      => array( 'page', ), // Post type
-		'context'    => 'normal',
-		'priority'   => 'high',
-		'show_names' => true, // Show field names on the left
-		//'show_on' => array( 'key' => 'page-template', 'value' => array('page-homepage.php','page-jumbotron.php','page.php') ),
-		'fields' => array(
-		    array(  
-		        'name'=> 'Sidebar Position',  
-		        'desc'  => 'Select the visibility and position of sidebars for this page.',  
-		        'id'    => 'sidebar_position',
-		        'type'  => 'select',
-				'options' => array(
-					array('value' => 'none', 'name' => 'No Sidebar'),
-					array('value' => 'left', 'name' => 'Left Sidebar'), 
-					array('value' => 'right', 'name' => 'Right Sidebar')
-				)
-		    ),
-			array(  
-		        'name'=> 'Widget Group',  
-		        'desc'  => 'Select a widget group to display in the sidebar on this page.',  
-		        'id'    => 'sidebar_widgets',  
-		        'type'  => 'select',
-				'options' => $sidebar_list
-		    )
-		)
-	);
-
-	$effect_speed = array(
-		array('name' => 'Slow', 'value' => 'slow'),
-		array('name' => 'Medium', 'value' => 'medium'),
-		array('name' => 'Fast', 'value' => 'fast'),
-	);
-
-	$meta_boxes[] = array(
-		'id'         => 'toc_meta_box',
-		'title'      => 'Table of Contents Options',
-		'pages'      => array( 'page', ), // Post type
-		'context'    => 'normal',
-		'priority'   => 'high',
-		'show_names' => true, // Show field names on the left
-		'show_on' => array( 'key' => 'page-template', 'value' => array('page-toc.php') ),
-		'fields' => array(
-		    array(  
-		        'name'=> 'DOM Selector',
-		        'desc'  => 'Comma separated list of header elements to include in the TOC, in hierarchical order. Default is "h1,h2,h3".',  
-		        'id'    => 'toc_selector',  
-		        'type'  => 'text_small'
-			),
-			array(  
-		        'name'=> 'TOC Context',
-		        'desc'  => 'The container element that holds all of the elements used to generate the TOC. Can be any valid jQuery selector. Default is the container around the main content.',  
-		        'id'    => 'toc_context',  
-		        'type'  => 'text_small'
-			),
-			array(  
-		        'name'=> 'Show and Hide Child Menu Levels',
-		        'desc'  => 'When checked, nested child items are hidden until the parent level is displayed; when unchecked, all items are displayed.',  
-		        'id'    => 'toc_showAndHide',  
-		        'type'  => 'checkbox'
-			),
-			array(  
-		        'name'=> 'Show Effect',
-		        'desc'  => 'Animation effect used to display nested TOC items',  
-		        'id'    => 'toc_showEffect',
-		        'type'  => 'select',
-		        'options' => array(
-		        	array('name' => 'None', 'value' => 'none'),
-		        	array('name' => 'Fade In', 'value' => 'fadeIn'),
-		        	array('name' => 'Show', 'value' => 'show'),
-		        	array('name' => 'Slide Down', 'value' => 'slideDown')
-		        )
-			),
-			array(  
-		        'name'=> 'Show Effect Speed',
-		        'desc'  => 'Animation speed used to display nested TOC items',  
-		        'id'    => 'toc_showEffectSpeed',
-		        'type'  => 'select',
-		        'options' => $effect_speed
-			),
-			array(  
-		        'name'=> 'Hide Effect',
-		        'desc'  => 'Animation effect used to hide nested TOC items',  
-		        'id'    => 'toc_hideEffect',
-		        'type'  => 'select',
-		        'options' => array(
-		        	array('name' => 'None', 'value' => 'none'),
-		        	array('name' => 'Fade Out', 'value' => 'fadeOut'),
-		        	array('name' => 'Hide', 'value' => 'hide'),
-		        	array('name' => 'Slide Up', 'value' => 'slideUp')
-		        )
-			),
-			array(  
-		        'name'=> 'Hide Effect Speed',
-		        'desc'  => 'Animation speed used to hide nested TOC items',  
-		        'id'    => 'toc_hideEffectSpeed',
-		        'type'  => 'select',
-		        'options' => $effect_speed
-			),
-			array(  
-		        'name'=> 'Smooth Scroll',
-		        'desc'  => 'Animates the page scroll when specific table of content items are clicked and the page moves up or down.',  
-		        'id'    => 'toc_smoothScroll',  
-		        'type'  => 'checkbox'
-			),
-			array(  
-		        'name'=> 'Smooth Scroll Speed',
-		        'desc'  => 'Animation speed for the smooth scrolling effect.',  
-		        'id'    => 'toc_smoothScrollSpeed',  
-		        'type'  => 'select',
-		        'options' => $effect_speed
-			),
-			array(  
-		        'name'=> 'Item Scroll Offset',
-		        'desc'  => 'Offset (in pixels) from the top of the page and the selected TOC item when jumping to that item.',  
-		        'id'    => 'toc_scrollTo',  
-		        'type'  => 'text_small'
-			),
-			array(  
-		        'name'=> 'Highlight on Scroll',
-		        'desc'  => 'When checked, current TOC item will be highlighted (different background color) while scrolling.',  
-		        'id'    => 'toc_highlightOnScroll',  
-		        'type'  => 'checkbox'
-			),
-			array(  
-		        'name'=> 'Highlight Offset',
-		        'desc'  => 'Offset (in pixels) from the top of the page and the selected TOC item when jumping to that item.',  
-		        'id'    => 'toc_scrollTo',  
-		        'type'  => 'text_small'
-			),
-			array(  
-		        'name'=> 'Ignore Selector',
-		        'desc'  => 'jQuery selector for items that should not appear in the TOC.',  
-		        'id'    => 'toc_ignoreSelector',  
-		        'type'  => 'text_small'
-			)			
-		)
-	);
-	
-	return $meta_boxes;
-}
-add_filter( 'cmb_meta_boxes', 'cmb_add_metaboxes' );
 
 
 /******* Misc. Filters *********/
