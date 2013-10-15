@@ -453,34 +453,32 @@ add_filter( 'get_search_form', 'bs_wpsearch' );
 /************* NAVIGATION MENUS **************/
 function main_nav() {
 	// display the primary menu
-    wp_nav_menu( 
-    	array( 
-    		'menu' => 'main_nav', /* menu name */
-    		'menu_class' => 'nav navbar-nav',
-    		'theme_location' => 'main_nav', /* where in the theme it's assigned */
-    		'container' => 'false', /* container class */
-			/*'container-class' => '', */
-    		'fallback_cb' => 'nav_menu_fallback', /* menu fallback */
-    		'depth' => '2', /* Bootstrap 3.0 doesn't support additional depths */
-    		'walker' => new wp_bootstrap_navwalker()
-    	)
-    );
+    wp_nav_menu( array(
+		'menu' => 'main_nav',
+		'menu_class' => 'nav navbar-nav',
+		'menu_id' => 'main-nav-menu',
+		'theme_location' => 'main_nav', /* where in the theme it's assigned */
+		'depth' => 2, /* Bootstrap 3.0 doesn't support additional depths */
+		'container' => 'nav',
+		'container_class'   => 'collapse navbar-collapse navbar-main-collapse pull-right',
+		'container_id' => 'main-nav',
+		'fallback_cb' => 'wp_bootstrap_navwalker::fallback', /* menu fallback */
+		'walker' => new wp_bootstrap_navwalker()
+    ) );
 }
 
 function footer_links() { 
 	// display the footer menu
-    wp_nav_menu(
-    	array(
-    		'menu' => 'footer_links', /* menu name */
-			'menu_class' => 'nav nav-pills dropup',
-    		'theme_location' => 'footer_links', /* where in the theme it's assigned */
-    		'container' => 'div',
-			'container_class' => 'pull-right', /* container class */
-    		'fallback_cb' => 'nav_menu_fallback', /* menu fallback */
-			'depth' => '2', /* Bootstrap 3.0 doesn't support additional depths */
-			'walker' => new Bootstrap_Walker()
-    	)
-	);
+    wp_nav_menu( array(
+		'menu' => 'footer_links', /* menu name */
+		'menu_class' => 'nav nav-pills dropup',
+		'theme_location' => 'footer_links', /* where in the theme it's assigned */
+		'container' => 'div',
+		'container_class' => 'pull-right', /* container class */
+		'fallback_cb' => 'wp_bootstrap_navwalker::fallback', /* menu fallback */
+		'depth' => '2', /* Bootstrap 3.0 doesn't support additional depths */
+		'walker' => new wp_bootstrap_navwalker()
+    ) );
 }
 
 
