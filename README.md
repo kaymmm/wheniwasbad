@@ -14,7 +14,8 @@ Credits
 * Font Awesome (https://github.com/FortAwesome/Font-Awesome/)
 * wp-bootstrap-navwalker (https://github.com/twittem/wp-bootstrap-navwalker) 
 * Redux Framework (https://github.com/reduxframework/reduxframework)
-* Custom Metaboxes and Fields for Wordpress (https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress)
+* Custom Metaboxes and Fields for Wordpress (https://github.com/humanmade/Custom-Meta-Boxes)
+* jQuery tocify (http://gregfranko.com/jquery.tocify.js/)
 * Blueimp Gallery (http://blueimp.github.io/Gallery/)
 
 ---
@@ -64,14 +65,20 @@ Changelog
 
 v3.0
 
+* Bumped version number to 3 to indicate consistency with Bootstrap version numbering
 * Upgraded to Bootstrap 3.0. If you have existing content that relies on the Bootstrap 2.3 scaffolding, please check the Bootstrap documentation for information about migrating. THINGS WILL BREAK
 * Upgraded to the new Redux Framework 3.0. Options page might still be buggy as a result.
 * Overhauled the page template system to allow flexible sidebars on any page
 * Added custom metabox API to make it easier to add new page metaboxes in the future
 * Added new navwalker class for Bootstrap 3.0 menus. New system (and BS3.0) only supports a single child level even though this isn't technically WP compliant.
 * Added blueimp Gallery module for gallery shortcodes
-* Upgraded font-awesome
-* Bumped version number to 3 to indicate consistency with Bootstrap version numbering
+* Switched from font-awesome to the native Boostrap Glyphicons
+* Added a blank page template that has no containers (for totally customized Bootstrap page layouts)
+* Added jumbotron customizability at the page level using metabox options
+* Added a Table of Contents page type that uses the tocify jQuery script to generate a table of contents from headers within a page
+* Updated a bunch of styles for Bootstrap 3
+* Added an optional debug mode within the theme's backend that use the WP-Less plugin to generate css at runtime (requires the plugin to be activated for it to work)
+* Started adding and updating the Options panel to include new options and improve functionality of existing options. Not all options are functional yet...
 
 v1.3.3
 
