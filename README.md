@@ -1,4 +1,4 @@
-WhenIWasBad v3.0
+WhenIWasBad v3.0.1
 ==================
 WordPress Bootstrap Theme
 -------------------------------
@@ -63,7 +63,12 @@ There are three included widget areas that can be assigned to individual pages o
 Changelog
 =========
 
-v3.0
+v3.0.1
+
+* Removed FontAwesome for now...
+* Fixed a bunch of small bugs
+
+v3.0.0
 
 * Bumped version number to 3 to indicate consistency with Bootstrap version numbering
 * Upgraded to Bootstrap 3.0. If you have existing content that relies on the Bootstrap 2.3 scaffolding, please check the Bootstrap documentation for information about migrating. THINGS WILL BREAK
