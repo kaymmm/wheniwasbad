@@ -2,13 +2,13 @@
 /*
 Author: Keith Miyake
 URL: htp://keithmiyake.info/wheniwasbad/
-Version: 2.0
-Modified: 20130905
+Version: 3.0
+Modified: 20131015
 */
 
 /************* INCLUDES ****************/
 // const WPBS_DEBUGGING turns on or off the theme's development/debugging tools
-define("WPBS_DEBUGMODE",true);
+define("WPBS_DEBUGMODE",false);
 
 if (WPBS_DEBUGMODE) {
 	include_once('library/debugging.php');
