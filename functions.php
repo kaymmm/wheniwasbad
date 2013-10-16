@@ -207,7 +207,7 @@ add_action( 'widgets_init', 'wpbs_register_sidebars' );
 
 /************* Excerpts *********************/
 function new_excerpt_more( $more ) {
-	return ' [&hellip;]</p><p><a class="read-more btn pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more <i class="icon-chevron-sign-right"></i></a>';
+	return ' [&hellip;]</p><p><a class="read-more btn pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more <i class="glyphicon glyphicon-chevron-sign-right"></i></a>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 
@@ -234,7 +234,7 @@ function comments_layout($comment, $args, $depth) {
 				</div>
 				<div class="col-md-10 comment-text">
 					<?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
-					<?php edit_comment_link(__('Edit','wheniwasbad'),'<span class="edit-comment btn btn-sm btn-info"><i class="icon-white icon-pencil"></i>','</span>') ?>
+					<?php edit_comment_link(__('Edit','wheniwasbad'),'<span class="edit-comment btn btn-sm btn-info"><i class="glyphicon glyphicon-white icon-pencil"></i>','</span>') ?>
                     
                     <?php if ($comment->comment_approved == '0') : ?>
        					<div class="alert-message success">
@@ -442,7 +442,7 @@ add_action( 'wp_footer', function() {
 function bs_wpsearch($form) {
 	$form = '<form action="' . home_url( '/' ) . '" method="get" class="form-inline">
 		<div class="clearfix input-group input-group-sm">
-			<input type="text" name="s" id="search" class="form-control" placeholder="' . __("Search","wheniwasbad") . '" value="' . get_search_query() . '" /><span class="input-group-btn"><button type="submit" class="btn btn-primary" title="' . __("Search","wheniwasbad") . '" ><i class="icon-search"></i></button></span>
+			<input type="text" name="s" id="search" class="form-control" placeholder="' . __("Search","wheniwasbad") . '" value="' . get_search_query() . '" /><span class="input-group-btn"><button type="submit" class="btn btn-primary" title="' . __("Search","wheniwasbad") . '" ><i class="glyphicon glyphicon-search"></i></button></span>
         </div>
 </form>';
 	return $form;

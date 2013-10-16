@@ -1,5 +1,5 @@
 <?php 
-function not_found($content_type = null) { ?>
+function not_found($content_type = 'none') { ?>
 
 	<article id="post-not-found" class="clearfix">
 	
