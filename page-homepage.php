@@ -152,7 +152,7 @@ Template Name: Homepage
 			$addon_page = get_post($addon_page_id);
 			//echo "<div class='container'>\n";
 			//echo "<h1>" . $addon_page->post_title . "</h1>\n";
-			echo edit_post_link("Edit",'','',$addon_page_id) . "\n";
+			echo edit_post_link("Edit ▿",'','',$addon_page_id) . "\n";
 			echo $addon_page->post_content . "\n";
 			//echo "</div>\n";
 		}
