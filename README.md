@@ -1,4 +1,4 @@
-WhenIWasBad v3.0.1
+WhenIWasBad v3.0.2
 ==================
 WordPress Bootstrap Theme
 -------------------------------
@@ -62,6 +62,11 @@ There are three included widget areas that can be assigned to individual pages o
 
 Changelog
 =========
+
+v3.0.2
+
+* Modify homepage template to allow including other pages within the homepage (to keep content modular and pages easy to maintain)
+* Update Custom-Meta-Boxes to include ordering of repeatable fields
 
 v3.0.1
 
