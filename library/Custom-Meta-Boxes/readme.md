@@ -36,8 +36,8 @@ It began as a fork of [Custom Meta Boxes](https://github.com/jaredatch/Custom-Me
 ## To Do
 * Make hooking / registering nicer.
 
+## primary-contact
 
-## Contribution Guidelines ##
+Matthew Haynes Young
 
-See [CONTRIBUTING.md](https://github.com/humanmade/Custom-Meta-Boxes/blob/master/CONTRIBUTING.md)
-
+@mattheu
