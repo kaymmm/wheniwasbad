@@ -207,7 +207,7 @@ add_action( 'widgets_init', 'wpbs_register_sidebars' );
 
 /************* Excerpts *********************/
 function new_excerpt_more( $more ) {
-	return ' [&hellip;]</p><p><a class="read-more btn pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more <i class="glyphicon glyphicon-chevron-sign-right"></i></a>';
+	return ' [&hellip;]</p><p><a class="read-more btn btn-primary pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more <i class="glyphicon glyphicon-chevron-right"></i></a>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 
@@ -258,7 +258,7 @@ function comments_layout($comment, $args, $depth) {
 function list_pings($comment, $args, $depth) {
        $GLOBALS['comment'] = $comment;
 ?>
-        <li id="comment-<?php comment_ID(); ?>"><i class="icon icon-share-alt"></i>&nbsp;<?php comment_author_link(); ?>
+        <li id="comment-<?php comment_ID(); ?>"><i class="glyphicon glyphicon-share"></i>&nbsp;<?php comment_author_link(); ?>
 <?php 
 
 }
@@ -385,11 +385,10 @@ if( !function_exists("theme_styles") ) {
         wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/library/theme/css/bootstrap-themed.css', array(), '3.0.0', 'all' );
 
 		// only enqueue the following styles when needed, but register them here to centralize updates.
-		wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.9.0', 'all' );
+		wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.12.1', 'all' );
 		wp_register_style('tocify-css',get_template_directory_uri() . '/library/jquery.tocify.js/src/stylesheets/jquery.tocify.css', array(), '1.9.0', 'screen');
         
         wp_enqueue_style( 'bootstrap-css' );
-        wp_enqueue_style( 'theme-base');
 		}
     }
 }
@@ -415,6 +414,7 @@ if( !function_exists( "theme_js" ) ) {
 		wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/library/js/gallery_init.js', array('jquery','blueimp-gallery-js'), false, true);
 		wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery'), '1.10.3', true);
 		wp_register_script('tocify-js',get_template_directory_uri() . '/library/jquery.tocify.js/src/javascripts/jquery.tocify.min.js', array('jquery','jquery-ui'), '1.9.0', true);
+		wp_register_script( 'gridalicious', get_template_directory_uri() . '/library/Grid-A-Licious/jquery.grid-a-licious.js', array('jquery'), '3.01', true);
 	
 		wp_enqueue_script('wpbs-scripts');
 	    wp_enqueue_script('modernizr');
