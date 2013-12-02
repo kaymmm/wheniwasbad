@@ -12,6 +12,7 @@ function bootstrap_gallery($attr) {
 	wp_enqueue_script('blueimp-gallery-js');
 	wp_enqueue_script('blueimp-gallery-init-js');
 	wp_enqueue_script('gridalicious');
+	wp_enqueue_script('bs-tooltips');
 
 	$post = get_post();
 
@@ -102,7 +103,7 @@ function bootstrap_gallery($attr) {
 		
 		$img = "\n<img src=\"" . $img_sm[0] . "\" alt=\"" . $attachment->post_title . "\"  />";
 		if ($showtooltips || $showcaptions) 
-			$tooltip = ' rel="tooltip" data-original-title="' . $attachment->post_excerpt . '" ';
+			$tooltip = ' rel="tooltip" data-toggle="tooltip" placement="bottom" title="' . $attachment->post_excerpt . '" data-original-title="' . $attachment->post_excerpt . '" ';
 		$mosaic .= '<a href="' . $img_lg[0] . '" class="galleryitem" ' . $tooltip . ' data-gallery="#' . $gallery_id . '">';
 		$mosaic .= $img."</a>\n";
 		if (trim($attachment->post_excerpt)) {
@@ -124,9 +125,9 @@ function bootstrap_gallery($attr) {
 EOD;
 	$mosaic .= "</script>\n";
 	
-	if ($showtooltips) {
+	/*if ($showtooltips) {
 		wp_enqueue_script('bs-tooltips'); // bootstrap hover tooltips
-	}
+	}*/
 
 	return $mosaic;
 }
