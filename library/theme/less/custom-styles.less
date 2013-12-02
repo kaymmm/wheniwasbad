@@ -11,7 +11,7 @@
   &-orange            { background-color: @carrot; }
   &-purple            { background-color: @amethyst; }
   &-inverse[href]     { background-color: darken(@amethyst, 10%); }
-  &-as                { background-color: #000; color: @pomegranate; padding: 0 6px; }
+  &-as                { background-color: #000; color: @pomegranate; }
 }
 
 
@@ -54,6 +54,10 @@ body.admin-bar .navbar-fixed-top {
 #content.content-no-margin {
 	margin-top: 0;
 }
+
+#content {
+	margin-top: 48px;
+}
 /*body.admin-bar #content {
 	margin-top: @adminbar-top-margin;
 }*/
@@ -75,15 +79,6 @@ body.navbar-fixed-offset {
 	padding-top: @navbar-height;
 }
 
-#main {
-	margin-top: 30px;
-}
-
-.navbar-static-top{
-	margin-bottom: 0;
-}
-
-
 /* custom pagination */
 .pagination ul > li > a {
   color: @link-color;
@@ -93,15 +88,15 @@ body.navbar-fixed-offset {
 .pagination ul > li > a:focus {
   background-color: @pagination-hover-bg;
 }
-.pagination ul > .active > a,
-.pagination ul > .active > span {
+.pagination ul li span.current > a,
+.pagination ul li span.current {
   color: @pagination-active-color;
   background-color: @pagination-active-bg;
 }
-.pagination ul > .disabled > span,
-.pagination ul > .disabled > a,
-.pagination ul > .disabled > a:hover,
-.pagination ul > .disabled > a:focus {
+.pagination ul li span.disabled,
+.pagination ul li span.disabled > a,
+.pagination ul li span.disabled > a:hover,
+.pagination ul li span.disabled > a:focus {
   color: @gray-light;
   background-color: @gray-dark;
 }
@@ -212,8 +207,8 @@ cite   { font-size: 85%; }
 @circle-font-weight:                normal;
 
 @circle-default-color:              @white;
-@circle-default-bg:                 @silver;
-@circle-default-border:             @concrete;
+@circle-default-bg:                 @gray-light;
+@circle-default-border:             @gray;
 
 @circle-primary-color:              #fff;
 @circle-primary-bg:                 @brand-primary;
@@ -308,41 +303,45 @@ cite   { font-size: 85%; }
 /* custom classes */
 .entry-meta, #tag-cloud {
 	margin: (@line-height-base / 3) 0;
-	
-	p.label-postformat {
+
+	.label-postformat {
 		padding: 7px 14px;
 		font-size: @font-size-base*1.25;
 		line-height: @line-height-base;
 	}
 
-	p, .label {
-		font-size:  @font-size-tiny;
+	/*p, .label {*/
+		font-size:  @font-size-small;
 		font-family: @font-family-sans-serif;
 		font-weight: @headings-font-weight;
-		line-height: @line-height-base*1.5;
+		line-height: @line-height-base;
 		margin-bottom: 5px;
+	
+
+	.label {
+		line-height: @line-height-base*1.5;
 	}
 
 	a,
 	a:active,
 	a:visited,
 	a:hover {
-		color: @silver;
+	/*	color: @white;*/
 	}
 
 	a.label,
 	a.label:active,
 	a.label:visited,
-	 {
-	  color: @white;
+	{
+	/*  color: @white;*/
 	}
 	a.label:hover {
-		color: @asbestos;
+		color: @gray-darker;
 	}
 }
 
 #main article.sticky {
-	background-color: @clouds;
+	background-color: @gray-lighter;
 	border-radius: @border-radius-small;
 	padding: 20px;
 	padding-right: 0;
@@ -351,13 +350,16 @@ cite   { font-size: 85%; }
 	a {
 		color: @wisteria;
 	}
+	a.read-more {
+		color: @white;
+	}
 
 	.entry-meta p,
 	.entry-meta a,
 	.entry-meta a:active,
 	.entry-meta a:visited,
 	.entry-meta a:hover {
-		color: @asbestos;
+		color: @gray-darker;
 	}
 }
 
@@ -498,7 +500,7 @@ img {
 }
 
 ol.commentlist li{
-	background-color: @clouds;
+	background-color: @white;
 }
 ol.commentlist ul.children li{
 	background-color: fade(#333,20%);;	
@@ -563,6 +565,7 @@ ol.commentlist ul.children li{
 
 .page-header {
 	padding-bottom: 0;
+	margin-top: 0;
 }
 
 .entry-header
@@ -654,10 +657,6 @@ video {
 	margin: 0 0 20px;
 }
 
-/* sidebars */
-.sidebar {
-	margin-top: 70px;
-}
 
 /* comments */
 
