@@ -409,12 +409,11 @@ if( !function_exists( "theme_js" ) ) {
 	    wp_register_script( 'modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
 
 		// only enqueue the following scripts when needed, but register them here to centralize updates.
-		wp_register_script( 'bs-tooltips',get_template_directory_uri() . '/library/js/bs-tooltips.js',array('jquery','bootstrap-js'),'3.0', true );
 		wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/library/Gallery/js/jquery.blueimp-gallery.min.js', array(jquery), '1.2.0', true);
 		wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/library/js/gallery_init.js', array('jquery','blueimp-gallery-js'), false, true);
 		wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery'), '1.10.3', true);
 		wp_register_script('tocify-js',get_template_directory_uri() . '/library/jquery.tocify.js/src/javascripts/jquery.tocify.min.js', array('jquery','jquery-ui'), '1.9.0', true);
-		wp_register_script( 'gridalicious', get_template_directory_uri() . '/library/Grid-A-Licious/jquery.grid-a-licious.js', array('jquery'), '3.01', true);
+		wp_register_script( 'freewall', get_template_directory_uri() . '/library/js/freewall.js', array('jquery'), '1.03', true);
 	
 		wp_enqueue_script('wpbs-scripts');
 	    wp_enqueue_script('modernizr');
