@@ -1,21 +1,24 @@
 /* jshint node: true */
 
-module.exports = function(grunt) {
-  "use strict";
+module.exports = function (grunt) {
+  'use strict';
 
+  // Force use of Unix newlines
+  grunt.util.linefeed = '\n';
+
+  RegExp.quote = require('regexp-quote')
+  var btoa = require('btoa')
   // Project configuration.
   grunt.initConfig({
 
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*!\n' +
-              '* Bootstrap v<%= pkg.version %> by @fat and @mdo\n' +
-              '* Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-              '* Licensed under <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
-              '*\n' +
-              '* Designed and built with all the love in the world by @mdo and @fat.\n' +
-              '*/\n',
-    jqueryCheck: 'if (!jQuery) { throw new Error(\"Bootstrap requires jQuery\") }\n\n',
+              ' * Bootstrap v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+              ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+              ' * Licensed under <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
+              ' */\n\n',
+    jqueryCheck: 'if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery") }\n\n',
 
     // Task configuration.
     clean: {
@@ -28,6 +31,24 @@ module.exports = function(grunt) {
       },
       gruntfile: {
         src: 'Gruntfile.js'
+      },
+      src: {
+        src: ['js/*.js']
+      },
+      test: {
+        src: ['js/tests/unit/*.js']
+      },
+      assets: {
+        src: ['docs-assets/js/application.js', 'docs-assets/js/customizer.js']
+      }
+    },
+
+    jscs: {
+      options: {
+        config: 'js/.jscs.json',
+      },
+      gruntfile: {
+        src: ['Gruntfile.js']
       },
       src: {
         src: ['js/*.js']
@@ -69,6 +90,16 @@ module.exports = function(grunt) {
       bootstrap: {
         src: ['<%= concat.bootstrap.dest %>'],
         dest: 'dist/js/<%= pkg.name %>.min.js'
+      },
+      customize: {
+        src: [
+          'docs-assets/js/less.js',
+          'docs-assets/js/jszip.js',
+          'docs-assets/js/uglify.js',
+          'docs-assets/js/filesaver.js',
+          'docs-assets/js/customizer.js'
+        ],
+        dest: 'docs-assets/js/customize.js'
       }
     },
 
@@ -104,7 +135,7 @@ module.exports = function(grunt) {
     copy: {
       fonts: {
         expand: true,
-        src: ["fonts/*"],
+        src: ['fonts/*'],
         dest: 'dist/'
       }
     },
@@ -131,10 +162,14 @@ module.exports = function(grunt) {
 
     validation: {
       options: {
-        reset: true
+        reset: true,
+        relaxerror: [
+          'Bad value X-UA-Compatible for attribute http-equiv on element meta.',
+          'Element img is missing required attribute src.'
+        ]
       },
       files: {
-        src: ["_gh_pages/**/*.html"]
+        src: ['_gh_pages/**/*.html']
       }
     },
 
@@ -151,6 +186,111 @@ module.exports = function(grunt) {
         files: 'less/*.less',
         tasks: ['recess']
       }
+    },
+
+    sed: {
+      versionNumber: {
+        pattern: (function () {
+          var old = grunt.option('oldver')
+          return old ? RegExp.quote(old) : old
+        })(),
+        replacement: grunt.option('newver'),
+        recursive: true
+      }
+    },
+
+    'saucelabs-qunit': {
+      all: {
+        options: {
+          build: process.env.TRAVIS_JOB_ID,
+          concurrency: 3,
+          urls: ['http://127.0.0.1:3000/js/tests/index.html'],
+          browsers: [
+            // See https://saucelabs.com/docs/platforms/webdriver
+            {
+              browserName: 'safari',
+              version: '6',
+              platform: 'OS X 10.8'
+            },
+            {
+              browserName: 'chrome',
+              version: '28',
+              platform: 'OS X 10.6'
+            },
+            /* FIXME: currently fails 1 tooltip test
+            {
+              browserName: 'firefox',
+              version: '25',
+              platform: 'OS X 10.6'
+            },*/
+            // Mac Opera not currently supported by Sauce Labs
+            /* FIXME: currently fails 1 tooltip test
+            {
+              browserName: 'internet explorer',
+              version: '11',
+              platform: 'Windows 8.1'
+            },*/
+            /*
+            {
+              browserName: 'internet explorer',
+              version: '10',
+              platform: 'Windows 8'
+            },
+            {
+              browserName: 'internet explorer',
+              version: '9',
+              platform: 'Windows 7'
+            },
+            {
+              browserName: 'internet explorer',
+              version: '8',
+              platform: 'Windows 7'
+            },
+            {// unofficial
+              browserName: 'internet explorer',
+              version: '7',
+              platform: 'Windows XP'
+            },
+            */
+            {
+              browserName: 'chrome',
+              version: '31',
+              platform: 'Windows 8.1'
+            },
+            {
+              browserName: 'firefox',
+              version: '25',
+              platform: 'Windows 8.1'
+            },
+            // Win Opera 15+ not currently supported by Sauce Labs
+            {
+              browserName: 'iphone',
+              version: '6.1',
+              platform: 'OS X 10.8'
+            },
+            // iOS Chrome not currently supported by Sauce Labs
+            // Linux (unofficial)
+            {
+              browserName: 'chrome',
+              version: '30',
+              platform: 'Linux'
+            },
+            {
+              browserName: 'firefox',
+              version: '25',
+              platform: 'Linux'
+            }
+            // Android Chrome not currently supported by Sauce Labs
+            /* Android Browser (super-unofficial)
+            {
+              browserName: 'android',
+              version: '4.0',
+              platform: 'Linux'
+            }
+            */
+          ],
+        }
+      }
     }
   });
 
@@ -166,20 +306,20 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-html-validation');
   grunt.loadNpmTasks('grunt-jekyll');
+  grunt.loadNpmTasks('grunt-jscs-checker');
   grunt.loadNpmTasks('grunt-recess');
-  grunt.loadNpmTasks('browserstack-runner');
+  grunt.loadNpmTasks('grunt-saucelabs');
+  grunt.loadNpmTasks('grunt-sed');
 
   // Docs HTML validation task
   grunt.registerTask('validate-html', ['jekyll', 'validation']);
 
   // Test task.
-  var testSubtasks = ['dist-css', 'jshint', 'qunit', 'validate-html'];
-  // Only run BrowserStack tests under Travis
-  if (process.env.TRAVIS) {
-    // Only run BrowserStack tests if this is a mainline commit in twbs/bootstrap, or you have your own BrowserStack key
-    if ((process.env.TRAVIS_REPO_SLUG === 'twbs/bootstrap' && process.env.TRAVIS_PULL_REQUEST === 'false') || process.env.TWBS_HAVE_OWN_BROWSERSTACK_KEY) {
-      testSubtasks.push('browserstack_runner');
-    }
+  var testSubtasks = ['dist-css', 'jshint', 'jscs', 'qunit', 'validate-html'];
+  // Only run Sauce Labs tests if there's a Sauce access key
+  if (typeof process.env.SAUCE_ACCESS_KEY !== 'undefined') {
+    testSubtasks.push('connect');
+    testSubtasks.push('saucelabs-qunit');
   }
   grunt.registerTask('test', testSubtasks);
 
@@ -198,6 +338,11 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['test', 'dist', 'build-customizer']);
 
+  // Version numbering task.
+  // grunt change-version-number --oldver=A.B.C --newver=X.Y.Z
+  // This can be overzealous, so its changes should always be manually reviewed!
+  grunt.registerTask('change-version-number', ['sed']);
+
   // task for building customizer
   grunt.registerTask('build-customizer', 'Add scripts/less files to customizer.', function () {
     var fs = require('fs')
@@ -209,7 +354,8 @@ module.exports = function(grunt) {
           return type == 'fonts' ? true : new RegExp('\\.' + type + '$').test(path)
         })
         .forEach(function (path) {
-          return files[path] = fs.readFileSync(type + '/' + path, 'utf8')
+          var fullPath = type + '/' + path
+          return files[path] = (type == 'fonts' ? btoa(fs.readFileSync(fullPath)) : fs.readFileSync(fullPath, 'utf8'))
         })
       return 'var __' + type + ' = ' + JSON.stringify(files) + '\n'
     }
