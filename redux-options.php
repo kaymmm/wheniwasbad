@@ -324,7 +324,7 @@ function setup_framework_options(){
 				'title' => __('Body Font', Redux_TEXT_DOMAIN),
 				'compiler'=>true,
 				'units'=>'px',				
-				'subtitle'=> __('The font used in most of the body text.', Redux_TEXT_DOMAIN),
+				'subtitle'=> __('The font used in most of the body text. Font size is the base size; some other page elements will scale based on this setting.', Redux_TEXT_DOMAIN),
 				'default'=> array(
 					'color'=>"#333", 
 					'style'=>'400', 
@@ -346,13 +346,6 @@ function setup_framework_options(){
                 'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
                 'default' => ''
             ),
-            array(
-                'id' => 'link_active_color',
-                'type' => 'color',
-                'title' => __('Link:active Color', Redux_TEXT_DOMAIN), 
-                'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
-                'default' => ''
-			)
         )
     );
 	
@@ -380,10 +373,10 @@ function setup_framework_options(){
 			),
 			array( 
 				'title' => __('Use inverted colors on homepage nav bar?', Redux_TEXT_DOMAIN),
-					'desc' => __('Swap the font and background color on the navbar for the homepage template.', Redux_TEXT_DOMAIN),
-					'id' => 'navbar_style_inverted',
-					'default' => 'on',
-					'type' => 'switch'
+				'desc' => __('Swap the font and background color on the navbar for the homepage template.', Redux_TEXT_DOMAIN),
+				'id' => 'navbar_style_inverted',
+				'default' => 'on',
+				'type' => 'switch'
 			),
 			array( 'title' => __('Check to use a gradient for top nav background', Redux_TEXT_DOMAIN),
 					'desc' => __('Use gradient', Redux_TEXT_DOMAIN),
@@ -394,7 +387,7 @@ function setup_framework_options(){
 			array( 'title' => __('Background gradient', Redux_TEXT_DOMAIN),
 					'desc' => __('Top nav gradient colors.', Redux_TEXT_DOMAIN),
 					'id' => 'top_nav_gradient_color',
-					'fold' => array('showhidden_gradient' => true),
+					'required' => array('showhidden_gradient','equals', true),
 					'default' => '',
 					'type' => 'color_gradient'
 			),
@@ -402,7 +395,7 @@ function setup_framework_options(){
 				'title' => __('Top nav background color', Redux_TEXT_DOMAIN),
 				'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
 				'id' => 'top_nav_bg_color',
-				'fold' => array('showhidden_gradient' => false),
+				'required' => array('showhidden_gradient','equals', false),
 				'default' => '',
 				'type' => 'color'
 			),	
@@ -523,7 +516,7 @@ function setup_framework_options(){
 				array( 'title' => __('Sidebar Position', Redux_TEXT_DOMAIN),
 							'desc' => __('Where should the sidebar be positioned relative to the list of posts?', Redux_TEXT_DOMAIN),
 							'id' => 'blog_sidebar_position',
-							'fold' => array('blog_sidebar'),
+							'required' => array('blog_sidebar','equals', true),
 							"default" => "left",
 							"type" => "select",
 							"options" => array('left'=>'Left', 'right'=>'Right')
@@ -531,7 +524,7 @@ function setup_framework_options(){
 				array( 'title' => __('Sidebar Widget Group', Redux_TEXT_DOMAIN),
 							'desc' => __('Select a widget group to display on the archive page sidebar.', Redux_TEXT_DOMAIN),
 							'id' => 'blog_sidebar_widgets',
-							'fold' => array('blog_sidebar'),
+							'required' => array('blog_sidebar','equals', true),
 							"default" => "sidebar1",
 							"type" => "select",
 							"options" => $sidebar_list
@@ -575,7 +568,7 @@ function setup_framework_options(){
 				array( 'title' => __('Slider options', Redux_TEXT_DOMAIN),
 							'desc' => __('Number of posts to show.', Redux_TEXT_DOMAIN),
 							'id' => 'slider_options',
-							'fold' => array('showhidden_slideroptions'),
+							'required' => array('showhidden_slideroptions','equals', true),
 							'default' => '5',
 							'type' => 'text'
 				),
