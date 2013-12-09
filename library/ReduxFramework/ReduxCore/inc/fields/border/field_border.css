@@ -1,2 +1,15 @@
-#redux-main .redux-border-style{width:100px}
-#redux-main .redux-border select{margin-right:5px}
+.redux-container-border .select2-container {
+  margin-right: 10px;
+}
+.redux-container-border .select_wrapper {
+  float: left;
+  width: inherit;
+}
+.redux-container-border .select_wrapper select {
+  width: 80px;
+  float: left;
+}
+.redux-container-border .field-border-input {
+  margin-right: 10px;
+  margin-bottom: 7px;
+}

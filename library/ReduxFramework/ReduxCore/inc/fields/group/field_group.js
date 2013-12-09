@@ -1,7 +1,7 @@
 /* global redux_change */
 (function($){
     "use strict";
-    
+
     $.redux.group = $.group || {};
 	
     $(document).ready(function () {
@@ -17,7 +17,7 @@
             active: false,
             heightStyle: "content",
             icons: {
-                "header": "ui-icon-plus", 
+                "header": "ui-icon-plus",
                 "activeHeader": "ui-icon-minus"
             }
         })
@@ -35,10 +35,11 @@
             }
         });
         
-        $('.slide-title').live('keyup',function(event) {
-            $(this).parent().parent().parent().find('.redux-groups-header').text(event.target.value);
+        $('.redux-groups-accordion-group input[data-title="true"]').on('keyup',function(event) {
+            $(this).closest('.redux-groups-accordion-group').find('.redux-groups-header').text(event.target.value);
+            $(this).closest('.redux-groups-accordion-group').find('.slide-title').val(event.target.value);
         });
-        
+
         $('.redux-groups-remove').live('click', function () {
             redux_change($(this));
             $(this).parent().find('input[type="text"]').val('');
@@ -50,31 +51,43 @@
 
         $('.redux-groups-add').click(function () {
 
-            var newSlide = $(this).prev().find('.redux-groups-accordion-group:last').clone(true);
-            var slideCount = $(newSlide).find('input[type="text"]').attr("name").match(/\d+(?!.*\d+)/);
-            var slideCount1 = slideCount*1 + 1;
+            var newSlide = $(this).prev().find('.redux-dummy').clone(true).show();
+            var slideCounter = $(this).parent().find('.redux-dummy-slide-count');
+            // Count # of slides
+            var slideCount = slideCounter.val();
+            // Update the slideCounter
+            slideCounter.val(parseInt(slideCount)+1 );
+            // REMOVE var slideCount1 = slideCount*1 + 1;
 
-            $(newSlide).find('input[type="text"], input[type="hidden"], textarea').each(function(){
-                var attr_name = $(this).attr('name');
+            //$(newSlide).find('h3').text('').append('<span class="redux-groups-header">New Group</span><span class="ui-accordion-header-icon ui-icon ui-icon-plus"></span>');
+            $(this).prev().append(newSlide);
+
+            // Remove dummy classes from newSlide
+            $(newSlide).removeClass("redux-dummy");
+
+            $(newSlide).find('input[type="text"], input[type="hidden"], textarea , select').each(function(){
+                var attr_name = $(this).data('name');
                 var attr_id = $(this).attr('id');
-            
                 // For some browsers, `attr` is undefined; for others,
                 // `attr` is false.  Check for both.
-                if (typeof attr_id !== 'undefined' && attr_id !== false) 
-                    $(this).attr("id", $(this).attr("id").replace(/\d+(?!.*\d+)/, slideCount1) );
-                if (typeof attr_name !== 'undefined' && attr_name !== false) 
-                    $(this).attr("name", $(this).attr("name").replace(/\d+(?!.*\d+)/, slideCount1) );
+                if (typeof attr_id !== 'undefined' && attr_id !== false) {
+                    $(this).attr("id", $(this).attr("id").replace("@", slideCount) );
+                }
+                if (typeof attr_name !== 'undefined' && attr_name !== false) {
+                    $(this).attr("name", $(this).data("name").replace("@", slideCount) );
+                }
 
-            
-                //$(this).attr("name", $(this).attr("name").replace(/\d+/, slideCount1) ).attr("id", $(this).attr("id").replace(/\d+/, slideCount1) );
+                if($(this).prop("tagName") == 'SELECT') {
+                    //we clean select2 first
+                    $(newSlide).find('.select2-container').remove();
+                    $(newSlide).find('select').removeClass('select2-offscreen');
+                }
+
                 $(this).val('');
                 if ($(this).hasClass('slide-sort')){
-                    $(this).val(slideCount1);
+                    $(this).val(slideCount);
                 }
             });
-
-            $(newSlide).find('h3').text('').append('<span class="redux-groups-header">New Group</span><span class="ui-accordion-header-icon ui-icon ui-icon-plus"></span>');
-            $(this).prev().append(newSlide);
         });
-    }
+    };
 })(jQuery);

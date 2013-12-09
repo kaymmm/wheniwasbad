@@ -83,7 +83,7 @@ jQuery(document).ready(function($) {
 					}
 					html += '<option value="' + subset.id + '"' + selected + '>' + subset.name.replace(/\+/g, " ") + '</option>';
 				});
-				if ( typeof( familyBackup ) !== "undefined" ) {
+				if ( typeof( familyBackup ) !== "undefined" && familyBackup !== "" ) {
 					output += ', '+familyBackup;
 				}
 				
@@ -106,10 +106,7 @@ jQuery(document).ready(function($) {
 					$('#' + mainID + ' .typography-family-backup').fadeOut('fast');
 				}
 			}
-		} else if ($(selector).hasClass('redux-typography-family-backup')) {
-			if (familyBackup !== "") {
-				output += ', '+familyBackup;
-			}
+		} else if ( $(selector).hasClass('redux-typography-family-backup') && familyBackup !== "") {
 			$('#' + mainID + ' .redux-typography-font-family').val(output);
 		}
 		
@@ -126,66 +123,73 @@ jQuery(document).ready(function($) {
 		}
 
 		var _linkclass = 'style_link_' + mainID;
-		if (family) { //if var exists and isset
-			//Check if selected is not equal with "Select a font" and execute the script.
-			if (family !== 'none' && family !== '') {
-				//remove other elements crested in <head>
-				$('.' + _linkclass).remove();
-				//replace spaces with "+" sign
-				var the_font = family.replace(/\s+/g, '+');
-				if (google) {
-					//add reference to google font family
-					var link = 'http://fonts.googleapis.com/css?family=' + the_font;
-					if (style) {
-						link += ':' + style.replace(/\-/g, " ");
-					}
-					if (script) {
-						link += '&subset=' + script;
-					}
-					$('head').append('<link href="' + link + '" rel="stylesheet" type="text/css" class="' + _linkclass + '">');
-					$('#' + mainID + ' .redux-typography-google').val(true);
-				} else {
-					$('#' + mainID + ' .redux-typography-google').val(false);
+	
+		//remove other elements crested in <head>
+		$('.' + _linkclass).remove();
+		if (family !== null) {
+			//replace spaces with "+" sign
+			var the_font = family.replace(/\s+/g, '+');
+			if (google) {
+				//add reference to google font family
+				var link = 'http://fonts.googleapis.com/css?family=' + the_font;
+				if (style) {
+					link += ':' + style.replace(/\-/g, " ");
 				}
-				$('#' + mainID + ' .typography-preview').css('font-size', size + units);
-				$('#' + mainID + ' .typography-preview').css('font-style', "normal");
-				
-				// Weight and italic
-				if (style.indexOf("italic") !== -1) {
-					$('#' + mainID + ' .typography-preview').css('font-style', 'italic');
-					$('#' + mainID + ' .typography-font-style').val('italic');
-					style = style.replace('italic', '');
-				} else {
-					$('#' + mainID + ' .typography-font-style').val('');
+				if (script) {
+					link += '&subset=' + script;
 				}
-				$('#' + mainID + ' .typography-font-weight').val(style);
-				$('#' + mainID + ' .typography-preview').css('font-weight', style);
-
-				//show in the preview box the font
-				$('#' + mainID + ' .typography-preview').css('font-family', family + ', sans-serif');
+				$('head').append('<link href="' + link + '" rel="stylesheet" type="text/css" class="' + _linkclass + '">');
+				$('#' + mainID + ' .redux-typography-google').val(true);
 			} else {
-				//if selected is not a font remove style "font-family" at preview box
-				$('#' + mainID + ' .typography-preview').css('font-family', '');
+				$('#' + mainID + ' .redux-typography-google').val(false);
 			}
-			if (!height) {
-				height = size;
-			}
-			$('#' + mainID + ' .typography-preview').css('line-height', height + units);
-			$('#' + mainID + ' .typography-preview').css('word-spacing', word + units);
-			$('#' + mainID + ' .typography-preview').css('letter-spacing', letter + units);
-			$('#' + mainID + ' .typography-font-size').val(size + units);
-			$('#' + mainID + ' .typography-line-height').val(height + units);
-			$('#' + mainID + ' .typography-word-spacing').val(word + units);
-			$('#' + mainID + ' .typography-letter-spacing').val(letter + units);
-
-			$('#' + mainID + ' .typography-preview').css('color', color);
-			
 		}
+
+		$('#' + mainID + ' .typography-preview').css('font-size', size + units);
+		$('#' + mainID + ' .typography-preview').css('font-style', "normal");
+		
+		// Weight and italic
+		if (style.indexOf("italic") !== -1) {
+			$('#' + mainID + ' .typography-preview').css('font-style', 'italic');
+			$('#' + mainID + ' .typography-font-style').val('italic');
+			style = style.replace('italic', '');
+		} else {
+			$('#' + mainID + ' .typography-font-style').val('');
+		}
+		$('#' + mainID + ' .typography-font-weight').val(style);
+		$('#' + mainID + ' .typography-preview').css('font-weight', style);
+
+		//show in the preview box the font
+		$('#' + mainID + ' .typography-preview').css('font-family', family + ', sans-serif');
+
+		if (family === 'none' && family === '') {
+			//if selected is not a font remove style "font-family" at preview box
+			$('#' + mainID + ' .typography-preview').css('font-family', '');
+		}
+		if (!height) {
+			height = size;
+		}
+		$('#' + mainID + ' .typography-preview').css('line-height', height + units);
+		$('#' + mainID + ' .typography-preview').css('word-spacing', word + units);
+		$('#' + mainID + ' .typography-preview').css('letter-spacing', letter + units);
+		if( size === '' ){
+			$('#' + mainID + ' .typography-font-size').val( '' );
+		}else{
+			$('#' + mainID + ' .typography-font-size').val(size + units);
+		}
+		if( height === '' ){
+			$('#' + mainID + ' .typography-line-height').val( '' );
+		}else{
+			$('#' + mainID + ' .typography-line-height').val(height + units);
+		}
+		$('#' + mainID + ' .typography-word-spacing').val(word + units);
+		$('#' + mainID + ' .typography-letter-spacing').val(letter + units);
+
+		$('#' + mainID + ' .typography-preview').css('color', color);
+			
 		$('#' + mainID + ' .redux-typography-font-family').val(output);
 		$('#' + mainID + ' .typography-style .select2-chosen').text($('#' + mainID + ' .redux-typography-style option:selected').text());
 		$('#' + mainID + ' .typography-script .select2-chosen').text($('#' + mainID + ' .redux-typography-subsets option:selected').text());
-
-
 	}
 	//init for each element
 	jQuery('.redux-typography-container').each(function() {
@@ -211,9 +215,12 @@ jQuery(document).ready(function($) {
 			typographySelect(jQuery(this));
 		}
 	});
-	jQuery(".redux-typography-size, .redux-typography-height, .redux-typography-word, .redux-typography-letter").numeric({
-		negative: false
+	jQuery(".redux-typography-size, .redux-typography-word, .redux-typography-letter").numeric({
+		allowMinus: false,
 	});
+	jQuery(".redux-typography-height").numeric({
+		allowMinus: true,
+	});		
 	//jQuery(".redux-typography-family, .redux-typography-style, .redux-typography-subsets").select2({
 	jQuery(".redux-typography-family, .redux-typography-family-backup").select2({
 		width: 'resolve',
