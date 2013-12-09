@@ -8,11 +8,27 @@ Modified: 20131015
 
 /************* INCLUDES ****************/
 // const WPBS_DEBUGGING turns on or off the theme's development/debugging tools
-define("WPBS_DEBUGMODE",false);
-
+define("WPBS_DEBUGMODE",true);
 if (WPBS_DEBUGMODE) {
 	include_once('library/debugging.php');
+	//currently only enables less forced recompilation
 }
+
+// WP-LESS/LESSPHP
+//both wp-less plugins require lessphp
+//currently using the fork from https://github.com/cbekir/lessphp
+//also including this patch: https://github.com/ldbglobe/lessphp/compare/patch-1
+
+// wp-less compiler
+// https://github.com/sanchothefat/wp-less
+//require_once( 'library/wp-less-sanchothefat/wp-less.php' );
+
+// wp-less compiler
+// https://github.com/oncletom/wp-less
+require_once ( 'library/wp-less-oncletom/bootstrap-for-theme.php' );
+$less = WPLessPlugin::getInstance();
+$less->dispatch();
+define('WP_LESS_ALWAYS_RECOMPILE', true);
 
 // Redux Options
 if ( ! class_exists( 'ReduxFramework' ) ){
@@ -382,14 +398,14 @@ function add_active_class($classes, $item) {
 if( !function_exists("theme_styles") ) {  
     function theme_styles() { 
 		if (!is_admin()){
-
-			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/library/theme/css/bootstrap-themed.css', array(), '3.0.3', 'all' );
+			require_once('redux-styles-less.php');
+			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/library/theme/less/bootstrap-themed.less', array(), '3.0.3', 'all' );
 
 			// only enqueue the following styles when needed, but register them here to centralize updates.
 			wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.12.1', 'all' );
 			wp_register_style('tocify-css',get_template_directory_uri() . '/library/jquery.tocify.js/src/stylesheets/jquery.tocify.css', array(), '1.9.0', 'screen');
-
-		wp_enqueue_style( 'bootstrap-css' );
+	        
+	        wp_enqueue_style( 'bootstrap-css' );
 
 		}
     }
