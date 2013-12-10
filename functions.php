@@ -32,7 +32,6 @@ define('WP_LESS_ALWAYS_RECOMPILE', true);
 
 // Redux Options
 if ( ! class_exists( 'ReduxFramework' ) ){
-   	define('REDUX_URL',get_template_directory_uri().'/library/ReduxFramework/ReduxCore/');
     require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
 }
 require_once('redux-options.php');

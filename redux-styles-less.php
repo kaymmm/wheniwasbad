@@ -33,7 +33,7 @@ if (class_exists('WPLessPlugin')){
     $less->addVariable('link-color',$wheniwasbad_options['link_color']);
   if ($wheniwasbad_options['link_hover_color'])
     $less->addVariable('link-hover-color',$wheniwasbad_options['link_hover_color']);
-  
+  }
 }
 
 ?>
