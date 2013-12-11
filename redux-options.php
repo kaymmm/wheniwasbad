@@ -381,24 +381,10 @@ function setup_framework_options(){
 				'default' => 'on',
 				'type' => 'switch'
 			),
-			array( 'title' => __('Check to use a gradient for top nav background', Redux_TEXT_DOMAIN),
-					'desc' => __('Use gradient', Redux_TEXT_DOMAIN),
-					'id' => 'showhidden_gradient',
-					'default' => 'off',
-					'type' => 'switch'
-			),
-			array( 'title' => __('Background gradient', Redux_TEXT_DOMAIN),
-					'desc' => __('Top nav gradient colors.', Redux_TEXT_DOMAIN),
-					'id' => 'top_nav_gradient_color',
-					'required' => array('showhidden_gradient','equals', true),
-					'default' => '',
-					'type' => 'color_gradient'
-			),
 			array( 
 				'title' => __('Top nav background color', Redux_TEXT_DOMAIN),
 				'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
 				'id' => 'top_nav_bg_color',
-				'required' => array('showhidden_gradient','equals', false),
 				'default' => '',
 				'type' => 'color'
 			),	
@@ -581,9 +567,15 @@ function setup_framework_options(){
 							'default' => '0',
 							'type' => 'checkbox'
 				),
-				array( 'title' => __('Homepage page template jumbotron background color', Redux_TEXT_DOMAIN),
+				array( 'title' => __('Default jumbotron background color', Redux_TEXT_DOMAIN),
 							'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
 							'id' => 'jumbotron_bg_color',
+							'default' => '',
+							'type' => 'color'
+				),
+				array( 'title' => __('Default jumbotron text color', Redux_TEXT_DOMAIN),
+							'desc' => __('Default used if no color is selected.', Redux_TEXT_DOMAIN),
+							'id' => 'jumbotron_color',
 							'default' => '',
 							'type' => 'color'
 				),

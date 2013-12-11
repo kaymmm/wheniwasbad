@@ -25,6 +25,8 @@
         }';
       }
 */
+
+      /*
       $link_color = $wheniwasbad_options['link_color'];
       if ($link_color) {
         $theme_options_styles .= '
@@ -48,6 +50,7 @@
 			color: ' . $link_active_color . ';
 		}';
       }
+
 
       $topbar_bg_color = $wheniwasbad_options['top_nav_bg_color'];
       $use_gradient = $wheniwasbad_options['showhidden_gradient'];
@@ -117,6 +120,7 @@
         ';
       }
 
+
       $topbar_dropdown_item_color = $wheniwasbad_options['top_nav_dropdown_item'];
       if ( $topbar_dropdown_item_color ){
         $theme_options_styles .= '
@@ -133,7 +137,7 @@
           background-color: '. $jumbotron_bg_color . ';
         }';
       }
-/*
+
       $suppress_comments_message = $wheniwasbad_options['suppress_comments_message'];
       if ( $suppress_comments_message ){
         $theme_options_styles .= '
