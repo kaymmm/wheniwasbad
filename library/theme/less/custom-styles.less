@@ -31,7 +31,7 @@ body.admin-bar .navbar-fixed-top {
 		float: right;
 	}
 
-	a::after {
+	.nav > li > a::after {
 		position: absolute;
 		top: 100%;
 		left: 0;
@@ -47,8 +47,8 @@ body.admin-bar .navbar-fixed-top {
 		-moz-transform: translateY(-10px);
 		transform: translateY(-10px);
 	}
-	a:hover::after,
-	a:focus::after {
+	.nav > li >a:hover::after,
+	.nav > li >a:focus::after {
 		height: 5px;
 		opacity: 1;
 		-webkit-transform: translateY(0px);
