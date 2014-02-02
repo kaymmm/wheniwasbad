@@ -60,11 +60,9 @@ jQuery(window).ready(function($) {
         offset: $('.navbar').height() + 50 //somewhat arbitrary, might need to be adjusted for various setups
     });
 
-    $('#main-nav a').click(function() {
-		$(document.body).animate({
-		    scrollTop: ($($(this).attr('href')).offset().top - $('.navbar').height())
-		}, 500);
-		return false;
+    $('a[href*=#]').on('click', function(event){     
+	    event.preventDefault();
+	    $('html,body').animate({scrollTop:$(this.hash).offset().top - $('.navbar').height()}, 500);
 	});
 
 }); /* end of as page load scripts */
