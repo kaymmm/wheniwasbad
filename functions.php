@@ -244,13 +244,13 @@ function comments_layout($comment, $args, $depth) {
 	<li <?php comment_class(); ?>>
 		<article id="comment-<?php comment_ID(); ?>" class="clearfix">
 			<div class="comment-author vcard row clearfix">
-				<div class="avatar col-md-2">
+				<div class="avatar col-md-1">
 					<?php echo get_avatar( $comment, $size='75' ); ?>
 				</div>
-				<div class="col-md-10 comment-text">
+				<div class="col-md-11 comment-text">
 					<?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
-					<?php edit_comment_link(__('Edit','wheniwasbad'),'<span class="edit-comment btn btn-sm btn-info"><i class="glyphicon glyphicon-white icon-pencil"></i>','</span>') ?>
-                    
+					<time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time('F jS, Y'); ?> </a></time>
+                   
                     <?php if ($comment->comment_approved == '0') : ?>
        					<div class="alert-message success">
           				<p><?php _e('Your comment is awaiting moderation.','wheniwasbad') ?></p>
@@ -259,9 +259,8 @@ function comments_layout($comment, $args, $depth) {
                     
                     <?php comment_text() ?>
                     
-                    <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time('F jS, Y'); ?> </a></time>
-                    
-					<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+					<?php edit_comment_link(__('Edit','wheniwasbad'),'<span class="edit-comment btn btn-xs btn-info"><i class="glyphicon glyphicon-white glyphicon-pencil"></i>','</span>') ?>
+					<?php comment_reply_link(array_merge( $args, array('reply_text' => '<span class="glyphicon glyphicon-comment"></span> Reply', 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
                 </div>
 			</div>
 		</article>

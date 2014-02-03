@@ -8,19 +8,14 @@ func();}}}}
 // as the page loads, call these scripts
 jQuery(window).ready(function($) {
 	
-	$("#wp-calendar").each(function() {
-		$(this).addClass('table table-bordered');
-		return true;
-	});
-	
 	$("ol.commentlist a.comment-reply-link").each(function() {
-		$(this).addClass('btn btn-success btn-mini pull-right');
-		return true;
+		$(this).addClass('btn btn-success btn-xs');
+		event.preventDefault();
 	});
 	
 	$('#cancel-comment-reply-link').each(function() {
-		$(this).addClass('btn btn-danger btn-mini pull-right');
-		return true;
+		$(this).addClass('btn btn-danger btn-xs');
+		event.preventDefault();
 	});
 	
 	$('article.post').hover(function(){
