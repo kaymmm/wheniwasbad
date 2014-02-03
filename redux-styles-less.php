@@ -24,10 +24,10 @@ if (class_exists('WPLessPlugin')){
 		'text-color'    => '#34495e',//gray-darker;
 		'link-color'    => '@brand-primary',
 		'link-hover-color' => 'darken(@link-color, 15%);',
-		'navbar-default-bg' => '@pink',
+		'navbar-default-bg' => '@amethyst',
 		'navbar-default-link-color' => '@white',
-		'navbar-default-link-hover-color' => '@gray-dark',
-		'navbar-default-link-hover-bg' => 'transparent',
+		'navbar-default-link-hover-color' => '@gray-light',
+		'navbar-default-link-hover-bg' => 'rgba(0,0,0,0.1)',
 		'dropdown-bg'	=> 'darken(@navbar-default-bg, 15%);',
 		'dropdown-link-color' => '@gray-lighter',
 		'jumbotron-bg'	=> '@gray-lighter',
@@ -47,8 +47,8 @@ if (class_exists('WPLessPlugin')){
 		$less->addVariable('navbar-default-link-color',$wheniwasbad_options['top_nav_link_color']);
 	if ($wheniwasbad_options['top_nav_link_hover_color'])
 		$less->addVariable('navbar-default-link-hover-color',$wheniwasbad_options['top_nav_link_hover_color']);
-	if ($wheniwasbad_options['top_nav_dropdown_hover_bg'])
-		$less->addVariable('navbar-default-link-hover-bg',$wheniwasbad_options['top_nav_dropdown_hover_bg']);
+	if ($wheniwasbad_options['top_nav_link_background_color'])
+		$less->addVariable('navbar-default-link-hover-bg',$wheniwasbad_options['top_nav_link_background_color']);
 	if ($wheniwasbad_options['top_nav_dropdown_hover_bg'])
 	    $less->addVariable('dropdown-bg',$wheniwasbad_options['top_nav_dropdown_hover_bg']);
 	if ($wheniwasbad_options['top_nav_dropdown_item'])
