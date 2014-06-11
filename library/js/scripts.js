@@ -1,53 +1,36 @@
-/* imgsizer (flexible images for fluid sites) */
-var imgSizer={Config:{imgCache:[],spacer:"/path/to/your/spacer.gif"},collate:function(aScope){var isOldIE=(document.all&&!window.opera&&!window.XDomainRequest)?1:0;if(isOldIE&&document.getElementsByTagName){var c=imgSizer;var imgCache=c.Config.imgCache;var images=(aScope&&aScope.length)?aScope:document.getElementsByTagName("img");for(var i=0;i<images.length;i++){images[i].origWidth=images[i].offsetWidth;images[i].origHeight=images[i].offsetHeight;imgCache.push(images[i]);c.ieAlpha(images[i]);images[i].style.width="100%";}
-if(imgCache.length){c.resize(function(){for(var i=0;i<imgCache.length;i++){var ratio=(imgCache[i].offsetWidth/imgCache[i].origWidth);imgCache[i].style.height=(imgCache[i].origHeight*ratio)+"px";}});}}},ieAlpha:function(img){var c=imgSizer;if(img.oldSrc){img.src=img.oldSrc;}
-var src=img.src;img.style.width=img.offsetWidth+"px";img.style.height=img.offsetHeight+"px";img.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')"
-img.oldSrc=src;img.src=c.Config.spacer;},resize:function(func){var oldonresize=window.onresize;if(typeof window.onresize!='function'){window.onresize=func;}else{window.onresize=function(){if(oldonresize){oldonresize();}
-func();}}}}
-
 // as the page loads, call these scripts
 jQuery(window).ready(function($) {
-	
-	$("ol.commentlist a.comment-reply-link").each(function() {
-		$(this).addClass('btn btn-success btn-xs');
-		event.preventDefault();
-	});
-	
-	$('#cancel-comment-reply-link').each(function() {
-		$(this).addClass('btn btn-danger btn-xs');
-		event.preventDefault();
-	});
-	
+
 	$('article.post').hover(function(){
 		$('a.edit-post').show();
 	},function(){
 		$('a.edit-post').hide();
 	});
-	
+
 	$('#s').focus(function(){
 		if( $(window).width() < 940 ){
 			$(this).animate({ width: '200px' });
 		}
 	});
-	
+
 	$('#s').blur(function(){
 		if( $(window).width() < 940 ){
 			$(this).animate({ width: '100px' });
 		}
 	});
-	
+
 	// parallax scrolling
     $('.parallax-background').each(function(){
         var $bgobj = $(this); // assigning the object
-     
+
         $(window).scroll(function() {
-            var yPos = -($(window).scrollTop() / $bgobj.data('speed')); 
-             
+            var yPos = -($(window).scrollTop() / $bgobj.data('speed'));
+
             // Put together our final background position
             var coords = '50% ' + yPos + 'px';
             // Move the background
             $bgobj.css({ backgroundPosition: coords });
-        }); 
+        });
     });
 
     $('body').scrollspy({
@@ -55,10 +38,26 @@ jQuery(window).ready(function($) {
         offset: $('.navbar').height() + 50 //somewhat arbitrary, might need to be adjusted for various setups
     });
 
-    $('a[href*=#]').on('click', function(event){     
-	    event.preventDefault();
-	    $('html,body').animate({scrollTop:$(this.hash).offset().top - $('.navbar').height()}, 500);
-	});
+    // animate scrolling within a page on menu clicks
+
+    $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        var thetop;
+        if ($('body').hasClass('navbar-no-offset')) {
+            thetop = target.offset().top + 1;
+        } else if ($('body').hasClass('navbar-fixed-offset')) {
+            thetop = target.offset().top - $('.navbar').height() + 1;
+        }
+        $('html,body').animate({
+          scrollTop: thetop
+        }, 1000);
+        return false;
+      }
+    }
+  });
 
 }); /* end of as page load scripts */
 
