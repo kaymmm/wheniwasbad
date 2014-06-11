@@ -1,38 +1,37 @@
-		<footer id="page-footer" role="contentinfo">
-	
-			<div id="inner-footer" class="container clearfix">
+<footer id="page-footer" role="contentinfo">
 
-	          <div id="widget-footer" class="row clearfix">
+	<div id="inner-footer" class="container clearfix">
 
-	            <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer1') ) : ?>
-	            <?php endif; ?>
-	            <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer2') ) : ?>
-	            <?php endif; ?>
-	            <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer3') ) : ?>
-	            <?php endif; ?>
-	          </div>
+		<div id="widget-footer" class="row clearfix">
 
-			<?php global $wheniwasbad_options; ?>
-			<?php if ($wheniwasbad_options['show_footer_menu'] ) : ?>				
-				<nav class="clearfix">
-					<?php footer_links(); ?>
-				</nav>
+			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer1') ) : ?>
 			<?php endif; ?>
-		
-				<?php if ($wheniwasbad_options['footer_text']=="") : ?>
+			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer2') ) : ?>
+			<?php endif; ?>
+			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer3') ) : ?>
+			<?php endif; ?>
 
-					<p class="attribution">&copy; <?php bloginfo('name'); ?></p>
+		</div>
 
-				<?php else:
-				
-					echo $wheniwasbad_options['footer_text'];
-			
-				endif; ?>
-						
-			</div> <!-- end #inner-footer -->
-		
-		</footer> <!-- end footer -->
-	
-	<?php wp_footer(); ?></body>
+		<?php global $wheniwasbad_options; ?>
+		<?php if ($wheniwasbad_options['show_footer_menu'] ) : ?>
+			<nav class="clearfix">
+				<?php footer_links(); ?>
+			</nav>
+		<?php endif; ?>
+
+		<?php if ($wheniwasbad_options['opt-footer-text']=="") :
+
+			echo $wheniwasbad_options['opt-footer-text'];
+
+		endif; ?>
+
+		</div> <!-- end #inner-footer -->
+
+	</footer> <!-- end footer -->
+
+<?php wp_footer(); ?>
+
+</body>
 
 </html>

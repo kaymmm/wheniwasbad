@@ -11,7 +11,7 @@ function my_less_vars( $vars, $handle ) {
 }*/
 
 //oncletom wp-less
-if (class_exists('WPLessPlugin')){
+/*if (class_exists('WPLessPlugin')){
 	$less = WPLessPlugin::getInstance();
 
 	$less->setVariables(array(
@@ -57,6 +57,6 @@ if (class_exists('WPLessPlugin')){
 	    $less->addVariable('jumbotron-bg',$wheniwasbad_options['jumbotron_bg_color']);
 	if ($wheniwasbad_options['jumbotron_color'])
 	    $less->addVariable('jumbotron-color',$wheniwasbad_options['jumbotron_color']);
-}
+}*/
 
 ?>

@@ -1,9 +1,9 @@
 <?php get_header(); ?>
-			
+
 	<div id="content" class="container clearfix">
 
 	<?php if (have_posts()) : ?>
-		
+
 		<?php
 			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
 		?>
@@ -11,33 +11,33 @@
 		<header class="page-header">
 
 			<h1 class="archive_title h1">
-			
-				<?php 
+
+				<?php
 					// If google profile field is filled out on author profile, link the author's page to their google+ profile page
 					$google_profile = get_the_author_meta( 'google_profile', $curauth->ID );
 					if ( $google_profile ) {
-						echo '<a href="' . esc_url( $google_profile ) . '" rel="me">' . $curauth->display_name . '</a>'; 
+						echo '<a href="' . esc_url( $google_profile ) . '" rel="me">' . $curauth->display_name . '</a>';
 				?>
-				<?php 
+				<?php
 					} else {
 						echo get_the_author_meta('display_name', $curauth->ID);
 					}
 				?>
-				
+
 			</h1>
-			
+
 		</header> <!-- page header -->
-			
+
 		<div id="wrapper" class="row clearfix">
-				
-			<div class="col-md-3">	
-			
+
+			<div class="col-md-3">
+
 				<?php get_sidebar(); // sidebar 1 ?>
-			
+
 			</div>
-			
+
 			<div id="main" role="main" class="col-md-9">
-				
+
 				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#posts">Posts</a></li>
 					<li><a href="#comments">Comments</a></li>
@@ -46,11 +46,11 @@
 						<li><a href="#contact">Contact</a></li>
 					-->
 				</ul>
-				
+
 				<div class="tab-content">
 					<div class="tab-pane active" id="posts">
 						<?php while (have_posts()) : the_post(); ?>
-	
+
 							<?php get_template_part( 'content', get_post_format() ); ?>
 
 							<?php comments_template( '', true ); ?>
@@ -58,7 +58,7 @@
 						<?php endwhile; // end of the loop. ?>
 						<?php wp_link_pages( $args ); ?>
 						<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
-			
+
 							<?php page_navi(); // use the page navi function ?>
 
 						<?php else : // if it is disabled, display regular wp prev & next links ?>
@@ -70,7 +70,7 @@
 							</nav>
 						<?php endif; ?>
 					</div>
-					
+
 					<div class="tab-pane" id="comments">
 					<?php
 						$args = array('user_id' => $curauth->ID, 'status' => 'approve');
@@ -99,21 +99,21 @@
 					</div>
 				<!--
 					<div class="tab-pane" id="profile">
-						
+
 					</div>
 
 					<div class="tab-pane" id="contact">
-						
+
 					</div>
 				-->
 			</div><!-- col-md-9 articles -->
 
 		</div><!-- #main -->
-		
+
 	<?php else : ?>
-			
+
 		<?php not_found('author'); ?>
-		
+
 	<?php endif; ?>
 
 	</div> <!-- end #content -->

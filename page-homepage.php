@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Template Name: Homepage
 */
@@ -7,7 +7,7 @@ Template Name: Homepage
 <?php get_header(); ?>
 
 <div id="content" class="content-no-margin clearfix">
-			
+
 <?php
 	global $wheniwasbad_options;
 	$use_carousel = get_post_meta($post->ID, 'carousel_enable' , true);
@@ -25,12 +25,12 @@ Template Name: Homepage
 		$carousel_height_ratio = 2.33;
 	}
 	if ($use_carousel) : ?>
-		
-		<div id="myCarousel" class="carousel slide<?php echo $carousel_hide_xs; ?>" data-ride="carousel">
-		    <!-- Carousel items -->
-		    <div class="carousel-inner">
 
-		    	<?php
+		<div id="myCarousel" class="carousel slide<?php echo $carousel_hide_xs; ?>" data-ride="carousel">
+			<!-- Carousel items -->
+			<div class="carousel-inner">
+
+				<?php
 				global $post;
 				$tmp_post = $post;
 				$args = array( 'numberposts' => $carousel_count, 'category' => $carousel_cats );
@@ -42,64 +42,64 @@ Template Name: Homepage
 				foreach( $myposts as $post ) :	setup_postdata($post);
 					$post_num++;?>
 
-			    <div class="<?php if($post_num == 1){ echo 'active'; } ?> item" style="overflow:hidden;">
-			    	<?php 
-			    		if ( has_post_thumbnail($id) ){
-							$post_thumbnail_id = get_post_thumbnail_id($id); 
+				<div class="<?php if($post_num == 1){ echo 'active'; } ?> item" style="overflow:hidden;">
+					<?php
+						if ( has_post_thumbnail($id) ){
+							$post_thumbnail_id = get_post_thumbnail_id($id);
 							$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-carousel' ); ?>
 
-				    	<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-				    		<img src="<?php echo $featured_src[0]; ?>" alt="<?php the_title_attribute(); ?>" style="width:100%; height: auto;" >
-				    	</a>
+						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+							<img src="<?php echo $featured_src[0]; ?>" alt="<?php the_title_attribute(); ?>" style="width:100%; height: auto;" >
+						</a>
 					<?php }	?>
-				   	<div class="carousel-caption jumbotron">
+					<div class="carousel-caption jumbotron">
 
-		                <h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
-		                <p>
-		                	<?php
-		                		///$excerpt_length = 100; // length of excerpt to show (in characters)
-		                		$the_excerpt = get_the_excerpt(); 
-		                		if($the_excerpt != ""){
-		                			//$the_excerpt = substr( $the_excerpt, 0, $excerpt_length );
-		                			echo $the_excerpt;
-		                	} ?>
-		                
-		                <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" class="btn btn-xs btn-primary">Read more &rsaquo;</a></p>
-	                </div>
-			    </div>
+						<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
+						<p>
+							<?php
+								///$excerpt_length = 100; // length of excerpt to show (in characters)
+								$the_excerpt = get_the_excerpt();
+								if($the_excerpt != ""){
+									//$the_excerpt = substr( $the_excerpt, 0, $excerpt_length );
+									echo $the_excerpt;
+							} ?>
 
-			    <?php endforeach; ?>
+						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" class="btn btn-xs btn-primary">Read more &rsaquo;</a></p>
+					</div>
+				</div>
+
+				<?php endforeach; ?>
 				<?php $post = $tmp_post; ?>
 
-			    </div>
+				</div>
 
-			    <!-- Carousel nav -->
-			    <a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-			    <a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+				<!-- Carousel nav -->
+				<a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 
-			    <!-- Indicators -->
+				<!-- Indicators -->
 				<ol class="carousel-indicators">
 				<?php for ($c=0;$c<$post_num;$c++){ ?>
-			    	<li data-target="#myCarousel" data-slide-to="<?php echo $c; ?>"<?php if ($c==0) echo 'class="active"'; ?>></li>
-			    <?php } ?>
+					<li data-target="#myCarousel" data-slide-to="<?php echo $c; ?>"<?php if ($c==0) echo 'class="active"'; ?>></li>
+				<?php } ?>
 				</ol>
-		    </div>
-		
+			</div>
+
 		</div> <!-- container for carousel -->
 		<script>
 			jQuery(window).on('load resize', function(){
-			    jQuery('#myCarousel .item').each(function() {
-			    	console.log(jQuery(this).width);
-			    	jQuery(this).width(jQuery(window).width());
-			    	jQuery(this).height(jQuery(window).width()/<?php echo $carousel_height_ratio; ?>);
-			    });
+				jQuery('#myCarousel .item').each(function() {
+					console.log(jQuery(this).width);
+					jQuery(this).width(jQuery(window).width());
+					jQuery(this).height(jQuery(window).width()/<?php echo $carousel_height_ratio; ?>);
+				});
 			});
 		</script>
 <?php endif; // end carousel ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		
-	<?php 
+
+	<?php
 		$post_thumbnail_id = get_post_thumbnail_id();
 		$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
 		$jumbotron_contents = get_post_meta($post->ID, 'jumbotron_contents' , true);
@@ -109,21 +109,21 @@ Template Name: Homepage
 		$sidebar_position = get_post_meta($post->ID, 'sidebar_position' , true);
 		$sidebar_widget_group = get_post_meta($post->ID, 'sidebar_widgets' , true);
 		$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
-		if ( is_active_sidebar($sidebar_widget_group) && ! $hide_empty_sidebar ) {
+		if ( ! is_active_sidebar($sidebar_widget_group) && $hide_empty_sidebar) {
+			$main_class = "col-md-12";
+			$sidebar_class = "";
+		} else {
 			if ( $sidebar_position == 'left' ) {
 				$main_class = "col-md-9 col-md-push-3";
 				$sidebar_class = "col-md-3 col-md-pull-9";
 			} elseif ( $sidebar_position == 'right' ) {
-				$main_class = "col-md-9 col-md-pull-3";
-				$sidebar_class = "col-md-3 col-md-push-9";
+				$main_class = "col-md-9";
+				$sidebar_class = "col-md-3";
 			}
-		} else {
-			$main_class = "col-md-12";
-			$sidebar_class = "";
 		}
-		
+
 	?>
-	
+
 	<?php if ($jumbotron_contents != ''): ?>
 
 		<?php
@@ -133,47 +133,56 @@ Template Name: Homepage
 				$jumbotron_style = 'style="background-color: ' . $jumbotron_bg_color . '"';
 			}
 		?>
-	
+
 		<div class="jumbotron" <?php echo $jumbotron_style; ?>>
-	
+
 			<?php echo $jumbotron_contents;?>
 
 		</div>
 
-	<?php else: ?>
-		<div class="container clearfix">
-			<header class="page-header">
-			
-				<h1><?php single_post_title(); ?></h1>
-			
-				<?php get_template_part('postmeta-horizontal'); ?>
-		
-			</header> <!-- end page header -->
+	<?php endif; ?>
 
-		</div>
+	<?php
+		$display_page_title = get_post_meta( get_the_id(), 'display_page_title', false );
+		$display_page_meta = get_post_meta( get_the_id(), 'display_page_meta', false );
+	?>
+
+	<?php if ( $display_page_title ) : ?>
+
+			<div class="container clearfix">
+
+				<header class="page-header">
+
+					<h1><?php single_post_title(); ?></h1>
+
+					<?php if ( $display_page_meta ) get_template_part('postmeta-horizontal'); ?>
+
+				</header> <!-- end page header -->
+
+			</div>
 
 	<?php endif;?>
-	
+
 	<div class="container clearfix">
-		
+
 		<div class="row clearfix">
-	
-			<section id="main" class="<?php echo $content_class; ?> clearfix" role="main">
-		
+
+			<section id="main" class="<?php echo $main_class; ?> clearfix" role="main">
+
 				<?php get_template_part( 'content' ); ?>
-							
+
 			</section> <!-- end main -->
-			
+
 			<?php if ($sidebar_class != ''): ?>
-		
+
 				<section class="<?php echo $sidebar_class; ?> clearfix">
-		
-					<?php get_sidebar('sidebar2'); // sidebar 2 ?>
-		
+
+					<?php get_sidebar($sidebar_widget_group); ?>
+
 				</section>
-		
-			<?php endif; ?>					
-			
+
+			<?php endif; ?>
+
 		</div> <!-- row -->
 	</div> <!-- container -->
 
@@ -183,20 +192,20 @@ Template Name: Homepage
 			$addon_page = get_post($addon_page_id);
 			//echo "<div class='container'>\n";
 			//echo "<h1>" . $addon_page->post_title . "</h1>\n";
-			echo edit_post_link("Edit ▿",'','',$addon_page_id) . "\n";
+			echo edit_post_link("Edit",'','',$addon_page_id) . "\n";
 			echo $addon_page->post_content . "\n";
 			//echo "</div>\n";
 		}
 	?>
-				
+
 <?php endwhile; ?>
 
 <?php else : ?>
-		
-	<?php not_found(); ?>				
-	
+
+	<?php not_found(); ?>
+
 <?php endif; ?>
-			    
+
 </div> <!-- end #content -->
 
 <?php get_footer(); ?>
