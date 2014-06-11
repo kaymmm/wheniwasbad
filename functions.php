@@ -8,7 +8,7 @@ Modified: 20131015
 
 /************* INCLUDES ****************/
 // const WPBS_DEBUGGING turns on or off the theme's development/debugging tools
-define("WPBS_DEBUGMODE",true);
+define("WPBS_DEBUGMODE",false);
 if (WPBS_DEBUGMODE) {
 	include_once('library/debugging.php');
 	//currently only enables less forced recompilation
@@ -402,7 +402,7 @@ if( !function_exists("theme_styles") ) {
 			// only enqueue the following styles when needed, but register them here to centralize updates.
 			wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/library/Gallery/css/blueimp-gallery.min.css', array(), '2.12.1', 'all' );
 			wp_register_style('tocify-css',get_template_directory_uri() . '/library/jquery.tocify.js/src/stylesheets/jquery.tocify.css', array(), '1.9.0', 'screen');
-	        
+
 	        wp_enqueue_style( 'bootstrap-css' );
 
 		}
