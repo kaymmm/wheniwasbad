@@ -1,5 +1,32 @@
 // as the page loads, call these scripts
-jQuery(window).ready(function($) {
+jQuery(document).ready(function($) {
+
+    // position static header at the top of the screen, accounting for admin bar
+    $('#main_header.navbar-fixed-top').css('top',$('#wpadminbar').outerHeight());
+
+
+    // force footer to bottom of page
+    var height_diff = $(window).height() - $('body').height();
+    if ( height_diff > 0 ) {
+        $('#page-footer').css( 'margin-top', height_diff );
+    }
+
+    // parallax scrolling
+    $('.parallax-wheniwasbad').each(function() {
+        var $bgobj = $(this); // assigning the object
+
+        $(window).scroll(function() {
+            var speed = ($bgobj.data('bg-speed') > 0 ? $bgobj.data('bg-speed') : 1)
+            var yPos = -($(window).scrollTop() / speed);
+
+            // Put together our final background position
+            var coords = '50% ' + yPos + 'px';
+            // Move the background
+            $bgobj.css({
+                backgroundPosition: coords
+            });
+        });
+    });
 
 	$('article.post').hover(function(){
 		$('a.edit-post').show();
@@ -18,20 +45,6 @@ jQuery(window).ready(function($) {
 			$(this).animate({ width: '100px' });
 		}
 	});
-
-	// parallax scrolling
-    $('.parallax-background').each(function(){
-        var $bgobj = $(this); // assigning the object
-
-        $(window).scroll(function() {
-            var yPos = -($(window).scrollTop() / $bgobj.data('speed'));
-
-            // Put together our final background position
-            var coords = '50% ' + yPos + 'px';
-            // Move the background
-            $bgobj.css({ backgroundPosition: coords });
-        });
-    });
 
     $('body').scrollspy({
         target: '#main-nav',

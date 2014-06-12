@@ -6,7 +6,7 @@ Template Name: Blank Page
 
 <?php get_header(); ?>
 
-<div id="content" class="content-no-margin clearfix parallax-gc" data-type="background" data-bg-speed="15" >
+<div id="content" class="content-no-margin clearfix parallax-wheniwasbad" data-type="background" data-bg-speed="15" >
 
 <?php /* add the contents of additional pages */
 	$additional_pages = get_post_meta( get_the_id(), 'homepage_additional_pages_above', false );

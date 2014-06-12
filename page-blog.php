@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Template Name: Pinterest Blog
 */
@@ -6,7 +6,7 @@ Template Name: Pinterest Blog
 
 <?php get_header(); ?>
 
-<div id="content" class="content-no-margin clearfix parallax-gc" data-type="background" data-bg-speed="15" >
+<div id="content" class="content-no-margin clearfix parallax-wheniwasbad" data-type="background" data-bg-speed="15" >
 
 <?php
 	global $wheniwasbad_options;
@@ -25,7 +25,7 @@ Template Name: Pinterest Blog
 		$carousel_height_ratio = 2.33;
 	}
 	if ($use_carousel) : ?>
-		
+
 		<div id="myCarousel" class="carousel slide<?php echo $carousel_hide_xs; ?>" data-ride="carousel">
 		    <!-- Carousel items -->
 		    <div class="carousel-inner">
@@ -43,9 +43,9 @@ Template Name: Pinterest Blog
 					$post_num++;?>
 
 			    <div class="<?php if($post_num == 1){ echo 'active'; } ?> item" style="overflow:hidden;">
-			    	<?php 
+			    	<?php
 			    		if ( has_post_thumbnail($id) ){
-							$post_thumbnail_id = get_post_thumbnail_id($id); 
+							$post_thumbnail_id = get_post_thumbnail_id($id);
 							$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-carousel' ); ?>
 
 				    	<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
@@ -58,12 +58,12 @@ Template Name: Pinterest Blog
 		                <p>
 		                	<?php
 		                		///$excerpt_length = 100; // length of excerpt to show (in characters)
-		                		$the_excerpt = get_the_excerpt(); 
+		                		$the_excerpt = get_the_excerpt();
 		                		if($the_excerpt != ""){
 		                			//$the_excerpt = substr( $the_excerpt, 0, $excerpt_length );
 		                			echo $the_excerpt;
 		                	} ?>
-		                
+
 		                <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" class="btn btn-xs btn-primary">Read more &rsaquo;</a></p>
 	                </div>
 			    </div>
@@ -84,7 +84,7 @@ Template Name: Pinterest Blog
 			    <?php } ?>
 				</ol>
 		    </div>
-		
+
 		</div> <!-- container for carousel -->
 		<script>
 			jQuery(window).on('load resize', function(){
@@ -99,8 +99,8 @@ Template Name: Pinterest Blog
 <?php endif; // end carousel ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		
-	<?php 
+
+	<?php
 		$post_thumbnail_id = get_post_thumbnail_id();
 		$featured_src = wp_get_attachment_image_src( $post_thumbnail_id, 'wpbs-featured-home' );
 		$jumbotron_contents = get_post_meta($post->ID, 'jumbotron_contents' , true);
@@ -122,9 +122,9 @@ Template Name: Pinterest Blog
 				$sidebar_class = "col-md-3";
 			}
 		}
-		
+
 	?>
-	
+
 	<?php if ($jumbotron_contents != ''): ?>
 
 		<?php
@@ -134,16 +134,16 @@ Template Name: Pinterest Blog
 				$jumbotron_style = 'style="background-color: ' . $jumbotron_bg_color . '"';
 			}
 		?>
-	
+
 		<div class="jumbotron" <?php echo $jumbotron_style; ?>>
-	
+
 			<?php echo $jumbotron_contents;?>
 
 		</div>
 
 	<?php endif; ?>
 
-	<?php 
+	<?php
 		$display_page_title = get_post_meta( get_the_id(), 'display_page_title', false );
 		$display_page_meta = get_post_meta( get_the_id(), 'display_page_meta', false );
 	?>
@@ -153,11 +153,11 @@ Template Name: Pinterest Blog
 			<div class="container clearfix">
 
 				<header class="page-header">
-				
+
 					<h1><?php single_post_title(); ?></h1>
-				
+
 					<?php if ( $display_page_meta ) get_template_part('postmeta-horizontal'); ?>
-			
+
 				</header> <!-- end page header -->
 
 			</div>
@@ -176,13 +176,13 @@ Template Name: Pinterest Blog
 			//echo "</div>\n";
 		}
 	?>
-	
+
 	<div class="container clearfix">
-		
+
 		<div class="row clearfix">
-	
+
 			<section id="main" class="<?php echo $main_class; ?> clearfix" role="main">
-		
+
 				<?php get_template_part( 'content' ); ?>
 
 				<!-- blog posts -->
@@ -198,7 +198,7 @@ Template Name: Pinterest Blog
 						$args .= '&cat=' . $pinterest_taxonomies;
 					}
 					$pinterest_query = new WP_Query( $args );
-				
+
 					// setup the pinterest columns
 					$pinterest_columns_width = get_post_meta($post->ID, 'pinterest_columns_width' , true);
 					if ( ! is_numeric($pinterest_columns_width) || $pinterest_columns_width <= 0 ) { // sanity check to prevent div by 0
@@ -208,14 +208,14 @@ Template Name: Pinterest Blog
 					if ( ! is_numeric($pinterest_gutter) || $pinterest_gutter <= 0 ) { // sanity check to prevent div by 0
 						$pinterest_gutter = 20;
 					}
-					
+
 				?>
-				
+
 				<div class="pinterest_list" style="width: 100%; ">
 
 					<?php while ( $pinterest_query->have_posts() ) : $pinterest_query->the_post(); ?>
 
-						<?php 
+						<?php
 						$col_span = 1;
 						if (get_post_format() == 'video' ){// || has_post_thumbnail() ){
 							$col_span = 3;
@@ -224,13 +224,13 @@ Template Name: Pinterest Blog
 						}?>
 
 						<div class="pinterest_item panel pinterest_<?php echo get_post_format(); ?>" style="width: <?php echo $pinterest_columns_width* $col_span+10*($col_span-1); ?>px; padding: 0; border: none;" data-groups='["post","<?php echo get_post_format(); ?>"]'>
-					
+
 							<?php if ( has_post_thumbnail()) : ?>
 
 								<?php $has_thumb = ' thumb'; ?>
-								
+
 								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" rel="bookmark">
-								
+
 									<?php echo get_the_post_thumbnail($the_post->ID,'thumbnail'); ?>
 
 								</a>
@@ -238,7 +238,7 @@ Template Name: Pinterest Blog
 				 			<?php else :
 
 				 				$has_thumb='';
-				 			
+
 				 			endif; ?>
 
 				 			<div class="pinterest_caption<?php echo $has_thumb; ?>">
@@ -246,27 +246,27 @@ Template Name: Pinterest Blog
 								<?php if ( get_the_title() != '' ) : ?>
 
 									<header class="entry-header media-heading">
-									
+
 										<h3><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?>
-									
+
 										<?php if (get_post_format() == 'link') : ?>
-									
+
 											<i class="glyphicon glyphicon-external-link"></i>
-									
+
 										<?php endif; ?>
-									
+
 										</a></h3>
-									
+
 									</header>
-								
+
 								<?php endif; ?>
 
 								<section class="post_content clearfix">
-								
+
 									<?php the_excerpt(); ?>
-								
+
 								</section> <!-- post-content -->
-							
+
 							</div>
 
 						</div>
@@ -274,21 +274,21 @@ Template Name: Pinterest Blog
 					<?php endwhile; ?>
 
 					<?php wp_reset_query(); ?>
-				
+
 				</div><!-- pinterest blog -->
 
 			</section> <!-- end main -->
-			
+
 			<?php if ($sidebar_class != ''): ?>
-		
+
 				<section class="<?php echo $sidebar_class; ?> clearfix">
-		
+
 					<?php get_sidebar($sidebar_widget_group); ?>
-		
+
 				</section>
-		
-			<?php endif; ?>					
-			
+
+			<?php endif; ?>
+
 		</div> <!-- row -->
 	</div> <!-- container -->
 
@@ -303,23 +303,23 @@ Template Name: Pinterest Blog
 			//echo "</div>\n";
 		}
 	?>
-				
+
 <?php endwhile; ?>
 
 <?php else : ?>
-		
+
 	<?php not_found(); ?>
-	
+
 <?php endif; ?>
-			    
+
 </div> <!-- end #content -->
 
 <script type='text/javascript'>
-	
+
 jQuery(window).load(function() {
     var $pinterest_list = jQuery('.pinterest_list'),
         $sizer = <?php echo $pinterest_columns_width; ?>;
-    
+
     $pinterest_list.each(function() {
         jQuery(this).shuffle({
             itemSelector: '.pinterest_item',
