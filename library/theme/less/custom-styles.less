@@ -56,37 +56,57 @@
 }
 
 #main-nav > ul > li > a::after {
-		position: absolute;
-		top: 100%;
-		left: 0;
-		width: 100%;
-		height: 1px;
-		margin-top: -5px;
-		background: @navbar-default-link-hover-color;
-		content: '';
-		opacity: 0;
-		-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
-		-moz-transition: height 0.3s, opacity 0.3s, -moz-transform 0.3s;
-		transition: height 0.3s, opacity 0.3s, transform 0.3s;
-		-webkit-transform: translateY(-10px);
-		-moz-transform: translateY(-10px);
-		transform: translateY(-10px);
-	}
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	margin-top: -5px;
+	background: @navbar-default-link-hover-color;
+	content: '';
+	opacity: 0;
+	-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+	-moz-transition: height 0.3s, opacity 0.3s, -moz-transform 0.3s;
+	transition: height 0.3s, opacity 0.3s, transform 0.3s;
+	-webkit-transform: translateY(-10px);
+	-moz-transform: translateY(-10px);
+	transform: translateY(-10px);
+}
 #main-nav > ul > li > a:hover::after,
 #main-nav > ul > li > a:focus::after {
-		height: 5px;
-		opacity: 1;
-		-webkit-transform: translateY(0px);
-		-moz-transform: translateY(0px);
-		transform: translateY(0px);
+	height: 5px;
+	opacity: 1;
+	-webkit-transform: translateY(0px);
+	-moz-transform: translateY(0px);
+	transform: translateY(0px);
+}
+
+/* menu search button jazziness */
+#menu_search_btn {
+	&.search_hidden {
+		background: transparent;
+		border: none;
+		.transition(all 0.3s ease-in-out);
 	}
+	&.search_hidden:hover {
+		color: @gray-light;
+	}
+	.transition(all 0.3s ease-in-out);
+}
+#s {
+	&.search_hidden {
+		width: 0;
+		border: none;
+		padding: 0;
+	}
+}
 
 /* custom scaffolding */
 #content {
 	margin-top: 48px;
-	.content-no-margin {
-		margin-top: 0;
-	}
+}
+#content.content-no-margin {
+	margin-top: 0;
 }
 
 body.navbar-fixed-offset {

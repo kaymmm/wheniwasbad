@@ -111,9 +111,9 @@
 				<form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
 					<div class="input-group input-group-sm">
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+									<button id="menu_search_btn" class="btn btn-default search_hidden" type="button"><span class="glyphicon glyphicon-search"></span></button>
 								</span>
-								<input name="s" id="s" type="text" class="form-control" autocomplete="off" placeholder="<?php _e('Search','gcwordpress'); ?>" >
+								<input name="s" id="s" type="text" class="search_hidden form-control" autocomplete="off" placeholder="<?php _e('Search','gcwordpress'); ?>" >
 							</div>
 				</form>
 				<?php endif; ?>

@@ -34,18 +34,6 @@ jQuery(document).ready(function($) {
 		$('a.edit-post').hide();
 	});
 
-	$('#s').focus(function(){
-		if( $(window).width() < 940 ){
-			$(this).animate({ width: '200px' });
-		}
-	});
-
-	$('#s').blur(function(){
-		if( $(window).width() < 940 ){
-			$(this).animate({ width: '100px' });
-		}
-	});
-
     $('body').scrollspy({
         target: '#main-nav',
         offset: $('.navbar').height() + 50 //somewhat arbitrary, might need to be adjusted for various setups
@@ -71,6 +59,27 @@ jQuery(document).ready(function($) {
       }
     }
   });
+
+    //header search jazziness
+    $('#menu_search_btn').focus(function() {
+        $('#s').animate({
+            width: '200px',
+            padding: '7px 13px'
+        }, 300);
+        $(this).removeClass('search_hidden');
+        $('#s').removeClass('search_hidden');
+        $('#s').focus();
+    });
+    $('#s').blur(function() {
+        $('#s').animate({
+            width: '0',
+            border: 'none',
+            padding: '0'
+        }, 300);
+        $('#menu_search_btn').addClass('search_hidden');
+        $(this).addClass('search_hidden');
+    });
+
 
 }); /* end of as page load scripts */
 
