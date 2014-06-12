@@ -503,10 +503,10 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         'desc' => __('Color used on site title', Redux_TEXT_DOMAIN),
                         'id' => 'top_nav_text_color',
                         'default' => array (
-                            'regular' => '#444444',
+                            'regular' => '#95a5a6',
                             'hover' => '#777777',
                             'active' => '#777777',
-                            'visited' => '#444444'
+                            'visited' => '#95a5a6'
                         ),
                         'type' => 'link_color',
                         'output' => array('.navbar-default .navbar-brand'),
@@ -516,10 +516,10 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         'title' => __('Menu font color', Redux_TEXT_DOMAIN),
                         'id' => 'top_nav_link_color',
                         'default' => array (
-                            'regular' => '#444444',
+                            'regular' => '#95a5a6',
                             'hover' => '#777777',
                             'active' => '#777777',
-                            'visited' => '#444444'
+                            'visited' => '#95a5a6'
                         ),
                         'type' => 'link_color',
                         'output' => array('.navbar-default .navbar-nav>li>a'),
@@ -527,11 +527,61 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                     ),
 
                     array(
-                        'title' => __('Search bar', Redux_TEXT_DOMAIN),
-                        'desc' => __('Show search bar in top nav', Redux_TEXT_DOMAIN),
+                        'title' => __('Search Box', Redux_TEXT_DOMAIN),
+                        'desc' => __('Show search box in the header', Redux_TEXT_DOMAIN),
                         'id' => 'search_bar',
                         'default' => '0',
                         'type' => 'checkbox'
+                    ),
+                    array(
+                        'title' => __('Search Box Primary Color', Redux_TEXT_DOMAIN),
+                        'desc' => 'The color of the search icon when the search box is in the default closed state and the main color for the search box when it is opened.',
+                        'id' => 'search_box_color_primary',
+                        'default' => '#95a5a6',
+                        'type' => 'color',
+                        'required' => array( 'search_bar', 'equals', '1'),
+                        'output' => array(
+                            'color' => '#menu_search_btn.search_hidden, #s:focus',
+                            'background-color' => '#menu_search_btn',
+                            'border-color' => '#menu_search_btn,#s:focus'),
+                        'validate' => 'color'
+                    ),
+                    array(
+                        'title' => __('Search Icon Open Color', Redux_TEXT_DOMAIN),
+                        'id' => 'search_box_color_open',
+                        'desc' => 'The color of the search icon when the search box is opened.',
+                        'default' => '#ffffff',
+                        'type' => 'color',
+                        'required' => array( 'search_bar', 'equals', '1'),
+                        'output' => array(
+                            'color' => '#menu_search_btn'),
+                        'validate' => 'color'
+                    ),
+                    array(
+                        'title' => __('Search Icon Hover Color', Redux_TEXT_DOMAIN),
+                        'id' => 'search_box_color_hover',
+                        'default' => '#9b59b6',
+                        'type' => 'color',
+                        'required' => array( 'search_bar', 'equals', '1'),
+                        'output' => array(
+                            'color' => '#menu_search_btn.search_hidden:hover'),
+                        'validate' => 'color'
+                    ),
+                    array(
+                        'title' => __('Search Box Background Color', Redux_TEXT_DOMAIN),
+                        'id' => 'search_box_bg_color',
+                        'desc' => 'The background color for the opened search box.',
+                        'default' => array('background-color' => '#ffffff'),
+                        'type' => 'background',
+                        'background-repeat' => false,
+                        'background-attachment' => false,
+                        'background-position' => false,
+                        'background-image' => false,
+                        'background-size' => false,
+                        'preview' => false,
+                        'required' => array( 'search_bar', 'equals', '1'),
+                        'output' => array('background-color' => '#s:focus'),
+                        'validate' => 'color'
                     ),
                     array(
                         'title' => __('Site Name', Redux_TEXT_DOMAIN),
