@@ -78,18 +78,18 @@ switch ($post_format) {
 			<?php echo bs_get_avatar(get_the_author_meta('ID'),'80','',$author,$class='img-circle'); ?>
 		</a></span>
 	<?php endif; ?>
-		<p><span class="label <?php echo $label_class; ?>"><i class="<?php echo $icon; ?>"></i></span> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo $author; ?></a></p>
+		<p><span class="label <?php echo $label_class; ?>"><span class="<?php echo $icon; ?>"></span></span> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo $author; ?></a></p>
 	<?php if ( ! is_page() ) : ?>
-		<p><i class="glyphicon glyphicon-calendar-empty"></i> <time datetime="<?php the_time(DATE_W3C); ?>" ><?php the_time(get_option('date_format')); ?></time></p>
+		<p><span class="glyphicon glyphicon-calendar"></span> <time datetime="<?php the_time(DATE_W3C); ?>" ><?php the_time(get_option('date_format')); ?></time></p>
 	<?php endif; ?>
-		<p><i class="glyphicon glyphicon-bookmark"></i> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark">Permalink</a>
+		<p><span class="glyphicon glyphicon-bookmark"></span> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark">Permalink</a>
 		<?php edit_post_link( __( 'Edit', 'wheniwasbad' ), ' &nbsp;&bull;&nbsp; ', '' ); ?></p>
 	<?php if ( comments_open() && get_comments_number() ) : ?>
-		<p><i class="glyphicon glyphicon-comment"></i> <?php comments_popup_link( __("Leave a comment","wheniwasbad"), __( "One Comment", "wheniwasbad"), __( "% Comments", "wheniwasbad" ) ); ?></p>
+		<p><span class="glyphicon glyphicon-comment"></span> <?php comments_popup_link( __("Leave a comment","wheniwasbad"), __( "One Comment", "wheniwasbad"), __( "% Comments", "wheniwasbad" ) ); ?></p>
 	<?php endif; // comments_open() ?>
 	<?php if ( ! is_page() && ! is_attachment() ) : ?>
-		<p><i class="glyphicon glyphicon-folder-close"></i> <span class="muted"> <?php the_category(", "); ?></span></p>
-		<p><i class="glyphicon glyphicon-tags"></i>
+		<p><span class="glyphicon glyphicon-folder-close"></span> <span class="muted"> <?php the_category(", "); ?></span></p>
+		<p><span class="glyphicon glyphicon-tags"></span>
 		<?php
 		$posttags = get_the_tags();
 		if ( $posttags ) :

@@ -1,4 +1,4 @@
-WhenIWasBad v3.0.2
+WhenIWasBad v3.1
 ==================
 WordPress Bootstrap Theme
 -------------------------------
@@ -62,6 +62,13 @@ There are three included widget areas that can be assigned to individual pages o
 
 Changelog
 =========
+
+v3.1.0
+* Lots of changes under the hood
+* Added some shortcodes to easily add Bootstrap content
+* Updated options. You will need to reset your options!
+* Cleaned up lots of code
+* Lots of bug fixes for inconsistent appearance things
 
 v3.0.2
 
