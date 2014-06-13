@@ -271,7 +271,14 @@ cite   { font-size: 85%; }
 	vertical-align: middle;
 	width: auto;
 	height: auto;
-	broder: 1px solid @circle-default-border;
+	border-width: 1px;
+	border-color: @circle-default-border;
+	.transition(transform 0.3s);
+
+	&:hover {
+		.scale(0.8);
+		.transition(transform 0.3s);
+	}
 
 	&-default {
 		color: @circle-default-color;
