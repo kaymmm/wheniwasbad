@@ -707,7 +707,7 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
             }
             $theme_info .= '</div>';
 
-            if (file_exists(dirname(__FILE__) . '/shortcodes.html')) {
+            if (file_exists(dirname(__FILE__) . '/shortcodes.md')) {
                 $this->sections['theme_docs'] = array(
                     'icon'      => 'el-icon-list-alt',
                     'title'     => __('Shortcodes', Redux_TEXT_DOMAIN),
@@ -715,8 +715,8 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         array(
                             'id'        => 'shortcodes_info',
                             'type'      => 'raw',
-                            'markdown'  => false,
-                            'content'   => file_get_contents(dirname(__FILE__) . '/shortcodes.html')
+                            'markdown'  => true,
+                            'content'   => file_get_contents(dirname(__FILE__) . '/shortcodes.md')
                         ),
                     ),
                 );

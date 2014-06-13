@@ -400,6 +400,7 @@ if( !function_exists("theme_styles") ) {
 		if (!is_admin()){
 			//require_once('redux-styles-less.php');
 			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/library/theme/css/bootstrap-themed.css', array(), '3.1.1', 'all' );
+			wp_register_style('fontawesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', array(), '4.1.0', 'all');
 			//wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/library/theme/less/bootstrap-themed.less', array(), '3.1.1', 'all' );
 
 			// only enqueue the following styles when needed, but register them here to centralize updates.
@@ -407,6 +408,7 @@ if( !function_exists("theme_styles") ) {
 			wp_register_style('tocify-css',get_template_directory_uri() . '/library/jquery.tocify.js/src/stylesheets/jquery.tocify.css', array(), '1.9.0', 'screen');
 
 	        wp_enqueue_style( 'bootstrap-css' );
+	        wp_enqueue_style('fontawesome');
 
 		}
     }

@@ -6,6 +6,7 @@ These are the shortcodes included with this theme that will generate stylized co
   - [list_people](#list_people)
   - [list_projects](#list_projects)
   - [blockquote](#blockquote)
+  - [circle_icon](#circle_icon)
   - [alert](#alert)
   - [button](#button)
   - [gallery](#gallery)
@@ -63,6 +64,31 @@ Displays a Bootstrap formatted blockquote with an optional author attribution an
 ####Example:
 ```
 [blockquote float='left' cite='Mark Twain']It is better to keep your mouth closed and let people think you are a fool than to open it and remove all doubt.[/blockquote]
+```
+
+----
+
+<a name="circle_icon"></a>circle_icon
+---
+
+###Description
+
+Displays a Bootstrap styled icon block with a Font Awesome or Glyphicon icon inside of a colored circle.
+
+###Arguments
+  - type: Bootstrap dialog type, i.e., default, info, success, warning, error, or primary.
+  - title_position: Position of the title, either above or below the icon block. `above` (default) or `below`
+  - title: title text
+  - url: URL to link the title/icon to. Be sure to include the "http://"
+  - icon: the Font Awesome or Glyphicon class to display. You don't need to include the "fa" or "glyphicon". Default is `glyphicon-link`
+  - wrapper_classes => , /* additional wrapper classes */
+  - title_tag: The html tag with which to wrap the title text. Default is 'p'
+  - title_classes: Additional classes to assign to the title tag
+  - size: icon block size (in px). Valid sizes are 100 (default), 50, 150, 200.
+
+####Example:
+```
+[circle_icon type="success" title_position="above" title="Icon Block Title" title_classes="text-center" url="http://www.google.com/" title_tag="p" title_classes="h3" size="150"]body text[/circle_icon]
 ```
 
 ----

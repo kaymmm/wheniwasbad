@@ -264,6 +264,58 @@ function blockquotes( $atts, $content = null ) {
 
 add_shortcode('blockquote', 'blockquotes');
 
+// Circle Icon Block
+function circle_icons( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+	'type' => 'default', /* info, success, warning, error, primary, default */
+	'title_position' => 'above', /* above, below */
+	'title' => '', /* title */
+	'url' => '', /* title/icon url */
+	'icon' => 'glyphicon-link', /* any valid font awesome or glyphicon icon class. don't need to include the "fa" or "glyphicon" classes */
+	'wrapper_classes' => '', /* additional wrapper classes */
+	'title_tag' => 'h3',
+	'title_classes' => '',
+	'size' => '100', /* 50, 100, 150, 200 */
+	), $atts ) );
+
+	$output = '<div class="circle_icon_wrapper ' . $wrapper_classes . '">';
+
+	if ($url !== '') {
+		$output .= "<a href='" . $url . "' class='circle-icon-link'>";
+	}
+
+	if ($title !== '' && ($title_position == 'above' || $title_position !== 'below')) {
+		$output .= "<" . $title_tag . " class='" . $title_classes . "'>";
+		$output .= $title;
+		$output .= "</" . $title_tag . ">";
+	}
+
+	if (strpos($icon, 'glyphicon') !== FALSE) {
+		$icon_tag = '<span class="glyphicon ' . $icon . '"></span>';
+	} else {
+		$icon_tag = '<i class="fa ' . $icon . '"></i>';
+	}
+	$output .= '<div class="circle-icon circle-icon-' . $size . ' circle-icon-' . $type .'">';
+	$output .= $icon_tag;
+	$output .= '</div>';
+
+	if ($title !== '' && $title_position == 'below') {
+		$output .= "<" . $title_tag . " class='" . $title_classes . "'>";
+		$output .= $title;
+		$output .= "</" . $title_tag . ">";
+	}
+
+	if ($url !== '') {
+		$output .= "</a>";
+	}
+
+	$output .= $content;
+
+	return $output;
+}
+
+add_shortcode('circle_icon', 'circle_icons');
+
 
 // list project custom post types
 function list_projects_shortcode( $atts ) {
