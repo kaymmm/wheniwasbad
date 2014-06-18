@@ -1,10 +1,6 @@
 // as the page loads, call these scripts
 jQuery(document).ready(function($) {
 
-    // position static header at the top of the screen, accounting for admin bar
-    $('#main_header.navbar-fixed-top').css('top',$('#wpadminbar').outerHeight());
-
-
     // force footer to bottom of page
     var height_diff = $(window).height() - $('body').height();
     if ( height_diff > 0 ) {
@@ -80,6 +76,36 @@ jQuery(document).ready(function($) {
         $(this).addClass('search_hidden');
     });
 
+    // switch header fixity on mobile devices
+    $(window).resize(function() {
+        if ( $(document).width() < 768) {
+            //$('.navbar-brand').css('font-size', 28+(80-28)*($(document).width()-400)/(768-400));
+            $('body').addClass('navbar-no-offset');
+            $('header.navbar').addClass('navbar-static-top');
+            $('header.navbar').removeClass('navbar-fixed-bottom');
+            $('header.navbar').removeClass('navbar-fixed-top');
+            $('body').removeClass('navbar-fixed-offset');
+            // position static header at the top of the screen, accounting for admin bar
+            $('#main_header.navbar-static-top').css('top',0);
+            //$('#content').css('margin-top', 0);
+           // $.waypoints('disable');
+        } else {
+            // position static header at the top of the screen, accounting for admin bar
+            $('#main_header.navbar-fixed-top').css('top',$('#wpadminbar').outerHeight());
+            $('.navbar-brand').css('font-size','');
+            if ($('body').data('navpos') == 'fixed') {
+                //$('#content').css('margin-top', $('.navbar').height());
+                if ($('body').hasClass('navbar-no-offset')) {
+                    $('body').removeClass('navbar-no-offset');
+                    $('body').addClass('navbar-fixed-offset');
+                    $('header.navbar').removeClass('navbar-static-top');
+                    $('header.navbar').addClass('navbar-fixed-top');
+                }
+            }
+            //$.waypoints('enable');
+        }
+        //$.waypoints('refresh');
+    }).resize();
 
 }); /* end of as page load scripts */
 

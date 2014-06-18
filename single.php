@@ -34,20 +34,34 @@
 
 					</header>
 
-					<?php get_template_part( 'content', get_post_format() ); ?>
+					<div class="col-xs-12 col-sm-9">
 
-					<?php /*if (function_exists('page_navi')) : // if expirimental feature is active ?>
+						<?php get_template_part( 'content', get_post_format() ); ?>
 
-						<?php page_navi(); // use the page navi function ?>
+						<?php if (function_exists('page_navi')) : // if expirimental feature is active ?>
 
-					<?php else : // if it is disabled, display regular wp prev & next links ?>
-						<nav class="wp-prev-next pagenavi">
-							<ul class="clearfix">
-								<li class="prev-link"><?php next_posts_link(_e('<i class="glyphicon glyphicon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
-								<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="glyphicon glyphicon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
-							</ul>
-						</nav>
-					<?php endif; */?>
+							<?php page_navi(); // use the page navi function ?>
+
+						<?php else : // if it is disabled, display regular wp prev & next links ?>
+							<nav class="wp-prev-next pagenavi">
+								<ul class="clearfix">
+									<li class="prev-link"><?php next_posts_link(_e('<i class="glyphicon glyphicon-chevron-sign-left"></i> Older Entries', "wheniwasbad")) ?></li>
+									<li class="next-link"><?php previous_posts_link(_e('Newer Entries <i class="glyphicon glyphicon-chevron-sign-right"></i>', "wheniwasbad")) ?></li>
+								</ul>
+							</nav>
+						<?php endif; ?>
+
+					</div>
+
+					<div class="col-xs-12 col-sm-3"><?php get_template_part('postmeta'); ?></div>
+
+					<?php
+					// If comments are open or we have at least one comment, load up the comment template.
+					if ( comments_open() || get_comments_number() ) {
+						comments_template();
+					}
+
+					?>
 
 				<?php endwhile; // end of the loop. ?>
 

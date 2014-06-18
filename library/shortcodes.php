@@ -5,7 +5,7 @@
 // add a link to shortcodes to the page editor
 	add_action( 'edit_form_after_editor', 'shortcode_edit_form_after_editor' );
 	function shortcode_edit_form_after_editor() {
-	    echo '<strong>Note:</strong> For a list of shortcodes built into the theme, visit the "Shortcodes" tab in the <a href="/wp-admin/themes.php?page=gctheme_options">GC Theme Options</a>.';
+	    echo '<strong>Note:</strong> For a list of shortcodes built into the theme, visit the "Shortcodes" tab in the <a href="/wp-admin/themes.php?page=wiwb_options">Theme Options</a>.';
 	}
 
 // Gallery shortcode
@@ -99,7 +99,7 @@ function bootstrap_gallery($attr) {
 	$gallery_id = 'blueimp_gallery_'.rand();
 	$links_id = 'links-'.$gallery_id;
 
-	$mosaic = '<div id="'.$links_id.'" class="gridalicious clearfix">';
+	$mosaic = '<div id="'.$links_id.'" class="clearfix">';
 	foreach ($attachments as $id => $attachment) {
 		//$img_lg = wp_get_attachment_image_src($id,'large',false);
 		$img_sm = wp_get_attachment_image_src($id,'full',false);
@@ -315,6 +315,114 @@ function circle_icons( $atts, $content = null ) {
 }
 
 add_shortcode('circle_icon', 'circle_icons');
+
+// list posts on any page
+function list_posts_masonry_shortcode( $atts ) {
+
+	wp_enqueue_script('shuffle');
+
+	// Attributes
+	$args = shortcode_atts(
+		array(
+			'categories' => '',
+			'tags'		=> '',
+			'posts_per_page'	=> 10,
+			'offset'	=> 0,
+			'orderby'	=> 'post_date',
+			'order'		=> 'DESC',
+			'include'	=> '',
+			'exclude'	=> '',
+			'meta_key'	=> '',
+			'meta_value'	=> '',
+			'post_mime_type'	=> '',
+			'post_parent'		=> '',
+			'post_status'		=> 'publish',
+			'suppress_filters'	=> true,
+			'post_type'	=> 'post'
+		), $atts );
+
+	$proj_query = new WP_Query( $args );
+
+	$shuffle_id = 'shuffle_'.rand();
+
+	$output = "<div class='row'><div id='$shuffle_id' class='shuffle-container clearfix'><div class='col-xs-1 shuffle__sizer'></div>";
+
+	while ( $proj_query->have_posts() ) {
+
+		$proj_query->the_post();
+		$id = get_the_ID();
+
+		$categories = wp_get_object_terms($id,'category');
+		$cat_list = array_map(create_function('$a', 'return $a->name;'), $categories);
+		//$output .= "<!-- id:" .$id . " " . print_r($categories,true) . "-->";
+		$cat_list = htmlentities(json_encode($cat_list),ENT_QUOTES);
+
+		$output .= "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-3 shuffle-brick' data-groups='".$cat_list."'>";
+		$output .= "<div class='shuffle-brick-inner'>";
+		$output .= "<div class='shuffle-brick-image'>";
+
+		if ( has_post_thumbnail() ) {
+
+			$image_url = wp_get_attachment_image_src( get_post_thumbnail_id($id), "thumbnail");
+			$image_url = $image_url[0];
+
+		} else {
+
+			$image_url = get_template_directory_uri() . "/library/images/placeholder.jpg";
+
+		}
+
+		$output .= "<img src='" . $image_url ."' alt='" . the_title_attribute("echo=0") . "' class='shuffle-brick-thumb' />";
+
+		$output .= "<div class='shuffle-brick-content-wrapper'><div class='shuffle-brick-content'><div class='shuffle-brick-inner'>";
+
+		$output .= "<a href='" . get_the_permalink() . "' title='" . the_title_attribute("echo=0") . "' class='circle-icon-link'><span class='circle-icon circle-icon-100 circle-icon-primary'><span class='glyphicon glyphicon-play'></span></span></a>";
+
+		$output .= "</div></div></div></div><div class='shuffle-brick-caption'>";
+
+		$output .= "<h3><a href='" . get_the_permalink() . "' title='" . the_title_attribute("echo=0") . "' class='shuffle-brick-title'>" . get_the_title() . "</a></h3>";
+
+		$output .= "<p>" . get_the_excerpt() . "</p>";
+
+		//$output .= "<p class='text-right'><a class='read-more btn btn-primary btn-xs' href='". get_permalink( get_the_ID() ) . "'>Read more <i class='glyphicon glyphicon-chevron-right'></i></a>";
+
+		//$output .= "<a href='" . get_the_permalink() . "' title='" . the_title_attribute("echo=0") . "' class='btn btn-default btn-xs'>Details</a>";
+
+		$output .= "</div>"; // caption
+
+		$output .= "<div class='shuffle-brick-footer'>";
+
+		$output .= "<time datetime='".get_the_time(DATE_W3C)."'>".get_the_time(get_option('date_format'))."</time>";
+
+		$output .= "<span class='shuffle-brick-footer-link'><a href='".get_the_permalink()."'><span class='glyphicon glyphicon-link'></span></a></span>";
+
+		if ( comments_open() && get_comments_number() ) {
+			$output .= "<span class='shuffle-brick-footer-link'><span class='glyphicon glyphicon-comment'></span> " . get_comments_number() . " &nbsp;</span>";
+		}
+
+		$output .= "</div></div></div>\n"; //image
+
+	} // end of the loop.
+
+	$output .= "</div></div>\n"; //container
+
+	$output .= <<<EOD
+<script type='text/javascript'>
+	jQuery( document ).ready( function($) {
+		var grid = $('#$shuffle_id'),
+			sizer = grid.find('.shuffle__sizer');
+		grid.shuffle({
+			itemSelector: '.shuffle-brick',
+			sizer: sizer
+		});
+	});
+
+</script>
+EOD;
+
+return $output;
+}
+add_shortcode( 'list_posts_masonry', 'list_posts_masonry_shortcode' );
 
 
 // list project custom post types

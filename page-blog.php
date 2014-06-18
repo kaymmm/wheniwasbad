@@ -6,6 +6,8 @@ Template Name: Pinterest Blog
 
 <?php get_header(); ?>
 
+<?php wp_enqueue_script('shuffle'); ?>
+
 <div id="content" class="content-no-margin clearfix parallax-wheniwasbad" data-type="background" data-bg-speed="15" >
 
 <?php
@@ -111,15 +113,15 @@ Template Name: Pinterest Blog
 		$sidebar_widget_group = get_post_meta($post->ID, 'sidebar_widgets' , true);
 		$hide_empty_sidebar = $wheniwasbad_options['hide_widgets'];
 		if ( ! is_active_sidebar($sidebar_widget_group) && $hide_empty_sidebar) {
-			$main_class = "col-md-12";
+			$main_class = "col-xs-12";
 			$sidebar_class = "";
 		} else {
 			if ( $sidebar_position == 'left' ) {
-				$main_class = "col-md-9 col-md-push-3";
-				$sidebar_class = "col-md-3 col-md-pull-9";
+				$main_class = "col-xs-12 col-sm-9 col-sm-push-3";
+				$sidebar_class = "col-xs-12 col-sm-3 col-sm-pull-9";
 			} elseif ( $sidebar_position == 'right' ) {
-				$main_class = "col-md-9";
-				$sidebar_class = "col-md-3";
+				$main_class = "col-xs-12 col-sm-9";
+				$sidebar_class = "col-xs-12 col-sm-3";
 			}
 		}
 
@@ -199,73 +201,108 @@ Template Name: Pinterest Blog
 					}
 					$pinterest_query = new WP_Query( $args );
 
-					// setup the pinterest columns
-					$pinterest_columns_width = get_post_meta($post->ID, 'pinterest_columns_width' , true);
-					if ( ! is_numeric($pinterest_columns_width) || $pinterest_columns_width <= 0 ) { // sanity check to prevent div by 0
-						$pinterest_columns_width = 180;
-					}
-					$pinterest_gutter = get_post_meta($post->ID, 'pinterest_gutter' , true);
-					if ( ! is_numeric($pinterest_gutter) || $pinterest_gutter <= 0 ) { // sanity check to prevent div by 0
-						$pinterest_gutter = 20;
-					}
+					$shuffle_id = 'shuffle_'.rand();
 
 				?>
 
-				<div class="pinterest_list" style="width: 100%; ">
+				<div class="col-xs-12"><div class='row'>
+
+					<div id='<?php echo $shuffle_id; ?>' class='shuffle-container clearfix'>
+
+					<div class='col-xs-1 shuffle__sizer'></div>
 
 					<?php while ( $pinterest_query->have_posts() ) : $pinterest_query->the_post(); ?>
 
 						<?php
-						$col_span = 1;
+						$col_span = 'col-xs-12 col-sm-6 col-md-4 col-lg-3';
 						if (get_post_format() == 'video' ){// || has_post_thumbnail() ){
-							$col_span = 3;
-						} elseif (has_post_thumbnail()) {
-							$col_span = 2;
-						}?>
+							$col_span = 'col-xs-12 col-sm-12 col-md-6 col-lg-6';
+						}
 
-						<div class="pinterest_item panel pinterest_<?php echo get_post_format(); ?>" style="width: <?php echo $pinterest_columns_width* $col_span+10*($col_span-1); ?>px; padding: 0; border: none;" data-groups='["post","<?php echo get_post_format(); ?>"]'>
+						$categories = wp_get_object_terms($id,'category');
+						$cat_list = array_map(create_function('$a', 'return $a->name;'), $categories);
+						$cat_list = htmlentities(json_encode($cat_list),ENT_QUOTES);
 
-							<?php if ( has_post_thumbnail()) : ?>
+						?>
 
-								<?php $has_thumb = ' thumb'; ?>
+						<div class="<?php echo $col_span; ?> shuffle-brick" data-groups='<?php echo $cat_list; ?>'>
 
-								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" rel="bookmark">
+							<div class='shuffle-brick-inner'>
 
-									<?php echo get_the_post_thumbnail($the_post->ID,'thumbnail'); ?>
+								<?php //if ( has_post_thumbnail()) : ?>
 
-								</a>
+									<div class='shuffle-brick-image'>
 
-				 			<?php else :
+<?php if ( has_post_thumbnail() ) {
 
-				 				$has_thumb='';
+			//$image_url = wp_get_attachment_image_src( get_post_thumbnail_id($id), "thumbnail");
+			//$image_url = $image_url[0];
 
-				 			endif; ?>
+			echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'shuffle-brick-thumb'));
 
-				 			<div class="pinterest_caption<?php echo $has_thumb; ?>">
+		} else {
 
-								<?php if ( get_the_title() != '' ) : ?>
+			$image_url = get_template_directory_uri() . "/library/images/placeholder.jpg";
+			echo "<img src='" . $image_url ."' alt='" . the_title_attribute("echo=0") . "' class='shuffle-brick-thumb' />";
 
-									<header class="entry-header media-heading">
+		} ?>
+									<?php //echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'shuffle-brick-thumb')); ?>
 
-										<h3><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Permalink to: ', 'after' => '' ) ); ?>" rel="bookmark"><?php the_title(); ?>
+										<div class='shuffle-brick-content-wrapper'>
 
-										<?php if (get_post_format() == 'link') : ?>
+											<div class='shuffle-brick-content'>
 
-											<i class="glyphicon glyphicon-external-link"></i>
+												<div class='shuffle-brick-inner'>
 
-										<?php endif; ?>
+													<a href='<?php the_permalink(); ?>' title="<?php the_title_attribute(); ?>" class='circle-icon-link'>
 
-										</a></h3>
+														<span class='circle-icon circle-icon-100 circle-icon-primary'>
 
-									</header>
+															<span class='glyphicon glyphicon-play'></span>
 
-								<?php endif; ?>
+														</span>
 
-								<section class="post_content clearfix">
+													</a>
+
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								<?php //endif; ?>
+
+								<div class='shuffle-brick-caption'>
+
+									<h3><a href='<?php the_permalink(); ?>' title='<?php the_title_attribute(); ?>' class='shuffle-brick-title'><?php echo get_the_title(); ?></a></h3>
 
 									<?php the_excerpt(); ?>
 
-								</section> <!-- post-content -->
+								</div>
+
+								<div class='shuffle-brick-footer'>
+
+									<time datetime='<?php echo get_the_time(DATE_W3C); ?>'><?php echo get_the_time(get_option('date_format')); ?></time>
+
+									<span class='shuffle-brick-footer-link'>
+
+										<a href='<?php echo the_permalink(); ?>'><span class='glyphicon glyphicon-link'></span></a>
+
+									</span>
+
+									<?php if ( comments_open() && get_comments_number() ) : ?>
+
+										<span class='shuffle-brick-footer-link'>
+
+											<span class='glyphicon glyphicon-comment'></span><?php echo get_comments_number(); ?>&nbsp;
+
+										</span>
+
+									<?php endif; ?>
+
+								</div>
 
 							</div>
 
@@ -275,7 +312,9 @@ Template Name: Pinterest Blog
 
 					<?php wp_reset_query(); ?>
 
-				</div><!-- pinterest blog -->
+					</div>
+
+				</div></div>
 
 			</section> <!-- end main -->
 
@@ -315,19 +354,14 @@ Template Name: Pinterest Blog
 </div> <!-- end #content -->
 
 <script type='text/javascript'>
-
-jQuery(window).load(function() {
-    var $pinterest_list = jQuery('.pinterest_list'),
-        $sizer = <?php echo $pinterest_columns_width; ?>;
-
-    $pinterest_list.each(function() {
-        jQuery(this).shuffle({
-            itemSelector: '.pinterest_item',
-            sizer: $sizer,
-            gutterWidth: <?php echo $pinterest_gutter; ?>
-        });
-    });
-});
+	jQuery( document ).ready( function($) {
+		var grid = $('#<?php echo $shuffle_id; ?>'),
+			sizer = grid.find('.shuffle__sizer');
+		grid.shuffle({
+			itemSelector: '.shuffle-brick',
+			sizer: sizer
+		});
+	});
 
 </script>
 

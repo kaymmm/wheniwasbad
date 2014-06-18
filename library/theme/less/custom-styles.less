@@ -33,6 +33,12 @@
 	 	bottom: 0;
 	}
 
+	&-collapse, &-default .navbar-form {
+		border: none;
+		border-top: none;
+		box-shadow: none;
+	}
+
 	.nav {
 		float: right;
 	}
@@ -314,29 +320,29 @@ cite   { font-size: 85%; }
 .circle-icon-50 {
 	max-height: 50px;
 	max-width: 50px;
-	font-size: 24px;
-	padding: 13px 0;
+	font-size: 22px;
+	padding: 12px 0;
 	.circle-icon;
 }
 .circle-icon-100 {
 	max-height: 100px;
 	max-width: 100px;
 	font-size: 32px;
-	padding: 34px 0;
+	padding: 32px 0;
 	.circle-icon;
 }
 .circle-icon-150 {
 	max-height: 150px;
 	max-width: 150px;
-	font-size: 32px;
-	padding: 59px 0;
+	font-size: 48px;
+	padding: 44px 0;
 	.circle-icon;
 }
 .circle-icon-200 {
 	max-height: 200px;
 	max-width: 200px;
-	font-size: 40px;
-	padding: 80px 0;
+	font-size: 64px;
+	padding: 60px 0;
 	.circle-icon;
 }
 
@@ -599,7 +605,106 @@ ol.commentlist ul.children li{
 	top: 90px;
 }
 
+.cv-entry {
+	margin-bottom: 20px;
+}
+.cv-title {
+	font-weight: 700;
+}
+.cv-date {
+	text-align: right;
+}
+.cv-body {
+	margin-left: 20px;
+}
 
+/* masonry styles archive pages */
+
+.shuffle-container {
+	overflow: hidden;
+	position: relative;
+}
+
+.shuffle-brick-content-inner {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	padding: 0 40px;
+}
+
+.shuffle-brick-content {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.shuffle-brick-content-wrapper {
+	background-color: #ffffff;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity .3s ease-in-out;
+}
+
+.shuffle-brick-image:hover .shuffle-brick-wrapper {
+	opacity: 0.8;
+}
+
+.shuffle-brick-image {
+	position: relative;
+}
+
+.shuffle-brick-thumb {
+	width: 100%;
+	vertical-align: middle;
+}
+
+.shuffle-brick-inner .shuffle-brick-thumb,
+.shuffle-brick-inner .shuffle-brick-wrapper {
+	border-radius: 3px 3px 0 0;
+}
+
+.shuffle-brick-caption {
+	padding: 0 15px;
+}
+
+.shuffle-brick-title {
+
+}
+
+.shuffle-brick-footer {
+	background-color: @gray-light;
+	border-radius: 0 0 3px 3px;
+	color: @gray-dark;
+	padding: 4px 15px;
+	font-size: @font-size-small;
+}
+
+.shuffle-brick-footer-link {
+	float: right;
+	a,a:visited {
+		color: @gray-dark;
+	}
+	a:hover {
+		color: @gray-darker;
+	}
+}
+
+.shuffle__sizer {
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.shuffle-brick-inner {
+	padding: 0;
+	margin-bottom: 40px;
+	border: 1px solid #ddd;
+	box-shadow:1px 1px 6px 1px  rgba(32,32,32,0.2);
+	border-radius:4px;
+}
 /* Shared Post Format styling */
 
 .page-header {

@@ -169,7 +169,7 @@ Template Name: Homepage
 
 			<section id="main" class="<?php echo $main_class; ?> clearfix" role="main">
 
-				<?php get_template_part( 'content' ); ?>
+				<?php get_template_part( 'content', 'page' ); ?>
 
 			</section> <!-- end main -->
 

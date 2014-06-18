@@ -14,22 +14,6 @@ if (WPBS_DEBUGMODE) {
 	//currently only enables less forced recompilation
 }
 
-// WP-LESS/LESSPHP
-//both wp-less plugins require lessphp
-//currently using the fork from https://github.com/cbekir/lessphp
-//also including this patch: https://github.com/ldbglobe/lessphp/compare/patch-1
-
-// wp-less compiler
-// https://github.com/sanchothefat/wp-less
-//require_once( 'library/wp-less-sanchothefat/wp-less.php' );
-
-// wp-less compiler
-// https://github.com/oncletom/wp-less
-//require_once ( 'library/wp-less-oncletom/bootstrap-for-theme.php' );
-//$less = WPLessPlugin::getInstance();
-//$less->dispatch();
-//define('WP_LESS_ALWAYS_RECOMPILE', true);
-
 // Redux Options
 /*if ( ! class_exists( 'ReduxFramework' ) ){
     require_once(dirname(__FILE__) . '/library/ReduxFramework/ReduxCore/framework.php');
@@ -223,11 +207,11 @@ function wpbs_register_sidebars() {
 add_action( 'widgets_init', 'wpbs_register_sidebars' );
 
 /************* Excerpts *********************/
-function new_excerpt_more( $more ) {
-	return ' [&hellip;]</p><p><a class="read-more btn btn-primary pull-right" href="'. get_permalink( get_the_ID() ) . '">Read more <i class="glyphicon glyphicon-chevron-right"></i></a>';
+/*function new_excerpt_more( $more ) {
+	return ' [&hellip;]</p><p class="text-right"><a class="read-more btn btn-primary btn-xs" href="'. get_permalink( get_the_ID() ) . '">Read more <i class="glyphicon glyphicon-chevron-right"></i></a>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
-
+*/
 
 /************* Custom Get_Avatar *********************/
 function bs_get_avatar($id_or_email,$size='96',$default='',$alt=false,$class='') {
@@ -425,7 +409,7 @@ if( !function_exists( "theme_js" ) ) {
 	  //use CDN for loading Bootstrap
 		wp_register_script('bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js', array('jquery'), '3.0.3', true);
 		wp_register_script( 'wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'3.1', true );
-	    //wp_register_script( 'modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.min.js', array(), '2.5.3', true );
+	    //wp_register_script( 'modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.37263.js', array(), '2.8.2', true );
 	    //modernizr included in shuffle
 
 		// only enqueue the following scripts when needed, but register them here to centralize updates.
@@ -433,9 +417,10 @@ if( !function_exists( "theme_js" ) ) {
 		wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/library/js/gallery_init.js', array('jquery','blueimp-gallery-js'), false, true);
 		wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery'), '1.10.3', true);
 		wp_register_script('tocify-js',get_template_directory_uri() . '/library/jquery.tocify.js/src/javascripts/jquery.tocify.min.js', array('jquery','jquery-ui'), '1.9.0', true);
-		wp_register_script( 'shuffle', get_template_directory_uri() . '/library/js/jquery.shuffle.js', array('jquery'), '2.0.1', true);
+		wp_register_script( 'shuffle', get_template_directory_uri() . '/library/js/jquery.shuffle.modernizr.js', array('jquery'), '2.1.2', true);
 
 		wp_enqueue_script('wpbs-scripts');
+		//wp_enqueue_script('modernizr');
 		wp_enqueue_script('bootstrap-js');
 	}
   }
