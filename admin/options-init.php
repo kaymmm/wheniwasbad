@@ -332,13 +332,7 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         //'hover'     => false, // Disable Hover Color
                         //'active'    => false, // Disable Active Color
                         'visited'   => true,  // Enable Visited Color
-                        'output'    => array('a'),
-                        'default'   => array(
-                            'regular'   => '#005daa',
-                            'hover'     => '#00335e',
-                            'active'    => '#005daa',
-                            'visited'    => '#777777',
-                        )
+                        'output'    => array('a')
                     ),
                     array(
                         'id'        => 'opt-typography-body',
@@ -473,17 +467,13 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         'title' => __('Position', Redux_TEXT_DOMAIN),
                         'desc' => __('Affix the header at the top of the page or scroll with the page?', Redux_TEXT_DOMAIN),
                         'options' => array("scroll" => "Scroll","fixed" => "Fixed"),
-                        'default' => 'scroll'
+                        'default' => 'fixed'
                     ),
                     array(
                         'title' => __('Header Background', Redux_TEXT_DOMAIN),
                         'desc' => __('Set the background for the header', Redux_TEXT_DOMAIN),
                         'id' => 'header_bg',
                         'type' => 'background',
-                        'default' => array(
-                            'background-color' => '#ffffff',
-                            'background-repeat' => 'repeat',
-                        ),
                         'output' => array('#main_header')
                     ),
                     array(
@@ -502,26 +492,20 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         'title' => __('Header text color', Redux_TEXT_DOMAIN),
                         'desc' => __('Color used on site title', Redux_TEXT_DOMAIN),
                         'id' => 'top_nav_text_color',
-                        'default' => array (
-                            'regular' => '#95a5a6',
-                            'hover' => '#777777',
-                            'active' => '#777777',
-                            'visited' => '#95a5a6'
-                        ),
                         'type' => 'link_color',
+                        'visited' => true,
+                        'active' => true,
+                        'hover' => true,
                         'output' => array('.navbar-default .navbar-brand'),
                         'validate' => 'color'
                     ),
                     array(
                         'title' => __('Menu font color', Redux_TEXT_DOMAIN),
                         'id' => 'top_nav_link_color',
-                        'default' => array (
-                            'regular' => '#95a5a6',
-                            'hover' => '#777777',
-                            'active' => '#777777',
-                            'visited' => '#95a5a6'
-                        ),
                         'type' => 'link_color',
+                        'visited' => true,
+                        'active' => true,
+                        'hover' => true,
                         'output' => array('.navbar-default .navbar-nav>li>a'),
                         'validate' => 'color'
                     ),
@@ -550,7 +534,7 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         'title' => __('Search Icon Open Color', Redux_TEXT_DOMAIN),
                         'id' => 'search_box_color_open',
                         'desc' => 'The color of the search icon when the search box is opened.',
-                        'default' => '#ffffff',
+                        'default' => '#ecf0f1',
                         'type' => 'color',
                         'required' => array( 'search_bar', 'equals', '1'),
                         'output' => array(

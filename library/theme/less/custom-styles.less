@@ -349,6 +349,12 @@ cite   { font-size: 85%; }
 
 /* custom classes */
 .entry-meta, #tag-cloud {
+	font-size:  @font-size-small;
+	font-family: @font-family-sans-serif;
+	font-weight: @btn-font-weight;
+	line-height: @line-height-base;
+	margin-bottom: 5px;
+
 	p {
 		margin: 0.46rem 0;
 	}
@@ -360,16 +366,9 @@ cite   { font-size: 85%; }
 		line-height: @line-height-base;
 	}
 
-	/*p, .label {*/
-		font-size:  @font-size-small;
-		font-family: @font-family-sans-serif;
-		font-weight: @headings-font-weight;
-		line-height: @line-height-base;
-		margin-bottom: 5px;
-	
-
 	.label {
 		line-height: @line-height-base*1.5;
+		font-weight: @btn-font-weight;
 	}
 
 	a,
@@ -388,6 +387,10 @@ cite   { font-size: 85%; }
 	a.label:hover {
 		color: @gray-darker;
 	}
+}
+
+#tag-cloud .label {
+	background-color: @label-default-bg;
 }
 
 #main article.sticky {
