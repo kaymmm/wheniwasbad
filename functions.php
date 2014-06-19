@@ -24,7 +24,7 @@ global $wheniwasbad_options;
 
 // Custom Metaboxes and Fields (https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress)
 if ( !class_exists( 'cmb_Meta_Box' ) ) {
-	//define('CMB_URL',get_template_directory_uri().'/library/Custom-Meta-Boxes/');
+	define('CMB_URL',get_template_directory_uri().'/library/Custom-Meta-Boxes/');
 	require_once( 'library/Custom-Meta-Boxes/custom-meta-boxes.php' );
 	require_once( 'library/metaboxes.php' );
 }

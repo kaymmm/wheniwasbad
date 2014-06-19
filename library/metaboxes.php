@@ -87,6 +87,30 @@ function cmb_add_metaboxes( array $meta_boxes ) {
 		)
 	);
 
+	/* Display/disable page title? */
+	$meta_boxes[] = array(
+		'title'      => 'Display Page Meta Info',
+		'pages'      => 'page', // Post type
+		'context'    => 'normal',
+		'priority'   => 'core',
+		'show_on' => array( 'page-template' => array('page-homepage.php', 'page-blog.php', 'page-jumbotron.php') ),
+		'fields'	=> array(
+			array(
+				'id'	=> 'display_page_title',
+				'name'	=> 'Display the page title for this page?',
+				'type'	=> 'checkbox',
+				'default' => false
+			),
+			array(
+				'id'	=> 'display_page_meta',
+				'name'	=> 'Display the meta info for this page?',
+				'desc'	=> 'If checked, the date modified, author, and categories will be shown.',
+				'type'	=> 'checkbox',
+				'default' => false
+			),
+		)
+	);
+
 
 	/* Homepage include additional pages */
 
@@ -95,21 +119,30 @@ function cmb_add_metaboxes( array $meta_boxes ) {
 		'pages'      => 'page', // Post type
 		'context'    => 'normal',
 		'priority'   => 'high',
-		'show_on' => array( 'page-template' => array('page-homepage.php') ),
+		'show_on' => array( 'page-template' => array('page-homepage.php', 'page-blank.php', 'page-blog.php') ),
 		'fields' => array(
-			array( 
-			    'id'       => 'homepage_additional_pages', 
-			    'name'     => 'Include the contents of another page (only the content, not the title) within the homepage, below the primary content and sidebars (so style accordingly).', 
+			array(
+			    'id'       => 'homepage_additional_pages_above',
+			    'name'     => 'Include the contents of another page (only the content!) within the homepage, ABOVE the primary content and sidebars.',
 			    'type'     => 'post_select',
 			    'repeatable'     => true,
 			    'use_ajax' => true,
-			    'query' => array( 
+			    'query' => array(
+			        'post_type' => 'page'
+			    )
+			),
+			array(
+			    'id'       => 'homepage_additional_pages_below',
+			    'name'     => 'Include the contents of another page (only the content!) within the homepage, BELOW the primary content and sidebars.',
+			    'type'     => 'post_select',
+			    'repeatable'     => true,
+			    'use_ajax' => true,
+			    'query' => array(
 			        'post_type' => 'page'
 			    )
 			),
 		)
 	);
-
 	/* Carousel */
 
 	$meta_boxes[] = array(
@@ -285,6 +318,32 @@ function cmb_add_metaboxes( array $meta_boxes ) {
 		        'id'    => 'toc_ignoreSelector',  
 		        'type'  => 'text_small'
 			)			
+		)
+	);
+
+/* pinterest blog page settings */
+
+	$meta_boxes[] = array(
+		'title'      => 'Pinterest Style Grid Options',
+		'pages'      => 'page', // Post type
+		'context'    => 'normal',
+		'priority'   => 'high',
+		'show_on' => array( 'page-template' => array('page-blog.php') ),
+		'fields' => array(
+			array(
+				'id'		=> 'pinterest_taxonomy',
+				'name'		=> 'Categories to Include',
+				'desc'		=> 'Select one or more categories from which to draw posts, or leave blank to include all posts.',
+				'type'		=> 'taxonomy_select',
+				'multiple'	=> true,
+				'taxonomy'	=> 'category'
+			),
+			array(
+				'id'		=> 'pinterest_args',
+				'name'		=> '(Advanced) Custom WP_Query Arguments',
+				'desc'		=> 'Enter a custom WP_Query string to select/order posts (e.g., "post_type=post&orderby=rand"). Leave blank if you don\'t know what this means.',
+				'type'		=> 'text',
+			)
 		)
 	);
 
