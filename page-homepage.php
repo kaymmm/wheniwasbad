@@ -163,6 +163,18 @@ Template Name: Homepage
 
 	<?php endif;?>
 
+	<?php /* add the contents of additional pages */
+		$additional_pages = get_post_meta( get_the_id(), 'homepage_additional_pages_above', false );
+		foreach ($additional_pages as $addon_page_id) {
+			$addon_page = get_post($addon_page_id);
+			//echo "<div class='container'>\n";
+			//echo "<h1>" . $addon_page->post_title . "</h1>\n";
+			echo edit_post_link("Edit",'','',$addon_page_id) . "\n";
+			echo $addon_page->post_content . "\n";
+			//echo "</div>\n";
+		}
+	?>
+
 	<div class="container clearfix">
 
 		<div class="row clearfix">
@@ -187,7 +199,7 @@ Template Name: Homepage
 	</div> <!-- container -->
 
 	<?php /* add the contents of additional pages */
-		$additional_pages = get_post_meta( get_the_id(), 'homepage_additional_pages', false );
+		$additional_pages = get_post_meta( get_the_id(), 'homepage_additional_pages_below', false );
 		foreach ($additional_pages as $addon_page_id) {
 			$addon_page = get_post($addon_page_id);
 			//echo "<div class='container'>\n";
