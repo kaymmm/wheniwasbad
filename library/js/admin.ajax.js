@@ -51,29 +51,30 @@ window.AjaxLoadMore = (function($) {
 	AjaxLoadMore.prototype.initAjax = function() {
 
 		var self = this;
-		$content = $('.shuffle-container', self.$el);
+		self.$content = $('.shuffle-container', self.$el);
 
-		var $pause = $content.data('pause'),
-			$offset = $content.data('offset');
+		var $pause = self.$el.data('pause'),
+			$offset = self.$el.data('offset');
 
 		// Define offset
-		if ($content.data('offset') === undefined) {
+		if (self.$el.data('offset') === undefined) {
 			$offset = 0;
 		} else {
-			$offset = $content.data('offset');
+			$offset = self.$el.data('offset');
 		}
 		// Define button text
-		if ($content.data('button-label') === undefined) {
+		if (self.$el.data('button-label') === undefined) {
 			$button_label = 'Load More Posts';
 		} else {
-			$button_label = $content.data('button-label');
+			$button_label = self.$el.data('button-label');
 		}
 		// Add load more button
-		self.$el.parent().parent().append('<div class="col-xs-12"><button id="'+self.uniqueID+'_btn" class="ajax-load-more btn btn-default btn-block btn-sm">' + $button_label + '</button></div>');
+		var newBtn = '<div class="col-xs-12"><button id="'+self.uniqueID+'_btn" class="ajax-load-more btn btn-default btn-block btn-sm">' + $button_label + '</button></div>'
+		self.$el.parent().append(newBtn);
 		$button = $('#'+self.uniqueID+'_btn');
-		console.log($button);
+
 		//Parse Post Type for multiples
-		$post_type = $content.data('post-type');
+		$post_type = self.$el.data('post-type');
 		if ($post_type === undefined) {
 			$post_type = 'post';
 		}
@@ -113,13 +114,13 @@ window.AjaxLoadMore = (function($) {
 				action: 'load_more_posts',
 				nonce: ajax_localized.ajax_load_more_nonce,
 				postType: $post_type,
-				category: $content.data('category'),
-				author: $content.data('author'),
-				taxonomy: $content.data('taxonomy'),
-				tag: $content.data('tag'),
-				search: $content.data('search'),
-				exclude: $content.data('exclude'),
-				numPosts: $content.data('posts-per-page'),
+				category: self.$el.data('category'),
+				author: self.$el.data('author'),
+				taxonomy: self.$el.data('taxonomy'),
+				tag: self.$el.data('tag'),
+				search: self.$el.data('search'),
+				exclude: self.$el.data('exclude'),
+				numPosts: self.$el.data('posts-per-page'),
 				pageNumber: page,
 				offset: $offset
 			},
@@ -141,7 +142,7 @@ window.AjaxLoadMore = (function($) {
 				    self.shuffle.appended( $data );
 				    $loading = false;
 					$button.delay(speed).removeClass('loading');
-					if ($data.length < $content.data('display-posts')) {
+					if ($data.length < self.$el.data('display-posts')) {
 						$finished = true;
 						$button.addClass('done');
 					}

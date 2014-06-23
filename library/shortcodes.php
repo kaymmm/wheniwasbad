@@ -343,24 +343,24 @@ function list_posts_masonry_shortcode( $atts ) {
 			'pause' => 'false',
 			'button_label' => 'Load More Posts'
 		), $atts );
-	extract($args);
+	extract($args,EXTR_PREFIX_ALL,'sc');
 
 	$shuffle_id = 'shuffle_'.rand();
 
 	$output = "<div class='row'>";
 	$output .= "<div id='" . $shuffle_id . "'class='shuffle-container clearfix' ";
-	$output .= "data-post-type='" . $pb_post_type;
-	$output .= "' data-category='" . $pb_category;
-	$output .= "' data-tag='" . $pb_tag;
-	$output .= "' data-posts-per-page='" . $pb_posts_per_page;
-	$output .= "' data-offset='" . $pb_offset;
-	$output .= "' data-orderby='" . $pb_orderby;
-	$output .= "' data-order='" . $pb_order;
-	$output .= "' data-include='" . $pb_include;
-	$output .= "' data-exclude='" . $pb_exclude;
-	$output .= "' data-author='" . $pb_author;
-	$output .= "' data-pause='" . $pb_pause;
-	$output .= "' data-button-label='" . $pb_button_label;
+	$output .= "data-post-type='" . $sc_post_type;
+	$output .= "' data-category='" . $sc_category;
+	$output .= "' data-tag='" . $sc_tag;
+	$output .= "' data-posts-per-page='" . $sc_posts_per_page;
+	$output .= "' data-offset='" . $sc_offset;
+	$output .= "' data-orderby='" . $sc_orderby;
+	$output .= "' data-order='" . $sc_order;
+	$output .= "' data-include='" . $sc_include;
+	$output .= "' data-exclude='" . $sc_exclude;
+	$output .= "' data-author='" . $sc_author;
+	$output .= "' data-pause='" . $sc_pause;
+	$output .= "' data-button-label='" . $sc_button_label;
 	$output .= "'>";
 	$output .= "<div class='col-xs-1 shuffle__sizer'></div>";
 	$output .= "</div></div>\n"; //container
