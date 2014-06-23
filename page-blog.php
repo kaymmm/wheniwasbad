@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Pinterest Blog
+Template Name: Shuffle Blog
 */
 ?>
 
@@ -188,133 +188,72 @@ Template Name: Pinterest Blog
 				<?php get_template_part( 'content' ); ?>
 
 				<!-- blog posts -->
+
 				<?php
-					$args = 'post_type=post';
-					$pinterest_taxonomy = get_post_meta( get_the_id(), 'pinterest_taxonomy', true );
-					$pinterest_args = get_post_meta( get_the_id(), 'pinterest_args', true );
-					if ($pinterest_args != '') {
-						$args .= '&'.$pinterest_args;
-					}
-					if (is_array($pinterest_taxonomy)) {
-						$pinterest_taxonomies = implode(',',$pinterest_taxonomy);
-						$args .= '&cat=' . $pinterest_taxonomies;
-					}
-					$pinterest_query = new WP_Query( $args );
 
-					$shuffle_id = 'shuffle_'.rand();
-
+				$shuffle_id = 'shuffle_'.rand();
+				$args = '';
+				$shuffle_taxonomy = get_post_meta( get_the_id(), 'shuffle_taxonomy', true );
+				$shuffle_args = get_post_meta( get_the_id(), 'shuffle_args', true );
+				if ($shuffle_args != '') {
+					$args .= '&'.$shuffle_args;
+				}
+				if (is_array($shuffle_taxonomy)) {
+					$shuffle_taxonomies = implode(',',$shuffle_taxonomy);
+					$args .= '&cat=' . $shuffle_taxonomies;
+				}
+				$defaults = array(
+						'category' => '',
+						'tag'		=> '',
+						'posts_per_page'	=> 10,
+						'offset'	=> 0,
+						'orderby'	=> 'post_date',
+						'order'		=> 'DESC',
+						'include'	=> '',
+						'exclude'	=> '',
+						'meta_key'	=> '',
+						'meta_value'	=> '',
+						'post_parent'		=> '',
+						'post_status'		=> 'publish',
+						'suppress_filters'	=> true,
+						'post_type'	=> 'post'
+					);
+				$args = wp_parse_args( $args, $defaults, "page_blog" );
+				$numxtract = extract($args,EXTR_PREFIX_ALL,"pb");
+				$pb_pause = 'false';
+				$pb_button_label = 'Load More Posts';
 				?>
 
-				<div class="col-xs-12"><div class='row'>
+				<div class="col-xs-12">
 
-					<div id='<?php echo $shuffle_id; ?>' class='shuffle-container clearfix'>
+					<div class='row'>
+						<div id='<?php echo $shuffle_id; ?>'
+						class='shuffle-container clearfix'
+						data-post-type='<?php echo $pb_post_type; ?>'
+						data-category='<?php echo $pb_category; ?>'
+						data-tag='<?php echo $pb_tag; ?>'
+						data-posts-per-page='<?php echo $pb_posts_per_page; ?>'
+						data-offset='<?php echo $pb_offset;?>'
+						data-orderby='<?php echo $pb_orderby; ?>'
+						data-order='<?php echo $pb_order; ?>'
+						data-include='<?php echo $pb_include; ?>'
+						data-exclude='<?php echo $pb_exclude; ?>'
+						data-author='<?php echo $pb_author; ?>'
+						data-pause='<?php echo $pb_pause; ?>'
+						data-button-label='<?php echo $pb_button_label; ?>'>
 
-					<div class='col-xs-1 shuffle__sizer'></div>
+							<div class='col-xs-1 shuffle__sizer'></div>
 
-					<?php while ( $pinterest_query->have_posts() ) : $pinterest_query->the_post(); ?>
-
-						<?php
-						$col_span = 'col-xs-12 col-sm-6 col-md-4 col-lg-3';
-						if (get_post_format() == 'video' ){// || has_post_thumbnail() ){
-							$col_span = 'col-xs-12 col-sm-12 col-md-6 col-lg-6';
-						}
-
-						$categories = wp_get_object_terms($id,'category');
-						$cat_list = array_map(create_function('$a', 'return $a->name;'), $categories);
-						$cat_list = htmlentities(json_encode($cat_list),ENT_QUOTES);
-
-						?>
-
-						<div class="<?php echo $col_span; ?> shuffle-brick" data-groups='<?php echo $cat_list; ?>'>
-
-							<div class='shuffle-brick-inner'>
-
-								<?php //if ( has_post_thumbnail()) : ?>
-
-									<div class='shuffle-brick-image'>
-
-<?php if ( has_post_thumbnail() ) {
-
-			//$image_url = wp_get_attachment_image_src( get_post_thumbnail_id($id), "thumbnail");
-			//$image_url = $image_url[0];
-
-			echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'shuffle-brick-thumb'));
-
-		} else {
-
-			$image_url = get_template_directory_uri() . "/library/images/placeholder.jpg";
-			echo "<img src='" . $image_url ."' alt='" . the_title_attribute("echo=0") . "' class='shuffle-brick-thumb' />";
-
-		} ?>
-									<?php //echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'shuffle-brick-thumb')); ?>
-
-										<div class='shuffle-brick-content-wrapper'>
-
-											<div class='shuffle-brick-content'>
-
-												<div class='shuffle-brick-inner'>
-
-													<a href='<?php the_permalink(); ?>' title="<?php the_title_attribute(); ?>" class='circle-icon-link'>
-
-														<span class='circle-icon circle-icon-100 circle-icon-primary'>
-
-															<span class='glyphicon glyphicon-play'></span>
-
-														</span>
-
-													</a>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								<?php //endif; ?>
-
-								<div class='shuffle-brick-caption'>
-
-									<h3><a href='<?php the_permalink(); ?>' title='<?php the_title_attribute(); ?>' class='shuffle-brick-title'><?php echo get_the_title(); ?></a></h3>
-
-									<?php the_excerpt(); ?>
-
-								</div>
-
-								<div class='shuffle-brick-footer'>
-
-									<time datetime='<?php echo get_the_time(DATE_W3C); ?>'><?php echo get_the_time(get_option('date_format')); ?></time>
-
-									<span class='shuffle-brick-footer-link'>
-
-										<a href='<?php echo the_permalink(); ?>'><span class='glyphicon glyphicon-link'></span></a>
-
-									</span>
-
-									<?php if ( comments_open() && get_comments_number() ) : ?>
-
-										<span class='shuffle-brick-footer-link'>
-
-											<span class='glyphicon glyphicon-comment'></span><?php echo get_comments_number(); ?>&nbsp;
-
-										</span>
-
-									<?php endif; ?>
-
-								</div>
-
-							</div>
+							<?php
+								//$output = list_posts_masonry_worker($args);
+								//echo $output;
+							?>
 
 						</div>
 
-					<?php endwhile; ?>
-
-					<?php wp_reset_query(); ?>
-
 					</div>
 
-				</div></div>
+				</div>
 
 			</section> <!-- end main -->
 
@@ -354,14 +293,10 @@ Template Name: Pinterest Blog
 </div> <!-- end #content -->
 
 <script type='text/javascript'>
-	jQuery( document ).ready( function($) {
-		var grid = $('#<?php echo $shuffle_id; ?>'),
-			sizer = grid.find('.shuffle__sizer');
-		grid.shuffle({
-			itemSelector: '.shuffle-brick',
-			sizer: sizer
-		});
+	jQuery( document ).ready( function() {
+		var pb = new window.AjaxLoadMore(document.getElementById('<?php echo $shuffle_id; ?>'))
 	});
+	//AjaxLoadMore.init( "#<?php echo $shuffle_id; ?>" );
 
 </script>
 

@@ -628,17 +628,26 @@ ol.commentlist ul.children li{
 	position: relative;
 }
 
-.shuffle-brick-content-inner {
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-	padding: 0 40px;
+
+.shuffle-brick-inner {
+	padding: 0;
+	margin-bottom: 40px;
+	border: 1px solid #ddd;
+	box-shadow:1px 1px 6px 1px  rgba(32,32,32,0.2);
+	border-radius:4px;
 }
 
-.shuffle-brick-content {
-	display: table;
+.shuffle-brick-image {
+	position: relative;
+}
+
+.shuffle-brick-image:hover .shuffle-brick-content-wrapper {
+	opacity: 0.8;
+}
+
+.shuffle-brick-thumb {
 	width: 100%;
-	height: 100%;
+	vertical-align: middle;
 }
 
 .shuffle-brick-content-wrapper {
@@ -651,18 +660,22 @@ ol.commentlist ul.children li{
 	transition: opacity .3s ease-in-out;
 }
 
-.shuffle-brick-image:hover .shuffle-brick-wrapper {
-	opacity: 0.8;
-}
-
-.shuffle-brick-image {
-	position: relative;
-}
-
-.shuffle-brick-thumb {
+.shuffle-brick-content {
+	display: table;
 	width: 100%;
-	vertical-align: middle;
+	height: 100%;
 }
+
+.shuffle-brick-content-inner {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	padding: 0 40px;
+}
+
+
+
+
 
 .shuffle-brick-inner .shuffle-brick-thumb,
 .shuffle-brick-inner .shuffle-brick-wrapper {
@@ -701,13 +714,6 @@ ol.commentlist ul.children li{
 	visibility: hidden;
 }
 
-.shuffle-brick-inner {
-	padding: 0;
-	margin-bottom: 40px;
-	border: 1px solid #ddd;
-	box-shadow:1px 1px 6px 1px  rgba(32,32,32,0.2);
-	border-radius:4px;
-}
 /* Shared Post Format styling */
 
 .page-header {

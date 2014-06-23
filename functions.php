@@ -424,6 +424,13 @@ if( !function_exists( "theme_js" ) ) {
 		wp_enqueue_script('wpbs-scripts');
 		//wp_enqueue_script('modernizr');
 		wp_enqueue_script('bootstrap-js');
+
+		// ajax functions
+		wp_register_script( 'admin_ajax', get_template_directory_uri() . '/library/js/admin.ajax.js', array('jquery'), '0.1', false );
+		wp_enqueue_script( 'admin_ajax' );
+		wp_localize_script( 'admin_ajax', 'ajax_localized', array(
+			'admin_ajax' => admin_url( 'admin-ajax.php' ),
+			'ajax_load_more_nonce' => wp_create_nonce( "ajax_load_more_nonce" ) ) );
 	}
   }
 }
@@ -441,6 +448,68 @@ add_action( 'wp_footer', function() {
 	<script>window.attachEvent(\'onload\',function(){CFInstall.check({mode:\'overlay\'})})</script>
 <![endif]-->';
 } );
+
+
+/* AJAX handler
+ *
+ * handles ajax requests to load additional posts
+ *
+ * returns (echoes) posts using wp_query and arguments passed via ajax
+ *
+ * uses code from https://github.com/dcooney/wordpress-ajax-load-more
+ *
+*/
+function ajax_load_more_posts() {
+    if ( !wp_verify_nonce( $_GET['nonce'], "ajax_load_more_nonce")) {
+        exit("Wrong nonce");
+    }
+
+    $postType = (isset($_GET['postType'])) ? $_GET['postType'] : 'post';
+	$category = (isset($_GET['category'])) ? $_GET['category'] : '';
+	$author_id = (isset($_GET['author'])) ? $_GET['author'] : '';
+	$taxonomy = (isset($_GET['taxonomy'])) ? $_GET['taxonomy'] : '';
+	$tag = (isset($_GET['tag'])) ? $_GET['tag'] : '';
+	$s = (isset($_GET['search'])) ? $_GET['search'] : '';
+	$exclude = (isset($_GET['exclude'])) ? $_GET['exclude'] : '';
+	$numPosts = (isset($_GET['numPosts'])) ? $_GET['numPosts'] : 10;
+	$page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
+	$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;
+
+	$args = array(
+			'post_type' => $postType,
+			'category_name' => $category,
+			'author' => $author_id,
+			'posts_per_page' => $numPosts,
+			'offset' => $offset + ($numPosts*$page),
+			's' => $s,
+			'orderby' => 'date',
+			'order' => 'DESC',
+			'post_status' => 'publish',
+			'ignore_sticky_posts' => true,
+		);
+
+	// Exclude posts if needed - See plugin examples for more info on excluding posts
+
+	if(!empty($exclude)){
+		$exclude=explode(",",$exclude);
+		$args['post__not_in'] = $exclude;
+	}
+
+	// Query by Taxonomy/Tag - Taxonomy is deprecated for now
+
+	if(empty($taxonomy)){
+		$args['tag'] = $tag;
+	}else{
+		$args[$taxonomy] = $tag;
+	}
+
+	// load posts
+	echo list_posts_masonry_worker($args);
+
+    die();
+}
+add_action( 'wp_ajax_nopriv_load_more_posts', 'ajax_load_more_posts' );
+add_action( 'wp_ajax_load_more_posts', 'ajax_load_more_posts' );
 
 /************* SEARCH FORM LAYOUT *****************/
 

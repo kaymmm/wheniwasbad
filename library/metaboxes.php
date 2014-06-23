@@ -346,17 +346,17 @@ function cmb_add_metaboxes( array $meta_boxes ) {
 		)
 	);
 
-/* pinterest blog page settings */
+/* shuffle blog page settings */
 
 	$meta_boxes[] = array(
-		'title'      => 'Pinterest Style Grid Options',
+		'title'      => 'shuffle Style Grid Options',
 		'pages'      => 'page', // Post type
 		'context'    => 'normal',
 		'priority'   => 'high',
 		'show_on' => array( 'page-template' => array('page-blog.php') ),
 		'fields' => array(
 			array(
-				'id'		=> 'pinterest_taxonomy',
+				'id'		=> 'shuffle_taxonomy',
 				'name'		=> 'Categories to Include',
 				'desc'		=> 'Select one or more categories from which to draw posts, or leave blank to include all posts.',
 				'type'		=> 'taxonomy_select',
@@ -364,7 +364,7 @@ function cmb_add_metaboxes( array $meta_boxes ) {
 				'taxonomy'	=> 'category'
 			),
 			array(
-				'id'		=> 'pinterest_args',
+				'id'		=> 'shuffle_args',
 				'name'		=> '(Advanced) Custom WP_Query Arguments',
 				'desc'		=> 'Enter a custom WP_Query string to select/order posts (e.g., "post_type=post&orderby=rand"). Leave blank if you don\'t know what this means.',
 				'type'		=> 'text',
