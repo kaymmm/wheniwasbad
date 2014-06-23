@@ -32,6 +32,9 @@ if ( !class_exists( 'cmb_Meta_Box' ) ) {
 // Shortcodes
 require_once('library/shortcodes.php');
 
+// Essence for oembeds
+require_once('library/essence/lib/bootstrap.php');
+
 
 // custom function for displaying page not found info
 if ( !function_exists( 'not_found' ) ) {
@@ -40,7 +43,7 @@ if ( !function_exists( 'not_found' ) ) {
 
 // Menu output mod for bootstrap
 require_once('library/wp-bootstrap-navwalker/wp_bootstrap_navwalker.php');
-	
+
 /************** General Theme Setup *****************/
 
 // Clean up unwanted stuff from header
@@ -60,21 +63,21 @@ function theme_setup() {
 	add_theme_support('automatic-feed-links'); // rss thingy
 //	add_theme_support('bootstrap-gallery'); //TODO: add theme support to turn off custom galleries
 	add_theme_support( 'post-formats',      // post formats
-		array( 
+		array(
 			'aside',   // title less blurb
 			'gallery', // gallery of images
 			'link',    // quick link to other site
 			'image',   // an image
 			'quote',   // a quick quote
 			'status',  // a Facebook like status update
-			'video',   // video 
+			'video',   // video
 			'audio',   // audio
-			'chat'     // chat transcript 
+			'chat'     // chat transcript
 		)
-	);	
+	);
 	add_theme_support( 'menus' );            // wp menus
 	register_nav_menus(                      // wp3+ menus
-		array( 
+		array(
 			'main_nav' => 'The Main Menu',   // main nav in header
 			'footer_links' => 'Footer Links' // secondary nav in footer
 		)
@@ -87,7 +90,7 @@ function theme_setup() {
 	) );
 }
 
-add_action('after_setup_theme','theme_setup');	
+add_action('after_setup_theme','theme_setup');
 
 // clean up gallery output in wp
 add_filter('use_default_gallery_style', '__return_null');
@@ -117,8 +120,8 @@ add_image_size( 'wpbs-featured', 638, 300, true );
 add_image_size( 'wpbs-featured-home', 970, 311, true);
 add_image_size( 'wpbs-featured-carousel', 970, 400, true);
 
-/* 
-to add more sizes, simply copy a line from above 
+/*
+to add more sizes, simply copy a line from above
 and change the dimensions & name. As long as you
 upload a "featured image" as large as the biggest
 set width or height, all the other sizes will be
@@ -127,7 +130,7 @@ auto-cropped.
 To call a different size, simply change the text
 inside the thumbnail function.
 
-For example, to call the 300 x 300 sized image, 
+For example, to call the 300 x 300 sized image,
 we would use the function:
 <?php the_post_thumbnail( 'bones-thumb-300' ); ?>
 for the 600 x 100 image:
@@ -150,7 +153,7 @@ function wpbs_register_sidebars() {
     	'before_title' => '<h4 class="widgettitle">',
     	'after_title' => '</h4>',
     ));
-    
+
     register_sidebar(array(
     	'id' => 'sidebar2',
     	'name' => 'Homepage Sidebar',
@@ -160,7 +163,7 @@ function wpbs_register_sidebars() {
     	'before_title' => '<h4 class="widgettitle">',
     	'after_title' => '</h4>',
     ));
-    
+
     register_sidebar(array(
       'id' => 'footer1',
       'name' => 'Footer 1',
@@ -187,21 +190,21 @@ function wpbs_register_sidebars() {
       'before_title' => '<h4 class="widgettitle">',
       'after_title' => '</h4>',
     ));
-    
-    
-    /* 
+
+
+    /*
     to add more sidebars or widgetized areas, just copy
-    and edit the above sidebar code. In order to call 
+    and edit the above sidebar code. In order to call
     your new sidebar just use the following code:
-    
+
     Just change the name to whatever your new
     sidebar's id is, for example:
-    
+
     To call the sidebar in your template, you can just copy
     the sidebar.php file and rename it to your sidebar's name.
     So using the above example, it would be:
     sidebar-sidebar2.php
-    
+
     */
 } // don't remove this bracket!
 add_action( 'widgets_init', 'wpbs_register_sidebars' );
@@ -223,7 +226,7 @@ function bs_get_avatar($id_or_email,$size='96',$default='',$alt=false,$class='')
 }
 
 /************* COMMENT LAYOUT *********************/
-		
+
 // Comment Layout
 function comments_layout($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; ?>
@@ -236,15 +239,15 @@ function comments_layout($comment, $args, $depth) {
 				<div class="col-md-11 comment-text">
 					<?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
 					<time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time('F jS, Y'); ?> </a></time>
-                   
+
                     <?php if ($comment->comment_approved == '0') : ?>
        					<div class="alert-message success">
           				<p><?php _e('Your comment is awaiting moderation.','wheniwasbad') ?></p>
           				</div>
 					<?php endif; ?>
-                    
+
                     <?php comment_text() ?>
-                    
+
 					<?php edit_comment_link(__('Edit','wheniwasbad'),'<span class="edit-comment btn btn-xs btn-info"><i class="glyphicon glyphicon-white glyphicon-pencil"></i>','</span>') ?>
 					<?php comment_reply_link(array_merge( $args, array('reply_text' => '<span class="glyphicon glyphicon-comment"></span> Reply', 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
                 </div>
@@ -259,7 +262,7 @@ function list_pings($comment, $args, $depth) {
        $GLOBALS['comment'] = $comment;
 ?>
         <li id="comment-<?php comment_ID(); ?>"><i class="glyphicon glyphicon-share"></i>&nbsp;<?php comment_author_link(); ?>
-<?php 
+<?php
 
 }
 
@@ -374,13 +377,13 @@ function add_active_class($classes, $item) {
 	if( $item->menu_item_parent == 0 && in_array('current-menu-item', $classes) ) {
     $classes[] = "active";
 	}
-  
+
   return $classes;
 }
 
 // enqueue styles
-if( !function_exists("theme_styles") ) {  
-    function theme_styles() { 
+if( !function_exists("theme_styles") ) {
+    function theme_styles() {
 		if (!is_admin()){
 			//require_once('redux-styles-less.php');
 			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/library/theme/css/bootstrap-themed.css', array(), '3.1.1', 'all' );
@@ -397,20 +400,19 @@ if( !function_exists("theme_styles") ) {
 		}
     }
 }
-add_action( 'wp_enqueue_scripts', 'theme_styles' );	
+add_action( 'wp_enqueue_scripts', 'theme_styles' );
 /*add_action( 'wp_head', function() {
 	include('redux-styles.php');
 });*/
 
 // enqueue javascript
-if( !function_exists( "theme_js" ) ) {  
+if( !function_exists( "theme_js" ) ) {
   function theme_js(){
 	  if (!is_admin()) {
 	  //use CDN for loading Bootstrap
 		wp_register_script('bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js', array('jquery'), '3.0.3', true);
 		wp_register_script( 'wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js',array('jquery'),'3.1', true );
 	    //wp_register_script( 'modernizr', get_template_directory_uri() . '/library/js/modernizr.custom.37263.js', array(), '2.8.2', true );
-	    //modernizr included in shuffle
 
 		// only enqueue the following scripts when needed, but register them here to centralize updates.
 		wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/library/Gallery/js/jquery.blueimp-gallery.min.js', array(jquery), '2.14.0', true);
@@ -425,7 +427,7 @@ if( !function_exists( "theme_js" ) ) {
 	}
   }
 }
-add_action( 'wp_enqueue_scripts', 'theme_js' );	
+add_action( 'wp_enqueue_scripts', 'theme_js' );
 // IE js hacks
 add_action( 'wp_head', function() {
 	echo '<!--[if lt IE 9]>
@@ -471,7 +473,7 @@ function main_nav() {
     ) );
 }
 
-function footer_links() { 
+function footer_links() {
 	// display the footer menu
     wp_nav_menu( array(
 		'menu' => 'footer_links', /* menu name */
@@ -487,7 +489,7 @@ function footer_links() {
 
 
 // this is the fallback for header menu
-function nav_menu_fallback() { 
+function nav_menu_fallback() {
 	// Figure out how to make this output bootstrap-friendly html
 	wp_page_menu(
 		array(
@@ -496,7 +498,7 @@ function nav_menu_fallback() {
 			'sort_column' => 'menu_order, post_title',
 			'depth' => 0
 		)
-	); 
+	);
 }
 
 /************* Page Display Classes **************/
@@ -508,7 +510,7 @@ function page_navi() {
 		return;
 
 	echo '<nav class="pagination text-center">';
-  
+
 	echo paginate_links( array(
 		'base'       => str_replace( $bignum, '%#%', esc_url( get_pagenum_link($bignum) ) ),
 		'format'     => '',

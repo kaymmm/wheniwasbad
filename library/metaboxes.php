@@ -9,6 +9,31 @@
 
 function cmb_add_metaboxes( array $meta_boxes ) {
 
+	/* Featured image/video */
+
+	$meta_boxes[] = array(
+		'id'         => 'featured_metabox',
+		'title'      => 'Featured Image Options',
+		'pages'      => 'post', // Post type
+		'context'    => 'side',
+		'priority'   => 'default',
+		'fields' => array(
+		    array(
+		        'name'=> 'Use Video Thumbnail',
+		        'desc'  => 'Check this box to use a video in place of the featured image',
+		        'id'    => 'use_featured_video',
+		        'type'  => 'checkbox',
+		    ),
+			array(
+		        'name'=> 'Video URL',
+		        'desc'  => 'The URL to the video, including the http://. Requires WordPress Jetpack plugin!',
+		        'id'    => 'featured_video_url',
+		        'type'  => 'text_url',
+		    )
+		)
+	);
+
+
 	/* Jumbotron */
 
 	$meta_boxes[] = array(
