@@ -174,7 +174,7 @@ Template Name: Shuffle Blog
 			//echo "<h1>" . $addon_page->post_title . "</h1>\n";
 			echo "<div class='pull-left'>";
 			echo edit_post_link("Edit <span class='glyphicon glyphicon-edit'></span>",'','',$addon_page_id) . "</div>\n";
-			echo $addon_page->post_content . "\n";
+			echo apply_filters('the_content',$addon_page->post_content) . "\n";
 			//echo "</div>\n";
 		}
 	?>
@@ -277,7 +277,7 @@ Template Name: Shuffle Blog
 			//echo "<div class='container'>\n";
 			//echo "<h1>" . $addon_page->post_title . "</h1>\n";
 			echo edit_post_link("Edit",'','',$addon_page_id) . "\n";
-			echo $addon_page->post_content . "\n";
+			echo apply_filters('the_content',$addon_page->post_content) . "\n";
 			//echo "</div>\n";
 		}
 	?>
