@@ -241,24 +241,24 @@
 // Dropdowns
 // -------------------------
 
-@dropdown-bg:                    darken(@navbar-default-link-hover-bg, 15%);
-@dropdown-border:                darken(@dropdown-bg, 15%);//rgba(0,0,0,.15);
+@dropdown-bg:                    @brand-primary-dark;
+@dropdown-border:                @brand-primary-dark;
 @dropdown-fallback-border:       @gray-light;
-@dropdown-divider-bg:            darken(@dropdown-bg, 30%);
+@dropdown-divider-bg:            @dark-two;
 
 
-@dropdown-link-color:            @gray-lighter;
-@dropdown-link-hover-color:      darken(@dropdown-link-color,15%);
-@dropdown-link-hover-bg:         @dropdown-link-active-bg;
+@dropdown-link-color:            @dark-four;
+@dropdown-link-hover-color:      @dark-three;
+@dropdown-link-hover-bg:         @dark-one;
 
 @dropdown-link-active-color:     @white;
-@dropdown-link-active-bg:        darken(@dropdown-bg, 15%);
+@dropdown-link-active-bg:        @dropdown-bg;
 
-@dropdown-link-disabled-color:   @gray;
+@dropdown-link-disabled-color:   @dark-one;
 
 @dropdown-header-color:          @gray;
 
-@dropdown-caret-color:           @black;
+@dropdown-caret-color:           @dark-four;
 
 
 
@@ -347,7 +347,7 @@
 @navbar-default-link-hover-color:          @dark-three;
 @navbar-default-link-hover-bg:             transparent;
 @navbar-default-link-active-color:         @dark-three;
-@navbar-default-link-active-bg:            @light-two;
+@navbar-default-link-active-bg:            transparent;
 @navbar-default-link-disabled-color:       @gray-lighter;
 @navbar-default-link-disabled-bg:          @gray-lighter;
 

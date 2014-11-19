@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 		// Watches for changes and runs tasks
 		watch : {
 			less : {
-				files : ['less/**/*.less'],
+				files : ['less/*.less'],
 				tasks : (hasLess) ? ['less:dev','autoprefixer'] : null,
 				options : {
 					livereload : true
