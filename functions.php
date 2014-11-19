@@ -385,11 +385,11 @@ if( !function_exists("theme_styles") ) {
     function theme_styles() {
 		if (!is_admin()){
 			//require_once('redux-styles-less.php');
-			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap-themed.css', array(), '3.1.1', 'all' );
-			wp_register_style('fontawesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', array(), '4.1.0', 'all');
+			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap-themed.css', array(), '3.3.1', 'all' );
+			wp_register_style('fontawesome', '//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array(), '4.2.0', 'all');
 
 			// only enqueue the following styles when needed, but register them here to centralize updates.
-			wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/vendor/css/blueimp-gallery.min.css', array(), '2.12.1', 'all' );
+			wp_register_style( 'blueimp-gallery-css', get_template_directory_uri() . '/vendor/css/blueimp-gallery.min.css', array(), '2.15.2', 'all' );
 			wp_register_style('tocify-css',get_template_directory_uri() . '/vendor/css/jquery.tocify.css', array(), '1.9.0', 'screen');
 
 			wp_enqueue_style( 'bootstrap-css' );
@@ -408,14 +408,14 @@ if( !function_exists( "theme_js" ) ) {
   function theme_js(){
 	  if (!is_admin()) {
 	  //use CDN for loading Bootstrap
-		wp_register_script('bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js', array('jquery'), '3.0.3', true);
+		wp_register_script('bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', array('jquery'), '3.3.1', true);
 		wp_register_script( 'wpbs-scripts', get_template_directory_uri() . '/js/scripts.js',array('jquery'),'3.1', true );
 
 		wp_register_script( 'waypoints', get_template_directory_uri() . '/vendor/js/waypoints.min.js', array('jquery'), '2.0.5', true);
 
 		// only enqueue the following scripts when needed, but register them here to centralize updates.
-		wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/vendor/js/jquery.blueimp-gallery.min.js', array(jquery), '2.14.0', true);
-		wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/js/gallery_init.js', array('jquery','blueimp-gallery-js'), false, true);
+		wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/vendor/js/jquery.blueimp-gallery.min.js', array(jquery), '2.15.2', true);
+		wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/js/gallery_init.js', array('jquery','blueimp-gallery-js'), '2.15.2', true);
 		//wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery'), '1.10.3', true);
 		wp_register_script('tocify-js',get_template_directory_uri() . '/vendor/js/jquery.tocify.min.js', array('jquery','jquery-ui'), '1.9.0', true);
 		wp_register_script( 'shuffle', get_template_directory_uri() . '/vendor/js/jquery.shuffle.modernizr.min.js', array('jquery'), '3.0', true);
