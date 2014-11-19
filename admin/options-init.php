@@ -263,7 +263,7 @@ if (!class_exists('wiwb_Redux_Framework_config')) {
                         'url'       => true,
                         'readonly'  => false,
                         'default'   => array(
-                            'url'   => get_template_directory_uri() . '/library/images/icons/favicon.png'
+                            'url'   => get_template_directory_uri() . '/images/icons/favicon.png'
                         )
                     ),
                     array(

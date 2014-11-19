@@ -1,0 +1,13 @@
+{
+  "name": "YeoPress-Template",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~1.9.0",
+    "requirejs": "~2.1.5",
+    "jquery.tocify.js": "~1.9.0",
+    "blueimp-gallery": "~2.15.2",
+    "bootstrap": "~3.3.1",
+    "shufflejs": "~3.0.0",
+    "jquery-waypoints": "~2.0.5"
+  }
+}

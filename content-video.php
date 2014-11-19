@@ -1,5 +1,4 @@
 <?php
-//require_once('library/essence/lib/bootstrap.php');
 global $wheniwasbad_options;
 ?>
 

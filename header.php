@@ -24,18 +24,18 @@
 
 		<?php else : ?>
 			<!-- Opera Speed Dial Favicon -->
-			  <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/speeddial-160px.png" />
+			  <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/icons/speeddial-160px.png" />
 
 			<!-- For Apple displays: -->
-			<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/touch-icon-iphone.png">
-			<link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/touch-icon-ipad.png">
-			<link rel="apple-touch-icon" sizes="120x120" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/touch-icon-iphone-retina.png">
-			<link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/touch-icon-ipad-retina.png">
+			<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/images/icons/touch-icon-iphone.png">
+			<link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_template_directory_uri(); ?>/images/icons/touch-icon-ipad.png">
+			<link rel="apple-touch-icon" sizes="120x120" href="<?php echo get_template_directory_uri(); ?>/images/icons/touch-icon-iphone-retina.png">
+			<link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_template_directory_uri(); ?>/images/icons/touch-icon-ipad-retina.png">
 
 			<!-- For Nokia -->
-			<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/touch-icon-iphone.png">
+			<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/icons/touch-icon-iphone.png">
 			<!-- For everything else -->
-			<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/favicon.png">
+			<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/icons/favicon.png">
 
 		<?php endif; ?>
 
