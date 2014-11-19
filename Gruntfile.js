@@ -72,7 +72,7 @@ module.exports = function(grunt) {
 			production : {
 				files : 
 					{
-						'css/**/*.css': 'less/**/*.less'
+						'css/*.css': 'less/*.less'
 					},
 				options :
 					{
@@ -84,7 +84,7 @@ module.exports = function(grunt) {
 			dev : {
 				files : 
 					{
-						'css/**/*.css': 'less/**/*.less'
+						'css/*.css': 'less/*.less'
 					}
 			}
 		},
@@ -235,11 +235,11 @@ module.exports = function(grunt) {
 		var arr = [];
 
 		if (hasLess) {
-			arr.push['less:dev'];
+			arr.push('less:dev');
 		}
 
 		if (hasCopy) {
-			arr.push['copy'];
+			arr.push('copy');
 		}
 
 		if (hasAutoprefixer) {
