@@ -7,10 +7,9 @@ Modified: 20140613
 */
 
 /************* INCLUDES ****************/
-
-define("WIWB_DEVMODE", true);
-if (WIWB_DEVMODE) {
-	wp_register_script('livereload', 'http://keithmiyake.dev:35729/livereload.js?snipver=1', null, false, true);
+// turn on devmode if the non-git sync'd file ".devmode" exists
+if (file_exists('.devmode')) {
+	wp_register_script('livereload', 'http://localhost:35729/livereload.js?snipver=1', null, false, true);
 	wp_enqueue_script('livereload');
 }
 // Redux Options
@@ -416,7 +415,7 @@ if( !function_exists( "theme_js" ) ) {
 		// only enqueue the following scripts when needed, but register them here to centralize updates.
 		wp_register_script('blueimp-gallery-js', get_template_directory_uri() . '/vendor/js/jquery.blueimp-gallery.min.js', array(jquery), '2.15.2', true);
 		wp_register_script('blueimp-gallery-init-js', get_template_directory_uri() . '/js/gallery_init.js', array('jquery','blueimp-gallery-js'), '2.15.2', true);
-		//wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery'), '1.10.3', true);
+		wp_register_script('jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js', array('jquery'), '1.11.2', true);
 		wp_register_script('tocify-js',get_template_directory_uri() . '/vendor/js/jquery.tocify.min.js', array('jquery','jquery-ui'), '1.9.0', true);
 		wp_register_script( 'shuffle', get_template_directory_uri() . '/vendor/js/jquery.shuffle.modernizr.min.js', array('jquery'), '3.0', true);
 
