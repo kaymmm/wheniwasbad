@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 		// Watches for changes and runs tasks
 		watch : {
 			less : {
-				files : ['less/*.less'],
+				files : ['less/**/*.less'],
 				tasks : (hasLess) ? ['less:dev','autoprefixer'] : null,
 				options : {
 					livereload : true
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
 			production : {
 				files : 
 					{
-						'css/*.css': 'less/*.less'
+						'css/bootstrap-themed.css': 'less/bootstrap-themed.less'
 					},
 				options :
 					{
@@ -84,7 +84,7 @@ module.exports = function(grunt) {
 			dev : {
 				files : 
 					{
-						'css/*.css': 'less/*.less'
+						'css/bootstrap-themed.css': 'less/bootstrap-themed.less'
 					}
 			}
 		},
@@ -129,8 +129,8 @@ module.exports = function(grunt) {
 		dist: {
 		  files: [{
 		    expand: true,
-		    src: '{,*/}*.css',
-		    dest: 'css'
+		    flatten: true,
+		    src: 'css/**/*.css'
 		  }]
 		}
 		},
@@ -232,7 +232,7 @@ module.exports = function(grunt) {
 
 	// Template Setup Task
 	grunt.registerTask('setup', function() {
-		var arr = [];
+		var arr = [jshint];
 
 		if (hasLess) {
 			arr.push('less:dev');

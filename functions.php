@@ -8,7 +8,8 @@ Modified: 20140613
 
 /************* INCLUDES ****************/
 // turn on devmode if the non-git sync'd file ".devmode" exists
-if (file_exists('.devmode')) {
+$devfile = get_template_directory().'/.devmode';
+if (file_exists($devfile)) {
 	wp_register_script('livereload', 'http://localhost:35729/livereload.js?snipver=1', null, false, true);
 	wp_enqueue_script('livereload');
 }
