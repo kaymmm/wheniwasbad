@@ -1,0 +1,21 @@
+/*
+Theme Name: WhenIWasBad
+Theme URI: http://keithmiyake.info/wheniwasbad/
+Github Theme URI: https://github.com/kaymmm/wheniwasbad
+Description: A responsive theme based on the Bootstrap 3 framework. Originally forked from the wp-bootstrap theme by 320press (http://320press.com/wpbs). Includes multiple page templates, sidebars that can be selected for individual pages, and a theme options panel.
+Version: v3.0.2
+Author: Keith Miyake
+Author URI: http://keithmiyake.info
+Tags: orange, white, one-column, two-columns, flexible-width, custom-background, custom-colors, custom-menu, full-width-template, post-formats, theme-options
+License: GNU General Public License v3.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/licenses/LICENSE-2.0
+*/
+
+@import "loader";
+@import "general";
+@import "layout";
+@import "menus";
+@import "navigation";
+@import "sidebar";
+@import "bootstrap-themed";
+@import "cv";

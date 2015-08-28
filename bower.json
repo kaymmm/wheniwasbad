@@ -1,0 +1,49 @@
+{
+  "name": "when-i-was-bad-theme",
+  "homepage": "https://github.com/kaymmm/wheniwasbad",
+  "authors": [
+    {
+      "name": "Keith Miyake",
+      "email": "kmiyake@gc.cuny.edu",
+      "homepage": "http://keithmiyake.info"
+    }
+  ],
+  "keywords": [
+    "wordpress",
+    "wordpress-theme",
+    "theme",
+    "gulp",
+    "bower",
+    "composer",
+    "sass",
+    "bootstrap"
+  ],
+  "license": "GPL-3.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".sass-cache",
+    "build"
+  ],
+  "devDependencies": {
+    "meyer-reset": "*",
+    "normalize.css": "^3.0.3",
+    "scut": "^1.2.0",
+    "html5-history-api": "^4.2.1",
+    "spin.js": "^2.3.1",
+    "wp-ajax-page-loader": "^0.1.1",
+    "bootstrap": "~3.3.5",
+    "Custom-Meta-Boxes": "https://github.com/humanmade/Custom-Meta-Boxes.git#~1.0.1",
+    "essence": "https://github.com/essence/essence.git#~3.0.0",
+    "blueimp-gallery": "~2.16.0",
+    "jquery.tocify.js": "~1.9.0",
+    "wp-bootstrap-navwalker": "https://github.com/twittem/wp-bootstrap-navwalker.git#~2.0.4",
+    "bootstrap-sass": "~3.3.5"
+  },
+  "dependencies": {
+    "redux-framework": "https://github.com/reduxframework/redux-framework.git#~3.5.5"
+  }
+}

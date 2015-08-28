@@ -1,0 +1,52 @@
+{
+  "name": "when-i-was-bad-theme",
+  "version": "0.0.5",
+  "description": "A responsive WordPress theme based on the Bootstrap 3 framework.",
+  "homepage": "https://github.com/kaymmm/wheniwasbad",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaymmm/wheniwasbad.git"
+  },
+  "keywords": [
+    "wordpress",
+    "wordpress-theme",
+    "theme",
+    "gulp",
+    "bower",
+    "composer",
+    "sass",
+    "bootstrap"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Keith Miyake <kmiyake@gc.cuny.edu>",
+  "license": "GPL-3.0",
+  "main": "gulpfile.js",
+  "private": true,
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "browser-sync": "^2.7.13",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-changed": "^1.2.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-livereload": "^3.8.0",
+    "gulp-load-plugins": "^1.0.0-rc",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-postcss": "^5.1.9",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-sass": "^2.0.3",
+    "gulp-sourcemaps": "1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
+    "merge-stream": "^0.1.8",
+    "require-dir": "^0.3.0"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}

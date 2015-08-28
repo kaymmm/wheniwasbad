@@ -1,0 +1,24 @@
+{
+  "name": "kaymmm/WhenIWasBad",
+  "description": "A responsive WordPress theme based on the Bootstrap 3 framework.",
+  "keywords": [
+    "wordpress",
+    "wordpress-theme",
+    "theme",
+    "gulp",
+    "bower",
+    "composer",
+    "sass",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/kaymmm/wheniwasbad",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Keith Miyake",
+      "email": "kmiyake@gc.cuny.edu",
+      "homepage": "http://keithmiyake.info"
+    }
+  ],
+  "type": "theme"
+}
